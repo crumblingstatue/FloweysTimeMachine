@@ -37,4 +37,4 @@ Name="your_character_name"
 
 Two files named `file0` and `file9` also get created.
 They are two identical files at this time.
-The initial state can be found here: https://github.com/crumblingstatue/Undetermination/blob/gh-pages/research/file0_init
+The initial state can be found here as `file0_init` in this directory.
