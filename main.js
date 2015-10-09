@@ -1,6 +1,4 @@
-function onFileInputChange(e) {
-    var file = e.target.files[0];
-
+function loadFile(file, name) {
     if (!file) {
         return;
     }
@@ -8,11 +6,16 @@ function onFileInputChange(e) {
     var reader = new FileReader();
     reader.onload = function(e) {
         var contents = e.target.result;
-        alert(contents);
+        document.getElementById(name + '-contents').innerHTML = contents;
     };
     reader.readAsText(file);
 }
 
 function start() {
-    document.getElementById('file-input').addEventListener('change', onFileInputChange, false);
+    ['undertale-ini', 'file0', 'file9'].forEach(function(name) {
+        var f = function(e) {
+            loadFile(e.target.files[0], name);
+        };
+        document.getElementById(name).addEventListener('change', f, false);
+    });
 }
