@@ -14,7 +14,7 @@ function loadFile(file, name) {
 function start() {
     ['undertale-ini', 'file0', 'file9'].forEach(function(name) {
         var f = function(e) {
-            loadFile(e.target.files[0], name);
+            loadFile(e.target.files[0], name + '-file');
         };
         document.getElementById(name).addEventListener('change', f, false);
     });
