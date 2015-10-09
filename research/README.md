@@ -37,4 +37,4 @@ Name="your_character_name"
 
 Two files named `file0` and `file9` also get created.
 They are two identical files at this time.
-The initial state can be found here as `file0_init` in this directory.
+The initial state can be found here in the `research/` directory as `file0_init`.
