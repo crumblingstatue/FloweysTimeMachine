@@ -7,6 +7,6 @@ It is unknown why there are two save files instead of one.
 
 Line | Description
 ----:| -----------
-  56 | Gets incremented by 2 every time you save. Purpose unknown.
+  56 | Gets incremented every time you save. Purpose unknown.
  543 | Gets increased by varying values as you are making progress in the tutorial dungeon.
  549 | The game time. Same as `Time` in the ini.
