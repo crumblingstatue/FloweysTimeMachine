@@ -49,7 +49,7 @@ fn main() {
                         if old.trim_right() != new.trim_right() {
                             println!("{}",
                                      Yellow.paint(&format!("line {} changed: '{}' to '{}'",
-                                                           n,
+                                                           n + 1,
                                                            old,
                                                            new)));
                         }
