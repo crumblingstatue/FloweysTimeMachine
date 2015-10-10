@@ -35,6 +35,9 @@ fn main() {
     watcher.watch(&dir).unwrap();
     let mut file0 = load_file(&dir, "file0");
     let mut ini = load_ini(&dir, "undertale.ini");
+    // Files seem to complete writing on 4th write, wait until then,
+    // or we might operate on incomplete writes.
+    let mut nth_write = 0;
     loop {
         use notify::op;
         let event = rx.recv().unwrap();
@@ -44,6 +47,12 @@ fn main() {
             "file0" => {
                 let op = event.op.unwrap();
                 if op == op::WRITE {
+                    if nth_write != 3 {
+                        nth_write += 1;
+                        continue;
+                    } else {
+                        nth_write = 0;
+                    }
                     let new = load_file(&dir, "file0").unwrap();
                     for (n, (old, new)) in file0.unwrap().lines().zip(new.lines()).enumerate() {
                         if old.trim_right() != new.trim_right() {
@@ -63,6 +72,12 @@ fn main() {
             "undertale.ini" => {
                 let op = event.op.unwrap();
                 if op == op::WRITE {
+                    if nth_write != 3 {
+                        nth_write += 1;
+                        continue;
+                    } else {
+                        nth_write = 0;
+                    }
                     let new = load_ini(&dir, "undertale.ini").unwrap();
                     {
                         let ini = ini.unwrap();
