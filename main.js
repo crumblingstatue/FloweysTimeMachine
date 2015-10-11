@@ -99,7 +99,7 @@ var rooms = {
     32: "Toriel's House: Entrance",
     33: "Toriel's House: Reading room",
     34: "Toriel's House: Corridor",
-    35: "Toriel's House: Toriel's Room"
+    35: "Toriel's House: Toriel's Room",
     36: "Toriel's House: Your Room",
     37: "Toriel's House: Kitchen",
     38: "Toriel's Basement 1",
@@ -253,10 +253,4 @@ function loadFile(file, name) {
 }
 
 function start() {
-    ['undertale-ini', 'file0', 'file9'].forEach(function(name) {
-        var f = function(e) {
-            loadFile(e.target.files[0], name);
-        };
-        document.getElementById(name + '-file').addEventListener('change', f, false);
-    });
 }
