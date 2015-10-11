@@ -34,6 +34,53 @@ fn load_ini<P1: AsRef<Path>, P2: AsRef<Path>>(base_path: P1, filename: P2) -> Op
     Some(Ini::load_from_str(&text).unwrap())
 }
 
+fn compare_inis(ini: &Ini, new: &Ini) {
+    for (section, properties) in new.iter() {
+        if let Some(old_props) = ini.section(section.clone()) {
+            for (k, v) in properties.iter() {
+                if let Some(old_value) = old_props.get(k) {
+                    if v != old_value {
+                        println!("{}",
+                                 Yellow.paint(&format!("'Changed value for '{}.{}': {} -> {}",
+                                                       section.as_ref()
+                                                              .unwrap_or(&"<root>".into()),
+                                                       k,
+                                                       old_value,
+                                                       v)));
+                    }
+                } else {
+                    println!("{}",
+                             Green.paint(&format!("New key: {}.{} => {}",
+                                                  section.as_ref().unwrap_or(&"<root>".into()),
+                                                  k,
+                                                  v)));
+                }
+            }
+        } else if let Some(section) = section.clone() {
+            println!("{}",
+                     Green.bold().paint(&format!("New section '{}'", section)));
+            for (k, v) in properties.iter() {
+                println!("{}", Green.paint(&format!("{} => {}", k, v)));
+            }
+        }
+    }
+    for (section, properties) in ini.iter() {
+        if let Some(new_props) = new.section(section.clone()) {
+            for (k, _) in properties.iter() {
+                if new_props.get(k).is_none() {
+                    println!("{}",
+                             Red.paint(&format!("Key '{}.{}' deleted.",
+                                                section.as_ref().unwrap_or(&"<root>".into()),
+                                                k)));
+                }
+            }
+        } else if let Some(section) = section.clone() {
+            println!("{}",
+                     Red.bold().paint(&format!("Deleted section '{}'", section)));
+        }
+    }
+}
+
 fn main() {
     let dir = std::env::args().skip(1).next().expect("Expected directory as argument");
     let (tx, rx) = channel();
@@ -72,52 +119,7 @@ fn main() {
                 if op == op::WRITE {
                     sleep_ms(FILE_READ_WAIT);
                     let new = load_ini(&dir, "undertale.ini").unwrap();
-                    {
-                        let ini = ini.unwrap();
-                        for (section, properties) in new.iter() {
-                            if let Some(old_props) = ini.section(section.clone()) {
-                                for (k, v) in properties.iter() {
-                                    if let Some(old_value) = old_props.get(k) {
-                                        if v != old_value {
-                                            println!("{}", Yellow.paint(&format!("'Changed value for '{}.{}': {} -> {}",
-                                                     section.as_ref().unwrap_or(&"<root>".into()),
-                                                     k,
-                                                     old_value,
-                                                     v)));
-                                        }
-                                    } else {
-                                        println!("{}",
-                                                 Green.paint(&format!("New key: {}.{} => {}",
-                                                 section.as_ref().unwrap_or(&"<root>".into()),
-                                                 k,
-                                                 v)));
-                                    }
-                                }
-                            } else if let Some(section) = section.clone() {
-                                println!("{}",
-                                         Green.bold().paint(&format!("New section '{}'", section)));
-                                for (k, v) in properties.iter() {
-                                    println!("{}", Green.paint(&format!("{} => {}", k, v)));
-                                }
-                            }
-                        }
-                        for (section, properties) in ini.iter() {
-                            if let Some(new_props) = new.section(section.clone()) {
-                                for (k, _) in properties.iter() {
-                                    if new_props.get(k).is_none() {
-                                        println!("{}",
-                                                 Red.paint(&format!("Key '{}.{}' deleted.",
-                                                 section.as_ref().unwrap_or(&"<root>".into()),
-                                                 k)));
-                                    }
-                                }
-                            } else if let Some(section) = section.clone() {
-                                println!("{}",
-                                         Red.bold()
-                                            .paint(&format!("Deleted section '{}'", section)));
-                            }
-                        }
-                    }
+                    compare_inis(&ini.unwrap(), &new);
                     ini = Some(new);
                 } else if op == op::CREATE {
                     println!("undertale.ini created.");
