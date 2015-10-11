@@ -13,10 +13,17 @@ Line | Description
   10 | EXP
   11 | `0->20` if you kill first Froggit (NEXT?).
   12 | `0->1` if you kill first Froggit.
+  14 | `0->201` at second save point.
+  16 | `0->203` at second save point.
+  18 | `0->204` at second save point.
+  20 | `0->205` at second save point.
   41 | `0->1` if you talk to training dummy. `1->0` after you meet first Froggit.
   43 | `0->1` if you kill training dummy. `0->1` if you kill first Froggit (but spared dummy).
   45 | `0->1` if you kill training dummy. `0->2` if you talk to training dummy.
   56 | Gets incremented every time you save. Purpose unknown.
   61 | `0->1` after you meet first Froggit.
+ 231 | `0->202` at second save point.
  543 | Gets increased by varying values as you are making progress in the tutorial dungeon.
+ 546 | `0->1` at second save point.
+ 548 | `6->12` at second save point.
  549 | The game time. Same as `Time` in the ini.
