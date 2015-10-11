@@ -264,6 +264,18 @@ function insert_inv_lists() {
     }
 }
 
+function insert_rooms() {
+    var select = document.getElementById("location");
+
+    for (var key in rooms) {
+        var newOption = document.createElement("option");
+        var newContent = document.createTextNode(rooms[key]);
+        newOption.appendChild(newContent);
+        select.appendChild(newOption);
+    }
+}
+
 function start() {
+    insert_rooms();
     insert_inv_lists();
 }
