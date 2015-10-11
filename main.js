@@ -67,6 +67,18 @@ var items = [
     "<invalid>"
 ];
 
+var rooms = {
+    4: "Ruins - Starting point"
+    5: "Ruins - Flowey spot"
+    6: "Ruins - Entrance (save)",
+    7: "Ruins - Entrance + 1",
+    8: "Ruins - Switch puzzle"
+    9: "Ruins - Dummy room"
+    10: "Ruins - Spike puzzle"
+    11: "Ruins - Long corridor"
+    12: "Ruins - Leaf Pile (save)",
+};
+
 function parseIni(text) {
     var lines = text.split("\n");
     var section = null;

@@ -37,5 +37,5 @@ Line | Description
  231 | `0->202` at second save point.
  543 | Gets increased by varying values as you are making progress in the tutorial dungeon.
  546 | `0->1` at second save point.
- 548 | Room the player is located in. See the `rooms.md`.
+ 548 | Room the player is located in. See the `main.js` for a list of rooms.
  549 | The game time. Same as `Time` in the ini.
