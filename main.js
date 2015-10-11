@@ -278,4 +278,8 @@ function insert_rooms() {
 function start() {
     insert_rooms();
     insert_inv_lists();
+    var loadButton = document.getElementById("loadbutton");
+    loadButton.addEventListener("click", function() {
+        alert("Clickety click!");
+    }, false);
 }

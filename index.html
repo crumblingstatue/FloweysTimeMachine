@@ -11,6 +11,19 @@
         <h1><img src="http://vignette1.wikia.nocookie.net/undertale/images/3/3b/Flowey_Talk_normal.gif/revision/latest?cb=20131221213926" alt="" />Flowey's Time Machine</h1>
         <form id="mainform">
             <fieldset>
+                <fieldset>
+                    <legend>Load</legend>
+                    <label>undertale.ini</label> <input type="file" id="undertale-ini" />
+                    <label>file0/file9</label> <input type="file" id="savfile" />
+                    <input id="loadbutton" type="button" value="Load" />
+                </fieldset>
+                <fieldset>
+                    <legend>Save</legend>
+                    <input type="button" value="Save undertale.ini" />
+                    <input type="button" value="Save file0/file9" />
+                </fieldset>
+            </fieldset>
+            <fieldset>
             <legend>General</legend>
             <label>Name</label> <input type="text" />
             <label>Location</label> <select id="location"> </select>
