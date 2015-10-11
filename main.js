@@ -56,7 +56,8 @@ var items = [
     "Bad Memory",
     "Dream",
     "Undyne's Letter",
-    "Undyne Letter EX"
+    "Undyne Letter EX",
+    "Potato Chisps",
     "Junk Food",
     "Mystery Key",
     "Face Steak",
