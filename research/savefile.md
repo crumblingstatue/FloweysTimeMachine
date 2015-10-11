@@ -14,14 +14,18 @@ Line | Description
   10 | EXP
   11 | GOLD
   12 | `0->1` if you kill first Froggit.
-  13 | `0->1` Inventory slot 1
+  13 | Inventory slot 1
   14 | `0->201` at second save point.
-  15 | `0->1` Inventory slot 2
+  15 | Inventory slot 2
   16 | `0->203` at second save point.
-  17 | `0->1` Inventory slot 3
+  17 | Inventory slot 3
   18 | `0->204` at second save point.
-  19 | `0->1` Inventory slot 4
+  19 | Inventory slot 4
   20 | `0->205` at second save point.
+  21 | Inventory slot 5
+  23 | Inventory slot 6
+  25 | Inventory slot 7
+  27 | Inventory slot 8
   41 | `0->1` if you talk to training dummy. `1->0` after you meet first Froggit.
   43 | `0->1` if you kill training dummy. `0->1` if you kill first Froggit (but spared dummy).
   45 | `0->1` if you kill training dummy. `0->2` if you talk to training dummy.
