@@ -40,25 +40,24 @@ fn compare_inis(ini: &Ini, new: &Ini) {
             for (k, v) in properties.iter() {
                 if let Some(old_value) = old_props.get(k) {
                     if v != old_value {
-                        println!("{}",
-                                 Yellow.paint(&format!("'Changed value for '{}.{}': {} -> {}",
-                                                       section.as_ref()
-                                                              .unwrap_or(&"<root>".into()),
-                                                       k,
-                                                       old_value,
-                                                       v)));
+                        let msg = format!("'Changed value for '{}.{}': {} -> {}",
+                                          section.as_ref().unwrap_or(&"<root>".into()),
+                                          k,
+                                          old_value,
+                                          v);
+                        println!("{}", Yellow.paint(&msg));
                     }
                 } else {
-                    println!("{}",
-                             Green.paint(&format!("New key: {}.{} => {}",
-                                                  section.as_ref().unwrap_or(&"<root>".into()),
-                                                  k,
-                                                  v)));
+                    let msg = format!("New key: {}.{} => {}",
+                                      section.as_ref().unwrap_or(&"<root>".into()),
+                                      k,
+                                      v);
+                    println!("{}", Green.paint(&msg));
                 }
             }
         } else if let Some(section) = section.clone() {
-            println!("{}",
-                     Green.bold().paint(&format!("New section '{}'", section)));
+            let msg = format!("New section '{}'", section);
+            println!("{}", Green.bold().paint(&msg));
             for (k, v) in properties.iter() {
                 println!("{}", Green.paint(&format!("{} => {}", k, v)));
             }
@@ -68,10 +67,10 @@ fn compare_inis(ini: &Ini, new: &Ini) {
         if let Some(new_props) = new.section(section.clone()) {
             for (k, _) in properties.iter() {
                 if new_props.get(k).is_none() {
-                    println!("{}",
-                             Red.paint(&format!("Key '{}.{}' deleted.",
-                                                section.as_ref().unwrap_or(&"<root>".into()),
-                                                k)));
+                    let msg = format!("Key '{}.{}' deleted.",
+                                      section.as_ref().unwrap_or(&"<root>".into()),
+                                      k);
+                    println!("{}", Red.paint(&msg));
                 }
             }
         } else if let Some(section) = section.clone() {
@@ -101,11 +100,8 @@ fn main() {
                     let new = load_file(&dir, "file0").unwrap();
                     for (n, (old, new)) in file0.unwrap().lines().zip(new.lines()).enumerate() {
                         if old.trim_right() != new.trim_right() {
-                            println!("{}",
-                                     Yellow.paint(&format!("line {} changed: '{}' to '{}'",
-                                                           n + 1,
-                                                           old,
-                                                           new)));
+                            let msg = format!("line {} changed: '{}' to '{}'", n + 1, old, new);
+                            println!("{}", Yellow.paint(&msg));
                         }
                     }
                     file0 = Some(new);
