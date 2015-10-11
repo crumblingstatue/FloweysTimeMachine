@@ -14,13 +14,13 @@ Line | Description
   10 | EXP
   11 | GOLD
   12 | `0->1` if you kill first Froggit.
-  13 | `0->1` if you take a candy.
+  13 | `0->1` Inventory slot 1
   14 | `0->201` at second save point.
-  15 | `0->1` if you take a second candy.
+  15 | `0->1` Inventory slot 2
   16 | `0->203` at second save point.
-  17 | `0->1` if you take third candy.
+  17 | `0->1` Inventory slot 3
   18 | `0->204` at second save point.
-  19 | `0->1` after you spill candy.
+  19 | `0->1` Inventory slot 4
   20 | `0->205` at second save point.
   41 | `0->1` if you talk to training dummy. `1->0` after you meet first Froggit.
   43 | `0->1` if you kill training dummy. `0->1` if you kill first Froggit (but spared dummy).
