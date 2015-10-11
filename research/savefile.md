@@ -14,7 +14,7 @@ Line | Description
   10 | EXP
   11 | GOLD
   12 | `0->1` if you kill first Froggit.
-  13 | Inventory slot 1
+  13 | Inventory slot 1. See `main.js` for a list of items.
   14 | `0->201` at second save point.
   15 | Inventory slot 2
   16 | `0->203` at second save point.
