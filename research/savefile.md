@@ -26,6 +26,8 @@ Line | Description
   23 | Inventory slot 6
   25 | Inventory slot 7
   27 | Inventory slot 8
+  29 | Weapon
+  30 | Armor
   41 | `0->1` if you talk to training dummy. `1->0` after you meet first Froggit.
   43 | `0->1` if you kill training dummy. `0->1` if you kill first Froggit (but spared dummy).
   45 | `0->1` if you kill training dummy. `0->2` if you talk to training dummy.
