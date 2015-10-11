@@ -218,40 +218,6 @@ function parseIni(text) {
     return { ok: obj };
 }
 
-function loadFile(file, name) {
-    if (!file) {
-        return;
-    }
-
-    var reader = new FileReader();
-    reader.onload = function(e) {
-        var contents = e.target.result;
-        if (name == "undertale-ini") {
-            var result = parseIni(contents);
-            if (result.error) {
-                alert("Error parsing ini: " + result.error);
-                return;
-            }
-            var node = document.getElementById(name + '-contents');
-            node.innerHTML = '';
-            var obj = result.ok;
-            for (var section in obj) {
-                node.innerHTML += '<h4>' + section + '</h4>';
-                node.innerHTML += '<form>';
-                for (var key in obj[section]) {
-                    node.innerHTML += '<label for="' + key + '">' + key + '</label>';
-                    node.innerHTML += '<input type="text" id="' + key + '"' +
-                                      'value="' + obj[section][key] + '" /> <br />';
-                }
-                node.innerHTML += '</form>';
-            }
-        } else {
-
-        }
-    };
-    reader.readAsText(file);
-}
-
 function insert_inv_lists() {
     for (var i = 0; i < items.length; i++) {
         for (var j = 1; j <= 8; j++) {
@@ -275,11 +241,54 @@ function insert_rooms() {
     }
 }
 
+function load(iniFile, saveFile) {
+    var iniReader = new FileReader();
+    iniReader.onload = function(e) {
+        var text = e.target.result;
+        var ini = parseIni(text);
+    };
+    iniReader.readAsText(iniFile);
+    var saveReader = new FileReader();
+    saveReader.onload = function(e) {
+        var text = e.target.result;
+        var saveLines = text.split("\r\n");
+        document.getElementById("name").value = saveLines[0];
+        var locId = parseInt(saveLines[547].trim());
+        document.getElementById("location").value = rooms[locId];
+        document.getElementById("love").value = saveLines[1];
+        document.getElementById("hp").value = saveLines[2];
+        document.getElementById("exp").value = saveLines[9];
+        document.getElementById("gold").value = saveLines[10];
+        for (var i = 0; i < 8; i++) {
+            var itemId = parseInt(saveLines[12 + (i * 2)].trim());
+            document.getElementById("invslot" + (i + 1)).value = items[itemId];
+        }
+    };
+    saveReader.readAsText(saveFile);
+}
+
 function start() {
     insert_rooms();
     insert_inv_lists();
+    var iniFile, saveFile;
+    var iniInput = document.getElementById("undertale-ini");
+    iniInput.addEventListener("change", function(evt) {
+        iniFile = evt.target.files[0];
+    }, false);
+    var saveInput = document.getElementById("savefile");
+    saveInput.addEventListener("change", function (evt) {
+        saveFile = evt.target.files[0];
+    }, false);
     var loadButton = document.getElementById("loadbutton");
     loadButton.addEventListener("click", function() {
-        alert("Clickety click!");
+        if (!iniFile) {
+            alert("You need to provide undertale.ini");
+            return;
+        }
+        if (!savefile) {
+            alert("You need to provide file0/file9");
+            return;
+        }
+        load(iniFile, saveFile);
     }, false);
 }
