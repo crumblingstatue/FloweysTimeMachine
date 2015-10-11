@@ -7,6 +7,7 @@ It is unknown why there are two save files instead of one. `file9` seem to be wr
 
 Line | Description
 ----:| -----------
+   1 | Character name
    2 | LV
    3 | HP
    5 | `10->12` if you kill first Froggit.
