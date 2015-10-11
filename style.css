@@ -1,11 +1,9 @@
-#undertale-ini {
-    background-color: rgb(198, 133, 233);
+body {
+    background-color: black;
+    color: white;
 }
 
-#file0 {
-    background-color: rgb(217, 252, 159);
-}
-
-#file9 {
-    background-color: rgb(236, 141, 88);
+#mainform {
+    display: flex;
+    width: 100px;
 }
