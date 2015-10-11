@@ -252,5 +252,18 @@ function loadFile(file, name) {
     reader.readAsText(file);
 }
 
+function insert_inv_lists() {
+    for (var i = 0; i < items.length; i++) {
+        for (var j = 1; j <= 8; j++) {
+            var newOption = document.createElement("option");
+            var newContent = document.createTextNode(items[i]);
+            newOption.appendChild(newContent);
+            var select = document.getElementById("invslot" + j);
+            select.appendChild(newOption);
+        }
+    }
+}
+
 function start() {
+    insert_inv_lists();
 }
