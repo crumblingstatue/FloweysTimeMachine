@@ -14,15 +14,20 @@ Line | Description
   10 | EXP
   11 | GOLD
   12 | `0->1` if you kill first Froggit.
+  13 | `0->1` if you take a candy.
   14 | `0->201` at second save point.
+  15 | `0->1` if you take a second candy.
   16 | `0->203` at second save point.
+  17 | `0->1` if you take third candy.
   18 | `0->204` at second save point.
+  19 | `0->1` after you spill candy.
   20 | `0->205` at second save point.
   41 | `0->1` if you talk to training dummy. `1->0` after you meet first Froggit.
   43 | `0->1` if you kill training dummy. `0->1` if you kill first Froggit (but spared dummy).
   45 | `0->1` if you kill training dummy. `0->2` if you talk to training dummy.
   56 | Gets incremented every time you save. Purpose unknown.
   61 | `0->1` after you meet first Froggit.
+  65 | How many candies you took from candy room.
  231 | `0->202` at second save point.
  543 | Gets increased by varying values as you are making progress in the tutorial dungeon.
  546 | `0->1` at second save point.
