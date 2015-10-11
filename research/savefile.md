@@ -11,7 +11,7 @@ Line | Description
    3 | HP
    5 | `10->12` if you kill first Froggit.
   10 | EXP
-  11 | `0->20` if you kill first Froggit (NEXT?).
+  11 | GOLD
   12 | `0->1` if you kill first Froggit.
   14 | `0->201` at second save point.
   16 | `0->203` at second save point.
