@@ -9,6 +9,12 @@ use std::path::Path;
 use std::io::prelude::*;
 use ini::Ini;
 use ansi_term::Colour::*;
+use std::thread::sleep_ms;
+
+// Sometimes a write is incomplete when we recieve a write event.
+// Since we can't determine when it will be complete, we just sleep some
+// and hope the write will be complete by the time we wake up.
+const FILE_READ_WAIT: u32 = 350;
 
 fn load_file<P1: AsRef<Path>, P2: AsRef<Path>>(base_path: P1, filename: P2) -> Option<String> {
     let mut file = match File::open(base_path.as_ref().join(filename)) {
@@ -44,6 +50,7 @@ fn main() {
             "file0" => {
                 let op = event.op.unwrap();
                 if op == op::WRITE {
+                    sleep_ms(FILE_READ_WAIT);
                     let new = load_file(&dir, "file0").unwrap();
                     for (n, (old, new)) in file0.unwrap().lines().zip(new.lines()).enumerate() {
                         if old.trim_right() != new.trim_right() {
@@ -63,6 +70,7 @@ fn main() {
             "undertale.ini" => {
                 let op = event.op.unwrap();
                 if op == op::WRITE {
+                    sleep_ms(FILE_READ_WAIT);
                     let new = load_ini(&dir, "undertale.ini").unwrap();
                     {
                         let ini = ini.unwrap();
