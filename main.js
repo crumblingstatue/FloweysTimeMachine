@@ -14,7 +14,7 @@ var items = [
     "Faded Ribbon",
     "Toy Knife",
     "Tough Glove",
-    "Many Bandana",
+    "Manly Bandana",
     "Snowman Piece",
     "Nice Cream",
     "Puppydough Icecream",
