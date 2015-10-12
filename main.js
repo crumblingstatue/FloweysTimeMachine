@@ -189,9 +189,9 @@ function parseIni(text) {
         }
         // If line starts with [, it is a section header
         var lbracket = line.indexOf("[");
-        if (lbracket != -1) {
+        if (lbracket !== -1) {
             var rbracket = line.slice(lbracket).indexOf("]") + lbracket;
-            if (rbracket != -1) {
+            if (rbracket !== -1) {
                 section = line.slice(lbracket + 1, rbracket);
                 obj[section] = {};
             }
@@ -200,15 +200,15 @@ function parseIni(text) {
                 return { error: "Assignment outside of a section" };
             }
             var eq = line.indexOf("=");
-            if (eq == -1) {
+            if (eq === -1) {
                 return { error: "Expected '='" };
             }
             var lquot = line.indexOf('"');
-            if (lquot == -1) {
+            if (lquot === -1) {
                 return { error: "Expected '\"'" };
             }
             var rquot = line.slice(lquot + 1).indexOf('"') + lquot + 1;
-            if (rquot == -1) {
+            if (rquot === -1) {
                 return { error: "Unterminated value string" };
             }
             var value = line.slice(lquot + 1, rquot);
