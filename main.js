@@ -437,7 +437,7 @@ function saveIni() {
     saveAs(blob, "undertale.ini", true);
 }
 
-function saveFileX(name) {
+function saveFileX() {
     "use strict";
     saveLines[0] = document.getElementById("name").value;
     saveLines[1] = document.getElementById("love").value;
@@ -462,7 +462,7 @@ function saveFileX(name) {
         string += saveLines[i] + "\r\n";
     }
     var blob = new Blob([string], {type: "text/plain;charset=uft-8"});
-    saveAs(blob, name, true);
+    saveAs(blob, "file0", true);
 }
 
 function start() {
@@ -493,10 +493,8 @@ function start() {
     }, false);
     var saveIniButton = document.getElementById("saveini");
     saveIniButton.addEventListener("click", saveIni, false);
-    var save0Button = document.getElementById("save0");
-    save0Button.addEventListener("click", function() { saveFileX("file0"); }, false);
-    var save9Button = document.getElementById("save9");
-    save9Button.addEventListener("click", function() { saveFileX("file9"); }, false);
+    var saveXButton = document.getElementById("savex");
+    saveXButton.addEventListener("click", saveFileX, false);
     var weaponSelect = document.getElementById("weapon");
     weaponSelect.onchange = function() {
         var at = weaponAts[weaponSelect.value];
