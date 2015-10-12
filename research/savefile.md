@@ -5,6 +5,7 @@ The save files are a list of values separated by newline.
 There are two save files, `file0` and `file9`. When you save your game, both get written to the same values.
 It is unknown why there are two save files instead of one. `file9` seem to be written to when you load a save file.
 Only `file0` is required to load a game. `file9` might be used as a backup, or when Flowey breaks your main save game.
+A `file8` also gets created when you fight Flowey after he killed Asgore.
 
 Line | Description
 ----:| -----------
