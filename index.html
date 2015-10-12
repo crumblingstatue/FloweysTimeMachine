@@ -11,7 +11,7 @@
     <body>
         <h1><img src="http://vignette1.wikia.nocookie.net/undertale/images/3/3b/Flowey_Talk_normal.gif/revision/latest?cb=20131221213926" alt="" />Flowey's Time Machine</h1>
         <form id="mainform">
-            <fieldset>
+            <div>
                 <fieldset>
                     <legend>Load</legend>
                     <label>undertale.ini</label> <input type="file" id="undertale-ini" />
@@ -24,7 +24,7 @@
                     <input type="button" id="save0" value="Save file0" />
                     <input type="button" id="save9" value="Save file9" />
                 </fieldset>
-            </fieldset>
+            </div>
             <fieldset>
             <legend>General</legend>
             <label>Name</label> <input type="text" id="name" />
@@ -39,19 +39,24 @@
             <label>Weapon AT</label> <input type="text" id="weaponat" />
             <label>Armor DF</label> <input type="text" id="armordf" />
             </fieldset>
+            <div>
             <fieldset>
-            <legend>Inventory</legend>
-            <label>Slot 1</label> <select id="invslot1"> </select>
-            <label>Slot 2</label> <select id="invslot2"> </select>
-            <label>Slot 3</label> <select id="invslot3"> </select>
-            <label>Slot 4</label> <select id="invslot4"> </select>
-            <label>Slot 5</label> <select id="invslot5"> </select>
-            <label>Slot 6</label> <select id="invslot6"> </select>
-            <label>Slot 7</label> <select id="invslot7"> </select>
-            <label>Slot 8</label> <select id="invslot8"> </select>
-            <label>Weapon</label> <select id="weapon"> </select>
-            <label>Armor</label> <select id="armor"> </select>
+                <legend>Equipment</legend>
+                <label>Weapon</label> <select id="weapon"> </select>
+                <label>Armor</label> <select id="armor"> </select>
             </fieldset>
+            <fieldset>
+                <legend>Inventory</legend>
+                <label>Slot 1</label> <select id="invslot1"> </select>
+                <label>Slot 2</label> <select id="invslot2"> </select>
+                <label>Slot 3</label> <select id="invslot3"> </select>
+                <label>Slot 4</label> <select id="invslot4"> </select>
+                <label>Slot 5</label> <select id="invslot5"> </select>
+                <label>Slot 6</label> <select id="invslot6"> </select>
+                <label>Slot 7</label> <select id="invslot7"> </select>
+                <label>Slot 8</label> <select id="invslot8"> </select>
+            </fieldset>
+            </div>
         </form>
     </body>
 </html>
