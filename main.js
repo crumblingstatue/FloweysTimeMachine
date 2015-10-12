@@ -222,15 +222,20 @@ function parseIni(text) {
 
 function insert_inv_lists() {
     "use strict";
+    function insert(node, i) {
+        var newOption = document.createElement("option");
+        newOption.setAttribute("value", i);
+        var newContent = document.createTextNode(items[i]);
+        newOption.appendChild(newContent);
+        var select = document.getElementById(node);
+        select.appendChild(newOption);
+    }
     for (var i = 0; i < items.length; i++) {
         for (var j = 1; j <= 8; j++) {
-            var newOption = document.createElement("option");
-            newOption.setAttribute("value", i);
-            var newContent = document.createTextNode(items[i]);
-            newOption.appendChild(newContent);
-            var select = document.getElementById("invslot" + j);
-            select.appendChild(newOption);
+            insert("invslot" + j, i);
         }
+        insert("weapon", i);
+        insert("armor", i);
     }
 }
 
@@ -273,6 +278,8 @@ function load(iniFile, saveFile) {
             var itemId = parseInt(saveLines[12 + (i * 2)].trim());
             document.getElementById("invslot" + (i + 1)).value = itemId;
         }
+        document.getElementById("weapon").value = parseInt(saveLines[28].trim());
+        document.getElementById("armor").value = parseInt(saveLines[29].trim());
     };
     saveReader.readAsText(saveFile);
 }
@@ -308,6 +315,8 @@ function saveFileX(name) {
     saveLines[22] = document.getElementById("invslot6").value;
     saveLines[24] = document.getElementById("invslot7").value;
     saveLines[26] = document.getElementById("invslot8").value;
+    saveLines[28] = document.getElementById("weapon").value;
+    saveLines[29] = document.getElementById("armor").value;
     saveLines[547] = document.getElementById("location").value;
     var string = "";
     for (var i = 0; i < saveLines.length; i++) {
