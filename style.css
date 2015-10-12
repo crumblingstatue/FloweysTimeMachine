@@ -5,6 +5,7 @@ body {
 
 #mainform {
     display: flex;
+    flex-wrap: wrap;
 }
 
 #mainform fieldset {
