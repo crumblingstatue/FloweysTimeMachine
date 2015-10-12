@@ -278,6 +278,7 @@ function load(iniFile, saveFile) {
 function saveIni() {
     "use strict";
     ini.General.Name = document.getElementById("name").value;
+    ini.Love = document.getElementById("love").value;
     var string = "";
     for (var section in ini) {
         string += "[" + section + "]\r\n";
@@ -292,6 +293,10 @@ function saveIni() {
 function saveFileX(name) {
     "use strict";
     saveLines[0] = document.getElementById("name").value;
+    saveLines[1] = document.getElementById("love").value;
+    saveLines[2] = document.getElementById("hp").value;
+    saveLines[9] = document.getElementById("exp").value;
+    saveLines[10] = document.getElementById("gold").value;
     var string = "";
     for (var i = 0; i < saveLines.length; i++) {
         string += saveLines[i] + "\r\n";
