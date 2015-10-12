@@ -3,5 +3,7 @@
     "eqeqeq": true,
     "undef": true,
     "unused": true,
-    "browser": true
+    "browser": true,
+    "shadow": "outer",
+    "predef": [ "saveAs" ]
 }

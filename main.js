@@ -177,11 +177,12 @@ var rooms = {
     265: "Snowdin - Ice Cave 1",
 };
 
+var ini, saveLines;
+
 function parseIni(text) {
     "use strict";
     var lines = text.split("\n");
     var section = null;
-    var obj = {};
     lines.forEach(function(line) {
         // Ignore empty lines
         if (line === "") {
@@ -193,30 +194,30 @@ function parseIni(text) {
             var rbracket = line.slice(lbracket).indexOf("]") + lbracket;
             if (rbracket !== -1) {
                 section = line.slice(lbracket + 1, rbracket);
-                obj[section] = {};
+                ini[section] = {};
             }
         } else { // Otherwise, it is assumed to be an assignment
             if (section === null) {
-                return { error: "Assignment outside of a section" };
+                return "Assignment outside of a section";
             }
             var eq = line.indexOf("=");
             if (eq === -1) {
-                return { error: "Expected '='" };
+                return "Expected '='";
             }
             var lquot = line.indexOf('"');
             if (lquot === -1) {
-                return { error: "Expected '\"'" };
+                return "Expected '\"'";
             }
             var rquot = line.slice(lquot + 1).indexOf('"') + lquot + 1;
             if (rquot === -1) {
-                return { error: "Unterminated value string" };
+                return "Unterminated value string";
             }
             var value = line.slice(lquot + 1, rquot);
             var key = line.slice(0, eq);
-            obj[section][key] = value;
+            ini[section][key] = value;
         }
     });
-    return { ok: obj };
+    return null;
 }
 
 function insert_inv_lists() {
@@ -249,13 +250,16 @@ function load(iniFile, saveFile) {
     var iniReader = new FileReader();
     iniReader.onload = function(e) {
         var text = e.target.result;
-        var ini = parseIni(text);
+        var error = parseIni(text);
+        if (error) {
+            window.alert("Error parsing undertale.ini: " + error);
+        }
     };
     iniReader.readAsText(iniFile);
     var saveReader = new FileReader();
     saveReader.onload = function(e) {
         var text = e.target.result;
-        var saveLines = text.split("\r\n");
+        saveLines = text.split("\r\n");
         document.getElementById("name").value = saveLines[0];
         var locId = parseInt(saveLines[547].trim());
         document.getElementById("location").value = rooms[locId];
@@ -271,8 +275,34 @@ function load(iniFile, saveFile) {
     saveReader.readAsText(saveFile);
 }
 
+function saveIni() {
+    "use strict";
+    ini.General.Name = document.getElementById("name").value;
+    var string = "";
+    for (var section in ini) {
+        string += "[" + section + "]\r\n";
+        for (var key in ini[section]) {
+            string += key + "=\"" + ini[section][key] + "\"\r\n";
+        }
+    }
+    var blob = new Blob([string], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "undertale.ini", true);
+}
+
+function saveFileX(name) {
+    "use strict";
+    saveLines[0] = document.getElementById("name").value;
+    var string = "";
+    for (var i = 0; i < saveLines.length; i++) {
+        string += saveLines[i] + "\r\n";
+    }
+    var blob = new Blob([string], {type: "text/plain;charset=uft-8"});
+    saveAs(blob, name, true);
+}
+
 function start() {
     "use strict";
+    ini = {};
     insert_rooms();
     insert_inv_lists();
     var iniFile, saveFile;
@@ -296,6 +326,12 @@ function start() {
         }
         load(iniFile, saveFile);
     }, false);
+    var saveIniButton = document.getElementById("saveini");
+    saveIniButton.addEventListener("click", saveIni, false);
+    var save0Button = document.getElementById("save0");
+    save0Button.addEventListener("click", function() { saveFileX("file0"); }, false);
+    var save9Button = document.getElementById("save9");
+    save9Button.addEventListener("click", function() { saveFileX("file9"); }, false);
 }
 
 window.onload = start;
