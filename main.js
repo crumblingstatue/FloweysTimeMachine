@@ -68,6 +68,7 @@ var items = [
 ];
 
 var weaponAts = {
+    3: 0, // stick
     13: 3,
     16: 5,
     52: 99,
@@ -79,6 +80,7 @@ var weaponAts = {
 };
 
 var ArmorDfs = {
+    4: 0, // bandage
     12: 3, // faded ribbon
     15: 7, // manly bandana
     44: 5, // clouded glasses
@@ -385,14 +387,14 @@ function start() {
     var weaponSelect = document.getElementById("weapon");
     weaponSelect.onchange = function() {
         var at = weaponAts[weaponSelect.value];
-        if (at) {
+        if (typeof at !== "undefined") {
             document.getElementById("weaponat").value = at;
         }
     };
     var armorSelect = document.getElementById("armor");
     armorSelect.onchange = function() {
         var df = ArmorDfs[armorSelect.value];
-        if (df) {
+        if (typeof df !== "undefined") {
             document.getElementById("armordf").value = df;
         }
     };
