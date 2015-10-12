@@ -225,6 +225,7 @@ function insert_inv_lists() {
     for (var i = 0; i < items.length; i++) {
         for (var j = 1; j <= 8; j++) {
             var newOption = document.createElement("option");
+            newOption.setAttribute("value", i);
             var newContent = document.createTextNode(items[i]);
             newOption.appendChild(newContent);
             var select = document.getElementById("invslot" + j);
@@ -239,6 +240,7 @@ function insert_rooms() {
 
     for (var key in rooms) {
         var newOption = document.createElement("option");
+        newOption.setAttribute("value", key);
         var newContent = document.createTextNode(rooms[key]);
         newOption.appendChild(newContent);
         select.appendChild(newOption);
@@ -262,14 +264,14 @@ function load(iniFile, saveFile) {
         saveLines = text.split("\r\n");
         document.getElementById("name").value = saveLines[0];
         var locId = parseInt(saveLines[547].trim());
-        document.getElementById("location").value = rooms[locId];
+        document.getElementById("location").value = locId;
         document.getElementById("love").value = saveLines[1];
         document.getElementById("hp").value = saveLines[2];
         document.getElementById("exp").value = saveLines[9];
         document.getElementById("gold").value = saveLines[10];
         for (var i = 0; i < 8; i++) {
             var itemId = parseInt(saveLines[12 + (i * 2)].trim());
-            document.getElementById("invslot" + (i + 1)).value = items[itemId];
+            document.getElementById("invslot" + (i + 1)).value = itemId;
         }
     };
     saveReader.readAsText(saveFile);
@@ -278,7 +280,8 @@ function load(iniFile, saveFile) {
 function saveIni() {
     "use strict";
     ini.General.Name = document.getElementById("name").value;
-    ini.Love = document.getElementById("love").value;
+    ini.General.Love = document.getElementById("love").value;
+    ini.General.Room = document.getElementById("location").value;
     var string = "";
     for (var section in ini) {
         string += "[" + section + "]\r\n";
@@ -297,6 +300,15 @@ function saveFileX(name) {
     saveLines[2] = document.getElementById("hp").value;
     saveLines[9] = document.getElementById("exp").value;
     saveLines[10] = document.getElementById("gold").value;
+    saveLines[12] = document.getElementById("invslot1").value;
+    saveLines[14] = document.getElementById("invslot2").value;
+    saveLines[16] = document.getElementById("invslot3").value;
+    saveLines[18] = document.getElementById("invslot4").value;
+    saveLines[20] = document.getElementById("invslot5").value;
+    saveLines[22] = document.getElementById("invslot6").value;
+    saveLines[24] = document.getElementById("invslot7").value;
+    saveLines[26] = document.getElementById("invslot8").value;
+    saveLines[547] = document.getElementById("location").value;
     var string = "";
     for (var i = 0; i < saveLines.length; i++) {
         string += saveLines[i] + "\r\n";
