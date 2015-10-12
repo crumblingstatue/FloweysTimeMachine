@@ -287,13 +287,15 @@ function start() {
     var loadButton = document.getElementById("loadbutton");
     loadButton.addEventListener("click", function() {
         if (!iniFile) {
-            alert("You need to provide undertale.ini");
+            window.alert("You need to provide undertale.ini");
             return;
         }
-        if (!savefile) {
-            alert("You need to provide file0/file9");
+        if (!saveFile) {
+            window.alert("You need to provide file0/file9");
             return;
         }
         load(iniFile, saveFile);
     }, false);
 }
+
+window.onload = start;

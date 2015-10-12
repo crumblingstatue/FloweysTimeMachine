@@ -1,4 +1,7 @@
 {
     "strict": true,
-    "eqeqeq": true
+    "eqeqeq": true,
+    "undef": true,
+    "unused": true,
+    "browser": true
 }
