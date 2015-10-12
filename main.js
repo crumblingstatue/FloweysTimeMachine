@@ -67,6 +67,26 @@ var items = [
     "<invalid>"
 ];
 
+var weaponAts = {
+    13: 3,
+    16: 5,
+    52: 99,
+    47: 10,
+    25: 7,
+    45: 2,
+    49: 12,
+    51: 15,
+};
+
+var ArmorDfs = {
+    12: 3, // faded ribbon
+    15: 7, // manly bandana
+    44: 5, // clouded glasses
+    46: 11, // stained apron
+    50: 15, // heart locket
+    64: 20 // temy armor
+};
+
 var rooms = {
     4: "Ruins - Starting point",
     5: "Ruins - Flowey spot",
@@ -362,6 +382,20 @@ function start() {
     save0Button.addEventListener("click", function() { saveFileX("file0"); }, false);
     var save9Button = document.getElementById("save9");
     save9Button.addEventListener("click", function() { saveFileX("file9"); }, false);
+    var weaponSelect = document.getElementById("weapon");
+    weaponSelect.onchange = function() {
+        var at = weaponAts[weaponSelect.value];
+        if (at) {
+            document.getElementById("weaponat").value = at;
+        }
+    };
+    var armorSelect = document.getElementById("armor");
+    armorSelect.onchange = function() {
+        var df = ArmorDfs[armorSelect.value];
+        if (df) {
+            document.getElementById("armordf").value = df;
+        }
+    };
 }
 
 window.onload = start;
