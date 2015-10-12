@@ -274,6 +274,8 @@ function load(iniFile, saveFile) {
         document.getElementById("hp").value = saveLines[2];
         document.getElementById("exp").value = saveLines[9];
         document.getElementById("gold").value = saveLines[10];
+        document.getElementById("weaponat").value = saveLines[5];
+        document.getElementById("armordf").value = saveLines[7];
         for (var i = 0; i < 8; i++) {
             var itemId = parseInt(saveLines[12 + (i * 2)].trim());
             document.getElementById("invslot" + (i + 1)).value = itemId;
@@ -305,6 +307,8 @@ function saveFileX(name) {
     saveLines[0] = document.getElementById("name").value;
     saveLines[1] = document.getElementById("love").value;
     saveLines[2] = document.getElementById("hp").value;
+    saveLines[5] = document.getElementById("weaponat").value;
+    saveLines[7] = document.getElementById("armordf").value;
     saveLines[9] = document.getElementById("exp").value;
     saveLines[10] = document.getElementById("gold").value;
     saveLines[12] = document.getElementById("invslot1").value;

@@ -12,6 +12,8 @@ Line | Description
    2 | LV
    3 | HP
    5 | `10->12` if you kill first Froggit.
+   6 | Weapon AT
+   8 | Armor DF
   10 | EXP
   11 | GOLD
   12 | `0->1` if you kill first Froggit.
