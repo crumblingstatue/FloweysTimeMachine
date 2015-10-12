@@ -178,6 +178,7 @@ var rooms = {
 };
 
 function parseIni(text) {
+    "use strict";
     var lines = text.split("\n");
     var section = null;
     var obj = {};
@@ -219,6 +220,7 @@ function parseIni(text) {
 }
 
 function insert_inv_lists() {
+    "use strict";
     for (var i = 0; i < items.length; i++) {
         for (var j = 1; j <= 8; j++) {
             var newOption = document.createElement("option");
@@ -231,6 +233,7 @@ function insert_inv_lists() {
 }
 
 function insert_rooms() {
+    "use strict";
     var select = document.getElementById("location");
 
     for (var key in rooms) {
@@ -242,6 +245,7 @@ function insert_rooms() {
 }
 
 function load(iniFile, saveFile) {
+    "use strict";
     var iniReader = new FileReader();
     iniReader.onload = function(e) {
         var text = e.target.result;
@@ -268,6 +272,7 @@ function load(iniFile, saveFile) {
 }
 
 function start() {
+    "use strict";
     insert_rooms();
     insert_inv_lists();
     var iniFile, saveFile;
