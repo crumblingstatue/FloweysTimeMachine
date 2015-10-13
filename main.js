@@ -457,6 +457,8 @@ function load(iniFile, saveFile) {
         document.getElementById("unkkills").value = saveLines[231];
         document.getElementById("dungeonkills").value = saveLines[232];
         document.getElementById("snowdinkills").value = saveLines[233];
+        document.getElementById("waterfallkills").value = saveLines[234];
+        document.getElementById("hotlandkills").value = saveLines[235];
     };
     saveReader.readAsText(saveFile);
 }
@@ -503,6 +505,8 @@ function saveFileX() {
     saveLines[231] = document.getElementById("unkkills").value;
     saveLines[232] = document.getElementById("dungeonkills").value;
     saveLines[233] = document.getElementById("snowdinkills").value;
+    saveLines[234] = document.getElementById("waterfallkills").value;
+    saveLines[235] = document.getElementById("hotlandkills").value;
     saveLines[547] = document.getElementById("location").value;
     var string = "";
     for (var i = 0; i < saveLines.length; i++) {
