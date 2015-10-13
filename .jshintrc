@@ -5,5 +5,5 @@
     "unused": true,
     "browser": true,
     "shadow": "outer",
-    "predef": [ "saveAs" ]
+    "predef": [ "saveAs", "presets" ]
 }

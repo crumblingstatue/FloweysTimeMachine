@@ -436,31 +436,36 @@ function load(iniFile, saveFile) {
     saveReader.onload = function(e) {
         var text = e.target.result;
         saveLines = text.split("\r\n");
-        document.getElementById("name").value = saveLines[0];
-        var locId = parseInt(saveLines[547].trim());
-        document.getElementById("location").value = locId;
-        document.getElementById("kills").value = saveLines[11];
-        document.getElementById("love").value = saveLines[1];
-        document.getElementById("hp").value = saveLines[2];
-        document.getElementById("exp").value = saveLines[9];
-        document.getElementById("gold").value = saveLines[10];
-        document.getElementById("at").value = saveLines[4];
-        document.getElementById("weaponat").value = saveLines[5];
-        document.getElementById("df").value = saveLines[6];
-        document.getElementById("armordf").value = saveLines[7];
-        for (var i = 0; i < 8; i++) {
-            var itemId = parseInt(saveLines[12 + (i * 2)].trim());
-            document.getElementById("invslot" + (i + 1)).value = itemId;
-        }
-        document.getElementById("weapon").value = parseInt(saveLines[28].trim());
-        document.getElementById("armor").value = parseInt(saveLines[29].trim());
-        document.getElementById("unkkills").value = saveLines[231];
-        document.getElementById("dungeonkills").value = saveLines[232];
-        document.getElementById("snowdinkills").value = saveLines[233];
-        document.getElementById("waterfallkills").value = saveLines[234];
-        document.getElementById("hotlandkills").value = saveLines[235];
+        loadSaveLines();
     };
     saveReader.readAsText(saveFile);
+}
+
+function loadSaveLines() {
+    "use strict";
+    document.getElementById("name").value = saveLines[0];
+    var locId = parseInt(saveLines[547].trim());
+    document.getElementById("location").value = locId;
+    document.getElementById("kills").value = saveLines[11];
+    document.getElementById("love").value = saveLines[1];
+    document.getElementById("hp").value = saveLines[2];
+    document.getElementById("exp").value = saveLines[9];
+    document.getElementById("gold").value = saveLines[10];
+    document.getElementById("at").value = saveLines[4];
+    document.getElementById("weaponat").value = saveLines[5];
+    document.getElementById("df").value = saveLines[6];
+    document.getElementById("armordf").value = saveLines[7];
+    for (var i = 0; i < 8; i++) {
+        var itemId = parseInt(saveLines[12 + (i * 2)].trim());
+        document.getElementById("invslot" + (i + 1)).value = itemId;
+    }
+    document.getElementById("weapon").value = parseInt(saveLines[28].trim());
+    document.getElementById("armor").value = parseInt(saveLines[29].trim());
+    document.getElementById("unkkills").value = saveLines[231];
+    document.getElementById("dungeonkills").value = saveLines[232];
+    document.getElementById("snowdinkills").value = saveLines[233];
+    document.getElementById("waterfallkills").value = saveLines[234];
+    document.getElementById("hotlandkills").value = saveLines[235];
 }
 
 function saveIni() {
@@ -516,11 +521,18 @@ function saveFileX() {
     saveAs(blob, "file0", true);
 }
 
+function loadPreset(name) {
+    "use strict";
+    ini = presets[name].ini;
+    saveLines = presets[name].lines;
+    loadSaveLines();
+}
+
 function start() {
     "use strict";
-    ini = {};
     insert_rooms();
     insert_inv_lists();
+    loadPreset("Dungeon Start");
     var iniFile, saveFile;
     var iniInput = document.getElementById("undertale-ini");
     iniInput.addEventListener("change", function(evt) {
