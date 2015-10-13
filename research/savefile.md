@@ -14,6 +14,7 @@ Line | Description
    3 | HP
    5 | AT
    6 | Weapon AT
+   7 | DF
    8 | Armor DF
   10 | EXP
   11 | GOLD
