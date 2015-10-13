@@ -438,6 +438,7 @@ function load(iniFile, saveFile) {
         document.getElementById("name").value = saveLines[0];
         var locId = parseInt(saveLines[547].trim());
         document.getElementById("location").value = locId;
+        document.getElementById("kills").value = saveLines[11];
         document.getElementById("love").value = saveLines[1];
         document.getElementById("hp").value = saveLines[2];
         document.getElementById("exp").value = saveLines[9];
@@ -459,6 +460,7 @@ function saveIni() {
     ini.General.Name = document.getElementById("name").value;
     ini.General.Love = document.getElementById("love").value;
     ini.General.Room = document.getElementById("location").value;
+    ini.General.Kills = document.getElementById("kills").value;
     var string = "";
     for (var section in ini) {
         string += "[" + section + "]\r\n";
@@ -479,6 +481,7 @@ function saveFileX() {
     saveLines[7] = document.getElementById("armordf").value;
     saveLines[9] = document.getElementById("exp").value;
     saveLines[10] = document.getElementById("gold").value;
+    saveLines[11] = document.getElementById("kills").value;
     saveLines[12] = document.getElementById("invslot1").value;
     saveLines[14] = document.getElementById("invslot2").value;
     saveLines[16] = document.getElementById("invslot3").value;
