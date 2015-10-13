@@ -67,6 +67,15 @@ var items = [
     "<invalid>"
 ];
 
+var cellOpts = {
+    201: "Say Hello",
+    203: "About Yourself",
+    204: "Call Her \"Mom\"",
+    205: "Flirt",
+    206: "Toriel's Phone",
+    210: "Papyrus's Phone"
+};
+
 var weaponAts = {
     3: 0, // stick
     13: 3,
