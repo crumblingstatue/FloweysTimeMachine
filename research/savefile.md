@@ -46,7 +46,7 @@ Line | Description
  231 | `0->202` at second save point.
  232 | ? kills
  233 | Dungeon kills
- 234 | Snowden kills
+ 234 | Snowdin kills
  252 | `0->1` if nobody came.
  543 | Gets increased by varying values as you are making progress in the tutorial dungeon.
  546 | Player has cellphone.

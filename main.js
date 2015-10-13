@@ -454,6 +454,9 @@ function load(iniFile, saveFile) {
         }
         document.getElementById("weapon").value = parseInt(saveLines[28].trim());
         document.getElementById("armor").value = parseInt(saveLines[29].trim());
+        document.getElementById("unkkills").value = saveLines[231];
+        document.getElementById("dungeonkills").value = saveLines[232];
+        document.getElementById("snowdinkills").value = saveLines[233];
     };
     saveReader.readAsText(saveFile);
 }
@@ -497,6 +500,9 @@ function saveFileX() {
     saveLines[26] = document.getElementById("invslot8").value;
     saveLines[28] = document.getElementById("weapon").value;
     saveLines[29] = document.getElementById("armor").value;
+    saveLines[231] = document.getElementById("unkkills").value;
+    saveLines[232] = document.getElementById("dungeonkills").value;
+    saveLines[233] = document.getElementById("snowdinkills").value;
     saveLines[547] = document.getElementById("location").value;
     var string = "";
     for (var i = 0; i < saveLines.length; i++) {
