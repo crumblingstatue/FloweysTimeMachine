@@ -1,0 +1,8 @@
+[Toriel]
+TK = (1 if you killed toriel)
+[Flowey]
+truename => "1.000000" #\
+                       # - When you meet Flowey after killed toriel
+alter2 => "1.000000"   #/
+[Sans]
+F => "1.000000" # How many times Sans kills you in genocide
