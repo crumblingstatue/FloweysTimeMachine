@@ -80,6 +80,47 @@ fn compare_inis(ini: &Ini, new: &Ini) {
     }
 }
 
+fn resolve_line(n: usize) -> &'static str {
+    match n {
+        1 => "Name",
+        2 => "LV",
+        3 => "HP",
+        5 => "AT",
+        6 => "Weapon AT",
+        7 => "DF",
+        8 => "Armor DF",
+        10 => "EXP",
+        11 => "GOLD",
+        12 => "Kills",
+        13 => "inv 1",
+        14 => "cellphone 1",
+        15 => "inv 2",
+        16 => "cellphone 2",
+        17 => "inv 3",
+        18 => "cellphone 3",
+        19 => "inv 4",
+        20 => "cellphone 4",
+        21 => "inv 5",
+        22 => "cellphone 5",
+        23 => "inv 6",
+        24 => "cellphone 6",
+        25 => "inv 7",
+        26 => "cellphone 7",
+        27 => "inv 8",
+        28 => "cellphone 8",
+        29 => "weapon",
+        30 => "armor",
+        65 => "candy room candies",
+        232 => "? kills",
+        233 => "dungeon kills",
+        234 => "snowden kills",
+        546 => "has cellphone",
+        548 => "room",
+        549 => "time",
+        _ => "unknown",
+    }
+}
+
 fn main() {
     let dir = std::env::args().skip(1).next().expect("Expected directory as argument");
     let (tx, rx) = channel();
@@ -100,7 +141,11 @@ fn main() {
                     let new = load_file(&dir, "file0").unwrap();
                     for (n, (old, new)) in file0.unwrap().lines().zip(new.lines()).enumerate() {
                         if old.trim_right() != new.trim_right() {
-                            let msg = format!("line {} changed: '{}' to '{}'", n + 1, old, new);
+                            let msg = format!("{} ({}) changed: '{}' to '{}'",
+                                              resolve_line(n + 1),
+                                              n + 1,
+                                              old,
+                                              new);
                             println!("{}", Yellow.paint(&msg));
                         }
                     }
