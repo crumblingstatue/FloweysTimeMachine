@@ -508,7 +508,7 @@ function saveFileX() {
     for (var i = 0; i < saveLines.length; i++) {
         string += saveLines[i] + "\r\n";
     }
-    var blob = new Blob([string], {type: "text/plain;charset=uft-8"});
+    var blob = new Blob([string]);
     saveAs(blob, "file0", true);
 }
 
