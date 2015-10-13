@@ -543,11 +543,11 @@ function start() {
     var saveXButton = document.getElementById("savex");
     saveXButton.addEventListener("click", saveFileX, false);
     document.getElementById("savesi2").addEventListener("click", function() {
-        var blob = new Blob([""]);
+        var blob = new Blob();
         saveAs(blob, "system_information_962", true);
     }, false);
     document.getElementById("savesi3").addEventListener("click", function() {
-        var blob = new Blob([""]);
+        var blob = new Blob();
         saveAs(blob, "system_information_963", true);
     }, false);
     var weaponSelect = document.getElementById("weapon");
