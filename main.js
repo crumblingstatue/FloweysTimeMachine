@@ -95,6 +95,7 @@ var ArmorDfs = {
     44: 5, // clouded glasses
     46: 11, // stained apron
     50: 15, // heart locket
+    53: 99, // The Locket
     64: 20 // temy armor
 };
 
