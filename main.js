@@ -380,7 +380,8 @@ var papyrusStates = {
 var trainingDummyStates = {
     0: "Initial state (0)",
     1: "Killed (1)",
-    2: "Talked to (2)"
+    2: "Talked to (2)",
+    3: "Tired of your shenanigans (3)"
 };
 
 var shyrenStates = {
