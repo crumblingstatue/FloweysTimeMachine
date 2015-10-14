@@ -408,6 +408,11 @@ var broGuardsStates = {
     1: "Killed (1)"
 };
 
+var mettatonStates = {
+    0: "Initial state (0)",
+    1: "Killed (1)"
+};
+
 var muffetStates = {
     0: "Initial state (0)",
     1: "Killed (1)"
@@ -511,8 +516,6 @@ function load(iniFile, saveFile) {
 function loadSaveLines() {
     "use strict";
     document.getElementById("name").value = saveLines[0];
-    var locId = parseInt(saveLines[547].trim());
-    document.getElementById("location").value = locId;
     document.getElementById("kills").value = saveLines[11];
     document.getElementById("love").value = saveLines[1];
     document.getElementById("hp").value = saveLines[2];
@@ -546,6 +549,8 @@ function loadSaveLines() {
     document.getElementById("undynestate2").value = parseInt(saveLines[380].trim());
     document.getElementById("muffetstate").value = parseInt(saveLines[427].trim());
     document.getElementById("broguardsstate").value = parseInt(saveLines[432].trim());
+    document.getElementById("mettatonstate").value = parseInt(saveLines[455].trim());
+    document.getElementById("location").value = parseInt(saveLines[547].trim());
 }
 
 function saveIni() {
@@ -605,6 +610,7 @@ function saveFileX() {
     saveLines[380] = document.getElementById("undynestate2").value;
     saveLines[427] = document.getElementById("muffetstate").value;
     saveLines[432] = document.getElementById("broguardsstate").value;
+    saveLines[455] = document.getElementById("mettatonstate").value;
     saveLines[547] = document.getElementById("location").value;
     var string = "";
     for (var i = 0; i < saveLines.length; i++) {
@@ -637,6 +643,7 @@ function start() {
     loadSelectFromObj("undynestate2", undyneStates2);
     loadSelectFromObj("broguardsstate", broGuardsStates);
     loadSelectFromObj("muffetstate", muffetStates);
+    loadSelectFromObj("mettatonstate", mettatonStates);
     insert_inv_lists();
     loadPreset("Dungeon Start");
     var iniFile, saveFile;

@@ -91,9 +91,9 @@ Line | Description
  429 | Hotland genocide 0->4 (no kills inbetween)
  433 | Hotland genocide 0->1 (bro guards)
  439 | Hotland genocide 3->4
- 456 | Hotland genocide 0->1 (Mettaton?)
- 462 | Hotland genocide 0->1 (Mettaton?)
- 463 | Hotland genocide 0->1 (Mettaton?)
+ 456 | Hotland genocide 0->1 (Mettaton)
+ 462 | Hotland genocide 0->1 (after you kill Mettaton)
+ 463 | Hotland genocide 0->1 (after you kill Mettaton)
  481 | Hotland genocide 0->17 (probably flowey dialogue)
  483 | Hotland genocide 0->1
  484 | Hotland genocide 0->1
