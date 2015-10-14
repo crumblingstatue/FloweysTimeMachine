@@ -59,7 +59,7 @@ Line | Description
   98 | Snowdin genocide 0->1 (Papyrus)
   99 | Snowdin genocide 0->1
  101 | Snowdin genocide 0->1
- 119 | Papyrus friendship progress?
+ 119 | Papyrus friendship progress? 1 - front of house, 2 - in house 4 - finished
  112 | Waterfall genocide 0->1 (Shyren)
  121 | Waterfall genocide 0->2
  122 | Waterfall genocide 0->10
