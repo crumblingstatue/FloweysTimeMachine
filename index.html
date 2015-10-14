@@ -15,17 +15,17 @@
         <form id="mainform">
             <div>
                 <fieldset>
-                    <legend>Load</legend>
-                    <label>undertale.ini</label> <input type="file" id="undertale-ini" />
-                    <label>fileX</label> <input type="file" id="savefile" />
+                    <legend>Load <sup title="Save files are typically found in 'C:/users/YourUsername/Local Settings/Application Data/UNDERTALE/'. This location may vary.">[?]</sup> </legend>
+                    <label>undertale.ini <sup title="Contains information that persists throughout playthroughs.">[?]</sup></label> <input type="file" id="undertale-ini" />
+                    <label>fileX <sup title="The data that gets written when you SAVE. `file0` is the main save file.">[?]</sup></label> <input type="file" id="savefile" />
                     <input id="loadbutton" type="button" value="Load" />
                 </fieldset>
                 <fieldset>
-                    <legend>Save</legend>
-                    <input type="button" id="saveini" value="Save undertale.ini" />
-                    <input type="button" id="savex" value="Save fileX" />
-                    <label> Save this to get "deleted" world </label> <input type="button" id="savesi2" value="system_information_962" />
-                    <label> Save this to "sell your soul"</label> <input type="button" id="savesi3" value="system_information_963" />
+                    <legend>Save <sup title="Save files are typically found in 'C:/users/YourUsername/Local Settings/Application Data/UNDERTALE/'. This location may vary.">[?]</sup> </legend>
+                    <label>undertale.ini <sup title="Contains information that persists throughout playthroughs.">[?]</sup></label> <input type="button" id="saveini" value="Save" />
+                    <label>fileX <sup title="The data that gets written when you SAVE. `file0` is the main save file.">[?]</sup></label><input type="button" id="savex" value="Save" />
+                    <label> system_information_962 <sup title="When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run.">[?]</sup> </label> <input type="button" id="savesi2" value="Save" />
+                    <label> system_information_963 <sup title="When this file is present, you have 'sold' your soul to get the world back after a genocide run.">[?]</sup> </label> <input type="button" id="savesi3" value="Save" />
                 </fieldset>
             </div>
             <fieldset>
