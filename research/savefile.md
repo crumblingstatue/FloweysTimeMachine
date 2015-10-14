@@ -87,9 +87,9 @@ Line | Description
  395 | Waterfall genocide 273->-1
  413 | Hotland genocide 0->10
  427 | Hotland genocide 0->6
- 428 | Hotland genocide 0->1 (Muffet?)
+ 428 | Hotland genocide 0->1 (Muffet)
  429 | Hotland genocide 0->4 (no kills inbetween)
- 433 | Hotland genocide 0->1 (bro guards?)
+ 433 | Hotland genocide 0->1 (bro guards)
  439 | Hotland genocide 3->4
  456 | Hotland genocide 0->1 (Mettaton?)
  462 | Hotland genocide 0->1 (Mettaton?)
