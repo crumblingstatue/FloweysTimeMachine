@@ -17,6 +17,9 @@ unknown (547) changed: '232' to '239 '
 unknown (119) changed: '1' to '2 '
 unknown (547) changed: '232' to '239 '
 ```
+New section 'Papyrus'
+PD => "1.000000"
+
 ### Third save ###
 ```
 cellphone 1 (14) changed: '0 ' to '210 '
