@@ -7,6 +7,7 @@
         <script src="FileSaver.min.js"></script>
         <script src="presets/presets.js"></script>
         <script src="presets/dungeon-start.js"></script>
+        <script src="presets/sans-battle.js"></script>
         <script src="main.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
@@ -19,6 +20,11 @@
                     <label>undertale.ini <sup title="Contains information that persists throughout playthroughs.">[?]</sup></label> <input type="file" id="undertale-ini" />
                     <label>fileX <sup title="The data that gets written when you SAVE. `file0` is the main save file.">[?]</sup></label> <input type="file" id="savefile" />
                     <input id="loadbutton" type="button" value="Load" />
+                </fieldset>
+                <fieldset>
+                    <legend>Preset</legend>
+                    <label>Choose</label><select id="presetselect"> </select>
+                    <input type="button" id="presetload" value="Load" />
                 </fieldset>
                 <fieldset>
                     <legend>Save <sup title="Save files are typically found in 'C:/users/YourUsername/Local Settings/Application Data/UNDERTALE/'. This location may vary.">[?]</sup> </legend>

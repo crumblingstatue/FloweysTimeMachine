@@ -620,6 +620,17 @@ function saveFileX() {
     saveAs(blob, "file0", true);
 }
 
+function loadPresetSelect() {
+    "use strict";
+    var selectNode = document.getElementById("presetselect");
+    for (var k in presets) {
+        var newOption = document.createElement("option");
+        var newContent = document.createTextNode(k);
+        newOption.appendChild(newContent);
+        selectNode.appendChild(newOption);
+    }
+}
+
 function loadPreset(name) {
     "use strict";
     ini = presets[name].ini;
@@ -645,6 +656,7 @@ function start() {
     loadSelectFromObj("muffetstate", muffetStates);
     loadSelectFromObj("mettatonstate", mettatonStates);
     insert_inv_lists();
+    loadPresetSelect();
     loadPreset("Dungeon Start");
     var iniFile, saveFile;
     var iniInput = document.getElementById("undertale-ini");
@@ -693,6 +705,10 @@ function start() {
             document.getElementById("armordf").value = df;
         }
     };
+    document.getElementById("presetload").addEventListener("click", function() {
+        var name = document.getElementById("presetselect").value;
+        loadPreset(name);
+    }, false);
 }
 
 window.onload = start;
