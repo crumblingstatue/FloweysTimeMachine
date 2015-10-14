@@ -403,6 +403,11 @@ var undyneStates2 = {
     1: "Killed (1)"
 };
 
+var broGuardsStates = {
+    0: "Initial state (0)",
+    1: "Killed (1)"
+};
+
 var ini, saveLines;
 
 function parseIni(text) {
@@ -534,6 +539,7 @@ function loadSaveLines() {
     document.getElementById("undynestate1").value = parseInt(saveLines[281].trim());
     document.getElementById("maddummystate").value = parseInt(saveLines[282].trim());
     document.getElementById("undynestate2").value = parseInt(saveLines[380].trim());
+    document.getElementById("broguardsstate").value = parseInt(saveLines[432].trim());
 }
 
 function saveIni() {
@@ -591,6 +597,7 @@ function saveFileX() {
     saveLines[281] = document.getElementById("undynestate1").value;
     saveLines[282] = document.getElementById("maddummystate").value;
     saveLines[380] = document.getElementById("undynestate2").value;
+    saveLines[432] = document.getElementById("broguardsstate").value;
     saveLines[547] = document.getElementById("location").value;
     var string = "";
     for (var i = 0; i < saveLines.length; i++) {
@@ -621,6 +628,7 @@ function start() {
     loadSelectFromObj("maddummystate", madDummyStates);
     loadSelectFromObj("undynestate1", undyneStates1);
     loadSelectFromObj("undynestate2", undyneStates2);
+    loadSelectFromObj("broguardsstate", broGuardsStates);
     insert_inv_lists();
     loadPreset("Dungeon Start");
     var iniFile, saveFile;
