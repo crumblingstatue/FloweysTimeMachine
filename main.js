@@ -383,6 +383,11 @@ var trainingDummyStates = {
     2: "Talked to (2)"
 };
 
+var shyrenStates = {
+    0: "Initial state (0)",
+    1: "Killed (1)"
+};
+
 var ini, saveLines;
 
 function parseIni(text) {
@@ -505,6 +510,7 @@ function loadSaveLines() {
     document.getElementById("greaterdogstate").value = parseInt(saveLines[84].trim());
     document.getElementById("comedianstate").value = parseInt(saveLines[87].trim());
     document.getElementById("papyrusstate").value = parseInt(saveLines[97].trim());
+    document.getElementById("shyrenstate").value = parseInt(saveLines[111].trim());
     document.getElementById("unkkills").value = saveLines[231];
     document.getElementById("dungeonkills").value = saveLines[232];
     document.getElementById("snowdinkills").value = saveLines[233];
@@ -558,6 +564,7 @@ function saveFileX() {
     saveLines[84] = document.getElementById("greaterdogstate").value;
     saveLines[87] = document.getElementById("comedianstate").value;
     saveLines[97] = document.getElementById("papyrusstate").value;
+    saveLines[111] = document.getElementById("shyrenstate").value;
     saveLines[231] = document.getElementById("unkkills").value;
     saveLines[232] = document.getElementById("dungeonkills").value;
     saveLines[233] = document.getElementById("snowdinkills").value;
@@ -589,6 +596,7 @@ function start() {
     loadSelectFromObj("greaterdogstate", greaterDogStates);
     loadSelectFromObj("papyrusstate", papyrusStates);
     loadSelectFromObj("trainingdummystate", trainingDummyStates);
+    loadSelectFromObj("shyrenstate", shyrenStates);
     insert_inv_lists();
     loadPreset("Dungeon Start");
     var iniFile, saveFile;
