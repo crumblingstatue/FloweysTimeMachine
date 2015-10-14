@@ -70,12 +70,12 @@ Line | Description
  236 | Hotland kills
  252 | `0->1` if nobody came.
  253 | `0->1` nobody came snowdin?
+ 282 | Waterfall genocide 0->1 (Undyne genocide 1)
  283 | Waterfall genocide 0->1 (Mad Dummy)
  301 | Waterfall genocide 0->1 (before cave bridge)
  302 | Throne room genocide 0->1 (Sans?)
- 282 | Waterfall genocide 0->1 (Undyne?)
  284 | 0->4 snowdin genocide
- 381 | Waterfall genocide 0->1 (Undyne?)
+ 381 | Waterfall genocide 0->1 (Undyne genocide 2)
  385 | Waterfall genocide 0->1
  387 | Waterfall genocide 0->1
  388 | Waterfall genocide 4->6
