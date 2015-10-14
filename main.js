@@ -352,6 +352,26 @@ var torielStates = {
     4: "Killed (4)"
 };
 
+var comedianStates = {
+    0: "Initial state (0)",
+    2: "Killed (2)"
+};
+
+var noMovingDogStates = {
+    0: "Initial state (0)",
+    1: "Killed (1)"
+};
+
+var dogamyDogaressaStates = {
+    0: "Initial state (0)",
+    1: "Killed (1)"
+};
+
+var greaterDogStates = {
+    0: "Initial state (0)",
+    1: "Killed (1)"
+};
+
 var ini, saveLines;
 
 function parseIni(text) {
@@ -467,6 +487,11 @@ function loadSaveLines() {
     }
     document.getElementById("weapon").value = parseInt(saveLines[28].trim());
     document.getElementById("armor").value = parseInt(saveLines[29].trim());
+    document.getElementById("torielstate").value = parseInt(saveLines[75].trim());
+    document.getElementById("nomovingdogstate").value = parseInt(saveLines[82].trim());
+    document.getElementById("dogamydogaressastate").value = parseInt(saveLines[83].trim());
+    document.getElementById("greaterdogstate").value = parseInt(saveLines[84].trim());
+    document.getElementById("comedianstate").value = parseInt(saveLines[87].trim());
     document.getElementById("unkkills").value = saveLines[231];
     document.getElementById("dungeonkills").value = saveLines[232];
     document.getElementById("snowdinkills").value = saveLines[233];
@@ -514,6 +539,10 @@ function saveFileX() {
     saveLines[28] = document.getElementById("weapon").value;
     saveLines[29] = document.getElementById("armor").value;
     saveLines[75] = document.getElementById("torielstate").value;
+    saveLines[82] = document.getElementById("nomovingdogstate").value;
+    saveLines[83] = document.getElementById("dogamydogaressastate").value;
+    saveLines[84] = document.getElementById("greaterdogstate").value;
+    saveLines[87] = document.getElementById("comedianstate").value;
     saveLines[231] = document.getElementById("unkkills").value;
     saveLines[232] = document.getElementById("dungeonkills").value;
     saveLines[233] = document.getElementById("snowdinkills").value;
@@ -539,6 +568,10 @@ function start() {
     "use strict";
     loadSelectFromObj("location", rooms);
     loadSelectFromObj("torielstate", torielStates);
+    loadSelectFromObj("comedianstate", comedianStates);
+    loadSelectFromObj("nomovingdogstate", noMovingDogStates);
+    loadSelectFromObj("dogamydogaressastate", dogamyDogaressaStates);
+    loadSelectFromObj("greaterdogstate", greaterDogStates);
     insert_inv_lists();
     loadPreset("Dungeon Start");
     var iniFile, saveFile;

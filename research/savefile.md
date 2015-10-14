@@ -50,14 +50,14 @@ Line | Description
   61 | `0->1` after you meet first Froggit.
   65 | How many candies you took from candy room.
   76 | Toriel's house 0->3, 3->4. This must be 4 to allow Snowdin genocide mode.
-  83 | Snowdin genocide 0->1
-  84 | Snowdin genocide 0->1 (dog guards?)
-  85 | Snowdin genocide 0->1 (greater dog?)
+  83 | Snowdin genocide 0->1 (no moving dog)
+  84 | Snowdin genocide 0->1 (dog guards)
+  85 | Snowdin genocide 0->1 (greater dog)
   88 | 0 -> Comedian got away failure, 2 -> OK
   93 | Snowdin genocide 0->1 (dog guards?)
   95 | Snowdin genocide 0->1 (dog guards?)
-  98 | Snowdin genocide 0->1 (Papyrus?)
-  99 | Snowdin genocide 0->1 (Papyrus?)
+  98 | Snowdin genocide 0->1 (Papyrus)
+  99 | Snowdin genocide 0->1
  101 | Snowdin genocide 0->1
  112 | Waterfall genocide 0->1
  121 | Waterfall genocide 0->2
