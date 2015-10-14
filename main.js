@@ -388,6 +388,11 @@ var shyrenStates = {
     1: "Killed (1)"
 };
 
+var madDummyStates = {
+    0: "Initial state (0)",
+    1: "Killed (1)"
+};
+
 var ini, saveLines;
 
 function parseIni(text) {
@@ -516,6 +521,7 @@ function loadSaveLines() {
     document.getElementById("snowdinkills").value = saveLines[233];
     document.getElementById("waterfallkills").value = saveLines[234];
     document.getElementById("hotlandkills").value = saveLines[235];
+    document.getElementById("maddummystate").value = parseInt(saveLines[282].trim());
 }
 
 function saveIni() {
@@ -570,6 +576,7 @@ function saveFileX() {
     saveLines[233] = document.getElementById("snowdinkills").value;
     saveLines[234] = document.getElementById("waterfallkills").value;
     saveLines[235] = document.getElementById("hotlandkills").value;
+    saveLines[282] = document.getElementById("maddummystate").value;
     saveLines[547] = document.getElementById("location").value;
     var string = "";
     for (var i = 0; i < saveLines.length; i++) {
@@ -597,6 +604,7 @@ function start() {
     loadSelectFromObj("papyrusstate", papyrusStates);
     loadSelectFromObj("trainingdummystate", trainingDummyStates);
     loadSelectFromObj("shyrenstate", shyrenStates);
+    loadSelectFromObj("maddummystate", madDummyStates);
     insert_inv_lists();
     loadPreset("Dungeon Start");
     var iniFile, saveFile;
