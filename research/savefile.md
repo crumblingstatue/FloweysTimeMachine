@@ -54,8 +54,8 @@ Line | Description
   84 | Snowdin genocide 0->1 (dog guards)
   85 | Snowdin genocide 0->1 (greater dog)
   88 | 0 -> Comedian got away failure, 2 -> OK
-  93 | Snowdin genocide 0->1 (dog guards?)
-  95 | Snowdin genocide 0->1 (dog guards?)
+  93 | Snowdin genocide 0->1
+  95 | Snowdin genocide 0->1
   98 | Snowdin genocide 0->1 (Papyrus)
   99 | Snowdin genocide 0->1
  101 | Snowdin genocide 0->1
