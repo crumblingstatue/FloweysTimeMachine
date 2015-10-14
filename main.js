@@ -461,6 +461,18 @@ function parseIni(text) {
     return null;
 }
 
+var laughed = false;
+
+function flowey_laugh_once() {
+    "use strict";
+    if (!laughed) {
+        document.getElementById("floweyimg").src = "res/flowey_evil.png";
+        var audio = new Audio("res/flowey_laugh.mp3");
+        audio.play();
+        laughed = true;
+    }
+}
+
 function insert_inv_lists() {
     "use strict";
     function insert(node, i) {
@@ -568,6 +580,7 @@ function saveIni() {
     }
     var blob = new Blob([string], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "undertale.ini", true);
+    flowey_laugh_once();
 }
 
 function saveFileX() {
@@ -618,6 +631,7 @@ function saveFileX() {
     }
     var blob = new Blob([string]);
     saveAs(blob, "file0", true);
+    flowey_laugh_once();
 }
 
 function loadPresetSelect() {
@@ -686,10 +700,12 @@ function start() {
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob();
         saveAs(blob, "system_information_962", true);
+        flowey_laugh_once();
     }, false);
     document.getElementById("savesi3").addEventListener("click", function() {
         var blob = new Blob();
         saveAs(blob, "system_information_963", true);
+        flowey_laugh_once();
     }, false);
     var weaponSelect = document.getElementById("weapon");
     weaponSelect.onchange = function() {
