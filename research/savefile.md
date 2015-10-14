@@ -49,7 +49,7 @@ Line | Description
   56 | Gets incremented every time you save. Purpose unknown.
   61 | `0->1` after you meet first Froggit.
   65 | How many candies you took from candy room.
-  76 | Toriel's house 0->3, 3->4,
+  76 | Toriel's house 0->3, 3->4. This must be 4 to allow Snowdin genocide mode.
   83 | Snowdin genocide 0->1
   84 | Snowdin genocide 0->1 (dog guards?)
   85 | Snowdin genocide 0->1 (greater dog?)

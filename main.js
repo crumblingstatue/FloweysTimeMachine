@@ -346,6 +346,12 @@ var rooms = {
     331: "Asriel room",
 };
 
+var torielStates = {
+    0: "Initial state (0)",
+    3: "Unknown (3)",
+    4: "Killed (4)"
+};
+
 var ini, saveLines;
 
 function parseIni(text) {
@@ -408,14 +414,14 @@ function insert_inv_lists() {
     }
 }
 
-function insert_rooms() {
+function loadSelectFromObj(selectId, obj) {
     "use strict";
-    var select = document.getElementById("location");
+    var select = document.getElementById(selectId);
 
-    for (var key in rooms) {
+    for (var key in obj) {
         var newOption = document.createElement("option");
         newOption.setAttribute("value", key);
-        var newContent = document.createTextNode(rooms[key]);
+        var newContent = document.createTextNode(obj[key]);
         newOption.appendChild(newContent);
         select.appendChild(newOption);
     }
@@ -507,6 +513,7 @@ function saveFileX() {
     saveLines[26] = document.getElementById("invslot8").value;
     saveLines[28] = document.getElementById("weapon").value;
     saveLines[29] = document.getElementById("armor").value;
+    saveLines[75] = document.getElementById("torielstate").value;
     saveLines[231] = document.getElementById("unkkills").value;
     saveLines[232] = document.getElementById("dungeonkills").value;
     saveLines[233] = document.getElementById("snowdinkills").value;
@@ -530,7 +537,8 @@ function loadPreset(name) {
 
 function start() {
     "use strict";
-    insert_rooms();
+    loadSelectFromObj("location", rooms);
+    loadSelectFromObj("torielstate", torielStates);
     insert_inv_lists();
     loadPreset("Dungeon Start");
     var iniFile, saveFile;
