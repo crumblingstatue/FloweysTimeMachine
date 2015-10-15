@@ -630,7 +630,7 @@ function saveFileX() {
     for (var i = 0; i < saveLines.length; i++) {
         string += saveLines[i] + "\r\n";
     }
-    var blob = new Blob([string]);
+    var blob = new Blob([string], {type: "application/octet-stream"});
     saveAs(blob, "file0", true);
     flowey_laugh_once();
 }
@@ -699,12 +699,12 @@ function start() {
     var saveXButton = document.getElementById("savex");
     saveXButton.addEventListener("click", saveFileX, false);
     document.getElementById("savesi2").addEventListener("click", function() {
-        var blob = new Blob();
+        var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_962", true);
         flowey_laugh_once();
     }, false);
     document.getElementById("savesi3").addEventListener("click", function() {
-        var blob = new Blob();
+        var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_963", true);
         flowey_laugh_once();
     }, false);
