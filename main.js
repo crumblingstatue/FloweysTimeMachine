@@ -145,7 +145,7 @@ var rooms = {
     46: "Snowdin - Box Road [SAVE]",
     47: "Snowdin - Fishing rod",
     48: "Snowdin - Papyrus' Sentry Station",
-    49: "Snowdin - No moving dog",
+    49: "Snowdin - Doggo",
     50: "Snowdin - Compass sign",
     51: "Snowdin - Snowman",
     52: "Snowdin - Electricity Maze",
@@ -357,7 +357,7 @@ var comedianStates = {
     2: "Killed (2)"
 };
 
-var noMovingDogStates = {
+var doggoStates = {
     0: "Initial state (0)",
     1: "Killed (1)"
 };
@@ -546,7 +546,7 @@ function loadSaveLines() {
     document.getElementById("armor").value = parseInt(saveLines[29].trim());
     document.getElementById("trainingdummystate").value = parseInt(saveLines[44].trim());
     document.getElementById("torielstate").value = parseInt(saveLines[75].trim());
-    document.getElementById("nomovingdogstate").value = parseInt(saveLines[82].trim());
+    document.getElementById("doggostate").value = parseInt(saveLines[82].trim());
     document.getElementById("dogamydogaressastate").value = parseInt(saveLines[83].trim());
     document.getElementById("greaterdogstate").value = parseInt(saveLines[84].trim());
     document.getElementById("comedianstate").value = parseInt(saveLines[87].trim());
@@ -608,7 +608,7 @@ function saveFileX() {
     saveLines[29] = document.getElementById("armor").value;
     saveLines[44] = document.getElementById("trainingdummystate").value;
     saveLines[75] = document.getElementById("torielstate").value;
-    saveLines[82] = document.getElementById("nomovingdogstate").value;
+    saveLines[82] = document.getElementById("doggostate").value;
     saveLines[83] = document.getElementById("dogamydogaressastate").value;
     saveLines[84] = document.getElementById("greaterdogstate").value;
     saveLines[87] = document.getElementById("comedianstate").value;
@@ -658,7 +658,7 @@ function start() {
     loadSelectFromObj("location", rooms);
     loadSelectFromObj("torielstate", torielStates);
     loadSelectFromObj("comedianstate", comedianStates);
-    loadSelectFromObj("nomovingdogstate", noMovingDogStates);
+    loadSelectFromObj("doggostate", doggoStates);
     loadSelectFromObj("dogamydogaressastate", dogamyDogaressaStates);
     loadSelectFromObj("greaterdogstate", greaterDogStates);
     loadSelectFromObj("papyrusstate", papyrusStates);
