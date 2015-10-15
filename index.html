@@ -14,25 +14,21 @@
     <body>
         <a href="https://github.com/crumblingstatue/FloweysTimeMachine"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
         <h1><img src="res/flowey_nice.png" alt="" id="floweyimg" />Flowey's Time Machine</h1>
-        <form id="mainform">
+        <label> Load Preset </label><select id="presetselect"> </select>
+        <input type="button" id="presetload" value="Load" />
+        <h2> Persistent Data </h2>
+        <p>
+            Things that Undertale remembers throughout multiple playthroughs.
+        </p>
+        <form>
             <div>
                 <fieldset>
-                    <legend>Load <sup title="Save files are typically found in 'C:/users/YourUsername/Local Settings/Application Data/UNDERTALE/'. This location may vary.">[?]</sup> </legend>
-                    <label>undertale.ini <sup title="Contains information that persists throughout playthroughs.">[?]</sup></label> <input type="file" id="undertale-ini" />
-                    <label>fileX <sup title="The data that gets written when you SAVE. `file0` is the main save file.">[?]</sup></label> <input type="file" id="savefile" />
-                    <input id="loadbutton" type="button" value="Load" />
-                </fieldset>
-                <fieldset>
-                    <legend>Preset</legend>
-                    <label>Choose</label><select id="presetselect"> </select>
-                    <input type="button" id="presetload" value="Load" />
-                </fieldset>
-                <fieldset>
-                    <legend>Save <sup title="Save files are typically found in 'C:/users/YourUsername/Local Settings/Application Data/UNDERTALE/'. This location may vary.">[?]</sup> </legend>
-                    <label>undertale.ini <sup title="Contains information that persists throughout playthroughs.">[?]</sup></label> <input type="button" id="saveini" value="Save" />
-                    <label>fileX <sup title="The data that gets written when you SAVE. `file0` is the main save file.">[?]</sup></label><input type="button" id="savex" value="Save" />
-                    <label> system_information_962 <sup title="When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run.">[?]</sup> </label> <input type="button" id="savesi2" value="Save" />
-                    <label> system_information_963 <sup title="When this file is present, you have 'sold' your soul to get the world back after a genocide run.">[?]</sup> </label> <input type="button" id="savesi3" value="Save" />
+                    <legend> undertale.ini </legend>
+                    <input type="file" id="undertale-ini" />
+                    <div>
+                        <input id="ini-loadbutton" type="button" value="Load" />
+                        <input type="button" id="ini-savebutton" value="Save" />
+                    </div>
                 </fieldset>
             </div>
             <fieldset>
@@ -41,6 +37,27 @@
             <label>Location</label> <select id="location"> </select>
             <label>Kills</label> <input type="text" id="kills" />
             </fieldset>
+            <fieldset>
+                <legend> Post-Genocide </legend>
+                <label> system_information_962 <sup title="When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run.">[?]</sup> </label> <input type="button" id="savesi2" value="Save" />
+                <label> system_information_963 <sup title="When this file is present, you have 'sold' your soul to get the world back after a genocide run.">[?]</sup> </label> <input type="button" id="savesi3" value="Save" />
+            </fieldset>
+        </form>
+        <h2> SAVE Data </h2>
+        <p>
+            This is what gets SAVED at SAVE points.
+        </p>
+        <form>
+            <div>
+                <fieldset>
+                    <legend> file0 </legend>
+                    <input type="file" id="savefile" />
+                    <div>
+                        <input id="file0-loadbutton" type="button" value="Load" />
+                        <input type="button" id="file0-savebutton" value="Save" />
+                    </div>
+                </fieldset>
+            </div>
             <fieldset>
             <legend>Stats</legend>
             <label>LOVE</label> <input type="text" id="love" />

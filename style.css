@@ -3,12 +3,12 @@ body {
     color: white;
 }
 
-#mainform {
+form {
     display: flex;
     flex-wrap: wrap;
 }
 
-#mainform fieldset {
+form fieldset {
     display: flex;
     flex-direction: column;
 }

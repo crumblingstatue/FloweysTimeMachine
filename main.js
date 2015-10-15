@@ -506,24 +506,28 @@ function loadSelectFromObj(selectId, obj) {
     }
 }
 
-function load(iniFile, saveFile) {
+function loadIni(file) {
     "use strict";
-    var iniReader = new FileReader();
-    iniReader.onload = function(e) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
         var text = e.target.result;
         var error = parseIni(text);
         if (error) {
             window.alert("Error parsing undertale.ini: " + error);
         }
     };
-    iniReader.readAsText(iniFile);
-    var saveReader = new FileReader();
-    saveReader.onload = function(e) {
+    reader.readAsText(file);
+}
+
+function loadFile0(file) {
+    "use strict";
+    var reader = new FileReader();
+    reader.onload = function(e) {
         var text = e.target.result;
         saveLines = text.split("\r\n");
         loadSaveLines();
     };
-    saveReader.readAsText(saveFile);
+    reader.readAsText(file);
 }
 
 function loadSaveLines() {
@@ -682,21 +686,25 @@ function start() {
     saveInput.addEventListener("change", function (evt) {
         saveFile = evt.target.files[0];
     }, false);
-    var loadButton = document.getElementById("loadbutton");
-    loadButton.addEventListener("click", function() {
+    var iniLoadButton = document.getElementById("ini-loadbutton");
+    iniLoadButton.addEventListener("click", function() {
         if (!iniFile) {
-            window.alert("You need to provide undertale.ini");
+            window.alert("You need to choose a file first!");
             return;
         }
-        if (!saveFile) {
-            window.alert("You need to provide file0/file9");
-            return;
-        }
-        load(iniFile, saveFile);
+        loadIni(iniFile);
     }, false);
-    var saveIniButton = document.getElementById("saveini");
+    var file0LoadButton = document.getElementById("file0-loadbutton");
+    file0LoadButton.addEventListener("click", function() {
+        if (!saveFile) {
+            window.alert("You need to choose a file first!");
+            return;
+        }
+        loadFile0(saveFile);
+    }, false);
+    var saveIniButton = document.getElementById("ini-savebutton");
     saveIniButton.addEventListener("click", saveIni, false);
-    var saveXButton = document.getElementById("savex");
+    var saveXButton = document.getElementById("file0-savebutton");
     saveXButton.addEventListener("click", saveFileX, false);
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
