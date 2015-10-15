@@ -101,6 +101,7 @@ Line | Description
  485 | Hotland genocide 0->1
  486 | Hotland genocide 0->2
  487 | Hotland genocide 0->1
+ 524 | If it's 12, Toriel will intervene in Asgore battle, and you can get pacifist ending.
  527 | Waterfall genocide 0->-1
  543 | Gets increased by varying values as you are making progress in the tutorial dungeon. Possibly Toriel event marker. 25 when you killed toriel. 47 in snowdin spaghetti. Hmm.
  546 | Player has cellphone.
