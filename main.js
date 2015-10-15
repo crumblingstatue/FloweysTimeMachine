@@ -572,10 +572,6 @@ function loadSaveLines() {
 
 function saveIni() {
     "use strict";
-    ini.General.Name = document.getElementById("name").value;
-    ini.General.Love = document.getElementById("love").value;
-    ini.General.Room = document.getElementById("location").value;
-    ini.General.Kills = document.getElementById("kills").value;
     var string = "";
     for (var section in ini) {
         string += "[" + section + "]\r\n";
