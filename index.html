@@ -32,12 +32,6 @@
                 </fieldset>
             </div>
             <fieldset>
-            <legend>General</legend>
-            <label>Name</label> <input type="text" id="name" />
-            <label>Location</label> <select id="location"> </select>
-            <label>Kills</label> <input type="text" id="kills" />
-            </fieldset>
-            <fieldset>
                 <legend> Post-Genocide </legend>
                 <label> system_information_962 <sup title="When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run.">[?]</sup> </label> <input type="button" id="savesi2" value="Save" />
                 <label> system_information_963 <sup title="When this file is present, you have 'sold' your soul to get the world back after a genocide run.">[?]</sup> </label> <input type="button" id="savesi3" value="Save" />
@@ -48,16 +42,20 @@
             This is what gets SAVED at SAVE points.
         </p>
         <form>
-            <div>
-                <fieldset>
-                    <legend> file0 </legend>
-                    <input type="file" id="savefile" />
-                    <div>
-                        <input id="file0-loadbutton" type="button" value="Load" />
-                        <input type="button" id="file0-savebutton" value="Save" />
-                    </div>
-                </fieldset>
-            </div>
+            <fieldset>
+                <legend> file0 </legend>
+                <input type="file" id="savefile" />
+                <div>
+                    <input id="file0-loadbutton" type="button" value="Load" />
+                    <input type="button" id="file0-savebutton" value="Save" />
+                </div>
+            </fieldset>
+            <fieldset>
+            <legend>General</legend>
+            <label>Name</label> <input type="text" id="name" />
+            <label>Location</label> <select id="location"> </select>
+            <label>Kills</label> <input type="text" id="kills" />
+            </fieldset>
             <fieldset>
             <legend>Stats</legend>
             <label>LOVE</label> <input type="text" id="love" />
