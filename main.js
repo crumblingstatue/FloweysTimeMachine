@@ -347,76 +347,76 @@ var rooms = {
 };
 
 var torielStates = {
-    0: "Initial state (0)",
-    3: "Unknown (3)",
-    4: "Killed (4)"
+    0: "Initial state",
+    3: "Unknown",
+    4: "Killed"
 };
 
 var comedianStates = {
-    0: "Initial state (0)",
-    2: "Killed (2)"
+    0: "Initial state",
+    2: "Killed"
 };
 
 var doggoStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var dogamyDogaressaStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var greaterDogStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var papyrusStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var trainingDummyStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)",
-    2: "Talked to (2)",
-    3: "Tired of your shenanigans (3)"
+    0: "Initial state",
+    1: "Killed",
+    2: "Talked to",
+    3: "Tired of your shenanigans"
 };
 
 var shyrenStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var madDummyStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var undyneStates1 = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var undyneStates2 = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var broGuardsStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var mettatonStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var muffetStates = {
-    0: "Initial state (0)",
-    1: "Killed (1)"
+    0: "Initial state",
+    1: "Killed"
 };
 
 var ini, saveLines;
