@@ -506,17 +506,17 @@ function loadSelectFromObj(selectId, obj) {
     }
 }
 
-function loadIniFromFile(file) {
+// Load undertale.ini data into an ini object and execute a closure on it.
+function loadIniFromFile(file, closure) {
     "use strict";
     var reader = new FileReader();
     reader.onload = function(e) {
         var text = e.target.result;
         try {
-            ini = parseIniFromText(text);
+            closure(parseIniFromText(text));
         } catch (err) {
             window.alert("Error parsing undertale.ini: " + err);
         }
-        updatePersistentDataForm(ini);
     };
     reader.readAsText(file);
 }
@@ -705,7 +705,10 @@ function start() {
             window.alert("You need to choose a file first!");
             return;
         }
-        loadIniFromFile(iniFile);
+        loadIniFromFile(iniFile, function(iniobj) {
+            updatePersistentDataForm(iniobj);
+            ini = iniobj;
+        });
     }, false);
     var file0LoadButton = document.getElementById("sav-loadbutton");
     file0LoadButton.addEventListener("click", function() {
