@@ -463,7 +463,7 @@ function parseIniFromText(text) {
 
 function flowey_laugh_once() {
     "use strict";
-    if (localStorage.getItem("laughed") === "true") {
+    if (localStorage.getItem("laughed") !== "true") {
         document.getElementById("floweyimg").src = "res/flowey_evil.png";
         var audio = new Audio("res/flowey_laugh.mp3");
         audio.play();
