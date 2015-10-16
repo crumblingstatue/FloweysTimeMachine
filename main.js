@@ -461,15 +461,13 @@ function parseIniFromText(text) {
     return ini;
 }
 
-var laughed = false;
-
 function flowey_laugh_once() {
     "use strict";
-    if (!laughed) {
+    if (!localStorage.laughed) {
         document.getElementById("floweyimg").src = "res/flowey_evil.png";
         var audio = new Audio("res/flowey_laugh.mp3");
         audio.play();
-        laughed = true;
+        localStorage.laughed = true;
     }
 }
 
@@ -673,6 +671,9 @@ function loadPresetSelect() {
 
 function start() {
     "use strict";
+    if (localStorage.laughed) {
+        document.getElementById("floweyimg").src = "res/flowey_evil.png";
+    }
     var ini, saveLines;
     function loadPreset(name) {
         ini = presets[name].ini;
