@@ -535,6 +535,7 @@ function loadFile0(file) {
 function updatePersistentDataForm(iniobj) {
     "use strict";
     document.getElementById("ini-name").value = iniobj.General.Name;
+    document.getElementById("ini-location").value = iniobj.General.Room;
 }
 
 // Update the save data form from an array of values.
@@ -670,6 +671,7 @@ function loadPreset(name) {
 function start() {
     "use strict";
     loadSelectFromObj("sav-location", rooms);
+    loadSelectFromObj("ini-location", rooms);
     loadSelectFromObj("sav-torielstate", torielStates);
     loadSelectFromObj("sav-comedianstate", comedianStates);
     loadSelectFromObj("sav-doggostate", doggoStates);
