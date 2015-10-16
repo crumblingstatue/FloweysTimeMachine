@@ -419,12 +419,11 @@ var muffetStates = {
     1: "Killed"
 };
 
-var ini;
-
-function parseIni(text) {
+function parseIniFromText(text) {
     "use strict";
     var lines = text.split("\n");
     var section = null;
+    var ini = {};
     lines.forEach(function(line) {
         // Ignore empty lines
         if (line === "") {
@@ -440,28 +439,29 @@ function parseIni(text) {
             }
         } else { // Otherwise, it is assumed to be an assignment
             if (section === null) {
-                return "Assignment outside of a section";
+                throw "Assignment outside of a section";
             }
             var eq = line.indexOf("=");
             if (eq === -1) {
-                return "Expected '='";
+                throw "Expected '='";
             }
             var lquot = line.indexOf('"');
             if (lquot === -1) {
-                return "Expected '\"'";
+                throw "Expected '\"'";
             }
             var rquot = line.slice(lquot + 1).indexOf('"') + lquot + 1;
             if (rquot === -1) {
-                return "Unterminated value string";
+                throw "Unterminated value string";
             }
             var value = line.slice(lquot + 1, rquot);
             var key = line.slice(0, eq);
             ini[section][key] = value;
         }
     });
-    return null;
+    return ini;
 }
 
+var ini;
 var laughed = false;
 
 function flowey_laugh_once() {
@@ -506,14 +506,15 @@ function loadSelectFromObj(selectId, obj) {
     }
 }
 
-function loadIni(file) {
+function loadIniFromFile(file) {
     "use strict";
     var reader = new FileReader();
     reader.onload = function(e) {
         var text = e.target.result;
-        var error = parseIni(text);
-        if (error) {
-            window.alert("Error parsing undertale.ini: " + error);
+        try {
+            ini = parseIniFromText(text);
+        } catch (err) {
+            window.alert("Error parsing undertale.ini: " + err);
         }
         updatePersistentDataForm(ini);
     };
@@ -704,7 +705,7 @@ function start() {
             window.alert("You need to choose a file first!");
             return;
         }
-        loadIni(iniFile);
+        loadIniFromFile(iniFile);
     }, false);
     var file0LoadButton = document.getElementById("sav-loadbutton");
     file0LoadButton.addEventListener("click", function() {
