@@ -419,7 +419,7 @@ var muffetStates = {
     1: "Killed"
 };
 
-var ini, saveLines;
+var ini;
 
 function parseIni(text) {
     "use strict";
@@ -661,16 +661,15 @@ function loadPresetSelect() {
     }
 }
 
-function loadPreset(name) {
-    "use strict";
-    ini = presets[name].ini;
-    saveLines = presets[name].lines;
-    updateSaveDataForm(saveLines);
-    updatePersistentDataForm(ini);
-}
-
 function start() {
     "use strict";
+    var saveLines;
+    function loadPreset(name) {
+        ini = presets[name].ini;
+        saveLines = presets[name].lines;
+        updateSaveDataForm(saveLines);
+        updatePersistentDataForm(ini);
+    }
     loadSelectFromObj("sav-location", rooms);
     loadSelectFromObj("ini-location", rooms);
     loadSelectFromObj("sav-torielstate", torielStates);
