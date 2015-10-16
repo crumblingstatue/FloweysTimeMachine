@@ -578,6 +578,50 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-location").value = parseInt(values[547].trim());
 }
 
+function updateSaveValuesFromForm(values) {
+    "use strict";
+    values[0] = document.getElementById("sav-name").value;
+    values[1] = document.getElementById("sav-love").value;
+    values[2] = document.getElementById("sav-hp").value;
+    values[4] = document.getElementById("sav-at").value;
+    values[5] = document.getElementById("sav-weaponat").value;
+    values[6] = document.getElementById("sav-df").value;
+    values[7] = document.getElementById("sav-armordf").value;
+    values[9] = document.getElementById("sav-exp").value;
+    values[10] = document.getElementById("sav-gold").value;
+    values[11] = document.getElementById("sav-kills").value;
+    values[12] = document.getElementById("sav-invslot1").value;
+    values[14] = document.getElementById("sav-invslot2").value;
+    values[16] = document.getElementById("sav-invslot3").value;
+    values[18] = document.getElementById("sav-invslot4").value;
+    values[20] = document.getElementById("sav-invslot5").value;
+    values[22] = document.getElementById("sav-invslot6").value;
+    values[24] = document.getElementById("sav-invslot7").value;
+    values[26] = document.getElementById("sav-invslot8").value;
+    values[28] = document.getElementById("sav-weapon").value;
+    values[29] = document.getElementById("sav-armor").value;
+    values[44] = document.getElementById("sav-trainingdummystate").value;
+    values[75] = document.getElementById("sav-torielstate").value;
+    values[82] = document.getElementById("sav-doggostate").value;
+    values[83] = document.getElementById("sav-dogamydogaressastate").value;
+    values[84] = document.getElementById("sav-greaterdogstate").value;
+    values[87] = document.getElementById("sav-comedianstate").value;
+    values[97] = document.getElementById("sav-papyrusstate").value;
+    values[111] = document.getElementById("sav-shyrenstate").value;
+    values[231] = document.getElementById("sav-unkkills").value;
+    values[232] = document.getElementById("sav-dungeonkills").value;
+    values[233] = document.getElementById("sav-snowdinkills").value;
+    values[234] = document.getElementById("sav-waterfallkills").value;
+    values[235] = document.getElementById("sav-hotlandkills").value;
+    values[281] = document.getElementById("sav-undynestate1").value;
+    values[282] = document.getElementById("sav-maddummystate").value;
+    values[380] = document.getElementById("sav-undynestate2").value;
+    values[427] = document.getElementById("sav-muffetstate").value;
+    values[432] = document.getElementById("sav-broguardsstate").value;
+    values[455] = document.getElementById("sav-mettatonstate").value;
+    values[547] = document.getElementById("sav-location").value;
+}
+
 function saveIni() {
     "use strict";
     var string = "";
@@ -594,46 +638,7 @@ function saveIni() {
 
 function saveFileX() {
     "use strict";
-    saveLines[0] = document.getElementById("sav-name").value;
-    saveLines[1] = document.getElementById("sav-love").value;
-    saveLines[2] = document.getElementById("sav-hp").value;
-    saveLines[4] = document.getElementById("sav-at").value;
-    saveLines[5] = document.getElementById("sav-weaponat").value;
-    saveLines[6] = document.getElementById("sav-df").value;
-    saveLines[7] = document.getElementById("sav-armordf").value;
-    saveLines[9] = document.getElementById("sav-exp").value;
-    saveLines[10] = document.getElementById("sav-gold").value;
-    saveLines[11] = document.getElementById("sav-kills").value;
-    saveLines[12] = document.getElementById("sav-invslot1").value;
-    saveLines[14] = document.getElementById("sav-invslot2").value;
-    saveLines[16] = document.getElementById("sav-invslot3").value;
-    saveLines[18] = document.getElementById("sav-invslot4").value;
-    saveLines[20] = document.getElementById("sav-invslot5").value;
-    saveLines[22] = document.getElementById("sav-invslot6").value;
-    saveLines[24] = document.getElementById("sav-invslot7").value;
-    saveLines[26] = document.getElementById("sav-invslot8").value;
-    saveLines[28] = document.getElementById("sav-weapon").value;
-    saveLines[29] = document.getElementById("sav-armor").value;
-    saveLines[44] = document.getElementById("sav-trainingdummystate").value;
-    saveLines[75] = document.getElementById("sav-torielstate").value;
-    saveLines[82] = document.getElementById("sav-doggostate").value;
-    saveLines[83] = document.getElementById("sav-dogamydogaressastate").value;
-    saveLines[84] = document.getElementById("sav-greaterdogstate").value;
-    saveLines[87] = document.getElementById("sav-comedianstate").value;
-    saveLines[97] = document.getElementById("sav-papyrusstate").value;
-    saveLines[111] = document.getElementById("sav-shyrenstate").value;
-    saveLines[231] = document.getElementById("sav-unkkills").value;
-    saveLines[232] = document.getElementById("sav-dungeonkills").value;
-    saveLines[233] = document.getElementById("sav-snowdinkills").value;
-    saveLines[234] = document.getElementById("sav-waterfallkills").value;
-    saveLines[235] = document.getElementById("sav-hotlandkills").value;
-    saveLines[281] = document.getElementById("sav-undynestate1").value;
-    saveLines[282] = document.getElementById("sav-maddummystate").value;
-    saveLines[380] = document.getElementById("sav-undynestate2").value;
-    saveLines[427] = document.getElementById("sav-muffetstate").value;
-    saveLines[432] = document.getElementById("sav-broguardsstate").value;
-    saveLines[455] = document.getElementById("sav-mettatonstate").value;
-    saveLines[547] = document.getElementById("sav-location").value;
+    updateSaveValuesFromForm(saveLines);
     var string = "";
     for (var i = 0; i < saveLines.length; i++) {
         string += saveLines[i] + "\r\n";
