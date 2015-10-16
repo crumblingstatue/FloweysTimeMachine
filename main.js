@@ -520,13 +520,13 @@ function loadIni(file) {
     reader.readAsText(file);
 }
 
-function loadFile0(file) {
+// Load save data from a file into an array of values, and execute a closure on it.
+function loadSaveFromFile(file, closure) {
     "use strict";
     var reader = new FileReader();
     reader.onload = function(e) {
         var text = e.target.result;
-        saveLines = text.split("\r\n");
-        updateSaveDataForm(saveLines);
+        closure(text.split("\r\n"));
     };
     reader.readAsText(file);
 }
@@ -714,7 +714,10 @@ function start() {
             window.alert("You need to choose a file first!");
             return;
         }
-        loadFile0(saveFile);
+        loadSaveFromFile(saveFile, function(lines) {
+            updateSaveDataForm(lines);
+            saveLines = lines;
+        });
     }, false);
     var saveIniButton = document.getElementById("ini-savebutton");
     saveIniButton.addEventListener("click", saveIni, false);
