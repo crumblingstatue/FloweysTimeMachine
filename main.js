@@ -463,11 +463,11 @@ function parseIniFromText(text) {
 
 function flowey_laugh_once() {
     "use strict";
-    if (!localStorage.laughed) {
+    if (localStorage.getItem("laughed") === "true") {
         document.getElementById("floweyimg").src = "res/flowey_evil.png";
         var audio = new Audio("res/flowey_laugh.mp3");
         audio.play();
-        localStorage.laughed = true;
+        localStorage.setItem("laughed", "true");
     }
 }
 
@@ -660,7 +660,7 @@ function saveSaveValuesToFile(values) {
 
 function loadPresetSelect() {
     "use strict";
-    var selectNode = document.getElementById("presetselect");
+    var selectNode = document.getElementById("builtinpresetselect");
     for (var k in presets) {
         var newOption = document.createElement("option");
         var newContent = document.createTextNode(k);
@@ -671,7 +671,19 @@ function loadPresetSelect() {
 
 function start() {
     "use strict";
-    if (localStorage.laughed) {
+    var userPresets = localStorage.getItem("userPresets");
+    if (userPresets === null) {
+        localStorage.setItem("userPresets", JSON.stringify({}));
+    } else {
+        for (var key in JSON.parse(userPresets)) {
+            var presetSelect2 = document.getElementById("userpresetselect");
+            var option2 = document.createElement("option");
+            var text2 = document.createTextNode(key);
+            option2.appendChild(text2);
+            presetSelect2.appendChild(option2);
+        }
+    }
+    if (localStorage.getItem("laughed") === "true") {
         document.getElementById("floweyimg").src = "res/flowey_evil.png";
     }
     var ini, saveLines;
@@ -765,9 +777,70 @@ function start() {
             document.getElementById("armordf").value = df;
         }
     };
-    document.getElementById("presetload").addEventListener("click", function() {
-        var name = document.getElementById("presetselect").value;
+    document.getElementById("builtinpresetload").addEventListener("click", function() {
+        var name = document.getElementById("builtinpresetselect").value;
         loadPreset(name);
+    }, false);
+    function saveUserPreset(name) {
+        updateIniFromForm(ini);
+        updateSaveValuesFromForm(saveLines);
+        var obj = {
+            "ini": ini,
+            "saveLines": saveLines,
+        };
+        var presets = JSON.parse(localStorage.getItem("userPresets"));
+        presets[name] = obj;
+        localStorage.setItem("userPresets",JSON.stringify(presets));
+    }
+    document.getElementById("userpresetnew").addEventListener("click", function() {
+        var name = window.prompt("Enter the name for your new preset");
+        if (name === null || name === "") {
+            window.alert("You did not enter a valid name, preset not created.");
+        } else {
+            saveUserPreset(name);
+            var presetSelect = document.getElementById("userpresetselect");
+            var option = document.createElement("option");
+            var text = document.createTextNode(name);
+            option.appendChild(text);
+            presetSelect.appendChild(option);
+            presetSelect.value = name;
+        }
+    }, false);
+    document.getElementById("userpresetsave").addEventListener("click", function() {
+        var name = document.getElementById("userpresetselect").value;
+        if (name !== null && name !== "") {
+            saveUserPreset(name);
+        } else {
+            window.alert("You need to select a valid preset first!");
+        }
+    }, false);
+    document.getElementById("userpresetload").addEventListener("click", function() {
+        var name = document.getElementById("userpresetselect").value;
+        if (name !== null && name !== "") {
+            var item = localStorage.getItem("userPresets");
+            var presets = JSON.parse(item);
+            var obj = presets[name];
+            ini = obj.ini;
+            saveLines = obj.saveLines;
+            updateSaveDataForm(saveLines);
+            updatePersistentDataForm(ini);
+        } else {
+            window.alert("You need to select a valid preset first!");
+        }
+    }, false);
+    document.getElementById("userpresetdelete").addEventListener("click", function() {
+        var selection = document.getElementById("userpresetselect");
+        var name = selection.value;
+        var children = selection.childNodes;
+        for (var i = 0; i < children.length; i++) {
+            if (children[i].value === name) {
+                selection.removeChild(children[i]);
+            }
+        }
+        var item = localStorage.getItem("userPresets");
+        var presets = JSON.parse(item);
+        delete presets[name];
+        localStorage.setItem("userPresets", JSON.stringify(presets));
     }, false);
 }
 
