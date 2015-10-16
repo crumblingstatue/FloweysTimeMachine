@@ -536,6 +536,8 @@ function updatePersistentDataForm(iniobj) {
     "use strict";
     document.getElementById("ini-name").value = iniobj.General.Name;
     document.getElementById("ini-location").value = iniobj.General.Room;
+    document.getElementById("ini-kills").value = iniobj.General.Kills;
+    document.getElementById("ini-love").value = iniobj.General.Love;
 }
 
 // Update the save data form from an array of values.
