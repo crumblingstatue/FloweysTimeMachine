@@ -461,7 +461,6 @@ function parseIniFromText(text) {
     return ini;
 }
 
-var ini;
 var laughed = false;
 
 function flowey_laugh_once() {
@@ -541,6 +540,15 @@ function updatePersistentDataForm(iniobj) {
     document.getElementById("ini-love").value = iniobj.General.Love;
 }
 
+// Update an ini object from the persistent data form.
+function updateIniFromForm(ini) {
+    "use strict";
+    ini.General.Name = document.getElementById("ini-name").value;
+    ini.General.Room = document.getElementById("ini-location").value;
+    ini.General.Kills = document.getElementById("ini-kills").value;
+    ini.general.Love = document.getElementById("ini-love").value;
+}
+
 // Update the save data form from an array of values.
 function updateSaveDataForm(values) {
     "use strict";
@@ -582,6 +590,7 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-location").value = parseInt(values[547].trim());
 }
 
+// Update an array of values from the save data form.
 function updateSaveValuesFromForm(values) {
     "use strict";
     values[0] = document.getElementById("sav-name").value;
@@ -626,7 +635,7 @@ function updateSaveValuesFromForm(values) {
     values[547] = document.getElementById("sav-location").value;
 }
 
-function saveIni() {
+function saveIniToFile(ini) {
     "use strict";
     var string = "";
     for (var section in ini) {
@@ -664,7 +673,7 @@ function loadPresetSelect() {
 
 function start() {
     "use strict";
-    var saveLines;
+    var ini, saveLines;
     function loadPreset(name) {
         ini = presets[name].ini;
         saveLines = presets[name].lines;
@@ -722,7 +731,10 @@ function start() {
         });
     }, false);
     var saveIniButton = document.getElementById("ini-savebutton");
-    saveIniButton.addEventListener("click", saveIni, false);
+    saveIniButton.addEventListener("click", function() {
+        updateIniFromForm(ini);
+        saveIniToFile(ini);
+    }, false);
     var saveXButton = document.getElementById("sav-savebutton");
     saveXButton.addEventListener("click", function() {
         updateSaveValuesFromForm(saveLines);
