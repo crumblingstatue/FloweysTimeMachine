@@ -515,6 +515,7 @@ function loadIni(file) {
         if (error) {
             window.alert("Error parsing undertale.ini: " + error);
         }
+        updatePersistentDataForm(ini);
     };
     reader.readAsText(file);
 }
@@ -528,6 +529,12 @@ function loadFile0(file) {
         updateSaveDataForm(saveLines);
     };
     reader.readAsText(file);
+}
+
+// Update the persistent data form from an ini object.
+function updatePersistentDataForm(iniobj) {
+    "use strict";
+    document.getElementById("ini-name").value = iniobj.General.Name;
 }
 
 // Update the save data form from an array of values.
@@ -652,6 +659,7 @@ function loadPreset(name) {
     ini = presets[name].ini;
     saveLines = presets[name].lines;
     updateSaveDataForm(saveLines);
+    updatePersistentDataForm(ini);
 }
 
 function start() {
