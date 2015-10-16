@@ -844,4 +844,4 @@ function start() {
     }, false);
 }
 
-window.onload = start;
+document.addEventListener("DOMContentLoaded", start);
