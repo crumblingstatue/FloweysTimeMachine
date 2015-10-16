@@ -639,12 +639,11 @@ function saveIni() {
     flowey_laugh_once();
 }
 
-function saveFileX() {
+function saveSaveValuesToFile(values) {
     "use strict";
-    updateSaveValuesFromForm(saveLines);
     var string = "";
-    for (var i = 0; i < saveLines.length; i++) {
-        string += saveLines[i] + "\r\n";
+    for (var i = 0; i < values.length; i++) {
+        string += values[i] + "\r\n";
     }
     var blob = new Blob([string], {type: "application/octet-stream"});
     saveAs(blob, "file0", true);
@@ -722,7 +721,10 @@ function start() {
     var saveIniButton = document.getElementById("ini-savebutton");
     saveIniButton.addEventListener("click", saveIni, false);
     var saveXButton = document.getElementById("sav-savebutton");
-    saveXButton.addEventListener("click", saveFileX, false);
+    saveXButton.addEventListener("click", function() {
+        updateSaveValuesFromForm(saveLines);
+        saveSaveValuesToFile(saveLines);
+    }, false);
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_962", true);
