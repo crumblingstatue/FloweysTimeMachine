@@ -535,9 +535,9 @@ function loadSaveFromFile(file, closure) {
 function updatePersistentDataForm(iniobj) {
     "use strict";
     document.getElementById("ini-name").value = iniobj.General.Name;
-    document.getElementById("ini-location").value = iniobj.General.Room;
-    document.getElementById("ini-kills").value = iniobj.General.Kills;
-    document.getElementById("ini-love").value = iniobj.General.Love;
+    document.getElementById("ini-location").value = parseInt(iniobj.General.Room.trim());
+    document.getElementById("ini-kills").value = parseInt(iniobj.General.Kills.trim());
+    document.getElementById("ini-love").value = parseInt(iniobj.General.Love.trim());
 }
 
 // Update an ini object from the persistent data form.
