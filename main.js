@@ -546,7 +546,7 @@ function updateIniFromForm(ini) {
     ini.General.Name = document.getElementById("ini-name").value;
     ini.General.Room = document.getElementById("ini-location").value;
     ini.General.Kills = document.getElementById("ini-kills").value;
-    ini.general.Love = document.getElementById("ini-love").value;
+    ini.General.Love = document.getElementById("ini-love").value;
 }
 
 // Update the save data form from an array of values.
