@@ -5,5 +5,8 @@
     "unused": true,
     "browser": true,
     "shadow": "outer",
-    "predef": [ "saveAs", "presets" ]
+    "globals": {
+        "saveAs": false,
+        "presets": true
+    }
 }
