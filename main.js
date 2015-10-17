@@ -85,7 +85,7 @@ var weaponAts = {
     "25": 7,
     "45": 2,
     "49": 12,
-    "51": 15,
+    "51": 15
 };
 
 var ArmorDfs = {
@@ -343,7 +343,7 @@ var rooms = {
     "262": "True Lab - Power room corridor",
     "263": "True Lab - Power room",
     "265": "Snowdin - Ice Cave 1",
-    "331": "Asriel room",
+    "331": "Asriel room"
 };
 
 var torielStates = {
