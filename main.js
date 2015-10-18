@@ -871,6 +871,10 @@ function start() {
         delete presets[name];
         localStorage.setItem("userPresets", JSON.stringify(presets));
     }, false);
+    document.getElementById("floweyimg").addEventListener("click", function() {
+        document.getElementById("floweyimg").src = "res/flowey_wink.png";
+        localStorage.setItem("laughed", false);
+    }, false);
 }
 
 document.addEventListener("DOMContentLoaded", start);
