@@ -1,4 +1,4 @@
 # Flowey's Time Machine
-Undertale SAVE manipulator
+Undertale SAVE editor
 
 http://crumblingstatue.github.io/FloweysTimeMachine
