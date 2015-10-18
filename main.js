@@ -806,14 +806,14 @@ function start() {
     weaponSelect.onchange = function() {
         var at = weaponAts[weaponSelect.value];
         if (typeof at !== "undefined") {
-            document.getElementById("weaponat").value = at;
+            document.getElementById("sav-weaponat").value = at;
         }
     };
     var armorSelect = document.getElementById("sav-armor");
     armorSelect.onchange = function() {
         var df = ArmorDfs[armorSelect.value];
         if (typeof df !== "undefined") {
-            document.getElementById("armordf").value = df;
+            document.getElementById("sav-armordf").value = df;
         }
     };
     document.getElementById("builtinpresetload").addEventListener("click", function() {
