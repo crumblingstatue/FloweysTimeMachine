@@ -745,10 +745,20 @@ function start() {
     var iniInput = document.getElementById("ini-file");
     iniInput.addEventListener("change", function(evt) {
         iniFile = evt.target.files[0];
+        if (iniFile) {
+            document.getElementById("ini-loadbutton").disabled = false;
+        } else {
+            document.getElementById("ini-loadbutton").disabled = true;
+        }
     }, false);
     var saveInput = document.getElementById("sav-file");
     saveInput.addEventListener("change", function (evt) {
         saveFile = evt.target.files[0];
+        if (saveFile) {
+            document.getElementById("sav-loadbutton").disabled = false;
+        } else {
+            document.getElementById("sav-loadbutton").disabled = true;
+        }
     }, false);
     var iniLoadButton = document.getElementById("ini-loadbutton");
     iniLoadButton.addEventListener("click", function() {
@@ -833,6 +843,10 @@ function start() {
             option.appendChild(text);
             presetSelect.appendChild(option);
             presetSelect.value = name;
+            document.getElementById("userpresetload").disabled = false;
+            document.getElementById("userpresetsave").disabled = false;
+            document.getElementById("userpresetdelete").disabled = false;
+            document.getElementById("userpresetexport").disabled = false;
         }
     }, false);
     document.getElementById("userpresetsave").addEventListener("click", function() {
@@ -870,7 +884,19 @@ function start() {
         var presets = JSON.parse(item);
         delete presets[name];
         localStorage.setItem("userPresets", JSON.stringify(presets));
+        if (document.getElementById("userpresetselect").value === "") {
+            document.getElementById("userpresetload").disabled = true;
+            document.getElementById("userpresetsave").disabled = true;
+            document.getElementById("userpresetdelete").disabled = true;
+            document.getElementById("userpresetexport").disabled = true;
+        }
     }, false);
+    if (document.getElementById("userpresetselect").value !== "") {
+        document.getElementById("userpresetload").disabled = false;
+        document.getElementById("userpresetsave").disabled = false;
+        document.getElementById("userpresetdelete").disabled = false;
+        document.getElementById("userpresetexport").disabled = false;
+    }
     document.getElementById("floweyimg").addEventListener("click", function() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);

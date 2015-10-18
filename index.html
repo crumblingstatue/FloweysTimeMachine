@@ -20,11 +20,11 @@
         <label> Built-in Presets </label><select id="builtinpresetselect"> </select>
         <input type="button" id="builtinpresetload" value="Load" />
         <label> Your presets </label><select id="userpresetselect"> </select>
-        <input type="button" id="userpresetload" value="Load" />
-        <input type="button" id="userpresetsave" value="Save" />
+        <input type="button" id="userpresetload" value="Load" disabled />
+        <input type="button" id="userpresetsave" value="Save" disabled />
         <input type="button" id="userpresetnew" value="New" />
-        <input type="button" id="userpresetdelete" value="Delete" />
-        <input type="button" id="userpresetexport" value="Export" />
+        <input type="button" id="userpresetdelete" value="Delete" disabled />
+        <input type="button" id="userpresetexport" value="Export" disabled />
         <h2> Persistent Data </h2>
         <p>
             Things that Undertale remembers throughout multiple playthroughs.
@@ -35,7 +35,7 @@
                     <legend> undertale.ini </legend>
                     <input type="file" id="ini-file" />
                     <div>
-                        <input id="ini-loadbutton" type="button" value="Load" />
+                        <input id="ini-loadbutton" type="button" value="Load" disabled />
                         <input type="button" id="ini-savebutton" value="Save" />
                     </div>
                 </fieldset>
@@ -63,7 +63,7 @@
                     <legend> file0 </legend>
                     <input type="file" id="sav-file" />
                     <div>
-                        <input id="sav-loadbutton" type="button" value="Load" />
+                        <input id="sav-loadbutton" type="button" value="Load" disabled />
                         <input type="button" id="sav-savebutton" value="Save" />
                     </div>
                 </fieldset>
