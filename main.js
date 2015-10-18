@@ -825,7 +825,7 @@ function start() {
         updateSaveValuesFromForm(saveLines);
         var obj = {
             "ini": ini,
-            "saveLines": saveLines,
+            "lines": saveLines,
         };
         var presets = JSON.parse(localStorage.getItem("userPresets"));
         presets[name] = obj;
@@ -864,7 +864,7 @@ function start() {
             var presets = JSON.parse(item);
             var obj = presets[name];
             ini = obj.ini;
-            saveLines = obj.saveLines;
+            saveLines = obj.lines;
             updateSaveDataForm(saveLines);
             updatePersistentDataForm(ini);
         } else {
@@ -897,6 +897,15 @@ function start() {
         document.getElementById("userpresetdelete").disabled = false;
         document.getElementById("userpresetexport").disabled = false;
     }
+    document.getElementById("userpresetexport").addEventListener("click", function() {
+        var presets = JSON.parse(localStorage.getItem("userPresets"));
+        var name = document.getElementById("userpresetselect").value;
+        saveUserPreset(name);
+        var preset = presets[name];
+        var string = "presets[\"" + name + "\"] = " + JSON.stringify(preset) + ";";
+        var blob = new Blob([string], {type: "application/octet-stream"});
+        saveAs(blob, name + ".js", true);
+    }, false);
     document.getElementById("floweyimg").addEventListener("click", function() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);
