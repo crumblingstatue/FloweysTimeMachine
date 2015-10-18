@@ -68,6 +68,7 @@ var items = [
 ];
 
 var cellOpts = {
+    "0": "Empty",
     "201": "Say Hello",
     "203": "About Yourself",
     "204": "Call Her \"Mom\"",
@@ -490,6 +491,13 @@ function insert_inv_lists() {
     }
 }
 
+function insert_cell_lists() {
+    "use strict";
+    for (var i = 1; i <= 8; i++) {
+        loadSelectFromObj("sav-cellslot" + i, cellOpts);
+    }
+}
+
 function loadSelectFromObj(selectId, obj) {
     "use strict";
     var select = document.getElementById(selectId);
@@ -563,6 +571,8 @@ function updateSaveDataForm(values) {
     for (var i = 0; i < 8; i++) {
         var itemId = parseInt(values[12 + (i * 2)].trim());
         document.getElementById("sav-invslot" + (i + 1)).value = itemId;
+        var cellId = parseInt(values[13 + (i * 2)].trim());
+        document.getElementById("sav-cellslot" + (i + 1)).value = cellId;
     }
     document.getElementById("sav-weapon").value = parseInt(values[28].trim());
     document.getElementById("sav-armor").value = parseInt(values[29].trim());
@@ -585,6 +595,11 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-muffetstate").value = parseInt(values[427].trim());
     document.getElementById("sav-broguardsstate").value = parseInt(values[432].trim());
     document.getElementById("sav-mettatonstate").value = parseInt(values[455].trim());
+    if (parseInt(values[545]) === 1) {
+        document.getElementById("sav-havecell").checked = true;
+    } else {
+        document.getElementById("sav-havecell").checked = false;
+    }
     document.getElementById("sav-location").value = parseInt(values[547].trim());
 }
 
@@ -602,13 +617,21 @@ function updateSaveValuesFromForm(values) {
     values[10] = document.getElementById("sav-gold").value;
     values[11] = document.getElementById("sav-kills").value;
     values[12] = document.getElementById("sav-invslot1").value;
+    values[13] = document.getElementById("sav-cellslot1").value;
     values[14] = document.getElementById("sav-invslot2").value;
+    values[15] = document.getElementById("sav-cellslot2").value;
     values[16] = document.getElementById("sav-invslot3").value;
+    values[17] = document.getElementById("sav-cellslot3").value;
     values[18] = document.getElementById("sav-invslot4").value;
+    values[19] = document.getElementById("sav-cellslot4").value;
     values[20] = document.getElementById("sav-invslot5").value;
+    values[21] = document.getElementById("sav-cellslot5").value;
     values[22] = document.getElementById("sav-invslot6").value;
+    values[23] = document.getElementById("sav-cellslot6").value;
     values[24] = document.getElementById("sav-invslot7").value;
+    values[25] = document.getElementById("sav-cellslot7").value;
     values[26] = document.getElementById("sav-invslot8").value;
+    values[27] = document.getElementById("sav-cellslot8").value;
     values[28] = document.getElementById("sav-weapon").value;
     values[29] = document.getElementById("sav-armor").value;
     values[44] = document.getElementById("sav-trainingdummystate").value;
@@ -630,6 +653,11 @@ function updateSaveValuesFromForm(values) {
     values[427] = document.getElementById("sav-muffetstate").value;
     values[432] = document.getElementById("sav-broguardsstate").value;
     values[455] = document.getElementById("sav-mettatonstate").value;
+    if (document.getElementById("sav-havecell").checked) {
+        values[545] = 1;
+    } else {
+        values[545] = 0;
+    }
     values[547] = document.getElementById("sav-location").value;
 }
 
@@ -710,6 +738,7 @@ function start() {
     loadSelectFromObj("sav-muffetstate", muffetStates);
     loadSelectFromObj("sav-mettatonstate", mettatonStates);
     insert_inv_lists();
+    insert_cell_lists();
     loadPresetSelect();
     loadPreset("Dungeon Start");
     var iniFile, saveFile;
