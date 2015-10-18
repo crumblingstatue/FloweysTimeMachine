@@ -595,7 +595,12 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-muffetstate").value = parseInt(values[427].trim());
     document.getElementById("sav-broguardsstate").value = parseInt(values[432].trim());
     document.getElementById("sav-mettatonstate").value = parseInt(values[455].trim());
-    if (parseInt(values[545]) === 1) {
+    if (parseInt(values[523].trim()) === 12) {
+        document.getElementById("sav-exitedtruelab").checked = true;
+    } else {
+        document.getElementById("sav-exitedtruelab").checked = false;
+    }
+    if (parseInt(values[545].trim()) === 1) {
         document.getElementById("sav-havecell").checked = true;
     } else {
         document.getElementById("sav-havecell").checked = false;
@@ -653,10 +658,15 @@ function updateSaveValuesFromForm(values) {
     values[427] = document.getElementById("sav-muffetstate").value;
     values[432] = document.getElementById("sav-broguardsstate").value;
     values[455] = document.getElementById("sav-mettatonstate").value;
-    if (document.getElementById("sav-havecell").checked) {
-        values[545] = 1;
+    if (document.getElementById("sav-exitedtruelab").checked) {
+        values[523] = "12";
     } else {
-        values[545] = 0;
+        values[523] = "0";
+    }
+    if (document.getElementById("sav-havecell").checked) {
+        values[545] = "1";
+    } else {
+        values[545] = "0";
     }
     values[547] = document.getElementById("sav-location").value;
 }
