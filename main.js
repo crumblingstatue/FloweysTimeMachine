@@ -422,7 +422,7 @@ var muffetStates = {
 
 function parseIniFromText(text) {
     "use strict";
-    var lines = text.split("\n");
+    var lines = text.match(/[^\r\n]+/g);
     var section = null;
     var ini = {};
     lines.forEach(function(line) {
@@ -532,7 +532,7 @@ function loadSaveFromFile(file, closure) {
     var reader = new FileReader();
     reader.onload = function(e) {
         var text = e.target.result;
-        closure(text.split("\r\n"));
+        closure(text.match(/[^\r\n]+/g));
     };
     reader.readAsText(file);
 }
