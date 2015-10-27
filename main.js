@@ -74,7 +74,9 @@ var cellOpts = {
     "204": "Call Her \"Mom\"",
     "205": "Flirt",
     "206": "Toriel's Phone",
-    "210": "Papyrus's Phone"
+    "210": "Papyrus's Phone",
+    "220": "Dimensional Box A",
+    "221": "Dimensional Box B"
 };
 
 var weaponAts = {
@@ -350,11 +352,13 @@ var rooms = {
 var torielStates = {
     "0": "Initial state",
     "3": "Unknown",
-    "4": "Killed"
+    "4": "Killed",
+    "5": "Unknown"
 };
 
 var comedianStates = {
     "0": "Initial state",
+    "1": "Unknown",
     "2": "Killed"
 };
 
@@ -387,7 +391,8 @@ var trainingDummyStates = {
 
 var shyrenStates = {
     "0": "Initial state",
-    "1": "Killed"
+    "1": "Killed",
+    "2": "Unknown"
 };
 
 var madDummyStates = {
@@ -555,6 +560,18 @@ function updateIniFromForm(ini) {
     ini.General.Love = document.getElementById("ini-love").value;
 }
 
+function updateSelection(id, values, index, list) {
+    "use strict";
+    var value = parseInt(values[index].trim());
+    if (list[value]) {
+        document.getElementById(id).value = value;
+    } else {
+        window.alert("Unknown value '" + value + "' for line " + (index + 1) + ".\n" +
+                     "If you think this is a valid value, report an issue at " +
+                     "https://github.com/crumblingstatue/FloweysTimeMachine/issues");
+    }
+}
+
 // Update the save data form from an array of values.
 function updateSaveDataForm(values) {
     "use strict";
@@ -569,32 +586,30 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-df").value = values[6];
     document.getElementById("sav-armordf").value = values[7];
     for (var i = 0; i < 8; i++) {
-        var itemId = parseInt(values[12 + (i * 2)].trim());
-        document.getElementById("sav-invslot" + (i + 1)).value = itemId;
-        var cellId = parseInt(values[13 + (i * 2)].trim());
-        document.getElementById("sav-cellslot" + (i + 1)).value = cellId;
+        updateSelection("sav-invslot" + (i + 1), values, 12 + (i * 2), items);
+        updateSelection("sav-cellslot" + (i + 1), values, 13 + (i * 2), cellOpts);
     }
-    document.getElementById("sav-weapon").value = parseInt(values[28].trim());
-    document.getElementById("sav-armor").value = parseInt(values[29].trim());
-    document.getElementById("sav-trainingdummystate").value = parseInt(values[44].trim());
-    document.getElementById("sav-torielstate").value = parseInt(values[75].trim());
-    document.getElementById("sav-doggostate").value = parseInt(values[82].trim());
-    document.getElementById("sav-dogamydogaressastate").value = parseInt(values[83].trim());
-    document.getElementById("sav-greaterdogstate").value = parseInt(values[84].trim());
-    document.getElementById("sav-comedianstate").value = parseInt(values[87].trim());
-    document.getElementById("sav-papyrusstate").value = parseInt(values[97].trim());
-    document.getElementById("sav-shyrenstate").value = parseInt(values[111].trim());
+    updateSelection("sav-weapon", values, 28, items);
+    updateSelection("sav-armor", values, 29, items);
+    updateSelection("sav-trainingdummystate", values, 44, trainingDummyStates);
+    updateSelection("sav-torielstate", values, 75, torielStates);
+    updateSelection("sav-doggostate", values, 82, doggoStates);
+    updateSelection("sav-dogamydogaressastate", values, 83, dogamyDogaressaStates);
+    updateSelection("sav-greaterdogstate", values, 84, greaterDogStates);
+    updateSelection("sav-comedianstate", values, 87, comedianStates);
+    updateSelection("sav-papyrusstate", values, 97, papyrusStates);
+    updateSelection("sav-shyrenstate", values, 111, shyrenStates);
     document.getElementById("sav-unkkills").value = values[231];
     document.getElementById("sav-dungeonkills").value = values[232];
     document.getElementById("sav-snowdinkills").value = values[233];
     document.getElementById("sav-waterfallkills").value = values[234];
     document.getElementById("sav-hotlandkills").value = values[235];
-    document.getElementById("sav-undynestate1").value = parseInt(values[281].trim());
-    document.getElementById("sav-maddummystate").value = parseInt(values[282].trim());
-    document.getElementById("sav-undynestate2").value = parseInt(values[380].trim());
-    document.getElementById("sav-muffetstate").value = parseInt(values[427].trim());
-    document.getElementById("sav-broguardsstate").value = parseInt(values[432].trim());
-    document.getElementById("sav-mettatonstate").value = parseInt(values[455].trim());
+    updateSelection("sav-undynestate1", values, 281, undyneStates1);
+    updateSelection("sav-maddummystate", values, 282, madDummyStates);
+    updateSelection("sav-undynestate2", values, 380, undyneStates2);
+    updateSelection("sav-muffetstate", values, 427, muffetStates);
+    updateSelection("sav-broguardsstate", values, 432, broGuardsStates);
+    updateSelection("sav-mettatonstate", values, 455, mettatonStates);
     if (parseInt(values[523].trim()) === 12) {
         document.getElementById("sav-exitedtruelab").checked = true;
     } else {
