@@ -549,6 +549,27 @@ function updatePersistentDataForm(iniobj) {
     document.getElementById("ini-location").value = parseInt(iniobj.General.Room.trim());
     document.getElementById("ini-kills").value = parseInt(iniobj.General.Kills.trim());
     document.getElementById("ini-love").value = parseInt(iniobj.General.Love.trim());
+    if (iniobj.FFFFF) {
+        if (iniobj.FFFFF.F) {
+            if (parseInt(iniobj.FFFFF.F.trim()) === 1) {
+                document.getElementById("ini-omega-flowey-trapped").checked = true;
+            } else {
+                document.getElementById("ini-omega-flowey-trapped").checked = false;
+            }
+        }
+        if (iniobj.FFFFF.P) {
+            if (parseInt(iniobj.FFFFF.P.trim()) === 1) {
+                document.getElementById("ini-omega-flowey-battle-init").checked = true;
+            } else {
+                document.getElementById("ini-omega-flowey-battle-init").checked = false;
+            }
+        }
+        if (iniobj.FFFFF.D) {
+            document.getElementById("ini-omega-flowey-deaths").value = parseInt(iniobj.FFFFF.D.trim());
+        }
+    } else {
+        document.getElementById("ini-omega-flowey-trapped").checked = false;
+    }
 }
 
 // Update an ini object from the persistent data form.
@@ -558,6 +579,35 @@ function updateIniFromForm(ini) {
     ini.General.Room = document.getElementById("ini-location").value;
     ini.General.Kills = document.getElementById("ini-kills").value;
     ini.General.Love = document.getElementById("ini-love").value;
+    if (document.getElementById("ini-omega-flowey-trapped").checked) {
+        if (!ini.FFFFF) {
+            ini.FFFFF = {};
+        }
+        ini.FFFFF.F = "1";
+    } else {
+        if (ini.FFFFF) {
+            ini.FFFFF.F = "0";
+        }
+    }
+    if (document.getElementById("ini-omega-flowey-battle-init").checked) {
+        if (!ini.FFFFF) {
+            ini.FFFFF = {};
+        }
+        ini.FFFFF.P = "1";
+    } else {
+        if (ini.FFFFF) {
+            ini.FFFFF.P = "0";
+        }
+    }
+    var timesDied = parseInt(document.getElementById("ini-omega-flowey-deaths").value);
+    if (timesDied) {
+        if (!ini.FFFFF) {
+            ini.FFFFF = {};
+        }
+        if (ini.FFFFF) {
+            ini.FFFFF.D = timesDied;
+        }
+    }
 }
 
 function updateSelection(id, values, index, list) {
