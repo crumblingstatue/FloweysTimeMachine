@@ -2,7 +2,7 @@ extern crate notify;
 extern crate ini;
 extern crate ansi_term;
 
-use notify::{INotifyWatcher, Watcher};
+use notify::{RecommendedWatcher, Watcher};
 use std::sync::mpsc::channel;
 use std::fs::File;
 use std::path::Path;
@@ -127,7 +127,7 @@ fn resolve_line(n: usize) -> &'static str {
 fn main() {
     let dir = std::env::args().skip(1).next().expect("Expected directory as argument");
     let (tx, rx) = channel();
-    let mut watcher = INotifyWatcher::new(tx).unwrap();
+    let mut watcher = RecommendedWatcher::new(tx).unwrap();
     watcher.watch(&dir).unwrap();
     let mut file0 = load_file(&dir, "file0");
     let mut ini = load_ini(&dir, "undertale.ini");
