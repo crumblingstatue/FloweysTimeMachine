@@ -374,7 +374,8 @@ var dogamyDogaressaStates = {
 
 var greaterDogStates = {
     "0": "Initial state",
-    "1": "Killed"
+    "1": "Killed",
+    "3": "Unknown"
 };
 
 var papyrusStates = {
