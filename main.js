@@ -616,7 +616,8 @@ function updateSelection(id, values, index, list) {
     if (list[value]) {
         document.getElementById(id).value = value;
     } else {
-        window.alert("Unknown value '" + value + "' for line " + (index + 1) + ".\n" +
+        window.alert("Unknown value '" + value + "' for line " + (index + 1) +
+                     " (" + id + ").\n" +
                      "If you think this is a valid value, report an issue at " +
                      "https://github.com/crumblingstatue/FloweysTimeMachine/issues");
     }
