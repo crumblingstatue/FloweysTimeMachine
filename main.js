@@ -70,6 +70,7 @@ var items = [
 var cellOpts = {
     "0": "Empty",
     "201": "Say Hello",
+    "202": "Puzzle Help",
     "203": "About Yourself",
     "204": "Call Her \"Mom\"",
     "205": "Flirt",
