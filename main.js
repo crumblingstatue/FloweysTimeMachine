@@ -387,7 +387,9 @@ var papyrusStates = {
 
 var papyrusFightStates = {
     "2": "Didn't fight Papyrus",
-    "101": "Fought Papyrus"
+    "101": "Fought Papyrus",
+    "119": "Unknown",
+    "199": "Unknown"
 };
 
 var trainingDummyStates = {
