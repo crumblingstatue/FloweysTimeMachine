@@ -385,7 +385,7 @@ var papyrusStates = {
     "1": "Killed"
 };
 
-var papyrusFightStates = {
+var plotValues = {
     "2": "Didn't fight Papyrus",
     "101": "Fought Papyrus",
     "119": "Unknown",
@@ -676,7 +676,7 @@ function updateSaveDataForm(values) {
     } else {
         document.getElementById("sav-exitedtruelab").checked = false;
     }
-    updateSelection("sav-papyrusfightstate", values, 542, papyrusFightStates);
+    updateSelection("sav-plotvalue", values, 542, plotValues);
     if (parseInt(values[545].trim()) === 1) {
         document.getElementById("sav-havecell").checked = true;
     } else {
@@ -740,7 +740,7 @@ function updateSaveValuesFromForm(values) {
     } else {
         values[523] = "0";
     }
-    values[542] = document.getElementById("sav-papyrusfightstate").value;
+    values[542] = document.getElementById("sav-plotvalue").value;
     if (document.getElementById("sav-havecell").checked) {
         values[545] = "1";
     } else {
@@ -817,7 +817,7 @@ function start() {
     loadSelectFromObj("sav-dogamydogaressastate", dogamyDogaressaStates);
     loadSelectFromObj("sav-greaterdogstate", greaterDogStates);
     loadSelectFromObj("sav-papyrusstate", papyrusStates);
-    loadSelectFromObj("sav-papyrusfightstate", papyrusFightStates);
+    loadSelectFromObj("sav-plotvalue", plotValues);
     loadSelectFromObj("sav-trainingdummystate", trainingDummyStates);
     loadSelectFromObj("sav-shyrenstate", shyrenStates);
     loadSelectFromObj("sav-maddummystate", madDummyStates);
