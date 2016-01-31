@@ -389,6 +389,7 @@ var plotValues = {
     "2": "Didn't fight Papyrus",
     "101": "Fought Papyrus",
     "119": "Unknown",
+    "164": "Hotlands genocide",
     "199": "Unknown",
     "999": "Pacifist epilogue"
 };
