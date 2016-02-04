@@ -625,14 +625,11 @@ function updateIniFromForm(ini) {
 function updateSelection(id, values, index, list) {
     "use strict";
     var value = parseInt(values[index].trim());
-    if (list[value]) {
-        document.getElementById(id).value = value;
-    } else {
-        window.alert("Unknown value '" + value + "' for line " + (index + 1) +
-                     " (" + id + ").\n" +
-                     "If you think this is a valid value, report an issue at " +
-                     "https://github.com/crumblingstatue/FloweysTimeMachine/issues");
+    if (!list[value]) {
+        list[value] = "Unrecognized (" + value + ")";
+        loadSelectFromObj(id, list);
     }
+    document.getElementById(id).value = value;
 }
 
 // Update the save data form from an array of values.
