@@ -582,6 +582,17 @@ function updatePersistentDataForm(iniobj) {
     } else {
         document.getElementById("ini-omega-flowey-trapped").checked = false;
     }
+    if (iniobj.reset) {
+        if (iniobj.reset.s_key) {
+            if (parseInt(iniobj.reset.s_key.trim()) === 1) {
+                document.getElementById("ini-dodged-all-special-thanks").checked = true;
+            } else {
+                document.getElementById("ini-dodged-all-special-thanks").checked = false;
+            }
+        }
+    } else {
+        document.getElementById("ini-dodged-all-special-thanks").checked = false;
+    }
 }
 
 // Update an ini object from the persistent data form.
@@ -618,6 +629,16 @@ function updateIniFromForm(ini) {
         }
         if (ini.FFFFF) {
             ini.FFFFF.D = timesDied;
+        }
+    }
+    if (document.getElementById("ini-dodged-all-special-thanks").checked) {
+        if (!ini.reset) {
+            ini.reset = {};
+        }
+        ini.reset.s_key = "1";
+    } else {
+        if (ini.reset) {
+            ini.reset.s_key = "0";
         }
     }
 }
