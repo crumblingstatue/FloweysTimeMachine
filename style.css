@@ -1,7 +1,7 @@
 body {
 	background-color: black;
 	color: white;
-	font-family: Ubuntu;
+	font-family: 'Ubuntu', 'Verdana', sans-serif;
 }
 form {
 	display: flex;
@@ -12,5 +12,5 @@ form fieldset {
 	flex-direction: column;
 }
 label {
-	font-family: Inconsolata;
+	font-family: 'Inconsolata', monospace;
 }
