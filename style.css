@@ -1,14 +1,16 @@
 body {
-    background-color: black;
-    color: white;
+	background-color: black;
+	color: white;
+	font-family: Ubuntu;
 }
-
 form {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
-
 form fieldset {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
+}
+label {
+	font-family: Inconsolata;
 }
