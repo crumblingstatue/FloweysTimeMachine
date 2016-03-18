@@ -1,177 +1,332 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="description" content="A save editor for Undertale." />
-        <meta name="keywords" content="Undertale,save,editor" />
-        <title>Flowey's Time Machine</title>
-        <script src="lib/FileSaver.min.js"></script>
-        <script src="presets/presets.js"></script>
-        <script src="presets/dungeon-start.js"></script>
-        <script src="presets/sans-battle.js"></script>
-        <script src="presets/Undyne%20The%20Undying.js"></script>
-        <script src="presets/Asgore%20(normal).js"></script>
-        <script src="presets/Asgore%20(true%20ending).js"></script>
-        <script src="presets/Omega%20Flowey.js"></script>
-        <script src="main.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-    </head>
-    <body>
-        <a href="https://github.com/crumblingstatue/FloweysTimeMachine"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-        <h1><img src="res/flowey_nice.png" alt="" id="floweyimg" />Flowey's Time Machine</h1>
-        <p>
-            <a href="help.html" target="_blank"> Help </a>
-        </p>
-        <label> Built-in Presets </label><select id="builtinpresetselect"> </select>
-        <input type="button" id="builtinpresetload" value="Load" />
-        <label> Your presets </label><select id="userpresetselect"> </select>
-        <input type="button" id="userpresetload" value="Load" disabled />
-        <input type="button" id="userpresetsave" value="Save" disabled />
-        <input type="button" id="userpresetnew" value="New" />
-        <input type="button" id="userpresetdelete" value="Delete" disabled />
-        <input type="button" id="userpresetexport" value="Save and Export" disabled />
-        <h2> Persistent Data </h2>
-        <p>
-            Things that Undertale remembers throughout multiple playthroughs.
-        </p>
-        <form>
-            <div>
-                <fieldset>
-                    <legend> undertale.ini </legend>
-                    <input type="file" id="ini-file" />
-                    <div>
-                        <input id="ini-loadbutton" type="button" value="Load" disabled />
-                        <input type="button" id="ini-savebutton" value="Save" />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend> General </legend>
-                    <label> Name </label> <input id="ini-name" type="text" />
-                    <label> Location </label> <select id="ini-location"> </select>
-                    <label> Kills </label> <input id="ini-kills" type="text" />
-                    <label> LOVE </label> <input id="ini-love" type="text" />
-                </fieldset>
-            </div>
-            <fieldset>
-                <legend> Post-Genocide </legend>
-                <label> system_information_962 <sup title="When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run.">[?]</sup> </label> <input type="button" id="savesi2" value="Save" />
-                <label> system_information_963 <sup title="When this file is present, you have 'sold' your soul to get the world back after a genocide run.">[?]</sup> </label> <input type="button" id="savesi3" value="Save" />
-            </fieldset>
-            <fieldset>
-                <legend> Omega Flowey </legend>
-                <label> Trapped in Flowey's World </label> <input type="checkbox" id="ini-omega-flowey-trapped" />
-                <label> Initiated battle </label> <input type="checkbox" id="ini-omega-flowey-battle-init" />
-                <label> How many times you died </label> <input type="text" id="ini-omega-flowey-deaths" />
-            </fieldset>
-            <fieldset>
-                <legend> Bonus </legend>
-                <label> Dodged all of the special thanks </label> <input type="checkbox" id="ini-dodged-all-special-thanks" />
-            </fieldset>
-        </form>
-        <h2> SAVE Data </h2>
-        <p>
-            This is what gets SAVED at SAVE points.
-        </p>
-        <form>
-            <div>
-                <fieldset>
-                    <legend> file0 </legend>
-                    <input type="file" id="sav-file" />
-                    <div>
-                        <input id="sav-loadbutton" type="button" value="Load" disabled />
-                        <input type="button" id="sav-savebutton" value="Save" />
-                    </div>
-                </fieldset>
-                <fieldset>
-                <legend>General</legend>
-                <label>Name</label> <input type="text" id="sav-name" />
-                <label>Location</label> <select id="sav-location"> </select>
-                <label>Kills</label> <input type="text" id="sav-kills" />
-                <label>??? kill count </label> <input type="text" id="sav-unkkills" />
-                </fieldset>
-                <fieldset>
-                <legend>Stats</legend>
-                <label>LOVE</label> <input type="text" id="sav-love" />
-                <label>HP</label> <input type="text" id="sav-hp" />
-                <label>EXP</label> <input type="text" id="sav-exp" />
-                <label>GOLD</label> <input type="text" id="sav-gold" />
-                <label>AT</label> <input type="text" id="sav-at" />
-                <label>Weapon AT</label> <input type="text" id="sav-weaponat" />
-                <label>DF</label> <input type="text" id="sav-df" />
-                <label>Armor DF</label> <input type="text" id="sav-armordf" />
-                </fieldset>
-            </div>
-            <div>
-            <fieldset>
-                <legend>Equipment</legend>
-                <label>Weapon</label> <select id="sav-weapon"> </select>
-                <label>Armor</label> <select id="sav-armor"> </select>
-            </fieldset>
-            <fieldset>
-                <legend>Inventory</legend>
-                <label>Slot 1</label> <select id="sav-invslot1"> </select>
-                <label>Slot 2</label> <select id="sav-invslot2"> </select>
-                <label>Slot 3</label> <select id="sav-invslot3"> </select>
-                <label>Slot 4</label> <select id="sav-invslot4"> </select>
-                <label>Slot 5</label> <select id="sav-invslot5"> </select>
-                <label>Slot 6</label> <select id="sav-invslot6"> </select>
-                <label>Slot 7</label> <select id="sav-invslot7"> </select>
-                <label>Slot 8</label> <select id="sav-invslot8"> </select>
-            </fieldset>
-            <fieldset>
-                <legend>Cellphone</legend>
-                <label> You have cellphone </label> <input id="sav-havecell" type="checkbox" />
-                <label>Slot 1</label> <select id="sav-cellslot1"> </select>
-                <label>Slot 2</label> <select id="sav-cellslot2"> </select>
-                <label>Slot 3</label> <select id="sav-cellslot3"> </select>
-                <label>Slot 4</label> <select id="sav-cellslot4"> </select>
-                <label>Slot 5</label> <select id="sav-cellslot5"> </select>
-                <label>Slot 6</label> <select id="sav-cellslot6"> </select>
-                <label>Slot 7</label> <select id="sav-cellslot7"> </select>
-                <label>Slot 8</label> <select id="sav-cellslot8"> </select>
-            </fieldset>
-            </div>
-            <div>
-                <fieldset>
-                    <legend> Dungeon </legend>
-                    <label> Kill count </label> <input type="text" id="sav-dungeonkills" />
-                    <label>Training Dummy State</label> <select id="sav-trainingdummystate"> </select>
-                    <label>Toriel State</label> <select id="sav-torielstate"> </select>
-                </fieldset>
-                <fieldset>
-                    <legend> Snowdin </legend>
-                    <label>Kill count</label> <input type="text" id="sav-snowdinkills" />
-                    <label>Doggo State</label> <select id="sav-doggostate"> </select>
-                    <label>Dogamy & Dogaressa State</label> <select id="sav-dogamydogaressastate"> </select>
-                    <label>Greater Dog State</label> <select id="sav-greaterdogstate"> </select>
-                    <label>Comedian State</label> <select id="sav-comedianstate"> </select>
-                    <label>Papyrus State</label> <select id="sav-papyrusstate"> </select>
-                </fieldset>
-                <fieldset>
-                    <legend> Waterfall </legend>
-                    <label>Kill count</label> <input type="text" id="sav-waterfallkills" />
-                    <label>Shyren State</label> <select id="sav-shyrenstate"> </select>
-                    <label>Mad Dummy State</label> <select id="sav-maddummystate"> </select>
-                    <label>Undyne State 1</label> <select id="sav-undynestate1"> </select>
-                    <label>Undyne State 2</label> <select id="sav-undynestate2"> </select>
-                </fieldset>
-                <fieldset>
-                    <legend> Hotland </legend>
-                    <label>Kill count</label> <input type="text" id="sav-hotlandkills" />
-                    <label>Bro Guards State</label> <select id="sav-broguardsstate"> </select>
-                    <label>Muffet State</label> <select id="sav-muffetstate"> </select>
-                    <label>Mettaton State</label> <select id="sav-mettatonstate"> </select>
-                </fieldset>
-                <fieldset>
-                    <legend> True Lab </legend>
-                    <label> Exited (can get true ending) </label> <input id="sav-exitedtruelab" type="checkbox" />
-                </fieldset>
-                <fieldset>
-                  <legend> Other </legend>
-                  <label>"Plot" value</label> <select id="sav-plotvalue"> </select>
-                </fieldset>
-            </div>
-        </form>
-    </body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description"
+			content="A save manipulator for Undertale.">
+		<meta name="keywords"
+			content="Undertale,save,editor,manipulator">
+		<title> Flowey's Time Machine </title>
+		<script src="lib/FileSaver.min.js"></script>
+		<script src="presets/presets.js"></script>
+		<script src="presets/dungeon-start.js"></script>
+		<script src="presets/sans-battle.js"></script>
+		<script src="presets/Undyne%20The%20Undying.js"></script>
+		<script src="presets/Pacifist%20Undyne.js"></script>
+		<script src="presets/Asgore%20(normal).js"></script>
+		<script src="presets/Asgore%20(true%20ending).js"></script>
+		<script src="presets/Omega%20Flowey.js"></script>
+		<script src="main.js"></script>
+		<link rel="shortcut icon"
+			href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABVSURBVDhP7YxJDsAgDAPz/0+zyW6RIUpUwa0j5kDi2Ehpr4uvyzbH4SxWD7rvugs6Ag2dz94tyPgXnCgguojE2YsGInG2okEVMR89UBGL+XxIcgVmFRe7cpwsNNZiAAAAAElFTkSuQmCC">
+		<link href='https://fonts.googleapis.com/css?family=Ubuntu%7CInconsolata'
+			rel='stylesheet'
+			type='text/css'>
+		<link rel="stylesheet"
+			type="text/css"
+			href="style.css">
+	</head>
+
+	<body>
+		<div class="overlap fore">
+			<img src="res/flowey_nice.png"
+				alt=""
+				id="floweyimg"
+				class="paddedimg">
+			<div class="vertalign">
+				<h1>Flowey's Time Machine</h1></div>
+		</div>
+
+		<div class="overlap back">
+			<img src="res/flowey_blank.png"
+				alt=""
+				class="paddedimg">
+			<div class="vertalign">
+				<h1>Flowey's Time Machine</h1>
+			</div>
+		</div>
+		<div id="paddingflowey"></div>
+		<p>
+			<a href="help.html"
+				target="_blank"> Help </a>
+		</p>
+		<label> Built-in Presets </label>
+		<select id="builtinpresetselect"> </select>
+		<input type="button"
+			id="builtinpresetload"
+			value="Load">
+		<label> Your presets </label>
+		<select id="userpresetselect"> </select>
+		<input type="button"
+			id="userpresetload"
+			value="Load"
+			disabled>
+		<input type="button"
+			id="userpresetsave"
+			value="Save"
+			disabled>
+		<input type="button"
+			id="userpresetnew"
+			value="New">
+		<input type="button"
+			id="userpresetdelete"
+			value="Delete"
+			disabled>
+		<input type="button"
+			id="userpresetexport"
+			value="Save and Export"
+			disabled>
+		<h2> Persistent Data </h2>
+		<p>
+			Things that Undertale remembers throughout multiple playthroughs.
+		</p>
+		<form>
+			<div>
+				<fieldset>
+					<legend> undertale.ini </legend>
+					<input type="file"
+						id="ini-file">
+					<div>
+						<input id="ini-loadbutton"
+							type="button"
+							value="Load"
+							disabled>
+						<input type="button"
+							id="ini-savebutton"
+							value="Save">
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend> General </legend>
+					<label> Name </label>
+					<input id="ini-name"
+						type="text">
+					<label> Location </label>
+					<select id="ini-location"> </select>
+					<label> Kills </label>
+					<input id="ini-kills"
+						type="text">
+					<label> LOVE </label>
+					<input id="ini-love"
+						type="text">
+				</fieldset>
+			</div>
+			<fieldset>
+				<legend> Post-Genocide </legend>
+				<label> system_information_962 <sup title="When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run.">[?]</sup> </label>
+				<input type="button"
+					id="savesi2"
+					value="Save">
+				<label> system_information_963
+					<sup title="When this file is present, you have 'sold' your soul to get the world back after a genocide run.">[?]</sup>
+				</label>
+				<input type="button"
+					id="savesi3"
+					value="Save">
+			</fieldset>
+			<fieldset>
+				<legend> Omega Flowey </legend>
+				<label> Trapped in Flowey's World </label>
+				<input type="checkbox"
+					id="ini-omega-flowey-trapped">
+				<label> Initiated battle </label>
+				<input type="checkbox"
+					id="ini-omega-flowey-battle-init">
+				<label> How many times you died </label>
+				<input type="text"
+					id="ini-omega-flowey-deaths">
+			</fieldset>
+			<fieldset>
+				<legend> Bonus </legend>
+				<label> Dodged all of the special thanks </label>
+				<input type="checkbox"
+					id="ini-dodged-all-special-thanks">
+			</fieldset>
+		</form>
+		<h2> SAVE Data </h2>
+		<p>
+			This is what gets SAVED at SAVE points.
+		</p>
+		<form>
+			<div>
+				<fieldset>
+					<legend> file0 </legend>
+					<input type="file"
+						id="sav-file">
+					<div>
+						<input id="sav-loadbutton"
+							type="button"
+							value="Load"
+							disabled>
+						<input type="button"
+							id="sav-savebutton"
+							value="Save">
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>General</legend>
+					<label>Name</label>
+					<input type="text"
+						id="sav-name">
+					<label>Location</label>
+					<select id="sav-location"> </select>
+					<label>Kills</label>
+					<input type="text"
+						id="sav-kills">
+					<label>??? kill count </label>
+					<input type="text"
+						id="sav-unkkills">
+				</fieldset>
+				<fieldset>
+					<legend>Stats</legend>
+					<label>LOVE</label>
+					<input type="text"
+						id="sav-love">
+					<label>HP</label>
+					<input type="text"
+						id="sav-hp">
+					<label>EXP</label>
+					<input type="text"
+						id="sav-exp">
+					<label>GOLD</label>
+					<input type="text"
+						id="sav-gold"
+						x>
+					<label>AT</label>
+					<input type="text"
+						id="sav-at">
+					<label>Weapon AT</label>
+					<input type="text"
+						id="sav-weaponat">
+					<label>DF</label>
+					<input type="text"
+						id="sav-df">
+					<label>Armor DF</label>
+					<input type="text"
+						id="sav-armordf">
+				</fieldset>
+			</div>
+			<div>
+				<fieldset>
+					<legend>Equipment</legend>
+					<label>Weapon</label>
+					<select id="sav-weapon"> </select>
+					<label>Armor</label>
+					<select id="sav-armor"> </select>
+				</fieldset>
+				<fieldset>
+					<legend>Inventory</legend>
+					<label>Slot 1</label>
+					<select id="sav-invslot1"> </select>
+					<label>Slot 2</label>
+					<select id="sav-invslot2"> </select>
+					<label>Slot 3</label>
+					<select id="sav-invslot3"> </select>
+					<label>Slot 4</label>
+					<select id="sav-invslot4"> </select>
+					<label>Slot 5</label>
+					<select id="sav-invslot5"> </select>
+					<label>Slot 6</label>
+					<select id="sav-invslot6"> </select>
+					<label>Slot 7</label>
+					<select id="sav-invslot7"> </select>
+					<label>Slot 8</label>
+					<select id="sav-invslot8"> </select>
+				</fieldset>
+				<fieldset>
+					<legend>Cellphone</legend>
+					<label> You have cellphone </label>
+					<input id="sav-havecell"
+						type="checkbox">
+					<label>Slot 1</label>
+					<select id="sav-cellslot1"> </select>
+					<label>Slot 2</label>
+					<select id="sav-cellslot2"> </select>
+					<label>Slot 3</label>
+					<select id="sav-cellslot3"> </select>
+					<label>Slot 4</label>
+					<select id="sav-cellslot4"> </select>
+					<label>Slot 5</label>
+					<select id="sav-cellslot5"> </select>
+					<label>Slot 6</label>
+					<select id="sav-cellslot6"> </select>
+					<label>Slot 7</label>
+					<select id="sav-cellslot7"> </select>
+					<label>Slot 8</label>
+					<select id="sav-cellslot8"> </select>
+				</fieldset>
+			</div>
+			<div>
+				<fieldset>
+					<legend> Dungeon </legend>
+					<label> Kill count </label>
+					<input type="text"
+						id="sav-dungeonkills">
+					<label>Training Dummy State</label>
+					<select id="sav-trainingdummystate"> </select>
+					<label>Toriel State</label>
+					<select id="sav-torielstate"> </select>
+				</fieldset>
+				<fieldset>
+					<legend> Snowdin </legend>
+					<label>Kill count</label>
+					<input type="text"
+						id="sav-snowdinkills">
+					<label>Doggo State</label>
+					<select id="sav-doggostate"> </select>
+					<label>Dogamy &amp; Dogaressa State</label>
+					<select id="sav-dogamydogaressastate"> </select>
+					<label>Greater Dog State</label>
+					<select id="sav-greaterdogstate"> </select>
+					<label>Comedian State</label>
+					<select id="sav-comedianstate"> </select>
+					<label id="papyfont">Papyrus State</label>
+					<select id="sav-papyrusstate"> </select>
+				</fieldset>
+				<fieldset>
+					<legend> Waterfall </legend>
+					<label>Kill count</label>
+					<input type="text"
+						id="sav-waterfallkills">
+					<label>Shyren State</label>
+					<select id="sav-shyrenstate"> </select>
+					<label>Mad Dummy State</label>
+					<select id="sav-maddummystate"> </select>
+					<label>Undyne State 1</label>
+					<select id="sav-undynestate1"> </select>
+					<label>Undyne State 2</label>
+					<select id="sav-undynestate2"> </select>
+				</fieldset>
+				<fieldset>
+					<legend> Hotland </legend>
+					<label>Kill count</label>
+					<input type="text"
+						id="sav-hotlandkills">
+					<label>Bro Guards State</label>
+					<select id="sav-broguardsstate"> </select>
+					<label>Muffet State</label>
+					<select id="sav-muffetstate"> </select>
+					<label>Mettaton State</label>
+					<select id="sav-mettatonstate"> </select>
+				</fieldset>
+				<fieldset>
+					<legend> True Lab </legend>
+					<label> Exited (can get <span class="asriel">true ending</span>)</label>
+					<input id="sav-exitedtruelab"
+						type="checkbox">
+				</fieldset>
+				<fieldset>
+					<legend> Other </legend>
+					<label>"Plot" value</label>
+					<select id="sav-plotvalue"> </select>
+				</fieldset>
+			</div>
+		</form>
+		<div id="paddingfooter"></div>
+		<hr>
+		<footer>Thanks to <a href="https://github.com/crumblingstatue">CrumblingStatue</a> for creating the original project, which is located <a href="https://github.com/crumblingstatue/FloweysTimeMachine">here</a>. This is, after all, just a fork.
+			<br>:P</footer>
+	</body>
+
 </html>
