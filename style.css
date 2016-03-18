@@ -49,8 +49,14 @@ label {
 	opacity: .9;
 	font-family: "MonsterFriendFore";
 }
-.padding {
+#paddingflowey {
 	padding: 60px;
+}
+#paddingfooter {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 #papyfont {
 	font-family: Papyrus, DeterminationSans, 'Inconsolata', monospace;
