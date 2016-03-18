@@ -1,4 +1,4 @@
-presets["Undyne"] = {
+presets["Pacifist Undyne"] = {
 	"ini": {
 		"General": {
 			"fun": "45",

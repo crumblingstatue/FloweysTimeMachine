@@ -1,16 +1,69 @@
+@font-face {
+	font-family: "DeterminationSans";
+	src: url("fonts/DeterminationSansWeb.woff") format('woff');
+	font-style: normal;
+}
+@font-face {
+	font-family: "DeterminationMono";
+	src: url("fonts/DeterminationMonoWeb.woff") format('woff');
+	font-style: normal;
+}
+@font-face {
+	font-family: "MonsterFriendFore";
+	src: url("fonts/MonsterFriendFore.otf") format('opentype');
+	font-style: normal;
+}
+@font-face {
+	font-family: "MonsterFriendBack";
+	src: url("fonts/MonsterFriendBack.otf") format('opentype');
+	font-style: normal;
+}
 body {
 	background-color: black;
 	color: white;
-	font-family: 'Ubuntu', 'Verdana', sans-serif;
+	font-family: "DeterminationSans", 'Inconsolata', monospace;
 }
 form {
 	display: flex;
 	flex-wrap: wrap;
+	font-family: "DeterminationSans", 'Inconsolata', monospace;
 }
 form fieldset {
 	display: flex;
 	flex-direction: column;
+	font-family: "DeterminationSans", 'Inconsolata', monospace;
 }
 label {
-	font-family: 'Inconsolata', monospace;
+	font-family: "DeterminationSans", 'Inconsolata', monospace;
+}
+.overlap {
+	position: absolute;
+	width: 95%;
+	margin-bottom: 10px
+}
+.back {
+	z-index: 1;
+	opacity: .6;
+	font-family: "MonsterFriendBack";
+}
+.fore {
+	z-index: 2;
+	opacity: 1;
+	font-family: "MonsterFriendFore";
+}
+#padding {
+	padding: 75px
+}
+#papyfont {
+	font-family: Papyrus, DeterminationSans, 'Inconsolata', monospace;
+}
+.paddedimg {
+	padding: 10px
+}
+.vertalign {
+	margin-top: -5%;
+	margin-left: 10%
+}
+fieldset {
+	border-radius: 5px;
 }
