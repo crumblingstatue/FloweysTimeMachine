@@ -1,25 +1,24 @@
+@font-face {
 	font-family: "DeterminationSans";
-	src: url("fonts/DeterminationSansWeb.woff") format('woff');
-	font-style: normal;
+	src: url(fonts/DeterminationSansWeb.woff) format("woff");
 }
 @font-face {
 	font-family: "DeterminationMono";
-	src: url("fonts/DeterminationMonoWeb.woff") format('woff');
-	font-style: normal;
+	src: url(fonts/DeterminationMonoWeb.woff) format("woff");
 }
 @font-face {
 	font-family: "MonsterFriendFore";
-	src: url("fonts/MonsterFriendFore.otf") format('opentype');
+	src: url(fonts/MonsterFriendFore.otf) format("opentype");
 	font-style: normal;
 }
 @font-face {
 	font-family: "MonsterFriendBack";
-	src: url("fonts/MonsterFriendBack.otf") format('opentype');
+	src: url(fonts/MonsterFriendBack.otf) format("opentype");
 	font-style: normal;
 }
 body {
-	background-color: black;
-	color: white;
+	background-color: #000;
+	color: #fff;
 	font-family: "DeterminationSans", 'Inconsolata', monospace;
 }
 form {
@@ -38,7 +37,7 @@ label {
 .overlap {
 	position: absolute;
 	width: 95%;
-	margin-bottom: 10px
+	margin-bottom: 10px;
 }
 .back {
 	z-index: 1;
@@ -51,13 +50,13 @@ label {
 	font-family: "MonsterFriendFore";
 }
 #padding {
-	padding: 60px
+	padding: 60px;
 }
 #papyfont {
 	font-family: Papyrus, DeterminationSans, 'Inconsolata', monospace;
 }
 .paddedimg {
-	padding: 10px
+	padding: 10px;
 }
 .vertalign {
 	margin-top: -100px;
@@ -67,12 +66,13 @@ fieldset {
 	border-radius: 5px;
 }
 .asriel {
-	-webkit-animation: dreem 5s linear 0s infinite;
-	animation: dreem 5s linear 0s infinite;
+	-moz-animation: dreem 5s linear 0 infinite;
+	-webkit-animation: dreem 5s linear 0 infinite;
+	animation: dreem 5s linear 0 infinite;
 }
-@-webkit-keyframes dreem {
+@-moz-keyframes dreem {
 	0% {
-		color: #F00;
+		color: red;
 	}
 	17% {
 		color: #FF0;
@@ -90,12 +90,35 @@ fieldset {
 		color: #F0F;
 	}
 	100% {
-		color: #F00;
+		color: red;
+	}
+}
+@-webkit-keyframes dreem {
+	0% {
+		color: red;
+	}
+	17% {
+		color: #FF0;
+	}
+	33% {
+		color: #0F0;
+	}
+	50% {
+		color: #0FF;
+	}
+	67% {
+		color: #00F;
+	}
+	84% {
+		color: #F0F;
+	}
+	100% {
+		color: red;
 	}
 }
 @keyframes dreem {
 	0% {
-		color: #F00;
+		color: red;
 	}
 	17% {
 		color: #FF0;
@@ -113,6 +136,6 @@ fieldset {
 		color: #F0F;
 	}
 	100% {
-		color: #F00;
+		color: red;
 	}
 }
