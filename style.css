@@ -65,6 +65,11 @@ label {
 fieldset {
 	border-radius: 5px;
 }
+footer {
+	text-align: center;
+	font-size: small;
+	font-face: DeterminationMono
+}
 @keyframes dreem {
 	0% {
 		color: red;
