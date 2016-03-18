@@ -48,11 +48,11 @@ label {
 }
 .fore {
 	z-index: 2;
-	opacity: 1;
+	opacity: .9;
 	font-family: "MonsterFriendFore";
 }
 #padding {
-	padding: 75px
+	padding: 60px
 }
 #papyfont {
 	font-family: Papyrus, DeterminationSans, 'Inconsolata', monospace;
@@ -61,9 +61,59 @@ label {
 	padding: 10px
 }
 .vertalign {
-	margin-top: -5%;
-	margin-left: 10%
+	margin-top: -100px;
+	margin-left: 120px;
 }
 fieldset {
 	border-radius: 5px;
+}
+.asriel {
+	-webkit-animation: dreem 5s linear 0s infinite;
+	animation: dreem 5s linear 0s infinite;
+}
+@-webkit-keyframes dreem {
+	0% {
+		color: #F00;
+	}
+	17% {
+		color: #FF0;
+	}
+	33% {
+		color: #0F0;
+	}
+	50% {
+		color: #0FF;
+	}
+	67% {
+		color: #00F;
+	}
+	84% {
+		color: #F0F;
+	}
+	100% {
+		color: #F00;
+	}
+}
+@keyframes dreem {
+	0% {
+		color: #F00;
+	}
+	17% {
+		color: #FF0;
+	}
+	33% {
+		color: #0F0;
+	}
+	50% {
+		color: #0FF;
+	}
+	67% {
+		color: #00F;
+	}
+	84% {
+		color: #F0F;
+	}
+	100% {
+		color: #F00;
+	}
 }
