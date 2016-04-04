@@ -681,7 +681,7 @@ function updateSaveDataForm(values) {
     updateSelection("sav-papyrusstate", values, 97, papyrusStates);
     updateSelection("sav-shyrenstate", values, 111, shyrenStates);
     document.getElementById("sav-unkkills").value = values[231];
-    document.getElementById("sav-dungeonkills").value = values[232];
+    document.getElementById("sav-ruinskills").value = values[232];
     document.getElementById("sav-snowdinkills").value = values[233];
     document.getElementById("sav-waterfallkills").value = values[234];
     document.getElementById("sav-hotlandkills").value = values[235];
@@ -745,7 +745,7 @@ function updateSaveValuesFromForm(values) {
     values[97] = document.getElementById("sav-papyrusstate").value;
     values[111] = document.getElementById("sav-shyrenstate").value;
     values[231] = document.getElementById("sav-unkkills").value;
-    values[232] = document.getElementById("sav-dungeonkills").value;
+    values[232] = document.getElementById("sav-ruinskills").value;
     values[233] = document.getElementById("sav-snowdinkills").value;
     values[234] = document.getElementById("sav-waterfallkills").value;
     values[235] = document.getElementById("sav-hotlandkills").value;
@@ -849,7 +849,7 @@ function start() {
     insert_inv_lists();
     insert_cell_lists();
     loadPresetSelect();
-    loadPreset("Dungeon Start");
+    loadPreset("Ruins Start");
     var iniFile, saveFile;
     var iniInput = document.getElementById("ini-file");
     iniInput.addEventListener("change", function(evt) {

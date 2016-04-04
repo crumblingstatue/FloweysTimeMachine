@@ -1,5 +1,4 @@
 # Toriel
-- Dungeon kill count must be high enough
+- Ruins kill count must be high enough
 # Snowdin X Left mode
-- Dungeon kill count must be high enough
 - line 76 must be 4

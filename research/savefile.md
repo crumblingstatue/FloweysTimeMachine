@@ -65,7 +65,7 @@ Line | Description
  122 | Waterfall genocide 0->10
  231 | `0->202` at second save point.
  232 | ? kills
- 233 | Dungeon kills
+ 233 | Ruins kills
  234 | Snowdin kills
  235 | Waterfall kills
  236 | Hotland kills
@@ -103,7 +103,7 @@ Line | Description
  487 | Hotland genocide 0->1
  524 | If it's 12, Toriel will intervene in Asgore battle, and you can get pacifist ending.
  527 | Waterfall genocide 0->-1
- 543 | Gets increased by varying values as you are making progress in the tutorial dungeon. Possibly Toriel event marker. 25 when you killed toriel. 47 in snowdin spaghetti. Hmm.
+ 543 | Gets increased by varying values as you are making progress in the ruins. Possibly Toriel event marker. 25 when you killed toriel. 47 in snowdin spaghetti. Hmm.
  546 | Player has cellphone.
  547 | `232->235` if nobody came. 235->-999 waterfall genocide
  548 | Room the player is located in. See the `main.js` for a list of rooms.

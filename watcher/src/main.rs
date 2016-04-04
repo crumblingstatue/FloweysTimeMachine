@@ -115,7 +115,7 @@ fn resolve_line(n: usize) -> &'static str {
         65 => "candy room candies",
         88 => "snowdin comedian genocide 2=killed",
         232 => "? kills",
-        233 => "dungeon kills",
+        233 => "Ruins kills",
         234 => "snowdin kills",
         546 => "has cellphone",
         548 => "room",
