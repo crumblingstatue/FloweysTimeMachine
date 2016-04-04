@@ -46,21 +46,21 @@ fn compare_inis(ini: &Ini, new: &Ini) {
                                           k,
                                           old_value,
                                           v);
-                        println!("{}", Yellow.paint(&msg));
+                        println!("{}", Yellow.paint(msg));
                     }
                 } else {
                     let msg = format!("New key: {}.{} => {}",
                                       section.as_ref().unwrap_or(&"<root>".into()),
                                       k,
                                       v);
-                    println!("{}", Green.paint(&msg));
+                    println!("{}", Green.paint(msg));
                 }
             }
         } else if let Some(section) = section.clone() {
             let msg = format!("New section '{}'", section);
-            println!("{}", Green.bold().paint(&msg));
+            println!("{}", Green.bold().paint(msg));
             for (k, v) in properties.iter() {
-                println!("{}", Green.paint(&format!("{} => {}", k, v)));
+                println!("{}", Green.paint(format!("{} => {}", k, v)));
             }
         }
     }
@@ -71,12 +71,12 @@ fn compare_inis(ini: &Ini, new: &Ini) {
                     let msg = format!("Key '{}.{}' deleted.",
                                       section.as_ref().unwrap_or(&"<root>".into()),
                                       k);
-                    println!("{}", Red.paint(&msg));
+                    println!("{}", Red.paint(msg));
                 }
             }
         } else if let Some(section) = section.clone() {
             println!("{}",
-                     Red.bold().paint(&format!("Deleted section '{}'", section)));
+                     Red.bold().paint(format!("Deleted section '{}'", section)));
         }
     }
 }
@@ -149,7 +149,7 @@ fn main() {
                                               n + 1,
                                               old,
                                               new);
-                            println!("{}", Yellow.paint(&msg));
+                            println!("{}", Yellow.paint(msg));
                         }
                     }
                     file0 = Some(new);
