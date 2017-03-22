@@ -570,11 +570,7 @@ function updatePersistentDataForm(iniobj) {
             }
         }
         if (iniobj.FFFFF.P) {
-            if (parseInt(iniobj.FFFFF.P.trim()) === 1) {
-                document.getElementById("ini-omega-flowey-battle-init").checked = true;
-            } else {
-                document.getElementById("ini-omega-flowey-battle-init").checked = false;
-            }
+            document.getElementById("ini-omega-flowey-soul").value = parseInt(iniobj.FFFFF.P.trim());
         }
         if (iniobj.FFFFF.D) {
             document.getElementById("ini-omega-flowey-deaths").value = parseInt(iniobj.FFFFF.D.trim());
@@ -612,15 +608,12 @@ function updateIniFromForm(ini) {
             ini.FFFFF.F = "0";
         }
     }
-    if (document.getElementById("ini-omega-flowey-battle-init").checked) {
+    var upcomingSoul = parseInt(document.getElementById("ini-omega-flowey-soul").value);
+    if (upcomingSoul) {
         if (!ini.FFFFF) {
             ini.FFFFF = {};
         }
-        ini.FFFFF.P = "1";
-    } else {
-        if (ini.FFFFF) {
-            ini.FFFFF.P = "0";
-        }
+        ini.FFFFF.P = upcomingSoul;
     }
     var timesDied = parseInt(document.getElementById("ini-omega-flowey-deaths").value);
     if (timesDied) {
