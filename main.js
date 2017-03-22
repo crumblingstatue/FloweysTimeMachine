@@ -350,6 +350,17 @@ var rooms = {
     "331": "Asriel room"
 };
 
+var floweyStates = {
+    "0": "None (Initial state)",
+    "1": "Light blue (Initiated fight)",
+    "2": "Orange",
+    "3": "Blue",
+    "4": "Purple",
+    "5": "Green",
+    "6": "Yellow",
+    "7": "None (Finished fight)",
+};
+
 var torielStates = {
     "0": "Initial state",
     "3": "Unknown",
@@ -666,6 +677,7 @@ function updateSaveDataForm(values) {
     updateSelection("sav-weapon", values, 28, items);
     updateSelection("sav-armor", values, 29, items);
     updateSelection("sav-trainingdummystate", values, 44, trainingDummyStates);
+    updateSelection("sav-omega-flowey-soul", values, 0, floweyStates);
     updateSelection("sav-torielstate", values, 75, torielStates);
     updateSelection("sav-doggostate", values, 82, doggoStates);
     updateSelection("sav-dogamydogaressastate", values, 83, dogamyDogaressaStates);
