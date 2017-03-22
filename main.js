@@ -677,7 +677,6 @@ function updateSaveDataForm(values) {
     updateSelection("sav-weapon", values, 28, items);
     updateSelection("sav-armor", values, 29, items);
     updateSelection("sav-trainingdummystate", values, 44, trainingDummyStates);
-    updateSelection("sav-omega-flowey-soul", values, 0, floweyStates);
     updateSelection("sav-torielstate", values, 75, torielStates);
     updateSelection("sav-doggostate", values, 82, doggoStates);
     updateSelection("sav-dogamydogaressastate", values, 83, dogamyDogaressaStates);
@@ -846,6 +845,7 @@ function start() {
     }
     loadSelectFromObj("sav-location", rooms);
     loadSelectFromObj("ini-location", rooms);
+    loadSelectFromObj("ini-omega-flowey-soul", floweyStates);
     loadSelectFromObj("sav-torielstate", torielStates);
     loadSelectFromObj("sav-comedianstate", comedianStates);
     loadSelectFromObj("sav-doggostate", doggoStates);
