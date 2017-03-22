@@ -696,7 +696,7 @@ function updateSaveDataForm(values) {
     } else {
         document.getElementById("sav-exitedtruelab").checked = false;
     }
-    if (parseInt(values[38].trim()) === 1) {
+    if (parseInt(values[37].trim()) === 1) {
         document.getElementById("sav-defeatedasriel").checked = true;
     } else {
         document.getElementById("sav-defeatedasriel").checked = false;
@@ -761,14 +761,14 @@ function updateSaveValuesFromForm(values) {
     values[432] = document.getElementById("sav-broguardsstate").value;
     values[455] = document.getElementById("sav-mettatonstate").value;
     if (document.getElementById("sav-exitedtruelab").checked) {
-        values[38] = "1";
+        values[523] = "12";
     } else {
-        values[38] = "0";
+        values[523] = "0";
     }
     if (document.getElementById("sav-defeatedasriel").checked) {
-        values[38] = "1";
+        values[37] = "1";
     } else {
-        values[38] = "0";
+        values[37] = "0";
     }
     values[542] = document.getElementById("sav-plotvalue").value;
     if (document.getElementById("sav-havecell").checked) {
