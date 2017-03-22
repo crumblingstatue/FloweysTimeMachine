@@ -696,6 +696,11 @@ function updateSaveDataForm(values) {
     } else {
         document.getElementById("sav-exitedtruelab").checked = false;
     }
+    if (parseInt(values[37].trim()) === 1) {
+        document.getElementById("sav-defeatedasriel").checked = true;
+    } else {
+        document.getElementById("sav-defeatedasriel").checked = false;
+    }
     updateSelection("sav-plotvalue", values, 542, plotValues);
     if (parseInt(values[545].trim()) === 1) {
         document.getElementById("sav-havecell").checked = true;
@@ -759,6 +764,11 @@ function updateSaveValuesFromForm(values) {
         values[523] = "12";
     } else {
         values[523] = "0";
+    }
+    if (document.getElementById("sav-defeatedasriel").checked) {
+        values[37] = "1";
+    } else {
+        values[37] = "0";
     }
     values[542] = document.getElementById("sav-plotvalue").value;
     if (document.getElementById("sav-havecell").checked) {
