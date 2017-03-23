@@ -3,3 +3,6 @@ index.html
 main.js
 style.css
 lib/FileSaver.min.js
+res/flowey_evil.png
+presets/presets.js
+presets/ruins-start.js
