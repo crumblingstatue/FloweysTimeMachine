@@ -600,6 +600,9 @@ function updatePersistentDataForm(iniobj) {
     } else {
         document.getElementById("ini-dodged-all-special-thanks").checked = false;
     }
+    if (iniobj.fun) {
+        document.getElementById("ini-fun").value = parseInt(iniobj.fun.trim());
+    }
 }
 
 // Update an ini object from the persistent data form.
@@ -644,6 +647,10 @@ function updateIniFromForm(ini) {
         if (ini.reset) {
             ini.reset.s_key = "0";
         }
+    }
+    var fun = parseInt(document.getElementById("ini-fun"));
+    if(fun){
+        ini.fun = fun;
     }
 }
 
@@ -712,6 +719,7 @@ function updateSaveDataForm(values) {
         document.getElementById("sav-havecell").checked = false;
     }
     document.getElementById("sav-location").value = parseInt(values[547].trim());
+    document.getElementById("sav-fun").value = parseInt(values[35].trim());
 }
 
 // Update an array of values from the save data form.
@@ -781,6 +789,7 @@ function updateSaveValuesFromForm(values) {
         values[545] = "0";
     }
     values[547] = document.getElementById("sav-location").value;
+    values[35] = document.getElementById("sav-fun").value;
 }
 
 function saveIniToFile(ini) {
