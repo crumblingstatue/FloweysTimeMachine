@@ -365,7 +365,7 @@ var torielStates = {
     "0": "Initial state",
     "3": "Unknown",
     "4": "Killed",
-    "5": "Unknown"
+    "5": "Spared"
 };
 
 var comedianStates = {
