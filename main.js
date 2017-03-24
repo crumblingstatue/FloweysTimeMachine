@@ -648,7 +648,7 @@ function updateIniFromForm(ini) {
             ini.reset.s_key = "0";
         }
     }
-    var fun = parseInt(document.getElementById("ini-fun"));
+    var fun = parseInt(document.getElementById("ini-fun").value);
     if(fun){
         ini.fun = fun;
     }
