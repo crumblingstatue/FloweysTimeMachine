@@ -649,7 +649,7 @@ function updateIniFromForm(ini) {
         }
     }
     var fun = parseInt(document.getElementById("ini-fun").value);
-    if(fun){
+    if (fun) {
         ini.General.fun = fun;
     }
 }
