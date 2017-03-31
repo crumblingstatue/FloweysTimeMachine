@@ -377,18 +377,20 @@ var comedianStates = {
 var doggoStates = {
     "0": "Initial state",
     "1": "Killed"
+    "2": "Played fetch (Spared)"
 };
 
 var dogamyDogaressaStates = {
     "0": "Initial state",
     "1": "Killed",
-    "2": "Played fetch (?)"
+    "2": "Played fetch (Spared)"
 };
 
 var greaterDogStates = {
     "0": "Initial state",
     "1": "Killed",
-    "3": "Unknown"
+    "2": "Played fetch (Spared)"
+    "3": "Ignored"
 };
 
 var papyrusStates = {
