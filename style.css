@@ -1,14 +1,14 @@
 body {
-    background-color: black;
-    color: white;
+	background-color: black;
+	color: white;
 }
 
 form {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 form fieldset {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
