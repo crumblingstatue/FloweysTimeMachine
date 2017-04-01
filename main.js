@@ -376,7 +376,7 @@ var comedianStates = {
 
 var doggoStates = {
     "0": "Initial state",
-    "1": "Killed"
+    "1": "Killed",
     "2": "Played fetch (Spared)"
 };
 
