@@ -389,7 +389,7 @@ var dogamyDogaressaStates = {
 var greaterDogStates = {
     "0": "Initial state",
     "1": "Killed",
-    "2": "Played fetch (Spared)"
+    "2": "Played fetch (Spared)",
     "3": "Ignored"
 };
 
