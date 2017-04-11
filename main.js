@@ -494,10 +494,12 @@ function parseIniFromText(text) {
 
 function flowey_laugh_once() {
     "use strict";
-    if (localStorage.getItem("laughed") !== "true" && document.getElementById("volume").checked) {
+    if (localStorage.getItem("laughed") !== "true") {
         document.getElementById("floweyimg").src = "res/flowey_evil.png";
-        var audio = new Audio("res/flowey_laugh.mp3");
-        audio.play();
+        if(!document.getElementById("mute").checked) {
+            var audio = new Audio("res/flowey_laugh.mp3");
+            audio.play();
+        }
         localStorage.setItem("laughed", "true");
     }
 }
