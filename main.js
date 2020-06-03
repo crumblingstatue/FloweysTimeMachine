@@ -807,7 +807,7 @@ function saveIniToFile(ini) {
     }
     var blob = new Blob([string], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "undertale.ini", true);
-  小花_laugh_once();
+  flowey_laugh_once();
 }
 
 function saveSaveValuesToFile(values) {
@@ -818,7 +818,7 @@ function saveSaveValuesToFile(values) {
     }
     var blob = new Blob([string], {type: "application/octet-stream"});
     saveAs(blob, "file0", true);
-  小花_laugh_once();
+  flowey_laugh_once();
 }
 
 function loadPresetSelect() {
@@ -932,12 +932,12 @@ function start() {
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_962", true);
-      小花_laugh_once();
+      flowey_laugh_once();
     }, false);
     document.getElementById("savesi3").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_963", true);
-      小花_laugh_once();
+      flowey_laugh_once();
     }, false);
     var weaponSelect = document.getElementById("sav-weapon");
     weaponSelect.onchange = function() {
