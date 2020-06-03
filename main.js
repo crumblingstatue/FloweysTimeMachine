@@ -68,16 +68,16 @@ var items = [
 ];
 
 var cellOpts = {
-    "0": "Empty",
-    "201": "Say Hello",
-    "202": "Puzzle Help",
-    "203": "About Yourself",
-    "204": "Call Her \"Mom\"",
-    "205": "Flirt",
-    "206": "Toriel's Phone",
-    "210": "Papyrus's Phone",
-    "220": "Dimensional Box A",
-    "221": "Dimensional Box B"
+    "0": "空的",
+    "201": "问好",
+    "202": "谜题求助",
+    "203": "关于你自己",
+    "204": "叫她 \"妈妈\"",
+    "205": "调情",
+    "206": "托丽尔的电话",
+    "210": "Papyrus的电话",
+    "220": "次元箱A",
+    "221": "次元箱B"
 };
 
 var weaponAts = {
@@ -104,350 +104,350 @@ var ArmorDfs = {
 };
 
 var rooms = {
-    "4": "Ruins - Starting point",
-    "5": "Ruins - Flowey spot",
-    "6": "Ruins - Entrance [SAVE]",
-    "7": "Ruins - Toriel stepping tile puzzle",
-    "8": "Ruins - Switch puzzle",
-    "9": "Ruins - Dummy room",
-    "10": "Ruins - Spike puzzle",
-    "11": "Ruins - Long corridor",
-    "12": "Ruins - Leaf Pile [SAVE]",
-    "13": "Ruins - Candy pillar",
-    "14": "Ruins - Mandatory fall trapdoor",
-    "15": "Ruins - First stone pushing puzzle",
-    "16": "Ruins - Trapdoor corridor puzzle",
-    "17": "Ruins - Talkback rock",
-    "18": "Ruins - Mouse Hole [SAVE]",
-    "19": "Ruins - Napstablook",
-    "20": "Ruins - Spider Bake Sale",
-    "21": "Ruins - 2 frogs",
-    "22": "Ruins - Switch hidden under trapdoor puzzle",
-    "23": "Ruins - 3 Pillars room 1",
-    "24": "Ruins - 3 Pillars room 2",
-    "25": "Ruins - 3 Pillars room 3",
-    "26": "Ruins - 3 Pillars room 4",
-    "27": "Ruins - Pillars room pit",
-    "28": "Ruins - 3-way fork",
-    "29": "Ruins - Toriel gossip frog",
-    "30": "Ruins - Toy knife room",
-    "31": "Ruins - Home [SAVE]",
-    "32": "Toriel's House: Entrance",
-    "33": "Toriel's House: Reading room",
-    "34": "Toriel's House: Corridor",
-    "35": "Toriel's House: Toriel's Room",
-    "36": "Toriel's House: Your Room",
-    "37": "Toriel's House: Kitchen",
-    "38": "Toriel's Basement 1",
-    "39": "Toriel's Basement 2",
-    "40": "Toriel's Basement 3",
-    "41": "Toriel's Basement: Toriel Boss Battle",
-    "42": "Toriel's Basement: Corridor to Flowey",
-    "43": "Toriel's Basement: Flowey",
-    "44": "Snowdin - Ruin exit",
-    "45": "Snowdin - Dark forest path",
-    "46": "Snowdin - Box Road [SAVE]",
-    "47": "Snowdin - Fishing rod",
-    "48": "Snowdin - Papyrus' Sentry Station",
-    "49": "Snowdin - Doggo",
-    "50": "Snowdin - Compass sign",
-    "51": "Snowdin - Snowman",
-    "52": "Snowdin - Electricity Maze",
-    "53": "Snowdin - Snow golf",
-    "54": "Snowdin - 2 guard dog houses",
-    "55": "Snowdin - Monster Kidz Word Search",
-    "56": "Snowdin - Spaghetti [SAVE]",
-    "57": "Snowdin - Warning: Dog Marriage",
-    "58": "Snowdin - XO puzzle 1",
-    "59": "Snowdin - XO puzzle 2",
-    "60": "Snowdin - Color tile puzzle",
-    "61": "Snowdin - Dog House [SAVE]",
-    "62": "Snowdin - Snow Papyrus & Sans",
-    "63": "Snowdin - Sliding XO puzzle",
-    "64": "Snowdin - Teleporting Sans",
-    "65": "Snowdin - Ice Cave entrance",
-    "66": "Snowdin - Snow poffs (Greater Dog)",
-    "67": "Snowdin - Gauntlet of Deadly Terror",
-    "68": "Snowdin - Town [SAVE]",
-    "69": "Snowdin Town: Ice haul wolf",
-    "70": "Snowdin Town: Boat harbor",
-    "71": "Snowdin Town: Inn lobby",
-    "73": "Snowdin Town: Grillby's",
-    "74": "Snowdin Town: Library",
-    "81": "Snowdin - Papyrus Battle",
-    "82": "Waterfall - Entrance",
-    "83": "Waterfall - Checkpoint [SAVE]",
-    "84": "Waterfall - Falling rocks",
-    "86": "Waterfall - Hallway [SAVE]",
-    "87": "Waterfall - Lily pad bridge",
-    "88": "Waterfall - Lily pad vertical bridge",
-    "90": "Waterfall - Telescope",
-    "91": "Waterfall - Boat plank",
-    "92": "Waterfall - Undyne Spear dodging 1",
-    "93": "Waterfall - Bush after spear dodging",
-    "94": "Waterfall - Crystal [SAVE]",
-    "95": "Waterfall - Sans Telescope",
-    "96": "Waterfall - Nice Cream Stand",
-    "97": "Waterfall - Split Pathway",
-    "98": "Waterfall - Ballet shoes",
-    "99": "Waterfall - Duck",
-    "100": "Waterfall - Onionsan",
-    "101": "Waterfall - Artifact hub",
-    "102": "Waterfall - Piano",
-    "103": "Waterfall - Legendary Artifact",
-    "104": "Waterfall - Rainy Statue",
-    "105": "Waterfall - Umbrellas",
-    "106": "Waterfall - Rainy Path 1",
-    "107": "Waterfall - Rainy Path 2",
-    "108": "Waterfall - Palace View",
-    "109": "Waterfall - Umbrella ledge",
-    "110": "Waterfall - Bridge [SAVE]",
-    "111": "Waterfall - Bridge spear dodge",
-    "112": "Waterfall - Bridge fall",
-    "113": "Waterfall - Trash Zone Flower bed",
-    "114": "Waterfall - Trash Zone [SAVE]",
-    "115": "Waterfall - Training Dummy revenge",
-    "116": "Waterfall - Quiet Area [SAVE]",
-    "117": "Waterfall - Undyne's house entrance",
-    "119": "Waterfall - Twin Ghost houses",
-    "124": "Waterfall - Turtle shop",
-    "125": "Waterfall - River boat",
-    "126": "Waterfall - 2 waterfalls",
-    "127": "Waterfall - Mushroom maze",
-    "128": "Waterfall - Temmie Village [SAVE]",
-    "129": "Waterfall - Lamp maze",
-    "130": "Waterfall - Behind you",
-    "131": "Waterfall - More flowers",
-    "132": "Waterfall - Cave bridge",
-    "133": "Waterfall - Cave exit",
-    "134": "Waterfall - Undyne area",
-    "135": "Waterfall - Undyne area + 1",
-    "136": "Waterfall - Hotland Welcome",
-    "137": "Hotland - Entrance",
-    "138": "Hotland - Water tank",
-    "139": "Hotland - Laboratory Entrance [SAVE]",
-    "140": "Hotland - River boat",
-    "141": "Hotland - Laboratory Hub",
-    "142": "Hotland - Laboratory Upper Floor",
-    "143": "Hotland - Laboratory Exit",
-    "144": "Hotland - Treadmills 1",
-    "145": "Hotland - Magma Chamber [SAVE]",
-    "146": "Hotland - Burnt Pan",
-    "147": "Hotland - Lasers 1",
-    "148": "Hotland - Puzzle Gate 1",
-    "149": "Hotland - Left Boz Puzzle Entrance",
-    "150": "Hotland - Left Box Puzzle",
-    "151": "Hotland - Right Box Puzzle Entrance",
-    "152": "Hotland - Right Box Puzzle",
-    "153": "Hotland - Arrow bridge",
-    "154": "Hotland - Kitchen",
-    "155": "Hotland - Core View [SAVE]",
-    "156": "Hotland - Elevator R1",
-    "157": "Hotland - Elevator R2",
-    "158": "Hotland - Hot Dog Stand",
-    "159": "Hotland - Art Club Entrance",
-    "160": "Hotland - Art Club",
-    "161": "Hotland - Stained Apron",
-    "162": "Hotland - Treadmill switch puzzle",
-    "163": "Hotland - Arrow puzzle",
-    "164": "Hotland - Bad Opinion Zone [SAVE]",
-    "165": "Hotland - Bro guards",
-    "166": "Hotland - Bombastic News report",
-    "167": "Hotland - Upper Core View",
-    "168": "Hotland - Elevator L2",
-    "169": "Hotland - Elevator L3",
-    "170": "Hotland - Spider Bake Sale",
-    "171": "Hotland - F3 Puzzle Gate",
-    "172": "Hotland - F3 South Puzzle Entrance",
-    "173": "Hotland - F3 South Puzzle",
-    "174": "Hotland - F3 North Puzzle Entrance",
-    "175": "Hotland - F3 North Puzzle",
-    "176": "Hotland - Spider Entrance [SAVE]",
-    "177": "Hotland - Spider Room",
-    "178": "Hotland - Mettaton Poster",
-    "179": "Hotland - Theater Stage",
-    "180": "Hotland - Colored Tile Maze 2",
-    "181": "Hotland - Nice Cream Stand",
-    "182": "Hotland - Hotel Entrance",
-    "183": "Hotland - Hotel Lobby [SAVE]",
-    "184": "Hotland - Hotel Restaurant",
-    "185": "Hotland - Hotel Cordidor",
-    "186": "Hotland - Hotel Alley",
-    "187": "Hotland - Elevator R3",
-    "188": "Hotland - Core Entrance",
-    "189": "Hotland - Core Elevator",
-    "190": "Hotland - Core Pit",
-    "191": "Hotland - Core North of Elavator",
-    "192": "Hotland - Core Wrong order lasers",
-    "193": "Hotland - Core Crossroads",
-    "194": "Hotland - Core Dead End",
-    "195": "Hotland - Core Power Laser Puzzle",
-    "196": "Hotland - Core Branch [SAVE]",
-    "197": "Hotland - Core Ice Deposit",
-    "198": "Hotland - Core West Puzzle Entrance",
-    "199": "Hotland - Core West Puzzle Entrance + 1",
-    "200": "Hotland - Core West Puzzle Entrance + 2",
-    "202": "Hotland - Core End - 3",
-    "201": "Hotland - South of 100G Trash Can",
-    "203": "Hotland - Core End - 4",
-    "204": "Hotland - Core Get Lost",
-    "205": "Hotland - Core West Puzzle",
-    "206": "Hotland - Core Glamburger Trash Can",
-    "207": "Hotland - Core 100G Trash Can",
-    "208": "Hotland - Core Battle Bridge",
-    "209": "Hotland - Core End - 1",
-    "210": "Hotland - Core End [SAVE]",
-    "211": "Hotland - Core Mettaton Room",
-    "212": "Hotland - Core Final Elevator Entrance",
-    "214": "Hotland - Elevator L1",
-    "215": "Hotland - Core Final Elevator",
-    "216": "Castle Elevator [SAVE]",
-    "217": "Castle - Another Elevator",
-    "218": "Castle - Dark Path",
-    "219": "New Home [SAVE]",
-    "220": "New Home - Entrance",
-    "221": "New Home - Reading Room",
-    "222": "New Home - Corridor",
-    "223": "New Home - Asgore's Room",
-    "224": "New Home - Your Room",
-    "225": "New Home - Kitchen",
-    "226": "New Home - Basement 1",
-    "227": "New Home - Basement 2",
-    "228": "New Home - Basement 3",
-    "229": "New Home - Basement 4",
-    "230": "New Home - Elevator",
-    "231": "Last Corridor [SAVE]",
-    "232": "Throne Entrance [SAVE]",
-    "233": "Throne Entrance - Stairs Down",
-    "234": "Throne Entrance - Coffins",
-    "235": "Throne Room [SAVE]",
-    "236": "The End [SAVE]",
-    "237": "Barrier",
-    "241": "Outside",
-    "242": "Laboratory Elevator",
-    "243": "True Lab - Elevator",
-    "244": "True Lab - Elevator Entrance",
-    "245": "True Lab - South Corridor",
-    "246": "True Laboratory [SAVE]",
-    "247": "True Lab - West Corridor 1",
-    "248": "True Lab - West Sinks",
-    "249": "True Lab - West red key slot",
-    "250": "True Lab - North Corridor 1",
-    "251": "True Lab - Bedroom [SAVE]",
-    "252": "True Lab - Northeast Corridor",
-    "253": "True Lab - Northeast blue key slot",
-    "254": "True Lab - North Corridor 2",
-    "255": "True Lab - Green key",
-    "256": "True Lab - Northwest skull",
-    "257": "True Lab - Yellow Key Slot + TV",
-    "258": "True Lab - Northwest refrigerators",
-    "259": "True Lab - Green Key Slot",
-    "260": "True Lab - Fans",
-    "261": "True Lab - Elevator 2",
-    "262": "True Lab - Power room corridor",
-    "263": "True Lab - Power room",
-    "265": "Snowdin - Ice Cave 1",
-    "331": "Asriel room"
+    "4": "遗迹 - 初始点",
+    "5": "遗迹 - 初遇小花",
+    "6": "遗迹 - 入口【保存点】",
+    "7": "遗迹 - 托丽尔帮你解谜",
+    "8": "遗迹 - 开关谜题",
+    "9": "遗迹 - 假人房",
+    "10": "遗迹 - 钉子谜题",
+    "11": "遗迹 - 长走廊",
+    "12": "遗迹 - 树叶队【保存点】",
+    "13": "遗迹 - 每人一个糖果",
+    "14": "遗迹 - 强制掉落活板门",
+    "15": "遗迹 - 第一个推石头谜题",
+    "16": "遗迹 - 活板门走廊谜题",
+    "17": "遗迹 - 会说话的石头",
+    "18": "遗迹 - 老鼠洞 【保存点】",
+    "19": "遗迹 - 小幽灵",
+    "20": "遗迹 - 蜘蛛烘焙义卖",
+    "21": "遗迹 - 二只青蛙",
+    "22": "遗迹 - 隐藏在活板门下的开关",
+    "23": "遗迹 - 三柱房1",
+    "24": "遗迹 - 三柱房2",
+    "25": "遗迹 - 三柱房3",
+    "26": "遗迹 - 三柱房4",
+    "27": "遗迹 - “柱房坑”",
+    "28": "遗迹 - 三岔路",
+    "29": "遗迹 - “托里尔八卦蛙”",
+    "30": "遗迹 - 玩具刀房",
+    "31": "遗迹 - 家 【保存点】",
+    "32": "托丽尔的房子：入口",
+    "33": "托丽尔的房子：阅览室",
+    "34": "托丽尔的房子：走廊",
+    "35": "托丽尔的房子：托丽尔的屋子",
+    "36": "托丽尔的房子：你的屋子",
+    "37": "托丽尔的房子：厨房",
+    "38": "托丽尔的地下室1",
+    "39": "托丽尔的地下室2",
+    "40": "托丽尔的地下室3",
+    "41": "托丽尔的地下室：托丽尔Boss战",
+    "42": "托丽尔的地下室：通往小花",
+    "43": "托丽尔的地下室：再遇小花",
+    "44": "雪地 - 遗迹出口",
+    "45": "雪地 - 暗黑森林小路",
+    "46": "雪地 - 箱子之路 【保存点】",
+    "47": "雪地 - 鱼竿",
+    "48": "雪地 - Papyrus的哨站",
+    "49": "雪地 - “狗狗”？",
+    "50": "雪地 - Compass sign",
+    "51": "雪地 - 雪人",
+    "52": "雪地 - 电击迷宫",
+    "53": "雪地 - 雪狼",
+    "54": "雪地 - 狗夫妻之家",
+    "55": "雪地 - 怪物宝宝纵横字谜",
+    "56": "雪地 - 意大利面 【保存点】",
+    "57": "雪地 - 警告：狗夫妻来袭！",
+    "58": "雪地 - XO谜题1",
+    "59": "雪地 - XO谜题2",
+    "60": "雪地 - 彩色标题谜题",
+    "61": "雪地 - 狗窝【保存点】",
+    "62": "雪地 - 雪Papyrus与Sans？",
+    "63": "雪地 - 滑行XO谜题",
+    "64": "雪地 - 会传送的Sans",
+    "65": "雪地 - 捷径入口",
+    "66": "雪地 - 积雪 (大犬汪)",
+    "67": "雪地 - 致命恐怖的挑战",
+    "68": "雪地 - 雪镇 【保存点】",
+    "69": "雪镇 - 扔冰狼",
+    "70": "雪镇 - 船夫/妇",
+    "71": "雪镇 - 酒店大堂",
+    "73": "雪镇 - Grillby家",
+    "74": "雪镇 - 图书馆",
+    "81": "雪地 - Papyrus战",
+    "82": "瀑布 - 入口",
+    "83": "瀑布 - 检查点 【保存点】",
+    "84": "瀑布 - 掉落的石头",
+    "86": "瀑布 - 走廊 【保存点】",
+    "87": "瀑布 - 用花搭起的桥",
+    "88": "瀑布 - 用花搭起的竖桥",
+    "90": "瀑布 - 望远镜",
+    "91": "瀑布 - 船板",
+    "92": "瀑布 - 躲过Undyne的长矛 1",
+    "93": "瀑布 - Undyne",
+    "94": "瀑布 - 水晶 【保存点】",
+    "95": "瀑布 - Sans望远镜",
+    "96": "瀑布 - 好棒冰摊位",
+    "97": "瀑布 - 分支路",
+    "98": "瀑布 - 芭蕾舞鞋",
+    "99": "瀑布 - 鸭子",
+    "100": "瀑布 - 洋葱桑",
+    "101": "瀑布 - 文物中心？",
+    "102": "瀑布 - 钢琴",
+    "103": "瀑布 - 传说中的神器",
+    "104": "瀑布 - 雨中雕像",
+    "105": "瀑布 - 雨伞",
+    "106": "瀑布 - 下雨小径1",
+    "107": "瀑布 - 下雨小径2",
+    "108": "瀑布 - 宫殿景象",
+    "109": "瀑布 - 还伞处",
+    "110": "瀑布 - 桥【保存点】",
+    "111": "瀑布 - 桥矛闪避",
+    "112": "瀑布 - 桥梁倒塌",
+    "113": "瀑布 - 垃圾区花坛",
+    "114": "瀑布 - 垃圾区【保存点】",
+    "115": "瀑布 - Dummy！",
+    "116": "瀑布 - 宁静区域【保存点】",
+    "117": "瀑布 - Undyne房子入口",
+    "119": "瀑布 - 双鬼屋",
+    "124": "瀑布 - 老乌龟的小店",
+    "125": "瀑布 - 船妇/夫",
+    "126": "瀑布 - 2瀑布",
+    "127": "瀑布 - 蘑菇迷宫",
+    "128": "瀑布 - 提米村庄【保存点】",
+    "129": "瀑布 - 灯笼迷宫",
+    "130": "瀑布 - 在 你 后 面",
+    "131": "瀑布 - 更多的花",
+    "132": "瀑布 - 山洞桥",
+    "133": "瀑布 - 山洞出口",
+    "134": "瀑布 - Undyne区域",
+    "135": "瀑布 - Undyne区域+1",
+    "136": "瀑布 - 欢迎来到热域",
+    "137": "热域 - 入口",
+    "138": "热域 - 饮水机...？",
+    "139": "热域 - 实验室入口 【保存点】",
+    "140": "热域 - 船...？",
+    "141": "热域 - 实验室中心",
+    "142": "热域 - 实验室二楼",
+    "143": "热域 - 实验室出口",
+    "144": "热域 - 跑步机1",
+    "145": "热域 - 岩浆房【保存点】",
+    "146": "热域 - 烧焦的平底锅",
+    "147": "热域 - 激光1",
+    "148": "热域 - 谜题之门1",
+    "149": "热域 - 解决谜题之门1的地方左入口",
+    "150": "热域 - 解决谜题之门1的地方左",
+    "151": "热域 - 解决谜题之门1的地方右入口",
+    "152": "热域 - 解决谜题之门1的地方右",
+    "153": "热域 - “箭桥”",
+    "154": "热域 - 厨房",
+    "155": "热域 - 核心景象【保存点】",
+    "156": "热域 - 电梯R1",
+    "157": "热域 - 电梯R2",
+    "158": "热域 - sans的热狗摊",
+    "159": "热域 - 艺术俱乐部入口",
+    "160": "热域 - 艺术俱乐部",
+    "161": "热域 - 染色围裙",
+    "162": "热域 - 跑步机开关谜题",
+    "163": "热域 - 射击谜题？",
+    "164": "热域 - 坏意见区 【保存点】",
+    "165": "热域 - 守卫兄弟俩",
+    "166": "热域 - “爆炸性”的新闻报道",
+    "167": "热域 - 更上方的核心景象",
+    "168": "热域 - 电梯L2",
+    "169": "热域 - 电梯L3",
+    "170": "热域 - 蜘蛛烘焙义卖",
+    "171": "热域 - F3谜题门",
+    "172": "热域 - F3 南谜题入口",
+    "173": "热域 - F3 南谜题",
+    "174": "热域 - F3 北谜题入口",
+    "175": "热域 - F3 北谜题",
+    "176": "热域 - 蜘蛛房入口 【保存点】",
+    "177": "热域 - 蜘蛛房",
+    "178": "热域 - 梅塔顿海报",
+    "179": "热域 - 戏台",
+    "180": "热域 - 彩瓦迷宫2",
+    "181": "热域 - 好棒冰摊位",
+    "182": "热域 - 酒店入口",
+    "183": "热域 - 酒店大堂【保存点】",
+    "184": "热域 - 酒店餐厅",
+    "185": "热域 - 科迪多酒店",
+    "186": "热域 - 酒店旁的垃圾店",
+    "187": "热域 - 电梯R3",
+    "188": "核心 -  入口",
+    "189": "核心 -  电梯",
+    "190": "核心 -  Pit",
+    "191": "核心 -  南部电梯",
+    "192": "核心 -  错序激光",
+    "193": "核心 -  十字路口",
+    "194": "核心 -  死路",
+    "195": "核心 -  功率激光谜题",
+    "196": "核心 -  分支【保存点】",
+    "197": "核心 -  冰层",
+    "198": "核心 -  西谜题入口",
+    "199": "核心 -  西谜题入口1",
+    "200": "核心 -  西谜题入口2",
+    "202": "核心 -  结束3",
+    "201": "热域 - 南100G垃圾桶",
+    "203": "核心 -  结束4",
+    "204": "核心 -  迷路",
+    "205": "核心 -  西部谜题",
+    "206": "核心 -  Glamburger垃圾桶",
+    "207": "核心 -  100G垃圾桶",
+    "208": "核心 -  战斗桥",
+    "209": "核心 -  结束 - 1",
+    "210": "核心 -  结束了 【保存点】",
+    "211": "核心 -  MTT房间",
+    "212": "核心 -  最后的电梯入口",
+    "214": "热域 - 电梯L1",
+    "215": "核心 -  最后的电梯",
+    "216": "城堡电梯【保存点】",
+    "217": "城堡 - 另一部电梯",
+    "218": "城堡 - 暗黑小路",
+    "219": "新家 【保存点】",
+    "220": "新家 - 入口",
+    "221": "新家 - 阅览室",
+    "222": "新家 - 走廊",
+    "223": "新家 - Asgore的房间",
+    "224": "新家 - “你”的房间",
+    "225": "新家 - 厨房",
+    "226": "新家 - 地下室1",
+    "227": "新家 - 地下室2",
+    "228": "新家 - 地下室3",
+    "229": "新家 - 地下室4",
+    "230": "新家 - 电梯",
+    "231": "最后长廊 【保存点】",
+    "232": "王座入口 【保存点】",
+    "233": "王座入口 - 楼下",
+    "234": "王座入口 - 棺材",
+    "235": "王座 【保存点】",
+    "236": "结束了。 【保存点】",
+    "237": "障碍物",
+    "241": "外面",
+    "242": "实验室电梯",
+    "243": "真实验室 电梯",
+    "244": "真实验室 电梯入口",
+    "245": "真实验室 南走廊",
+    "246": "真实验室 【保存点】",
+    "247": "真实验室 西走廊1",
+    "248": "真实验室 西？",
+    "249": "真实验室 西红钥匙槽",
+    "250": "真实验室 北走廊1",
+    "251": "真实验室 卧室 【保存点】",
+    "252": "真实验室 东北走廊",
+    "253": "真实验室 东北蓝钥匙槽",
+    "254": "真实验室 北走廊2",
+    "255": "真实验室 绿钥匙",
+    "256": "真实验室 西北头骨",
+    "257": "真实验室 黄钥匙槽+TV",
+    "258": "真实验室 西北冰箱",
+    "259": "真实验室 绿色钥匙槽",
+    "260": "真实验室 粉丝们",
+    "261": "真实验室 电梯2",
+    "262": "真实验室 电源室走廊",
+    "263": "真实验室 电源室",
+    "265": "雪地 - 冰洞出口",
+    "331": "Asriel之房"
 };
 
 var floweyStates = {
-    "0": "None (Initial state)",
-    "1": "Light blue (Initiated fight)",
-    "2": "Orange",
-    "3": "Blue",
-    "4": "Purple",
-    "5": "Green",
-    "6": "Yellow",
-    "7": "None (Finished fight)",
+    "0": "无（初始状态）",
+    "1": "浅蓝色 （发起战斗）",
+    "2": "橙色",
+    "3": "蓝",
+    "4": "紫色",
+    "5": "绿色",
+    "6": "黄色",
+    "7": "无 (战斗结束)",
 };
 
 var torielStates = {
-    "0": "Initial state",
-    "3": "Unknown",
-    "4": "Killed",
-    "5": "Spared"
+    "0": "初始状态",
+    "3": "未知",
+    "4": "死了",
+    "5": "被饶恕"
 };
 
 var comedianStates = {
-    "0": "Initial state",
-    "1": "Unknown",
-    "2": "Killed"
+    "0": "初始状态",
+    "1": "未知",
+    "2": "死了"
 };
 
 var doggoStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Played fetch (Spared)"
+    "0": "初始状态",
+    "1": "死了",
+    "2": "与它玩(被饶恕)"
 };
 
 var dogamyDogaressaStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Played fetch (Spared)"
+    "0": "初始状态",
+    "1": "死了",
+    "2": "与它玩(被饶恕)"
 };
 
 var greaterDogStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Played fetch (Spared)",
-    "3": "Ignored"
+    "0": "初始状态",
+    "1": "死了",
+    "2": "与它玩(被饶恕)",
+    "3": "忽略了"
 };
 
 var papyrusStates = {
-    "0": "Initial state",
-    "1": "Killed"
+    "0": "初始状态",
+    "1": "死了"
 };
 
 var plotValues = {
-    "2": "Didn't fight Papyrus",
-    "101": "Fought Papyrus",
-    "119": "Unknown",
-    "164": "Hotlands genocide",
-    "199": "Unknown",
-    "999": "Pacifist epilogue"
+    "2": "还没和Papyrus打呢",
+    "101": "打过了",
+    "119": "未知",
+    "164": "热域屠杀过了",
+    "199": "未知",
+    "999": "和平结局"
 };
 
 var trainingDummyStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Talked to",
-    "3": "Tired of your shenanigans"
+    "0": "初始状态",
+    "1": "死了",
+    "2": "说话",
+    "3": "厌倦了你的恶作剧"
 };
 
 var shyrenStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Unknown"
+    "0": "初始状态",
+    "1": "死了",
+    "2": "未知"
 };
 
 var madDummyStates = {
-    "0": "Initial state",
-    "1": "Killed"
+    "0": "初始状态",
+    "1": "死了"
 };
 
 var undyneStates1 = {
-    "0": "Initial state",
-    "1": "Killed"
+    "0": "初始状态",
+    "1": "死了"
 };
 
 var undyneStates2 = {
-    "0": "Initial state",
-    "1": "Killed"
+    "0": "初始状态",
+    "1": "死了"
 };
 
 var broGuardsStates = {
-    "0": "Initial state",
-    "1": "Killed"
+    "0": "初始状态",
+    "1": "死了"
 };
 
 var mettatonStates = {
-    "0": "Initial state",
-    "1": "Killed"
+    "0": "初始状态",
+    "1": "死了"
 };
 
 var muffetStates = {
-    "0": "Initial state",
-    "1": "Killed"
+    "0": "初始状态",
+    "1": "死了"
 };
 
 function parseIniFromText(text) {
@@ -470,7 +470,7 @@ function parseIniFromText(text) {
             }
         } else { // Otherwise, it is assumed to be an assignment
             if (section === null) {
-                throw "Assignment outside of a section";
+                throw "段外的赋值";
             }
             var eq = line.indexOf("=");
             if (eq === -1) {
@@ -482,7 +482,7 @@ function parseIniFromText(text) {
             }
             var rquot = line.slice(lquot + 1).indexOf('"') + lquot + 1;
             if (rquot === -1) {
-                throw "Unterminated value string";
+                throw "未终止的值字符串";
             }
             var value = line.slice(lquot + 1, rquot);
             var key = line.slice(0, eq);
@@ -552,7 +552,7 @@ function loadIniFromFile(file, closure) {
         try {
             closure(parseIniFromText(text));
         } catch (err) {
-            window.alert("Error parsing undertale.ini: " + err);
+            window.alert("分析undertale.ini时出错: " + err);
         }
     };
     reader.readAsText(file);
@@ -807,7 +807,7 @@ function saveIniToFile(ini) {
     }
     var blob = new Blob([string], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "undertale.ini", true);
-    flowey_laugh_once();
+  小花_laugh_once();
 }
 
 function saveSaveValuesToFile(values) {
@@ -818,7 +818,7 @@ function saveSaveValuesToFile(values) {
     }
     var blob = new Blob([string], {type: "application/octet-stream"});
     saveAs(blob, "file0", true);
-    flowey_laugh_once();
+  小花_laugh_once();
 }
 
 function loadPresetSelect() {
@@ -932,12 +932,12 @@ function start() {
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_962", true);
-        flowey_laugh_once();
+      小花_laugh_once();
     }, false);
     document.getElementById("savesi3").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_963", true);
-        flowey_laugh_once();
+      小花_laugh_once();
     }, false);
     var weaponSelect = document.getElementById("sav-weapon");
     weaponSelect.onchange = function() {
@@ -969,9 +969,9 @@ function start() {
         localStorage.setItem("userPresets",JSON.stringify(presets));
     }
     document.getElementById("userpresetnew").addEventListener("click", function() {
-        var name = window.prompt("Enter the name for your new preset");
+        var name = window.prompt("输入新预设的名称");
         if (name === null || name === "") {
-            window.alert("You did not enter a valid name, preset not created.");
+            window.alert("未输入有效名称，未创建预设。");
         } else {
             saveUserPreset(name);
             var presetSelect = document.getElementById("userpresetselect");
@@ -991,7 +991,7 @@ function start() {
         if (name !== null && name !== "") {
             saveUserPreset(name);
         } else {
-            window.alert("You need to select a valid preset first!");
+            window.alert("您需要先选择一个有效的预设！");
         }
     }, false);
     document.getElementById("userpresetload").addEventListener("click", function() {
@@ -1005,7 +1005,7 @@ function start() {
             updateSaveDataForm(saveLines);
             updatePersistentDataForm(ini);
         } else {
-            window.alert("You need to select a valid preset first!");
+            window.alert("您需要先选择一个有效的预设！");
         }
     }, false);
     document.getElementById("userpresetdelete").addEventListener("click", function() {
