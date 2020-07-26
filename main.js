@@ -71,13 +71,13 @@ var cellOpts = {
     "0": "空",
     "201": "说，你好！",
     "202": "帮忙解亿点点迷题",
-    "203": "About Yourself",
-    "204": "Call Her \"Mom\"",
-    "205": "Flirt",
-    "206": "Toriel's Phone",
-    "210": "Papyrus's Phone",
-    "220": "Dimensional Box A",
-    "221": "Dimensional Box B"
+    "203": "介绍介绍一下你自己",
+    "204": "叫她妈妈",
+    "205": "跟她调♂情（？，是不是我戴了有颜色的眼镜的缘故）",
+    "206": "Toriel的手机",
+    "210": "Papyrus的手机",
+    "220": "末影（万能）箱A",
+    "221": "末影（万能）箱B"
 };
 
 var weaponAts = {
