@@ -1,12 +1,12 @@
 var items = [
-    "Empty",
-    "Monster Candy",
-    "Croquet Roll",
-    "Stick",
+    "空的",
+    "怪物糖果",
+    "槌球棍",
+    "树枝",
     "Bandage",
     "Rock Candy",
     "Pumpkin Rings",
-    "Spider Donut",
+    "蜘蛛甜甜圈",
     "Stoic Onion",
     "Ghost Fruit",
     "Spider Cider",
@@ -68,9 +68,9 @@ var items = [
 ];
 
 var cellOpts = {
-    "0": "Empty",
-    "201": "Say Hello",
-    "202": "Puzzle Help",
+    "0": "空",
+    "201": "说，你好！",
+    "202": "帮忙解亿点点迷题",
     "203": "About Yourself",
     "204": "Call Her \"Mom\"",
     "205": "Flirt",
