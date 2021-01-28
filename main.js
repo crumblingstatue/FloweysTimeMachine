@@ -492,7 +492,7 @@ function parseIniFromText(text) {
     return ini;
 }
 
-/*function flowey_laugh_once() {
+function flowey_laugh_once() {
     "use strict";
     if (localStorage.getItem("laughed") !== "true") {
         document.getElementById("floweyimg").src = "res/flowey_evil.png";
@@ -502,7 +502,7 @@ function parseIniFromText(text) {
         }
         localStorage.setItem("laughed", "true");
     }
-}*/
+}
 
 function insert_inv_lists() {
     "use strict";
