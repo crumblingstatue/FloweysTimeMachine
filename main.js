@@ -492,7 +492,7 @@ function parseIniFromText(text) {
     return ini;
 }
 
-function flowey_laugh_once() {
+/*function flowey_laugh_once() {
     "use strict";
     if (localStorage.getItem("laughed") !== "true") {
         document.getElementById("floweyimg").src = "res/flowey_evil.png";
@@ -502,12 +502,13 @@ function flowey_laugh_once() {
         }
         localStorage.setItem("laughed", "true");
     }
-}
+}*/
 
 function insert_inv_lists() {
     "use strict";
     function insert(node, i) {
         var newOption = document.createElement("option");
+        newOption.style = "color: #000"
         newOption.setAttribute("value", i);
         var newContent = document.createTextNode(items[i]);
         newOption.appendChild(newContent);
@@ -537,6 +538,7 @@ function loadSelectFromObj(selectId, obj) {
     for (var key in obj) {
         var newOption = document.createElement("option");
         newOption.setAttribute("value", key);
+        newOption.style = "color: #000"
         var newContent = document.createTextNode(obj[key]);
         newOption.appendChild(newContent);
         select.appendChild(newOption);
@@ -605,7 +607,7 @@ function updatePersistentDataForm(iniobj) {
         document.getElementById("ini-dodged-all-special-thanks").checked = false;
     }
     if (iniobj.fun) {
-        document.getElementById("ini-fun").value = parseInt(iniobj.fun.trim());
+        //document.getElementById("ini-fun").value = parseInt(iniobj.fun.trim());
     }
 }
 
@@ -652,10 +654,10 @@ function updateIniFromForm(ini) {
             ini.reset.s_key = "0";
         }
     }
-    var fun = parseInt(document.getElementById("ini-fun").value);
+    /*var fun = parseInt(document.getElementById("ini-fun").value);
     if (fun) {
         ini.General.fun = fun;
-    }
+    }*/
 }
 
 function updateSelection(id, values, index, list) {
@@ -672,7 +674,7 @@ function updateSelection(id, values, index, list) {
 function updateSaveDataForm(values) {
     "use strict";
     document.getElementById("sav-name").value = values[0];
-    document.getElementById("sav-kills").value = values[11];
+    //document.getElementById("sav-kills").value = values[11];
     document.getElementById("sav-love").value = values[1];
     document.getElementById("sav-hp").value = values[2];
     document.getElementById("sav-exp").value = values[9];
@@ -738,7 +740,7 @@ function updateSaveValuesFromForm(values) {
     values[7] = document.getElementById("sav-armordf").value;
     values[9] = document.getElementById("sav-exp").value;
     values[10] = document.getElementById("sav-gold").value;
-    values[11] = document.getElementById("sav-kills").value;
+    //values[11] = document.getElementById("sav-kills").value;
     values[12] = document.getElementById("sav-invslot1").value;
     values[13] = document.getElementById("sav-cellslot1").value;
     values[14] = document.getElementById("sav-invslot2").value;
@@ -826,6 +828,7 @@ function loadPresetSelect() {
     var selectNode = document.getElementById("builtinpresetselect");
     for (var k in presets) {
         var newOption = document.createElement("option");
+        newOption.style = "color: #000"
         var newContent = document.createTextNode(k);
         newOption.appendChild(newContent);
         selectNode.appendChild(newOption);
@@ -957,7 +960,7 @@ function start() {
         var name = document.getElementById("builtinpresetselect").value;
         loadPreset(name);
     }, false);
-    function saveUserPreset(name) {
+    /*function saveUserPreset(name) {
         updateIniFromForm(ini);
         updateSaveValuesFromForm(saveLines);
         var obj = {
@@ -1042,7 +1045,7 @@ function start() {
         var string = "presets[\"" + name + "\"] = " + JSON.stringify(preset) + ";";
         var blob = new Blob([string], {type: "application/octet-stream"});
         saveAs(blob, name + ".js", true);
-    }, false);
+    }, false);*/
     document.getElementById("floweyimg").addEventListener("click", function() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);
