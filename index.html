@@ -31,15 +31,18 @@
         <div>
           <h6><a href="/help.html" class="text-xl text-undertaleYellow hover:text-undertaleDarkerYellow">What is this?</a></h6>
 
-            <label> Built-in Presets </label><select class="bg-transparent p-1 px-1.5 border-2 border-white" id="builtinpresetselect"> </select>
-            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="builtinpresetload" value="Load" />
-            <!-- <label> Your presets </label><select class="bg-transparent p-1 px-1.5 border-2 border-white" id="userpresetselect"> </select>
-            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="userpresetload" value="Load" disabled />
-            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="userpresetsave" value="Save" disabled />
-            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="userpresetnew" value="New" />
-            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="userpresetdelete" value="Delete" disabled />
-            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="userpresetexport" value="Save and Export" disabled /> -->
+            <label>Built-in Presets </label><select class="bg-transparent p-1 px-1.5 border-2 border-white" id="builtinpresetselect"></select>
+            <input class="cursor-pointer bg-transparent mb-1.5 p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="builtinpresetload" value="Load" />
             <label> Mute </label><input type="checkbox" id="mute" />
+            <br>
+            <label>Your presets </label><select class="bg-transparent p-1 px-1.5 border-2 border-white" id="userpresetselect">
+                <option disabled>Your presets</option>
+            </select>
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetload" value="Load" />
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetsave" value="Save" />
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="userpresetnew" value="New" />
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetdelete" value="Delete" />
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetexport" value="Save and Export" />
         </div>
         <div class="mb-3">
             <h1 class="text-2xl">Persistent Data (undertale.ini)</h1>
@@ -345,9 +348,6 @@
             </div>
         </div>
     </div>
-    <footer class="fixed md:static bottom-0 text-center w-full p-2 mt-2" style="background: #383838; text-shadow: 0 2px #000">
-        This time machine is a modified version of <a href="https://github.com/crumblingstatue" class="text-undertaleYellow hover:text-undertaleDarkerYellow" target="_blank">crumblingstatue</a>'s one. You can check their code by <a href="https://github.com/crumblingstatue/FloweysTimeMachine" class="text-undertaleYellow hover:text-undertaleDarkerYellow" target="_blank">clicking here</a>.
-    </footer>
     
     <script>
       document.getElementById('floweyimg').addEventListener('mouseover', function() {
