@@ -607,7 +607,7 @@ function updatePersistentDataForm(iniobj) {
         document.getElementById("ini-dodged-all-special-thanks").checked = false;
     }
     if (iniobj.fun) {
-        //document.getElementById("ini-fun").value = parseInt(iniobj.fun.trim());
+        document.getElementById("ini-fun").value = parseInt(iniobj.fun.trim());
     }
 }
 
@@ -654,10 +654,10 @@ function updateIniFromForm(ini) {
             ini.reset.s_key = "0";
         }
     }
-    /*var fun = parseInt(document.getElementById("ini-fun").value);
+    var fun = parseInt(document.getElementById("ini-fun").value);
     if (fun) {
         ini.General.fun = fun;
-    }*/
+    }
 }
 
 function updateSelection(id, values, index, list) {
@@ -674,7 +674,7 @@ function updateSelection(id, values, index, list) {
 function updateSaveDataForm(values) {
     "use strict";
     document.getElementById("sav-name").value = values[0];
-    //document.getElementById("sav-kills").value = values[11];
+    document.getElementById("sav-kills").value = values[11];
     document.getElementById("sav-love").value = values[1];
     document.getElementById("sav-hp").value = values[2];
     document.getElementById("sav-exp").value = values[9];
@@ -740,7 +740,7 @@ function updateSaveValuesFromForm(values) {
     values[7] = document.getElementById("sav-armordf").value;
     values[9] = document.getElementById("sav-exp").value;
     values[10] = document.getElementById("sav-gold").value;
-    //values[11] = document.getElementById("sav-kills").value;
+    values[11] = document.getElementById("sav-kills").value;
     values[12] = document.getElementById("sav-invslot1").value;
     values[13] = document.getElementById("sav-cellslot1").value;
     values[14] = document.getElementById("sav-invslot2").value;
@@ -844,6 +844,7 @@ function start() {
         for (var key in JSON.parse(userPresets)) {
             var presetSelect2 = document.getElementById("userpresetselect");
             var option2 = document.createElement("option");
+            option2.style = "color: #000;"
             var text2 = document.createTextNode(key);
             option2.appendChild(text2);
             presetSelect2.appendChild(option2);
@@ -886,18 +887,20 @@ function start() {
     iniInput.addEventListener("change", function(evt) {
         iniFile = evt.target.files[0];
         if (iniFile) {
-            document.getElementById("ini-loadbutton").disabled = false;
+            document.getElementById("ini-loadbutton").classList.remove('disabled');
+            document.querySelector(`label[for="${event.target.id}"]`).style = "border-color: #f66f01"
         } else {
-            document.getElementById("ini-loadbutton").disabled = true;
+            document.getElementById("ini-loadbutton").classList.add('disabled');
         }
     }, false);
     var saveInput = document.getElementById("sav-file");
     saveInput.addEventListener("change", function (evt) {
         saveFile = evt.target.files[0];
         if (saveFile) {
-            document.getElementById("sav-loadbutton").disabled = false;
+            document.getElementById("sav-loadbutton").classList.remove('disabled');
+            document.querySelector(`label[for="${event.target.id}"]`).style = "border-color: #f66f01"
         } else {
-            document.getElementById("sav-loadbutton").disabled = true;
+            document.getElementById("sav-loadbutton").classList.add('disabled');
         }
     }, false);
     var iniLoadButton = document.getElementById("ini-loadbutton");
@@ -960,7 +963,7 @@ function start() {
         var name = document.getElementById("builtinpresetselect").value;
         loadPreset(name);
     }, false);
-    /*function saveUserPreset(name) {
+    function saveUserPreset(name) {
         updateIniFromForm(ini);
         updateSaveValuesFromForm(saveLines);
         var obj = {
@@ -983,10 +986,10 @@ function start() {
             option.appendChild(text);
             presetSelect.appendChild(option);
             presetSelect.value = name;
-            document.getElementById("userpresetload").disabled = false;
-            document.getElementById("userpresetsave").disabled = false;
-            document.getElementById("userpresetdelete").disabled = false;
-            document.getElementById("userpresetexport").disabled = false;
+            document.getElementById("userpresetload").classList.remove('disabled');
+            document.getElementById("userpresetsave").classList.remove('disabled');
+            document.getElementById("userpresetdelete").classList.remove('disabled');
+            document.getElementById("userpresetexport").classList.remove('disabled');
         }
     }, false);
     document.getElementById("userpresetsave").addEventListener("click", function() {
@@ -1024,18 +1027,18 @@ function start() {
         var presets = JSON.parse(item);
         delete presets[name];
         localStorage.setItem("userPresets", JSON.stringify(presets));
-        if (document.getElementById("userpresetselect").value === "") {
-            document.getElementById("userpresetload").disabled = true;
-            document.getElementById("userpresetsave").disabled = true;
-            document.getElementById("userpresetdelete").disabled = true;
-            document.getElementById("userpresetexport").disabled = true;
+        if (document.getElementById("userpresetselect").value === "Your presets" || document.getElementById("userpresetselect").value === "") {
+            document.getElementById("userpresetload").classList.add('disabled');
+            document.getElementById("userpresetsave").classList.add('disabled');
+            document.getElementById("userpresetdelete").classList.add('disabled');
+            document.getElementById("userpresetexport").classList.add('disabled');
         }
     }, false);
-    if (document.getElementById("userpresetselect").value !== "") {
-        document.getElementById("userpresetload").disabled = false;
-        document.getElementById("userpresetsave").disabled = false;
-        document.getElementById("userpresetdelete").disabled = false;
-        document.getElementById("userpresetexport").disabled = false;
+    if (document.getElementById("userpresetselect").value !== "Your presets" || document.getElementById("userpresetselect").value === "") {
+        document.getElementById("userpresetload").classList.remove('disabled');
+        document.getElementById("userpresetsave").classList.remove('disabled');
+        document.getElementById("userpresetdelete").classList.remove('disabled');
+        document.getElementById("userpresetexport").classList.remove('disabled');
     }
     document.getElementById("userpresetexport").addEventListener("click", function() {
         var presets = JSON.parse(localStorage.getItem("userPresets"));
@@ -1045,7 +1048,7 @@ function start() {
         var string = "presets[\"" + name + "\"] = " + JSON.stringify(preset) + ";";
         var blob = new Blob([string], {type: "application/octet-stream"});
         saveAs(blob, name + ".js", true);
-    }, false);*/
+    }, false);
     document.getElementById("floweyimg").addEventListener("click", function() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);
