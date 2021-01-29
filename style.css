@@ -1,23 +1,28 @@
 @font-face {
   font-family: 'Undertale';
 
-  src: url('fonts/Undertale-Regular.eot'); /* IE9 Compat Modes */
+  src: url('/fonts/Undertale-Regular.eot'); /* IE9 Compat Modes */
 
-  src: url('fonts/Undertale-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/Undertale-Regular.woff') format('woff'), /* Modern Browsers */
-       url('fonts/Undertale-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('fonts/Undertale-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+  src: url('/fonts/Undertale-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/Undertale-Regular.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/Undertale-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/Undertale-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 @font-face {
   font-family: 'Undertale-Bold';
 
-  src: url('fonts/Undertale-Bold.eot'); /* IE9 Compat Modes */
+  src: url('/fonts/Undertale-Bold.eot'); /* IE9 Compat Modes */
 
-  src: url('fonts/Undertale-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/Undertale-Bold.woff') format('woff'), /* Modern Browsers */
-       url('fonts/Undertale-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('fonts/Undertale-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+  src: url('/fonts/Undertale-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/Undertale-Bold.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/Undertale-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/Undertale-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+.disabled {
+    background: #202020 !important;
+    pointer-events: none !important;
 }
 
 /*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
@@ -35,8 +40,6 @@ Use a better box model (opinionated).
 *::before,
 *::after {
   box-sizing: border-box;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
 }
 
 /**
@@ -883,12 +886,12 @@ form fieldset {
   margin-top: 0.375rem;
 }
 
-.-mt-1 {
-  margin-top: -0.25rem;
+.mb-1\.5 {
+  margin-bottom: 0.375rem;
 }
 
-.-mt-4 {
-  margin-top: -1rem;
+.-mt-1 {
+  margin-top: -0.25rem;
 }
 
 .-mt-px {
@@ -902,10 +905,6 @@ form fieldset {
 
 .p-1 {
   padding: 0.25rem;
-}
-
-.p-2 {
-  padding: 0.5rem;
 }
 
 .p-3 {
@@ -944,22 +943,6 @@ form fieldset {
 .placeholder-gray-300::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(209, 213, 219, var(--tw-placeholder-opacity));
-}
-
-.fixed {
-  position: fixed;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.right-0 {
-  right: 0px;
-}
-
-.bottom-0 {
-  bottom: 0px;
 }
 
 * {
@@ -1021,6 +1004,10 @@ form fieldset {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .col-span-2 {
@@ -1108,10 +1095,6 @@ form fieldset {
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
-  }
-
-  .md\:static {
-    position: static;
   }
 }
 
