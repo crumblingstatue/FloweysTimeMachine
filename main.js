@@ -508,6 +508,7 @@ function insert_inv_lists() {
     "use strict";
     function insert(node, i) {
         var newOption = document.createElement("option");
+        newOption.style = "color: #000"
         newOption.setAttribute("value", i);
         var newContent = document.createTextNode(items[i]);
         newOption.appendChild(newContent);
@@ -537,6 +538,7 @@ function loadSelectFromObj(selectId, obj) {
     for (var key in obj) {
         var newOption = document.createElement("option");
         newOption.setAttribute("value", key);
+        newOption.style = "color: #000"
         var newContent = document.createTextNode(obj[key]);
         newOption.appendChild(newContent);
         select.appendChild(newOption);
@@ -826,6 +828,7 @@ function loadPresetSelect() {
     var selectNode = document.getElementById("builtinpresetselect");
     for (var k in presets) {
         var newOption = document.createElement("option");
+        newOption.style = "color: #000"
         var newContent = document.createTextNode(k);
         newOption.appendChild(newContent);
         selectNode.appendChild(newOption);
@@ -841,6 +844,7 @@ function start() {
         for (var key in JSON.parse(userPresets)) {
             var presetSelect2 = document.getElementById("userpresetselect");
             var option2 = document.createElement("option");
+            option2.style = "color: #000;"
             var text2 = document.createTextNode(key);
             option2.appendChild(text2);
             presetSelect2.appendChild(option2);
@@ -883,18 +887,20 @@ function start() {
     iniInput.addEventListener("change", function(evt) {
         iniFile = evt.target.files[0];
         if (iniFile) {
-            document.getElementById("ini-loadbutton").disabled = false;
+            document.getElementById("ini-loadbutton").classList.remove('disabled');
+            document.querySelector(`label[for="${event.target.id}"]`).style = "border-color: #f66f01"
         } else {
-            document.getElementById("ini-loadbutton").disabled = true;
+            document.getElementById("ini-loadbutton").classList.add('disabled');
         }
     }, false);
     var saveInput = document.getElementById("sav-file");
     saveInput.addEventListener("change", function (evt) {
         saveFile = evt.target.files[0];
         if (saveFile) {
-            document.getElementById("sav-loadbutton").disabled = false;
+            document.getElementById("sav-loadbutton").classList.remove('disabled');
+            document.querySelector(`label[for="${event.target.id}"]`).style = "border-color: #f66f01"
         } else {
-            document.getElementById("sav-loadbutton").disabled = true;
+            document.getElementById("sav-loadbutton").classList.add('disabled');
         }
     }, false);
     var iniLoadButton = document.getElementById("ini-loadbutton");
@@ -980,10 +986,10 @@ function start() {
             option.appendChild(text);
             presetSelect.appendChild(option);
             presetSelect.value = name;
-            document.getElementById("userpresetload").disabled = false;
-            document.getElementById("userpresetsave").disabled = false;
-            document.getElementById("userpresetdelete").disabled = false;
-            document.getElementById("userpresetexport").disabled = false;
+            document.getElementById("userpresetload").classList.remove('disabled');
+            document.getElementById("userpresetsave").classList.remove('disabled');
+            document.getElementById("userpresetdelete").classList.remove('disabled');
+            document.getElementById("userpresetexport").classList.remove('disabled');
         }
     }, false);
     document.getElementById("userpresetsave").addEventListener("click", function() {
@@ -1021,18 +1027,18 @@ function start() {
         var presets = JSON.parse(item);
         delete presets[name];
         localStorage.setItem("userPresets", JSON.stringify(presets));
-        if (document.getElementById("userpresetselect").value === "") {
-            document.getElementById("userpresetload").disabled = true;
-            document.getElementById("userpresetsave").disabled = true;
-            document.getElementById("userpresetdelete").disabled = true;
-            document.getElementById("userpresetexport").disabled = true;
+        if (document.getElementById("userpresetselect").value === "Your presets" || document.getElementById("userpresetselect").value === "") {
+            document.getElementById("userpresetload").classList.add('disabled');
+            document.getElementById("userpresetsave").classList.add('disabled');
+            document.getElementById("userpresetdelete").classList.add('disabled');
+            document.getElementById("userpresetexport").classList.add('disabled');
         }
     }, false);
-    if (document.getElementById("userpresetselect").value !== "") {
-        document.getElementById("userpresetload").disabled = false;
-        document.getElementById("userpresetsave").disabled = false;
-        document.getElementById("userpresetdelete").disabled = false;
-        document.getElementById("userpresetexport").disabled = false;
+    if (document.getElementById("userpresetselect").value !== "Your presets" || document.getElementById("userpresetselect").value === "") {
+        document.getElementById("userpresetload").classList.remove('disabled');
+        document.getElementById("userpresetsave").classList.remove('disabled');
+        document.getElementById("userpresetdelete").classList.remove('disabled');
+        document.getElementById("userpresetexport").classList.remove('disabled');
     }
     document.getElementById("userpresetexport").addEventListener("click", function() {
         var presets = JSON.parse(localStorage.getItem("userPresets"));

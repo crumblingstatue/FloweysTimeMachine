@@ -1,65 +1,48 @@
 <!doctype html>
 
 <html lang="en">
-    <head>
-        <title> Flowey's Time Machine - Help </title>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-    </head>
-    <body>
-        <h1> Help </h1>
-        <h2> Using external tool </h2>
-        If you wish to temporarily try out a save,
-        you can use the third party tool <a href="https://github.com/LEGOlord208/UndertaleSandbox">UndertaleSandbox</a>.
-        Please note that we are in <b>no way</b> related to them, or any of their actions.
-        
-        If you wish to learn the manual way of installing, carry on with the tutorial!
-        <h2> Getting Started </h2>
-        <p>
-            First, you must find your Undertale save folder.
+
+<head>
+	<title> Flowey's Time Machine - Help </title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<style>
+		p { font-family: 'Undertale', 'Undertale-Bold'; margin-bottom: 8px; }
+		a, code { font-family: 'Undertale-Bold'; color: #f9ff10; }
+		a:hover { color: #ffc710; }
+		@media (max-width: 768px) {
+			body { font-size: 200% !important; }
+		}
+	</style>
+</head>
+
+<body class="p-4 px-16">
+	<h1 class="md:text-4xl text-6xl my-4 text-center">HELP</h1>
+	<h2 class="text-lg">Using external tool</h1>
+	<p class="mt-1">
+		If you wish to temporarily try out a save, you can use the third party tool <a href="https://github.com/LEGOlord208/UndertaleSandbox"
+		target="_blank">UndertaleSandbox</a>. Please note that we are in <b>no way</b> related to them, or any of their actions. If you wish to learn the manual way of installing, carry on with the tutorial!
         </p>
+        <h2 class="text-lg">Getting Started</h2>
         <p>
-            This is usually <code>C:/users/YourUsername/Local Settings/Application Data/UNDERTALE</code>,
-            but it might be different for you, who knows.
+            First, you need to find your Undertale save folder. This is usually <code>C:/Users/username/AppData/Local/UNDERTALE</code>, but it might be different for you, who knows. It should contain at least a file called <code>undertale.ini</code> and a file called <code>file0</code>, unless you haven't saved your game yet, or the save was deleted.
         </p>
+        <h2 class="text-lg">Loading</h2>
         <p>
-            It should contain at least a file called <code>undertale.ini</code>
-            and a file called <code>file0</code>, unless you haven't saved your game yet, or the
-            save was deleted.
+            Once you have found where your existing save data is, you can load it into Flowey's time machine to edit it. You don't have to load an existing save though you can select a preset instead at the top, or use the default preset which is set by default.
         </p>
-        <h2> Loading </h2>
+        <h2 class="text-lg">Editing</h2>
         <p>
-            Once you have found where your existing save data is, you can load it into
-            Flowey's time machine to edit it.
+            Just edit the various fields to your liking. Some fields have a [?] next to them, you can hover over that with the mouse to get some information about the field.
         </p>
+        <h2 class="text-lg">Saving</h2>
         <p>
-            You don't have to load an existing save though, you can select a preset instead at the top,
-            or use the default preset which is set by default.
+            Once you have edited the data to your liking, you can save it using the save button. Just overwrite your existing file0 and undertale.ini.
         </p>
-        <h2> Editing </h2>
-        <p>
-            Just edit the various fields to your liking. Some fields have a [?] next to them, you can
-            hover over that with the mouse to get some information about the field.
-        </p>
-        <h2> Saving </h2>
-        <p>
-            Once you have edited the data to your liking, you can save it using the save button.
-            Just overwrite your existing file0 and undertale.ini.
-        </p>
-        <h2> Undoing genocide erased world / selling your soul </h2>
+        <h2 class="text-lg">Undoing genocide erased world / selling your soul</h2>
         <p>
             If you erased your world, you should see a file called <code>system_information_962</code>.
-        </p>
-        <p>
-            If you sold your soul, you should also see a file called <code>system_information_963</code>.
-        </p>
-        <p>
-            Just delete these files using your file manager.
-        </p>
-        <p>
-            If you are using the Steam version of the game, these files might be backed up and restored by
-            the game on startup.
-            In that case, you should delete the Steam data for UNDERTALE in addition to the system_ files,
-            but I have no information on how to do this.
+            <br>If you sold your soul, you should also see a file called <code>system_information_963</code>.
+            <br>Just delete these files using your file manager. If you are using the Steam version of the game, these files might be backed up and restored by the game on startup. In that case, you should delete the Steam data for UNDERTALE in addition to the system_ files, but I have no information on how to do this.
         </p>
     </body>
 </html>

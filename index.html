@@ -1,181 +1,356 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 
-<html lang="en" manifest="manifest.appcache">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="description" content="A save editor for Undertale." />
-        <meta name="keywords" content="Undertale,save,editor" />
-        <title>Flowey's Time Machine</title>
-        <script src="lib/FileSaver.min.js"></script>
-        <script src="presets/presets.js"></script>
-        <script src="presets/ruins-start.js"></script>
-        <script src="presets/sans-battle.js"></script>
-        <script src="presets/Undyne%20The%20Undying.js"></script>
-        <script src="presets/Asgore%20(normal).js"></script>
-        <script src="presets/Asgore%20(true%20ending).js"></script>
-        <script src="presets/Omega%20Flowey.js"></script>
-        <script src="presets/True%20Pacifist%20Ending.js"></script>
-        <script src="main.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-    </head>
-    <body>
-        <a href="https://github.com/crumblingstatue/FloweysTimeMachine"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-        <h1><img src="res/flowey_nice.png" alt="" id="floweyimg" />Flowey's Time Machine</h1>
-        <p>
-            <a href="help.html" target="_blank"> Help </a>
-        </p>
-        <label> Built-in Presets </label><select id="builtinpresetselect"> </select>
-        <input type="button" id="builtinpresetload" value="Load" />
-        <label> Your presets </label><select id="userpresetselect"> </select>
-        <input type="button" id="userpresetload" value="Load" disabled />
-        <input type="button" id="userpresetsave" value="Save" disabled />
-        <input type="button" id="userpresetnew" value="New" />
-        <input type="button" id="userpresetdelete" value="Delete" disabled />
-        <input type="button" id="userpresetexport" value="Save and Export" disabled />
-        <label> Mute </label><input type="checkbox" id="mute" />
-        <h2> Persistent Data </h2>
-        <p>
-            Things that Undertale remembers throughout multiple playthroughs.
-        </p>
-        <form>
-            <div>
-                <fieldset>
-                    <legend> undertale.ini </legend>
-                    <input type="file" id="ini-file" />
-                    <div>
-                        <input id="ini-loadbutton" type="button" value="Load" disabled />
-                        <input type="button" id="ini-savebutton" value="Save" />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend> General </legend>
-                    <label> Name </label> <input id="ini-name" type="text" />
-                    <label> Location </label> <select id="ini-location"> </select>
-                    <label> Kills </label> <input id="ini-kills" type="text" />
-                    <label> LOVE </label> <input id="ini-love" type="text" />
-                </fieldset>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flowey's Time Machine</title>
+	<script src="lib/FileSaver.min.js"></script><script src="presets/presets.js"></script>
+	<script src="presets/ruins-start.js"></script>
+	<script src="presets/sans-battle.js"></script>
+	<script src="presets/Undyne%20The%20Undying.js"></script>
+	<script src="presets/Asgore%20(normal).js"></script>
+	<script src="presets/Asgore%20(true%20ending).js"></script>
+	<script src="presets/Omega%20Flowey.js"></script>
+	<script src="presets/True%20Pacifist%20Ending.js"></script>
+	<script src="main.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+  <div class="md:hidden w-full h-full flex items-center justify-center">
+    <h1 class="text-center w-5/6 my-10">This time machine is designed for desktop users. Please visit us when you are on desktop.</h1>
+  </div>
+
+	<div class="p-4 hidden md:block">
+		<div class="flex mb-4 h-full w-full justify-center items-center">
+			<img draggable="false" src="res/flowey_nice.png" id="floweyimg" />
+            <h1 class="text-4xl ml-4">Flowey's Time Machine</h1>
+        </div>
+
+        <div>
+          <h6><a href="/help.html" class="text-xl text-undertaleYellow hover:text-undertaleDarkerYellow">What is this?</a></h6>
+
+            <label>Built-in Presets </label><select class="bg-transparent p-1 px-1.5 border-2 border-white" id="builtinpresetselect"></select>
+            <input class="cursor-pointer bg-transparent mb-1.5 p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="builtinpresetload" value="Load" />
+            <label> Mute </label><input type="checkbox" id="mute" />
+            <br>
+            <label>Your presets </label><select class="bg-transparent p-1 px-1.5 border-2 border-white" id="userpresetselect">
+                <option disabled selected>Your presets</option>
+            </select>
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetload" value="Load" />
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetsave" value="Save" />
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder" type="button" id="userpresetnew" value="New" />
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetdelete" value="Delete" />
+            <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetexport" value="Save and Export" />
+        </div>
+        <div class="mb-3">
+            <h1 class="text-2xl mt-1">Persistent Data (undertale.ini)</h1>
+            <p class="text-base">Things that Undertale remembers throughout multiple playthroughs.</p>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">General</h1>
+                <div class="grid grid-cols-3 gap-x-1.5">
+                    <label title="Upload undertale.ini" for="ini-file" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1">
+                        <img src="res/heart.svg"><span>FILE</span>
+                    </label>
+                    <input id="ini-file" type="file" 
+                    onchange="fileUpload(event)" style="display: none;">
+                    <button title="Load current file" id="ini-loadbutton" class="disabled flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style=" border-radius: 0;">
+                        <img src="res/load.png"><span>LOAD</span>
+                    </button>
+                    <button title="Save file" id="ini-savebutton" style="padding-top: 0.24rem;"  class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style="border-radius: 0;">
+                        <img src="res/star.png" ><span>SAVE</span>
+                    </button>
+                </div>
+                <label class="mt-1.5 mb-px">Name</label>
+                <input title="Name the fallen human" id="ini-name" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none w-full mb-1 placeholder-gray-300" placeholder="Name the fallen human" type="text" autocomplete="off">
+                <div class="grid grid-cols-3 gap-x-1.5">
+                    <label class="mb-px">Fun</label>
+                    <label class="mb-px">LOVE</label>
+                    <label class="mb-px">Kills</label>
+                    <input title="LOVE value" id="ini-fun" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="LOVE" type="number" autocomplete="off">
+                    <input title="LOVE value" id="ini-love" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="LOVE" type="number" autocomplete="off">
+                    <input title="Kills" id="ini-kills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
+                </div>
+                <label class="mb-px">Location</label>
+                <select title="Select a location" id="ini-location" class="bg-transparent p-1 px-1.5 border-2 border-white w-full">
+                    <option disabled selected>Location</option>
+                </select>
             </div>
-            <fieldset>
-                <legend> Post-Genocide </legend>
-                <label> system_information_962 <sup title="When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run.">[?]</sup> </label> <input type="button" id="savesi2" value="Save" />
-                <label> system_information_963 <sup title="When this file is present, you have 'sold' your soul to get the world back after a genocide run.">[?]</sup> </label> <input type="button" id="savesi3" value="Save" />
-            </fieldset>
-            <fieldset>
-                <legend> Omega Flowey </legend>
-                <label> Trapped in Flowey's World </label> <input type="checkbox" id="ini-omega-flowey-trapped" />
-                <label> Upcoming soul fight: </label> <select id="ini-omega-flowey-soul"></select>
-                <label> How many times you died </label> <input type="text" id="ini-omega-flowey-deaths" />
-            </fieldset>
-            <fieldset>
-                <legend> Other </legend>
-                <label> Dodged all of the special thanks </label> <input type="checkbox" id="ini-dodged-all-special-thanks" />
-                <label> "Fun" value </label> <input type="text" id="ini-fun" />
-            </fieldset>
-        </form>
-        <h2> SAVE Data </h2>
-        <p>
-            This is what gets SAVED at SAVE points.
-        </p>
-        <form>
-            <div>
-                <fieldset>
-                    <legend> file0 </legend>
-                    <input type="file" id="sav-file" />
-                    <div>
-                        <input id="sav-loadbutton" type="button" value="Load" disabled />
-                        <input type="button" id="sav-savebutton" value="Save" />
-                    </div>
-                </fieldset>
-                <fieldset>
-                <legend>General</legend>
-                <label>Name</label> <input type="text" id="sav-name" />
-                <label>Location</label> <select id="sav-location"> </select>
-                <label>Kills</label> <input type="text" id="sav-kills" />
-                <label>??? kill count </label> <input type="text" id="sav-unkkills" />
-                </fieldset>
-                <fieldset>
-                <legend>Stats</legend>
-                <label>LOVE</label> <input type="text" id="sav-love" />
-                <label>HP</label> <input type="text" id="sav-hp" />
-                <label>EXP</label> <input type="text" id="sav-exp" />
-                <label>GOLD</label> <input type="text" id="sav-gold" />
-                <label>AT</label> <input type="text" id="sav-at" />
-                <label>Weapon AT</label> <input type="text" id="sav-weaponat" />
-                <label>DF</label> <input type="text" id="sav-df" />
-                <label>Armor DF</label> <input type="text" id="sav-armordf" />
-                </fieldset>
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">Omega Flowey</h1>
+                <div class="my-2">
+                    <input id="ini-omega-flowey-trapped" type="checkbox">
+                    <label title="Trapped in Flowey's World" class="inline-block text-center">Trapped in Flowey's World</label>
+                </div>
+                <label class="mt-1.5 mb-px">Times you died</label>
+                <input title="Times you died" id="ini-omega-flowey-deaths" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 w-full" placeholder="Times you died" type="number" autocomplete="off">
+                <label class="mt-1.5 mb-px">Upcoming soul fight</label>
+                <select title="Upcoming soul fight" id="ini-omega-flowey-soul" class="bg-transparent p-1 px-1.5 border-2 border-white w-full">
+                    <option disabled selected>Upcoming soul fight</option>
+                </select>
             </div>
-            <div>
-            <fieldset>
-                <legend>Equipment</legend>
-                <label>Weapon</label> <select id="sav-weapon"> </select>
-                <label>Armor</label> <select id="sav-armor"> </select>
-            </fieldset>
-            <fieldset>
-                <legend>Inventory</legend>
-                <label>Slot 1</label> <select id="sav-invslot1"> </select>
-                <label>Slot 2</label> <select id="sav-invslot2"> </select>
-                <label>Slot 3</label> <select id="sav-invslot3"> </select>
-                <label>Slot 4</label> <select id="sav-invslot4"> </select>
-                <label>Slot 5</label> <select id="sav-invslot5"> </select>
-                <label>Slot 6</label> <select id="sav-invslot6"> </select>
-                <label>Slot 7</label> <select id="sav-invslot7"> </select>
-                <label>Slot 8</label> <select id="sav-invslot8"> </select>
-            </fieldset>
-            <fieldset>
-                <legend>Cellphone</legend>
-                <label> You have cellphone </label> <input id="sav-havecell" type="checkbox" />
-                <label>Slot 1</label> <select id="sav-cellslot1"> </select>
-                <label>Slot 2</label> <select id="sav-cellslot2"> </select>
-                <label>Slot 3</label> <select id="sav-cellslot3"> </select>
-                <label>Slot 4</label> <select id="sav-cellslot4"> </select>
-                <label>Slot 5</label> <select id="sav-cellslot5"> </select>
-                <label>Slot 6</label> <select id="sav-cellslot6"> </select>
-                <label>Slot 7</label> <select id="sav-cellslot7"> </select>
-                <label>Slot 8</label> <select id="sav-cellslot8"> </select>
-            </fieldset>
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">Other</h1>
+                <div class="grid grid-cols-2 gap-x-1.5">
+                    <button title="(system_info_962) When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run." id="savesi2" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center" type="button" style=" border-radius: 0;">
+                        <img src="res/load.png">
+                        <span>sys_info_962 [?]</span>
+                    </button>
+                    <button title="(system_info_963) When this file is present, you have 'sold' your soul to get the world back after a genocide run." id="savesi3" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center" type="button" style=" border-radius: 0;">
+                        <img src="res/load.png">
+                        <span>sys_info_963 [?]</span>
+                    </button>
+                </div>
+                <div class="mt-2">
+                    <input id="ini-dodged-all-special-thanks" type="checkbox">
+                    <label title="Dodged all of the special thanks" class="inline-block text-center">Dodged all of the special thanks</label>
+                </div>
             </div>
-            <div>
-                <fieldset>
-                    <legend> Ruins </legend>
-                    <label> Kill count </label> <input type="text" id="sav-ruinskills" />
-                    <label>Training Dummy State</label> <select id="sav-trainingdummystate"> </select>
-                    <label>Toriel State</label> <select id="sav-torielstate"> </select>
-                </fieldset>
-                <fieldset>
-                    <legend> Snowdin </legend>
-                    <label>Kill count</label> <input type="text" id="sav-snowdinkills" />
-                    <label>Doggo State</label> <select id="sav-doggostate"> </select>
-                    <label>Dogamy & Dogaressa State</label> <select id="sav-dogamydogaressastate"> </select>
-                    <label>Greater Dog State</label> <select id="sav-greaterdogstate"> </select>
-                    <label>Comedian State</label> <select id="sav-comedianstate"> </select>
-                    <label>Papyrus State</label> <select id="sav-papyrusstate"> </select>
-                </fieldset>
-                <fieldset>
-                    <legend> Waterfall </legend>
-                    <label>Kill count</label> <input type="text" id="sav-waterfallkills" />
-                    <label>Shyren State</label> <select id="sav-shyrenstate"> </select>
-                    <label>Mad Dummy State</label> <select id="sav-maddummystate"> </select>
-                    <label>Undyne State 1</label> <select id="sav-undynestate1"> </select>
-                    <label>Undyne State 2</label> <select id="sav-undynestate2"> </select>
-                </fieldset>
-                <fieldset>
-                    <legend> Hotland </legend>
-                    <label>Kill count</label> <input type="text" id="sav-hotlandkills" />
-                    <label>Bro Guards State</label> <select id="sav-broguardsstate"> </select>
-                    <label>Muffet State</label> <select id="sav-muffetstate"> </select>
-                    <label>Mettaton State</label> <select id="sav-mettatonstate"> </select>
-                </fieldset>
+        </div>
+        <div class="my-3">
+            <h1 class="text-2xl">SAVE Data (file0)</h1>
+            <p class="text-base">This is what gets SAVED at SAVE points.</p>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">General</h1>
+                <div class="grid grid-cols-3 gap-x-1.5">
+                    <label title="Upload file0" for="sav-file" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1">
+                        <img src="res/heart.svg"><span>FILE</span>
+                    </label>
+                    <input id="sav-file" type="file" onchange="fileUpload(event)" style="display: none;">
+                    <button title="Load current file" id="sav-loadbutton" class="disabled flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style=" border-radius: 0;">
+                        <img src="res/load.png"><span>LOAD</span>
+                    </button>
+                    <button title="Save file" id="sav-savebutton" style="padding-top: 0.24rem;"  class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style="border-radius: 0;">
+                        <img src="res/star.png"><span>SAVE</span>
+                    </button>
+                </div>
+                <label class="mt-1.5 mb-px">Name</label>
+                <input title="Name the fallen human" id="sav-name" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none w-full mb-1 placeholder-gray-300" placeholder="Name the fallen human" type="text" autocomplete="off">
+                <div class="grid grid-cols-4 gap-x-1.5">
+                    <label class="mb-px">Fun</label>
+                    <label class="mb-px">LOVE</label>
+                    <label class="mb-px">Kills</label>
+                    <label class="mb-px">&nbsp;</label>
+                    <input title="Fun value" id="sav-fun" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="Fun" type="number" autocomplete="off">
+                    <input title="LOVE value" id="sav-love" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="LOVE" type="number" autocomplete="off">
+                    <input title="Kills" id="sav-unkkills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
+                    <input title="Kills" id="sav-kills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
+                </div>
+                <label class="mb-px">Location</label>
+                <select title="Select a location" id="sav-location" class="bg-transparent p-1 px-1.5 border-2 border-white w-full">
+                    <option disabled selected>Location</option>
+                </select>
             </div>
-            <div>
-                <fieldset>
-                  <legend> Other </legend>
-                  <label> True lab exited (can get true ending) </label> <input id="sav-exitedtruelab" type="checkbox" />
-                  <label> Defeated Asriel (true pacifist finished) </label> <input id="sav-defeatedasriel" type="checkbox" />
-                  <label> "Plot" value </label> <select id="sav-plotvalue"> </select>
-                  <label> "Fun" value </label> <input type="text" id="sav-fun" />
-                </fieldset>
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">Stats</h1>
+                <div class="grid grid-cols-3 gap-x-1.5">
+                    <label class="-mt-px mb-px">HP</label>
+                    <label class="-mt-px mb-px">EXP</label>
+                    <label class="-mt-px mb-px">Gold</label>
+                    <input title="HP (Health Points)" id="sav-hp" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="HP" type="number" autocomplete="off">
+                    <input title="EXP (Execution Points)" id="sav-exp" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="EXP" type="number" autocomplete="off">
+                    <input title="Gold" id="sav-gold" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="GOLD" type="number" autocomplete="off">
+                    <label class="mb-px">ATK</label>
+                    <label class="mb-px col-span-2">Weapon ATK</label>
+                    <input title="ATK (Attack)" id="sav-at" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline h-9" placeholder="ATK" type="number" autocomplete="off">
+                    <input title="Weapon ATK (Weapon Attack)" id="sav-weaponat" class="col-span-2 bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="Weapon ATK" type="number" autocomplete="off">
+                    <label class="mb-px">DF</label>
+                    <label class="mb-px col-span-2">Armor DF</label>
+                    <input title="DF (Defence)" id="sav-df" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="DF" type="number" autocomplete="off">
+                    <input title="Armor DF (Armor Defence)" id="sav-armordf" class="col-span-2 bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="Armor DF" type="number" autocomplete="off">
+                </div>
+                <div class="grid grid-cols-2 gap-x-1.5">
+                    <label class="mb-px">Weapon</label>
+                    <label class="mb-px">Armor</label>
+                    <select title="Weapon" id="sav-weapon" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto">
+                        <option disabled selected>Weapon</option>
+                    </select>
+                    <select title="Armor" id="sav-armor" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto">
+                        <option disabled selected>Armor</option>
+                    </select>
+                </div>
             </div>
-        </form>
-    </body>
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">Inventory</h1>
+                <div class="grid grid-cols-2 gap-x-1.5">
+                    <label class="-mt-px">SLOT 1</label>
+                    <label class="-mt-px">SLOT 2</label>
+                    <select title="SLOT 1" id="sav-invslot1" class="bg-transparent p-1 px-1.5 border-2 mb-1 border-white w-auto">
+                        <option disabled selected>SLOT 1</option>
+                    </select>
+                    <select title="SLOT 2" id="sav-invslot2" class="bg-transparent p-1 px-1.5 border-2 mb-1 border-white w-auto">
+                        <option disabled selected>SLOT 2</option>
+                    </select>
+                    <label class="mb-px">SLOT 3</label>
+                    <label class="mb-px">SLOT 4</label>
+                    <select title="SLOT 3" id="sav-invslot3" class="bg-transparent p-1 px-1.5 border-2 mb-1 border-white w-auto">
+                        <option disabled selected>SLOT 3</option>
+                    </select>
+                    <select title="SLOT 4" id="sav-invslot4" class="bg-transparent p-1 px-1.5 border-2 mb-1 border-white w-auto">
+                        <option disabled selected>SLOT 4</option>
+                    </select>
+                    <label class="mb-px">SLOT 5</label>
+                    <label class="mb-px">SLOT 6</label>
+                    <select title="SLOT 5" id="sav-invslot5" class="bg-transparent p-1 px-1.5 border-2 mb-1 border-white w-auto">
+                        <option disabled selected>SLOT 5</option>
+                    </select>
+                    <select title="SLOT 6" id="sav-invslot6" class="bg-transparent p-1 px-1.5 border-2 mn-1 border-white w-auto h-9">
+                        <option disabled selected>SLOT 6</option>
+                    </select>
+                    <label class="mb-px">SLOT 7</label>
+                    <label class="mb-px">SLOT 8</label>
+                    <select title="SLOT 7" id="sav-invslot7" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto">
+                        <option disabled selected>SLOT 7</option>
+                    </select>
+                    <select title="SLOT 8" id="sav-invslot8" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto">
+                        <option disabled selected>SLOT 8</option>
+                    </select>
+                </div>
+            </div>
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">Cellphone</h1>
+                <div class="grid grid-cols-2 gap-x-1.5">
+                    <label class="-mt-px">SLOT 1</label>
+                    <label class="-mt-px">SLOT 2</label>
+                    <select title="SLOT 1" id="sav-cellslot1" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto mb-1">
+                        <option disabled selected>SLOT 1</option>
+                    </select>
+                    <select title="SLOT 2" id="sav-cellslot2" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto mb-1">
+                        <option disabled selected>SLOT 2</option>
+                    </select>
+                    <label class="-mt-px">SLOT 3</label>
+                    <label class="-mt-px">SLOT 4</label>
+                    <select title="SLOT 3" id="sav-cellslot3" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto mb-1">
+                        <option disabled selected>SLOT 3</option>
+                    </select>
+                    <select title="SLOT 4" id="sav-cellslot4" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto mb-1">
+                        <option disabled selected>SLOT 4</option>
+                    </select>
+                    <label class="-mt-px">SLOT 5</label>
+                    <label class="-mt-px">SLOT 6</label>
+                    <select title="SLOT 5" id="sav-cellslot5" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto mb-1">
+                        <option disabled selected>SLOT 5</option>
+                    </select>
+                    <select title="SLOT 6" id="sav-cellslot6" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto mb-1">
+                        <option disabled selected>SLOT 6</option>
+                    </select>
+                    <label class="-mt-px">SLOT 7</label>
+                    <label class="-mt-px">SLOT 8</label>
+                    <select title="SLOT 7" id="sav-cellslot7" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto">
+                        <option disabled selected>SLOT 7</option>
+                    </select>
+                    <select title="SLOT 8" id="sav-cellslot8" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto">
+                        <option disabled selected>SLOT 8</option>
+                    </select>
+                </div>
+                <div class="mt-2">
+                    <input id="sav-havecell" type="checkbox">
+                    <label title="You have a cellphone" class="inline-block text-center">You have a cellphone</label>
+                </div>
+            </div>
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">Ruins</h1>
+                <div class="grid grid-cols-3 gap-x-1.5">
+                    <label class="-mt-px">Kills</label>
+                    <label class="-mt-px">Dummy state</label>
+                    <label class="-mt-px">Toriel state</label>
+                    <input title="Kills" id="sav-ruinskills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
+                    <select title="Dummy state" id="sav-trainingdummystate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Dummy state</option>
+                    </select>
+                    <select title="Toriel state" id="sav-torielstate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Toriel state</option>
+                    </select>
+                </div>
+                <h1 class="text-xl mb-2">Snowdin</h1>
+                <div class="grid grid-cols-2 gap-x-1.5">
+                    <label class="-mt-px">Kills</label>
+                    <label class="-mt-px">Doggo</label>
+                    <input title="Kills" id="sav-snowdinkills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
+                    <select title="Doggo state" id="sav-doggostate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9 mb-1">
+                        <option disabled selected>Doggo state</option>
+                    </select>
+                    <label class="-mt-px">Dogamy</label>
+                    <label class="-mt-px">Greater Dog</label>
+                    <select title="Dogamy & Dogaressa state" id="sav-dogamydogaressastate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9 ">
+                        <option disabled selected>Dogamy & Dogaressa state</option>
+                    </select>
+                    <select title="Greater Dog state" id="sav-greaterdogstate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9 ">
+                        <option disabled selected>Greater Dog state</option>
+                    </select>
+                    <label class="mt-px">Comedian</label>
+                    <label class="mt-px">Papyrus</label>
+                    <select title="Comedian state" id="sav-comedianstate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Comedian state</option>
+                    </select>
+                    <select title="Papyrus state" id="sav-papyrusstate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Papyrus state</option>
+                    </select>
+                </div>
+            </div>
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">Waterfall</h1>
+                <div class="grid grid-cols-3 gap-x-1.5">
+                    <label class="-mt-px">Kills</label>
+                    <label class="-mt-px">Shyren</label>
+                    <label class="-mt-px">Mad Dummy</label>
+                    <input title="Kills" id="sav-waterfallkills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
+                    <select title="Shyren state" id="sav-shyrenstate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Shyren state</option>
+                    </select>
+                    <select title="Mad Dummy state" id="sav-maddummystate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Mad Dummy state</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-x-1.5">
+                    <label class="-mt-1">Undyne 1</label>
+                    <label class="-mt-1">Undyne 2</label>
+                    <select title="Undyne state 1" id="sav-undynestate1" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Undyne state 1</option>
+                    </select>
+                    <select title="Undyne state 2" id="sav-undynestate2" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Undyne state 2</option>
+                    </select>
+                </div>
+                <h1 class="text-xl my-2">Hotland</h1>
+                <div class="grid grid-cols-2 gap-x-1.5">
+                    <label class="-mt-px">Kills</label>
+                    <label class="-mt-px">Bro Guards</label>
+                    <input title="Kills" id="sav-hotlandkills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
+                    <select title="Bro Guards state" id="sav-broguardsstate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Bro Guards state</option>
+                    </select>
+                    <label class="-mt-px">Muffet</label>
+                    <label class="-mt-px">Mettaton</label>
+                    <select title="Muffet state" id="sav-muffetstate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Muffet state</option>
+                    </select>
+                    <select title="Mettaton statae" id="sav-mettatonstate" class="bg-transparent p-1 px-1.5 border-2 border-white w-auto h-9">
+                        <option disabled selected>Mettaton state</option>
+                    </select>
+                </div>
+            </div>
+            <div class="p-3 border-4 border-white">
+                <h1 class="text-xl mb-2">Other</h1>
+                <div class="mt-2">
+                    <input id="sav-exitedtruelab" type="checkbox" name="exitedtruelab">
+                    <label title="True lab exited (can get true ending)" class="inline-block text-center">True lab exited</label>
+                </div>
+                <div class="mt-2 mb-1">  
+                    <input id="sav-defeatedasriel" type="checkbox">
+                    <label title="Defeated Asriel (true pacifist finished)" class="inline-block text-center" for="defeated-asriel">Defeated Asriel</label>
+                </div>
+                <label>Plot value</label>
+                <select title="Plot value" id="sav-plotvalue" class="bg-transparent p-1 px-1.5 w-full border-2 border-white w-auto h-9">
+                    <option disabled selected>Plot value</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
