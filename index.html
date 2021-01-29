@@ -36,7 +36,7 @@
             <label> Mute </label><input type="checkbox" id="mute" />
             <br>
             <label>Your presets </label><select class="bg-transparent p-1 px-1.5 border-2 border-white" id="userpresetselect">
-                <option disabled>Your presets</option>
+                <option disabled selected>Your presets</option>
             </select>
             <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetload" value="Load" />
             <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetsave" value="Save" />
@@ -45,7 +45,7 @@
             <input class="cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder disabled" type="button" id="userpresetexport" value="Save and Export" />
         </div>
         <div class="mb-3">
-            <h1 class="text-2xl">Persistent Data (undertale.ini)</h1>
+            <h1 class="text-2xl mt-1">Persistent Data (undertale.ini)</h1>
             <p class="text-base">Things that Undertale remembers throughout multiple playthroughs.</p>
         </div>
         <div class="grid grid-cols-3 gap-3">
@@ -57,7 +57,7 @@
                     </label>
                     <input id="ini-file" type="file" 
                     onchange="fileUpload(event)" style="display: none;">
-                    <button title="Load current file" id="ini-loadbutton" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style=" border-radius: 0;" disabled>
+                    <button title="Load current file" id="ini-loadbutton" class="disabled flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style=" border-radius: 0;">
                         <img src="res/load.png"><span>LOAD</span>
                     </button>
                     <button title="Save file" id="ini-savebutton" style="padding-top: 0.24rem;"  class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style="border-radius: 0;">
@@ -66,9 +66,11 @@
                 </div>
                 <label class="mt-1.5 mb-px">Name</label>
                 <input title="Name the fallen human" id="ini-name" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none w-full mb-1 placeholder-gray-300" placeholder="Name the fallen human" type="text" autocomplete="off">
-                <div class="grid grid-cols-2 gap-x-1.5">
+                <div class="grid grid-cols-3 gap-x-1.5">
+                    <label class="mb-px">Fun</label>
                     <label class="mb-px">LOVE</label>
                     <label class="mb-px">Kills</label>
+                    <input title="LOVE value" id="ini-fun" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="LOVE" type="number" autocomplete="off">
                     <input title="LOVE value" id="ini-love" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="LOVE" type="number" autocomplete="off">
                     <input title="Kills" id="ini-kills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-1 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
                 </div>
@@ -93,13 +95,13 @@
             <div class="p-3 border-4 border-white">
                 <h1 class="text-xl mb-2">Other</h1>
                 <div class="grid grid-cols-2 gap-x-1.5">
-                    <button title="(system_info_962) When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run." id="savesi2" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center" type="button" style=" border-radius: 0;" disabled>
+                    <button title="(system_info_962) When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run." id="savesi2" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center" type="button" style=" border-radius: 0;">
                         <img src="res/load.png">
-                        <span>sys_info_962</span>
+                        <span>sys_info_962 [?]</span>
                     </button>
-                    <button title="(system_info_963) When this file is present, you have 'sold' your soul to get the world back after a genocide run." id="savesi3" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center" type="button" style=" border-radius: 0;" disabled>
+                    <button title="(system_info_963) When this file is present, you have 'sold' your soul to get the world back after a genocide run." id="savesi3" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center" type="button" style=" border-radius: 0;">
                         <img src="res/load.png">
-                        <span>sys_info_963</span>
+                        <span>sys_info_963 [?]</span>
                     </button>
                 </div>
                 <div class="mt-2">
@@ -120,7 +122,7 @@
                         <img src="res/heart.svg"><span>FILE</span>
                     </label>
                     <input id="sav-file" type="file" onchange="fileUpload(event)" style="display: none;">
-                    <button title="Load current file" id="sav-loadbutton" class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style=" border-radius: 0;" disabled>
+                    <button title="Load current file" id="sav-loadbutton" class="disabled flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style=" border-radius: 0;">
                         <img src="res/load.png"><span>LOAD</span>
                     </button>
                     <button title="Save file" id="sav-savebutton" style="padding-top: 0.24rem;"  class="flex items-center space-x-1 cursor-pointer bg-transparent p-1 px-1.5 border-2 focus:outline-none border-white hover:border-fightBorder items-center justify-center mb-1" type="button" style="border-radius: 0;">
@@ -129,13 +131,15 @@
                 </div>
                 <label class="mt-1.5 mb-px">Name</label>
                 <input title="Name the fallen human" id="sav-name" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none w-full mb-1 placeholder-gray-300" placeholder="Name the fallen human" type="text" autocomplete="off">
-                <div class="grid grid-cols-3 gap-x-1.5">
+                <div class="grid grid-cols-4 gap-x-1.5">
                     <label class="mb-px">Fun</label>
                     <label class="mb-px">LOVE</label>
                     <label class="mb-px">Kills</label>
+                    <label class="mb-px">&nbsp;</label>
                     <input title="Fun value" id="sav-fun" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="Fun" type="number" autocomplete="off">
                     <input title="LOVE value" id="sav-love" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="LOVE" type="number" autocomplete="off">
                     <input title="Kills" id="sav-unkkills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
+                    <input title="Kills" id="sav-kills" class="bg-transparent p-1 px-1.5 border-2 border-white rounded-none mb-2 placeholder-gray-300 inline" placeholder="Kills" type="number" autocomplete="off">
                 </div>
                 <label class="mb-px">Location</label>
                 <select title="Select a location" id="sav-location" class="bg-transparent p-1 px-1.5 border-2 border-white w-full">
@@ -348,20 +352,5 @@
             </div>
         </div>
     </div>
-    
-    <script>
-      document.getElementById('floweyimg').addEventListener('mouseover', function() {
-        document.getElementById('floweyimg').src = "res/flowey_wink.png"
-      })
-      
-      document.getElementById('floweyimg').addEventListener('mouseout', function() {
-        document.getElementById('floweyimg').src = "res/flowey_nice.png"
-      })
-
-      function fileUpload(event) {
-        document.querySelector(`label[for="${event.target.id}"]`).style = "border-color: #f66f01"
-      }
-      
-    </script> 
 </body>
 </html>
