@@ -1,23 +1,23 @@
 @font-face {
   font-family: 'Undertale';
 
-  src: url('/fonts/Undertale-Regular.eot'); /* IE9 Compat Modes */
+  src: url('fonts/Undertale-Regular.eot'); /* IE9 Compat Modes */
 
-  src: url('/fonts/Undertale-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/fonts/Undertale-Regular.woff') format('woff'), /* Modern Browsers */
-       url('/fonts/Undertale-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('/fonts/Undertale-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+  src: url('fonts/Undertale-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/Undertale-Regular.woff') format('woff'), /* Modern Browsers */
+       url('fonts/Undertale-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/Undertale-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 @font-face {
   font-family: 'Undertale-Bold';
 
-  src: url('/fonts/Undertale-Bold.eot'); /* IE9 Compat Modes */
+  src: url('fonts/Undertale-Bold.eot'); /* IE9 Compat Modes */
 
-  src: url('/fonts/Undertale-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/fonts/Undertale-Bold.woff') format('woff'), /* Modern Browsers */
-       url('/fonts/Undertale-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('/fonts/Undertale-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+  src: url('fonts/Undertale-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/Undertale-Bold.woff') format('woff'), /* Modern Browsers */
+       url('fonts/Undertale-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/Undertale-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 .disabled {
