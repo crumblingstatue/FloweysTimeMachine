@@ -1023,14 +1023,14 @@ function start() {
         var presets = JSON.parse(item);
         delete presets[name];
         localStorage.setItem("userPresets", JSON.stringify(presets));
-        if (document.getElementById("userpresetselect").value === "NONE" || document.getElementById("userpresetselect").value === "") {
+        if (document.getElementById("userpresetselect").value === "") {
             document.getElementById("userpresetload").classList.add('disabled');
             document.getElementById("userpresetsave").classList.add('disabled');
             document.getElementById("userpresetdelete").classList.add('disabled');
             document.getElementById("userpresetexport").classList.add('disabled');
         }
     }, false);
-    if (document.getElementById("userpresetselect").value !== "NONE" || document.getElementById("userpresetselect").value === "") {
+    if (document.getElementById("userpresetselect").value === "") {
         document.getElementById("userpresetload").classList.remove('disabled');
         document.getElementById("userpresetsave").classList.remove('disabled');
         document.getElementById("userpresetdelete").classList.remove('disabled');
