@@ -508,7 +508,6 @@ function insert_inv_lists() {
     "use strict";
     function insert(node, i) {
         var newOption = document.createElement("option");
-        newOption.style = "color: #000"
         newOption.setAttribute("value", i);
         var newContent = document.createTextNode(items[i]);
         newOption.appendChild(newContent);
@@ -538,7 +537,6 @@ function loadSelectFromObj(selectId, obj) {
     for (var key in obj) {
         var newOption = document.createElement("option");
         newOption.setAttribute("value", key);
-        newOption.style = "color: #000"
         var newContent = document.createTextNode(obj[key]);
         newOption.appendChild(newContent);
         select.appendChild(newOption);
@@ -828,7 +826,6 @@ function loadPresetSelect() {
     var selectNode = document.getElementById("builtinpresetselect");
     for (var k in presets) {
         var newOption = document.createElement("option");
-        newOption.style = "color: #000"
         var newContent = document.createTextNode(k);
         newOption.appendChild(newContent);
         selectNode.appendChild(newOption);
@@ -844,7 +841,6 @@ function start() {
         for (var key in JSON.parse(userPresets)) {
             var presetSelect2 = document.getElementById("userpresetselect");
             var option2 = document.createElement("option");
-            option2.style = "color: #000;"
             var text2 = document.createTextNode(key);
             option2.appendChild(text2);
             presetSelect2.appendChild(option2);
@@ -1027,14 +1023,14 @@ function start() {
         var presets = JSON.parse(item);
         delete presets[name];
         localStorage.setItem("userPresets", JSON.stringify(presets));
-        if (document.getElementById("userpresetselect").value === "Your presets" || document.getElementById("userpresetselect").value === "") {
+        if (document.getElementById("userpresetselect").value === "NONE" || document.getElementById("userpresetselect").value === "") {
             document.getElementById("userpresetload").classList.add('disabled');
             document.getElementById("userpresetsave").classList.add('disabled');
             document.getElementById("userpresetdelete").classList.add('disabled');
             document.getElementById("userpresetexport").classList.add('disabled');
         }
     }, false);
-    if (document.getElementById("userpresetselect").value !== "Your presets" || document.getElementById("userpresetselect").value === "") {
+    if (document.getElementById("userpresetselect").value !== "NONE" || document.getElementById("userpresetselect").value === "") {
         document.getElementById("userpresetload").classList.remove('disabled');
         document.getElementById("userpresetsave").classList.remove('disabled');
         document.getElementById("userpresetdelete").classList.remove('disabled');
