@@ -132,20 +132,27 @@ select,
 button:focus,
 input:focus,
 .file-button:focus {
+  appearance: none;
   font-size: 100%;
   background: #090909;
   border: 2px solid #151515;
-  padding: 0.25rem 0.375rem;
+  padding: 0.3rem 0.5rem;
   outline: none;
 }
 
-button,
-input[type="button"] {
+input,
+input[type="text"],
+input[type="number"],
+select {
+  appearance: none;
+  margin: 0;
+}
+
+button {
   cursor: pointer;
 }
 
 button:hover,
-input[type="button"]:hover,
 .file-button:hover,
 [type="checkbox"]:focus,
 [type="text"]:focus,
