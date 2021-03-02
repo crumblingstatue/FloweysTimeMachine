@@ -1030,7 +1030,7 @@ function start() {
             document.getElementById("userpresetexport").classList.add('disabled');
         }
     }, false);
-    if (document.getElementById("userpresetselect").value === "") {
+    if (document.getElementById("userpresetselect").value !== "") {
         document.getElementById("userpresetload").classList.remove('disabled');
         document.getElementById("userpresetsave").classList.remove('disabled');
         document.getElementById("userpresetdelete").classList.remove('disabled');
