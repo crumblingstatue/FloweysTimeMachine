@@ -884,7 +884,7 @@ function start() {
         iniFile = evt.target.files[0];
         if (iniFile) {
             document.getElementById("ini-loadbutton").classList.remove('disabled');
-            document.querySelector(`label[for="${event.target.id}"]`).style = "border-color: #1c568a"
+            document.querySelector(`label[for="${event.target.id}"]`).style = "border-color: #fff"
         } else {
             document.getElementById("ini-loadbutton").classList.add('disabled');
         }
@@ -894,7 +894,7 @@ function start() {
         saveFile = evt.target.files[0];
         if (saveFile) {
             document.getElementById("sav-loadbutton").classList.remove('disabled');
-            document.querySelector(`label[for="${event.target.id}"]`).style = "border-color: #1c568a"
+            document.querySelector(`label[for="${event.target.id}"]`).style = "border-color: #fff"
         } else {
             document.getElementById("sav-loadbutton").classList.add('disabled');
         }
