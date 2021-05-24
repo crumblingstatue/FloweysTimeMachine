@@ -18,58 +18,60 @@
   </head>
 
   <body>
-    <div class="sidebar">
-      <header>
-        <img draggable="false" src="res/flowey_nice.png" id="floweyimg" />
-        <h1 style="margin-left: 0.4rem">Flowey's Time Machine</h1>
+    <nav class="grid-cols-7">
+      <div class="col-span-2">
+        <p>Built-in Presets</p>
+        <div class="grid-cols-4 mt-1.5">
+          <select id="builtinpresetselect" class="col-span-3"></select>
+          <button id="builtinpresetload">Load</button>
+        </div>
+
+        <div class="grid-cols-2 mt-1.5">
+          <button
+            title="When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run."
+            id="savesi2"
+          >
+            <span>sys_info_962</span>
+          </button>
+          <button
+            title="When this file is present, you have 'sold' your soul to get the world back after a genocide run."
+            id="savesi3"
+          >
+            <span>sys_info_963</span>
+          </button>
+        </div>
+      </div>
+
+      <header class="col-span-3">
+        <img src="res/flowey_nice.png" draggable="false" id="floweyimg" alt="floweyimg">
+        <h1 style="margin-left: 0.5rem">Flowey's<br>Time<br>Machine</h1>
       </header>
-      <a href="help.html">What is this? [HELP]</a>
-      <br />
+
+      <div class="col-span-2">
+        <p>Your Presets</p>
+        <div class="grid-cols-4 mt-1.5">
+          <select id="userpresetselect" class="col-span-2"></select>
+          <button class="disabled" id="userpresetload">Load</button>
+          <button class="disabled" id="userpresetsave">Save</button>
+
+          <div class="grid-cols-3 col-span-4">
+            <button id="userpresetnew">New</button>
+            <button class="disabled" id="userpresetdelete">Delete</button>
+            <button class="disabled" id="userpresetexport">Export</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex" style="margin-top: 0.25rem; gap: 0.5rem; justify-content: space-between;">
+      <a href="help.html">What is this?</a>
       <div class="checkbox">
         <input id="mute" type="checkbox" />
         <label>Mute</label>
       </div>
-
-      <h3>Built-in Presets</h3>
-      <div class="grid-cols-4">
-        <select id="builtinpresetselect" class="col-span-3"></select>
-        <button id="builtinpresetload">Load</button>
-      </div>
-
-      <h3 class="col-span-4">Your Presets</h3>
-      <div class="grid-cols-4">
-        <select
-          id="userpresetselect"
-          class="col-span-2"
-        >
-        </select>
-        <button class="disabled" id="userpresetload">Load</button>
-        <button class="disabled" id="userpresetsave">Save</button>
-
-        <div class="grid-cols-3 col-span-4">
-          <button id="userpresetnew">New</button>
-          <button class="disabled" id="userpresetdelete">Delete</button>
-          <button class="disabled" id="userpresetexport">Export</button>
-        </div>
-      </div>
-
-      <div class="grid mt-6">
-        <button
-          title="When this file is present, the world is in the 'deleted' state that is triggered when you complete a genocide run."
-          id="savesi2"
-        >
-          <img src="res/load.png" /><span>system_info_962 [?]</span>
-        </button>
-        <button
-          title="When this file is present, you have 'sold' your soul to get the world back after a genocide run."
-          id="savesi3"
-        >
-          <img src="res/load.png" /><span>system_info_963 [?]</span>
-        </button>
-      </div>
     </div>
 
-    <div style="padding: 1rem 1rem 1rem 18.6rem">
+    <div style="margin-top: 3rem;">
       <div>
         <h1>Persistent Data (undertale.ini)</h1>
         <p>Things that UNDERTALE remembers throughout multiple playthroughs</p>
@@ -132,7 +134,7 @@
 
         <div class="flex">
           <fieldset class="w-full">
-            <legend>Omega Flowey</legend>
+            <legend>Omega Flowey & Other</legend>
             <div class="grid">
               <label>Times you died</label>
               <input
@@ -153,14 +155,10 @@
                   >Trapped in Flowey's World</label
                 >
               </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="w-full">
-            <legend>Other</legend>
-            <div class="checkbox">
-              <input id="ini-dodged-all-special-thanks" type="checkbox" />
-              <label>Dodged special thanks</label>
+              <div class="checkbox" style="margin-top: -1px">
+                <input id="ini-dodged-all-special-thanks" type="checkbox" />
+                <label>Dodged special thanks</label>
+              </div>
             </div>
           </fieldset>
         </div>
@@ -436,8 +434,8 @@
           <div class="grid-cols-2">
             <table>
               <tr>
-                <th>Value</th>
-                <th>Effect</th>
+                <td>Value</th>
+                <td>Effect</th>
               </tr>
               <tr>
                 <td>2-39</td>
@@ -455,15 +453,11 @@
                 <td>56-57</td>
                 <td>Nightmare mode</td>
               </tr>
-              <tr>
-                <td>61-63</td>
-                <td>Gaster followers</td>
-              </tr>
             </table>
             <table>
               <tr>
-                <th>Value</th>
-                <th>Effect</th>
+                <td>61-63</td>
+                <td>Gaster followers</td>
               </tr>
               <tr>
                 <td>65</td>
