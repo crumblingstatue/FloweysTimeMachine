@@ -564,7 +564,9 @@ function loadSaveFromFile(file, closure) {
     var reader = new FileReader();
     reader.onload = function(e) {
         var text = e.target.result;
-        closure(text.match(/[^\r\n]+/g));
+        closure(text.match(/[^\r\n]+/g).map(function(line) {
+            return line.trim();
+        }));
     };
     reader.readAsText(file);
 }
