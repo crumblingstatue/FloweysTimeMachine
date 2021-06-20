@@ -604,8 +604,8 @@ function updatePersistentDataForm(iniobj) {
     } else {
         document.getElementById("ini-dodged-all-special-thanks").checked = false;
     }
-    if (iniobj.fun) {
-        document.getElementById("ini-fun").value = parseInt(iniobj.fun.trim());
+    if (iniobj.General.fun) {
+        document.getElementById("ini-fun").value = parseInt(iniobj.General.fun.trim());
     }
 }
 
