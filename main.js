@@ -88,8 +88,8 @@ var weaponAts = {
     "45": 2,  // torn notebook
     "47": 10, // burnt pan
     "49": 12, // empty gun
-    "51": 15  // worn dagger
-    "52": 99, // Real Knife
+    "51": 15, // worn dagger
+    "52": 99  // Real Knife
 };
 
 var ArmorDfs = {
