@@ -67,6 +67,9 @@ var items = [
     "<invalid>"
 ];
 
+var weapons = [3, 13, 14, 25, 45, 47, 49, 51, 52],
+    armors  = [4, 12, 15, 24, 44, 46, 48, 50, 53, 64];
+
 var cellOpts = {
     "0": "Empty",
     "201": "Say Hello",
@@ -88,8 +91,8 @@ var weaponAts = {
     "45": 2,  // torn notebook
     "47": 10, // burnt pan
     "49": 12, // empty gun
-    "51": 15  // worn dagger
-    "52": 99, // Real Knife
+    "51": 15,  // worn dagger
+    "52": 99 // Real Knife
 };
 
 var ArmorDfs = {
@@ -510,21 +513,11 @@ function flowey_laugh_once() {
 
 function insert_inv_lists() {
     "use strict";
-    function insert(node, i) {
-        var newOption = document.createElement("option");
-        newOption.setAttribute("value", i);
-        var newContent = document.createTextNode(items[i]);
-        newOption.appendChild(newContent);
-        var select = document.getElementById(node);
-        select.appendChild(newOption);
+    for (var i = 1; i <= 8; i++) {
+        loadSelectFromObj("sav-invslot" + i, items);
     }
-    for (var i = 0; i < items.length; i++) {
-        for (var j = 1; j <= 8; j++) {
-            insert("sav-invslot" + j, i);
-        }
-        insert("sav-weapon", i);
-        insert("sav-armor", i);
-    }
+    loadSelectFromObj("sav-weapon", items);
+    loadSelectFromObj("sav-armor", items);
 }
 
 function insert_cell_lists() {
