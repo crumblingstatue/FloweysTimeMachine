@@ -81,26 +81,28 @@ var cellOpts = {
 };
 
 var weaponAts = {
-    "3": 0, // stick
-    "13": 3,
-    "16": 5,
-    "52": 99,
-    "47": 10,
-    "25": 7,
-    "45": 2,
-    "49": 12,
-    "51": 15
+    "3": 0,   // stick
+    "13": 3,  // toy knife
+    "14": 5,  // tough glove
+    "25": 7,  // ballet shoes
+    "45": 2,  // torn notebook
+    "47": 10, // burnt pan
+    "49": 12, // empty gun
+    "51": 15  // worn dagger
+    "52": 99, // Real Knife
 };
 
 var ArmorDfs = {
-    "4": 0, // bandage
-    "12": 3, // faded ribbon
-    "15": 7, // manly bandana
-    "44": 5, // clouded glasses
+    "4": 0,   // bandage
+    "12": 3,  // faded ribbon
+    "15": 7,  // manly bandana
+    "24": 10, // old tutu
+    "44": 6,  // clouded glasses
     "46": 11, // stained apron
+    "48": 12, // cowboy hat
     "50": 15, // heart locket
     "53": 99, // The Locket
-    "64": 20 // temy armor
+    "64": 20  // temy armor
 };
 
 var rooms = {
@@ -323,7 +325,7 @@ var rooms = {
     "235": "Throne Room [SAVE]",
     "236": "The End [SAVE]",
     "237": "Barrier",
-    "241": "Outside",
+    "241": "Outside [Dogchecked]",
     "242": "Laboratory Elevator",
     "243": "True Lab - Elevator",
     "244": "True Lab - Elevator Entrance",
@@ -347,7 +349,7 @@ var rooms = {
     "262": "True Lab - Power room corridor",
     "263": "True Lab - Power room",
     "265": "Snowdin - Ice Cave 1",
-    "331": "Asriel room"
+    "331": "Asriel room [Dogchecked]"
 };
 
 var floweyStates = {
@@ -363,14 +365,15 @@ var floweyStates = {
 
 var torielStates = {
     "0": "Initial state",
-    "3": "Unknown",
+    "1": "In basement",
+    "3": "Fled from",
     "4": "Killed",
     "5": "Spared"
 };
 
 var comedianStates = {
     "0": "Initial state",
-    "1": "Unknown",
+    "1": "Laughed at joke [Yellow credit]",
     "2": "Killed"
 };
 
@@ -417,22 +420,23 @@ var trainingDummyStates = {
 var shyrenStates = {
     "0": "Initial state",
     "1": "Killed",
-    "2": "Unknown"
+    "2": "Continued humming [Yellow credit]"
 };
 
-var madDummyStates = {
+var madDummyStates = { // This flag is actually for Glad Dummy, as Mad Dummy cannot be killed.
     "0": "Initial state",
     "1": "Killed"
 };
 
-var undyneStates1 = {
+var undyneStates1 = { // Undyne The Undying
     "0": "Initial state",
     "1": "Killed"
 };
 
-var undyneStates2 = {
+var undyneStates2 = { // Undyne in general
     "0": "Initial state",
-    "1": "Killed"
+    "1": "Killed",
+    "2": "Sick"
 };
 
 var broGuardsStates = {
