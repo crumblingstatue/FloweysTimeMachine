@@ -533,21 +533,16 @@ function flowey_laugh_once() {
     }
 }
 
-function insert_inv_lists() {
+function insert_inv_cell_lists() {
     "use strict";
     for (var i = 1; i <= 8; i++) {
         loadSelectFromObj("sav-invslot" + i, items);
+        loadSelectFromObj("sav-cellslot" + i, cellOpts);
     }
     loadSelectFromObj("sav-weapon", items);
     loadSelectFromObj("sav-armor", items);
 }
 
-function insert_cell_lists() {
-    "use strict";
-    for (var i = 1; i <= 8; i++) {
-        loadSelectFromObj("sav-cellslot" + i, cellOpts);
-    }
-}
 
 function loadSelectFromObj(selectId, obj) {
     "use strict";
@@ -883,8 +878,7 @@ function start() {
     loadSelectFromObj("sav-broguardsstate", broGuardsStates);
     loadSelectFromObj("sav-muffetstate", muffetStates);
     loadSelectFromObj("sav-mettatonstate", mettatonStates);
-    insert_inv_lists();
-    insert_cell_lists();
+    insert_inv_cell_lists();
     loadPresetSelect();
     loadPreset("Ruins Start");
     var iniFile, saveFile;
