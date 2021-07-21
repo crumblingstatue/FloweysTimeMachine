@@ -67,8 +67,30 @@ var items = [
     "<invalid>"
 ];
 
-var weapons = [3, 13, 14, 25, 45, 47, 49, 51, 52],
-    armors  = [4, 12, 15, 24, 44, 46, 48, 50, 53, 64];
+var weapons = {
+    "3": "Stick",
+    "13": "Toy Knife",
+    "14": "Tough Glove",
+    "25": "Ballet Shoes",
+    "45": "Torn Notebook",
+    "47": "Burnt Pan",
+    "49": "Empty Gun",
+    "51": "Worn Dagger",
+    "52": "Real Knife"
+};
+
+var armors = {
+    "4": "Bandage",
+    "12": "Faded Ribbon",
+    "15": "Manly Bandana",
+    "24": "Old Tutu",
+    "44": "Cloudy Glasses",
+    "46": "Stained Apron",
+    "48": "Cowboy Hat",
+    "50": "Heart Locket",
+    "53": "The Locket",
+    "64": "temy armor"
+};
 
 var cellOpts = {
     "0": "Empty",
@@ -680,9 +702,9 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-weaponat").value = values[5];
     document.getElementById("sav-df").value = values[6];
     document.getElementById("sav-armordf").value = values[7];
-    for (var i = 0; i < 8; i++) {
-        updateSelection("sav-invslot" + (i + 1), values, 12 + (i * 2), items);
-        updateSelection("sav-cellslot" + (i + 1), values, 13 + (i * 2), cellOpts);
+    for (var i = 1; i <= 8; i++) {
+        updateSelection("sav-invslot" + i, values, 10 + (i * 2), items);
+        updateSelection("sav-cellslot" + i, values, 11 + (i * 2), cellOpts);
     }
     updateSelection("sav-weapon", values, 28, items);
     updateSelection("sav-armor", values, 29, items);
@@ -738,22 +760,10 @@ function updateSaveValuesFromForm(values) {
     values[9] = document.getElementById("sav-exp").value;
     values[10] = document.getElementById("sav-gold").value;
     values[11] = document.getElementById("sav-kills").value;
-    values[12] = document.getElementById("sav-invslot1").value;
-    values[13] = document.getElementById("sav-cellslot1").value;
-    values[14] = document.getElementById("sav-invslot2").value;
-    values[15] = document.getElementById("sav-cellslot2").value;
-    values[16] = document.getElementById("sav-invslot3").value;
-    values[17] = document.getElementById("sav-cellslot3").value;
-    values[18] = document.getElementById("sav-invslot4").value;
-    values[19] = document.getElementById("sav-cellslot4").value;
-    values[20] = document.getElementById("sav-invslot5").value;
-    values[21] = document.getElementById("sav-cellslot5").value;
-    values[22] = document.getElementById("sav-invslot6").value;
-    values[23] = document.getElementById("sav-cellslot6").value;
-    values[24] = document.getElementById("sav-invslot7").value;
-    values[25] = document.getElementById("sav-cellslot7").value;
-    values[26] = document.getElementById("sav-invslot8").value;
-    values[27] = document.getElementById("sav-cellslot8").value;
+    for (var i = 1; i <= 8; i++) {
+        values[10 + (i * 2)] = document.getElementById("sav-invslot" + i).value;
+        values[11 + (i * 2)] = document.getElementById("sav-cellslot" + i).value;
+    }
     values[28] = document.getElementById("sav-weapon").value;
     values[29] = document.getElementById("sav-armor").value;
     values[44] = document.getElementById("sav-trainingdummystate").value;
