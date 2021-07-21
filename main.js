@@ -118,7 +118,7 @@ var weaponAts = {
 };
 
 var armorAts = {
-    "48": 5  // cowboy hat
+    "48": 5, // cowboy hat
     "64": 10 // temy armor
 }
 
