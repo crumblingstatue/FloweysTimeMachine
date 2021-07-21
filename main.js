@@ -709,8 +709,13 @@ function updateSaveDataForm(values) {
         updateSelection("sav-invslot" + i, values, 10 + (i * 2), items);
         updateSelection("sav-cellslot" + i, values, 11 + (i * 2), cellOpts);
     }
-    updateSelection("sav-weapon", values, 28, items);
-    updateSelection("sav-armor", values, 29, items);
+    if (document.getElementById("allow-non-equipables").checked) {
+        updateSelection("sav-weapon", values, 28, items);
+        updateSelection("sav-armor", values, 29, items);
+    } else {
+        updateSelection("sav-weapon", values, 28, weapons);
+        updateSelection("sav-armor", values, 29, armors);
+    }
     updateSelection("sav-trainingdummystate", values, 44, trainingDummyStates);
     updateSelection("sav-torielstate", values, 75, torielStates);
     updateSelection("sav-doggostate", values, 82, doggoStates);
@@ -730,22 +735,10 @@ function updateSaveDataForm(values) {
     updateSelection("sav-muffetstate", values, 427, muffetStates);
     updateSelection("sav-broguardsstate", values, 432, broGuardsStates);
     updateSelection("sav-mettatonstate", values, 455, mettatonStates);
-    if (parseInt(values[523].trim()) === 12) {
-        document.getElementById("sav-exitedtruelab").checked = true;
-    } else {
-        document.getElementById("sav-exitedtruelab").checked = false;
-    }
-    if (parseInt(values[37].trim()) === 1) {
-        document.getElementById("sav-defeatedasriel").checked = true;
-    } else {
-        document.getElementById("sav-defeatedasriel").checked = false;
-    }
+    document.getElementById("sav-exitedtruelab").checked = (parseInt(values[523].trim()) === 12);
+    document.getElementById("sav-defeatedasriel").checked = (parseInt(values[37].trim()) === 1);
     updateSelection("sav-plotvalue", values, 542, plotValues);
-    if (parseInt(values[545].trim()) === 1) {
-        document.getElementById("sav-havecell").checked = true;
-    } else {
-        document.getElementById("sav-havecell").checked = false;
-    }
+    document.getElementById("sav-havecell").checked = (parseInt(values[545].trim()) === 1);
     document.getElementById("sav-location").value = parseInt(values[547].trim());
     document.getElementById("sav-fun").value = parseInt(values[35].trim());
 }
