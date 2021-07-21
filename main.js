@@ -117,6 +117,11 @@ var weaponAts = {
     "52": 99 // Real Knife
 };
 
+var armorAts = {
+    "48": 5  // cowboy hat
+    "64": 10 // temy armor
+}
+
 var ArmorDfs = {
     "4": 0,   // bandage
     "12": 3,  // faded ribbon
@@ -785,17 +790,9 @@ function updateSaveValuesFromForm(values) {
     } else {
         values[523] = "0";
     }
-    if (document.getElementById("sav-defeatedasriel").checked) {
-        values[37] = "1";
-    } else {
-        values[37] = "0";
-    }
+    values[37] = document.getElementById("sav-defeatedasriel").checked;
     values[542] = document.getElementById("sav-plotvalue").value;
-    if (document.getElementById("sav-havecell").checked) {
-        values[545] = "1";
-    } else {
-        values[545] = "0";
-    }
+    values[545] = document.getElementById("sav-havecell").checked;
     values[547] = document.getElementById("sav-location").value;
     values[35] = document.getElementById("sav-fun").value;
 }
@@ -944,20 +941,24 @@ function start() {
         saveAs(blob, "system_information_963", true);
         flowey_laugh_once();
     }, false);
+    
     var weaponSelect = document.getElementById("sav-weapon");
-    weaponSelect.onchange = function() {
-        var at = weaponAts[weaponSelect.value];
-        if (typeof at !== "undefined") {
-            document.getElementById("sav-weaponat").value = at;
-        }
-    };
     var armorSelect = document.getElementById("sav-armor");
+    weaponSelect.onchange = function() {
+        var weaponAt = weaponAts[weaponSelect.value];
+        var armorAt = armorAts[armorSelect.value] || 0; // Cowboy Hat, Temmie Armor
+        if (typeof weaponAt !== "undefined") {
+            document.getElementById("sav-weaponat").value = weaponAt + armorAt;
+        }
+        
+    };
     armorSelect.onchange = function() {
         var df = ArmorDfs[armorSelect.value];
         if (typeof df !== "undefined") {
             document.getElementById("sav-armordf").value = df;
         }
     };
+    
     document.getElementById("builtinpresetload").addEventListener("click", function() {
         var name = document.getElementById("builtinpresetselect").value;
         loadPreset(name);
