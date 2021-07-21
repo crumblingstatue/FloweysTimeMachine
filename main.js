@@ -544,8 +544,8 @@ function insert_inv_cell_lists() {
         loadSelectFromObj("sav-invslot" + i, items);
         loadSelectFromObj("sav-cellslot" + i, cellOpts);
     }
-    loadSelectFromObj("sav-weapon", items);
-    loadSelectFromObj("sav-armor", items);
+    loadSelectFromObj("sav-weapon", weapons);
+    loadSelectFromObj("sav-armor", armors);
 }
 
 
@@ -682,10 +682,13 @@ function updateIniFromForm(ini) {
 function updateSelection(id, values, index, list) {
     "use strict";
     var value = parseInt(values[index].trim());
+    while (document.getElementById(id).firstChild) {
+        document.getElementById(id).removeChild(document.getElementById(id).firstChild);
+    }
     if (!list[value]) {
         list[value] = "Unrecognized (" + value + ")";
-        loadSelectFromObj(id, list);
     }
+    loadSelectFromObj(id, list);
     document.getElementById(id).value = value;
 }
 
@@ -965,6 +968,15 @@ function start() {
             document.getElementById("sav-weaponat").value = parseInt(document.getElementById("sav-weaponat").value) + armorAt;
         }
     };
+    document.getElementById("allow-non-equipables").addEventListener("change", function() {
+        if (document.getElementById("allow-non-equipables").checked) {
+            updateSelection("sav-weapon", [document.getElementById("sav-weapon").value], 0, items);
+            updateSelection("sav-armor",  [document.getElementById("sav-armor").value],  0, items);
+        } else {
+            updateSelection("sav-weapon", [document.getElementById("sav-weapon").value], 0, weapons);
+            updateSelection("sav-armor",  [document.getElementById("sav-armor").value],  0, armors);
+        }
+    }, false);
     
     document.getElementById("builtinpresetload").addEventListener("click", function() {
         var name = document.getElementById("builtinpresetselect").value;
