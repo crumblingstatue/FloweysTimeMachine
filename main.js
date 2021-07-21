@@ -957,6 +957,13 @@ function start() {
         if (typeof df !== "undefined") {
             document.getElementById("sav-armordf").value = df;
         }
+        var weaponAt = weaponAts[weaponSelect.value];
+        var armorAt = armorAts[armorSelect.value] || 0;
+        if (typeof weaponAt !== "undefined") {
+            document.getElementById("sav-weaponat").value = weaponAt + armorAt;
+        } else {
+            document.getElementById("sav-weaponat").value = parseInt(document.getElementById("sav-weaponat").value) + armorAt;
+        }
     };
     
     document.getElementById("builtinpresetload").addEventListener("click", function() {
