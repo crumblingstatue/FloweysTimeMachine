@@ -113,8 +113,8 @@ var weaponAts = {
     "45": 2,  // torn notebook
     "47": 10, // burnt pan
     "49": 12, // empty gun
-    "51": 15,  // worn dagger
-    "52": 99 // Real Knife
+    "51": 15, // worn dagger
+    "52": 99  // Real Knife
 };
 
 var armorAts = {
@@ -538,17 +538,6 @@ function flowey_laugh_once() {
     }
 }
 
-function insert_inv_cell_lists() {
-    "use strict";
-    for (var i = 1; i <= 8; i++) {
-        loadSelectFromObj("sav-invslot" + i, items);
-        loadSelectFromObj("sav-cellslot" + i, cellOpts);
-    }
-    loadSelectFromObj("sav-weapon", weapons);
-    loadSelectFromObj("sav-armor", armors);
-}
-
-
 function loadSelectFromObj(selectId, obj) {
     "use strict";
     var select = document.getElementById(selectId);
@@ -871,7 +860,12 @@ function start() {
     loadSelectFromObj("sav-broguardsstate", broGuardsStates);
     loadSelectFromObj("sav-muffetstate", muffetStates);
     loadSelectFromObj("sav-mettatonstate", mettatonStates);
-    insert_inv_cell_lists();
+    for (var i = 1; i <= 8; i++) {
+        loadSelectFromObj("sav-invslot" + i, items);
+        loadSelectFromObj("sav-cellslot" + i, cellOpts);
+    }
+    loadSelectFromObj("sav-weapon", weapons);
+    loadSelectFromObj("sav-armor", armors);
     loadPresetSelect();
     loadPreset("Ruins Start");
     var iniFile, saveFile;
