@@ -777,9 +777,9 @@ function updateIniFromForm(ini) {
     }
 }
 
-function updateSelection(id, values, index, list) {
+function updateSelection(id, value, list) {
     "use strict";
-    var value = parseInt(values[index].trim());
+    value = parseInt(value.trim());
     while (document.getElementById(id).firstChild) {
         document.getElementById(id).removeChild(document.getElementById(id).firstChild);
     }
@@ -804,38 +804,38 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-df").value = values[6];
     document.getElementById("sav-armordf").value = values[7];
     for (var i = 1; i <= 8; i++) {
-        updateSelection("sav-invslot" + i, values, 10 + (i * 2), items);
-        updateSelection("sav-cellslot" + i, values, 11 + (i * 2), cellOpts);
+        updateSelection("sav-invslot" + i, values[10 + (i * 2)], items);
+        updateSelection("sav-cellslot" + i, values[11 + (i * 2)], cellOpts);
     }
     if (document.getElementById("allow-non-equipables").checked) {
-        updateSelection("sav-weapon", values, 28, items);
-        updateSelection("sav-armor", values, 29, items);
+        updateSelection("sav-weapon", values[28], items);
+        updateSelection("sav-armor", values[29], items);
     } else {
-        updateSelection("sav-weapon", values, 28, weapons);
-        updateSelection("sav-armor", values, 29, armors);
+        updateSelection("sav-weapon", values[28], weapons);
+        updateSelection("sav-armor", values[29], armors);
     }
-    updateSelection("sav-trainingdummystate", values, 44, trainingDummyStates);
-    updateSelection("sav-torielstate", values, 75, torielStates);
-    updateSelection("sav-doggostate", values, 82, doggoStates);
-    updateSelection("sav-dogamydogaressastate", values, 83, dogamyDogaressaStates);
-    updateSelection("sav-greaterdogstate", values, 84, greaterDogStates);
-    updateSelection("sav-comedianstate", values, 87, comedianStates);
-    updateSelection("sav-papyrusstate", values, 97, papyrusStates);
-    updateSelection("sav-shyrenstate", values, 111, shyrenStates);
+    updateSelection("sav-trainingdummystate", values[44], trainingDummyStates);
+    updateSelection("sav-torielstate", values[75], torielStates);
+    updateSelection("sav-doggostate", values[82], doggoStates);
+    updateSelection("sav-dogamydogaressastate", values[83], dogamyDogaressaStates);
+    updateSelection("sav-greaterdogstate", values[84], greaterDogStates);
+    updateSelection("sav-comedianstate", values[87], comedianStates);
+    updateSelection("sav-papyrusstate", values[97], papyrusStates);
+    updateSelection("sav-shyrenstate", values[111], shyrenStates);
     document.getElementById("sav-unkkills").value = values[231];
     document.getElementById("sav-ruinskills").value = values[232];
     document.getElementById("sav-snowdinkills").value = values[233];
     document.getElementById("sav-waterfallkills").value = values[234];
     document.getElementById("sav-hotlandkills").value = values[235];
-    updateSelection("sav-undynestate1", values, 281, undyneStates1);
-    updateSelection("sav-maddummystate", values, 282, madDummyStates);
-    updateSelection("sav-undynestate2", values, 380, undyneStates2);
-    updateSelection("sav-muffetstate", values, 427, muffetStates);
-    updateSelection("sav-broguardsstate", values, 432, broGuardsStates);
-    updateSelection("sav-mettatonstate", values, 455, mettatonStates);
+    updateSelection("sav-undynestate1", values[281], undyneStates1);
+    updateSelection("sav-maddummystate", values[282], madDummyStates);
+    updateSelection("sav-undynestate2", values[380], undyneStates2);
+    updateSelection("sav-muffetstate", values[427], muffetStates);
+    updateSelection("sav-broguardsstate", values[432], broGuardsStates);
+    updateSelection("sav-mettatonstate", values[455], mettatonStates);
     document.getElementById("sav-exitedtruelab").checked = (parseInt(values[523].trim()) === 12);
     document.getElementById("sav-defeatedasriel").checked = (parseInt(values[37].trim()) === 1);
-    updateSelection("sav-plotvalue", values, 542, plotValues);
+    updateSelection("sav-plotvalue", values[542], plotValues);
     document.getElementById("sav-havecell").checked = (parseInt(values[545].trim()) === 1);
     document.getElementById("sav-location").value = parseInt(values[547].trim());
     document.getElementById("sav-fun").value = parseInt(values[35].trim());
@@ -951,8 +951,8 @@ function start() {
         updateSaveDataForm(saveLines);
         updatePersistentDataForm(ini);
     }
-    loadSelectFromObj("sav-location", rooms[2]);
-    loadSelectFromObj("ini-location", rooms[2]);
+    loadSelectFromObj("sav-location", rooms[0]);
+    loadSelectFromObj("ini-location", rooms[0]);
     loadSelectFromObj("allowed-locations", roomSelectOptions);
     loadSelectFromObj("allowed-locations-2", roomSelectOptions);
     loadSelectFromObj("ini-omega-flowey-soul", floweyStates);
@@ -1051,13 +1051,13 @@ function start() {
     var allowedLocations2 = document.getElementById("allowed-locations-2");
     allowedLocations1.addEventListener("change", function() {
 		allowedLocations2.value = allowedLocations1.value;
-		updateSelection("ini-location", [document.getElementById("ini-location").value], 0, rooms[allowedLocations1.value]);
-		updateSelection("sav-location", [document.getElementById("sav-location").value], 0, rooms[allowedLocations1.value]);
+		updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
+		updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
 	}, false);
     allowedLocations2.addEventListener("change", function() {
 		allowedLocations1.value = allowedLocations2.value;
-		updateSelection("ini-location", [document.getElementById("ini-location").value], 0, rooms[allowedLocations1.value]);
-		updateSelection("sav-location", [document.getElementById("sav-location").value], 0, rooms[allowedLocations1.value]);
+		updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
+		updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
 	}, false);
     
     var weaponSelect = document.getElementById("sav-weapon");
@@ -1085,11 +1085,11 @@ function start() {
     };
     document.getElementById("allow-non-equipables").addEventListener("change", function() {
         if (document.getElementById("allow-non-equipables").checked) {
-            updateSelection("sav-weapon", [weaponSelect.value], 0, items);
-            updateSelection("sav-armor",  [armorSelect.value],  0, items);
+            updateSelection("sav-weapon", weaponSelect.value, items);
+            updateSelection("sav-armor",  armorSelect.value,  items);
         } else {
-            updateSelection("sav-weapon", [weaponSelect.value], 0, weapons);
-            updateSelection("sav-armor",  [armorSelect.value],  0, armors);
+            updateSelection("sav-weapon", weaponSelect.value, weapons);
+            updateSelection("sav-armor",  armorSelect.value,  armors);
         }
     }, false);
     
