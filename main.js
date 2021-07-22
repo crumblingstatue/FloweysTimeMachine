@@ -135,9 +135,9 @@ var ArmorDfs = {
     "64": 20  // temy armor
 };
 
-var rooms = [];
+var rooms = [[], [], []];
 rooms[2] = [
-	"Initializer [Dogchecked]",
+    "Initializer [Dogchecked]",
 	"Introduction [Dogchecked]",
 	"Title [Dogchecked]",
 	"Menu [Dogchecked]",
