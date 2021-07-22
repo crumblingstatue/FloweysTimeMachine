@@ -1049,7 +1049,16 @@ function start() {
     
     var allowedLocations1 = document.getElementById("allowed-locations");
     var allowedLocations2 = document.getElementById("allowed-locations-2");
-    
+    allowedLocations1.addEventListener("change", function() {
+		allowedLocations2.value = allowedLocations1.value;
+		updateSelection("ini-location", [document.getElementById("ini-location").value], 0, rooms[allowedLocations1.value]);
+		updateSelection("sav-location", [document.getElementById("sav-location").value], 0, rooms[allowedLocations1.value]);
+	}, false);
+    allowedLocations2.addEventListener("change", function() {
+		allowedLocations1.value = allowedLocations2.value;
+		updateSelection("ini-location", [document.getElementById("ini-location").value], 0, rooms[allowedLocations1.value]);
+		updateSelection("sav-location", [document.getElementById("sav-location").value], 0, rooms[allowedLocations1.value]);
+	}, false);
     
     var weaponSelect = document.getElementById("sav-weapon");
     var armorSelect = document.getElementById("sav-armor");
@@ -1076,11 +1085,11 @@ function start() {
     };
     document.getElementById("allow-non-equipables").addEventListener("change", function() {
         if (document.getElementById("allow-non-equipables").checked) {
-            updateSelection("sav-weapon", [document.getElementById("sav-weapon").value], 0, items);
-            updateSelection("sav-armor",  [document.getElementById("sav-armor").value],  0, items);
+            updateSelection("sav-weapon", [weaponSelect.value], 0, items);
+            updateSelection("sav-armor",  [armorSelect.value],  0, items);
         } else {
-            updateSelection("sav-weapon", [document.getElementById("sav-weapon").value], 0, weapons);
-            updateSelection("sav-armor",  [document.getElementById("sav-armor").value],  0, armors);
+            updateSelection("sav-weapon", [weaponSelect.value], 0, weapons);
+            updateSelection("sav-armor",  [armorSelect.value],  0, armors);
         }
     }, false);
     
