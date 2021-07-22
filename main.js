@@ -122,7 +122,7 @@ var armorAts = {
     "64": 10 // temy armor
 }
 
-var ArmorDfs = {
+var armorDfs = {
     "4": 0,   // bandage
     "12": 3,  // faded ribbon
     "15": 7,  // manly bandana
@@ -943,10 +943,12 @@ function start() {
         updateSaveDataForm(saveLines);
         updatePersistentDataForm(ini);
     }
-    loadSelectFromObj("sav-location", rooms[0]);
-    loadSelectFromObj("ini-location", rooms[0]);
+    loadSelectFromObj("sav-location", rooms[1]);
+    loadSelectFromObj("ini-location", rooms[1]);
     loadSelectFromObj("allowed-locations", roomSelectOptions);
     loadSelectFromObj("allowed-locations-2", roomSelectOptions);
+    document.getElementById("allowed-locations").value = 1;
+    document.getElementById("allowed-locations-2").value = 1;
     loadSelectFromObj("ini-omega-flowey-soul", floweyStates);
     loadSelectFromObj("sav-torielstate", torielStates);
     loadSelectFromObj("sav-comedianstate", comedianStates);
@@ -973,8 +975,7 @@ function start() {
     loadPreset("Ruins Start");
     
     var iniFile, saveFile;
-    var iniInput = document.getElementById("ini-file");
-    iniInput.addEventListener("change", function(evt) {
+    document.getElementById("ini-file").addEventListener("change", function(evt) {
         iniFile = evt.target.files[0];
         if (iniFile) {
             document.getElementById("ini-loadbutton").classList.remove('disabled');
@@ -982,9 +983,8 @@ function start() {
         } else {
             document.getElementById("ini-loadbutton").classList.add('disabled');
         }
-    }, false);
-    var saveInput = document.getElementById("sav-file");
-    saveInput.addEventListener("change", function (evt) {
+    });
+    document.getElementById("sav-file").addEventListener("change", function (evt) {
         saveFile = evt.target.files[0];
         if (saveFile) {
             document.getElementById("sav-loadbutton").classList.remove('disabled');
@@ -992,10 +992,9 @@ function start() {
         } else {
             document.getElementById("sav-loadbutton").classList.add('disabled');
         }
-    }, false);
+    });
     
-    var iniLoadButton = document.getElementById("ini-loadbutton");
-    iniLoadButton.addEventListener("click", function() {
+    document.getElementById("ini-loadbutton").addEventListener("click", function() {
         if (!iniFile) {
             window.alert("You need to choose a file first!");
             return;
@@ -1004,9 +1003,8 @@ function start() {
             updatePersistentDataForm(iniobj);
             ini = iniobj;
         });
-    }, false);
-    var file0LoadButton = document.getElementById("sav-loadbutton");
-    file0LoadButton.addEventListener("click", function() {
+    });
+    document.getElementById("sav-loadbutton").addEventListener("click", function() {
         if (!saveFile) {
             window.alert("You need to choose a file first!");
             return;
@@ -1015,29 +1013,27 @@ function start() {
             updateSaveDataForm(lines);
             saveLines = lines;
         });
-    }, false);
+    });
     
-    var saveIniButton = document.getElementById("ini-savebutton");
-    saveIniButton.addEventListener("click", function() {
+    document.getElementById("ini-savebutton").addEventListener("click", function() {
         updateIniFromForm(ini);
         saveIniToFile(ini);
-    }, false);
-    var saveXButton = document.getElementById("sav-savebutton");
-    saveXButton.addEventListener("click", function() {
+    });
+    document.getElementById("sav-savebutton").addEventListener("click", function() {
         updateSaveValuesFromForm(saveLines);
         saveSaveValuesToFile(saveLines);
-    }, false);
+    });
     
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_962", true);
         flowey_laugh_once();
-    }, false);
+    });
     document.getElementById("savesi3").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_963", true);
         flowey_laugh_once();
-    }, false);
+    });
     
     var allowedLocations1 = document.getElementById("allowed-locations");
     var allowedLocations2 = document.getElementById("allowed-locations-2");
@@ -1045,25 +1041,25 @@ function start() {
         allowedLocations2.value = allowedLocations1.value;
         updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
         updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
-    }, false);
+    });
     allowedLocations2.addEventListener("change", function() {
         allowedLocations1.value = allowedLocations2.value;
         updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
         updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
-    }, false);
+    });
     
     var weaponSelect = document.getElementById("sav-weapon");
     var armorSelect = document.getElementById("sav-armor");
-    weaponSelect.onchange = function() {
+    weaponSelect.addEventListener("change", function() {
         var weaponAt = weaponAts[weaponSelect.value];
         var armorAt = armorAts[armorSelect.value] || 0; // Cowboy Hat, Temmie Armor
         if (typeof weaponAt !== "undefined") {
             document.getElementById("sav-weaponat").value = weaponAt + armorAt;
         }
         
-    };
-    armorSelect.onchange = function() {
-        var df = ArmorDfs[armorSelect.value];
+    });
+    armorSelect.addEventListener("change", function() {
+        var df = armorDfs[armorSelect.value];
         if (typeof df !== "undefined") {
             document.getElementById("sav-armordf").value = df;
         }
@@ -1074,7 +1070,7 @@ function start() {
         } else {
             document.getElementById("sav-weaponat").value = parseInt(document.getElementById("sav-weaponat").value) + armorAt;
         }
-    };
+    });
     document.getElementById("allow-non-equipables").addEventListener("change", function() {
         if (document.getElementById("allow-non-equipables").checked) {
             updateSelection("sav-weapon", weaponSelect.value, items);
@@ -1083,12 +1079,12 @@ function start() {
             updateSelection("sav-weapon", weaponSelect.value, weapons);
             updateSelection("sav-armor",  armorSelect.value,  armors);
         }
-    }, false);
+    });
     
     document.getElementById("builtinpresetload").addEventListener("click", function() {
         var name = document.getElementById("builtinpresetselect").value;
         loadPreset(name);
-    }, false);
+    });
     function saveUserPreset(name) {
         updateIniFromForm(ini);
         updateSaveValuesFromForm(saveLines);
@@ -1117,7 +1113,7 @@ function start() {
             document.getElementById("userpresetdelete").classList.remove('disabled');
             document.getElementById("userpresetexport").classList.remove('disabled');
         }
-    }, false);
+    });
     document.getElementById("userpresetsave").addEventListener("click", function() {
         var name = document.getElementById("userpresetselect").value;
         if (name !== null && name !== "") {
@@ -1125,7 +1121,7 @@ function start() {
         } else {
             window.alert("You need to select a valid preset first!");
         }
-    }, false);
+    });
     document.getElementById("userpresetload").addEventListener("click", function() {
         var name = document.getElementById("userpresetselect").value;
         if (name !== null && name !== "") {
@@ -1139,7 +1135,7 @@ function start() {
         } else {
             window.alert("You need to select a valid preset first!");
         }
-    }, false);
+    });
     document.getElementById("userpresetdelete").addEventListener("click", function() {
         var selection = document.getElementById("userpresetselect");
         var name = selection.value;
@@ -1159,7 +1155,7 @@ function start() {
             document.getElementById("userpresetdelete").classList.add('disabled');
             document.getElementById("userpresetexport").classList.add('disabled');
         }
-    }, false);
+    });
     if (document.getElementById("userpresetselect").value !== "") {
         document.getElementById("userpresetload").classList.remove('disabled');
         document.getElementById("userpresetsave").classList.remove('disabled');
@@ -1174,11 +1170,12 @@ function start() {
         var string = "presets[\"" + name + "\"] = " + JSON.stringify(preset) + ";";
         var blob = new Blob([string], {type: "application/octet-stream"});
         saveAs(blob, name + ".js", true);
-    }, false);
+    });
+    
     document.getElementById("floweyimg").addEventListener("click", function() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);
-    }, false);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", start);
