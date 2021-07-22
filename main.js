@@ -697,11 +697,7 @@ function updatePersistentDataForm(iniobj) {
     document.getElementById("ini-love").value = parseInt(iniobj.General.Love.trim());
     if (iniobj.FFFFF) {
         if (iniobj.FFFFF.F) {
-            if (parseInt(iniobj.FFFFF.F.trim()) === 1) {
-                document.getElementById("ini-omega-flowey-trapped").checked = true;
-            } else {
-                document.getElementById("ini-omega-flowey-trapped").checked = false;
-            }
+            document.getElementById("ini-omega-flowey-trapped").checked = (parseInt(iniobj.FFFFF.F.trim()) === 1);
         }
         if (iniobj.FFFFF.P) {
             document.getElementById("ini-omega-flowey-soul").value = parseInt(iniobj.FFFFF.P.trim());
@@ -714,11 +710,7 @@ function updatePersistentDataForm(iniobj) {
     }
     if (iniobj.reset) {
         if (iniobj.reset.s_key) {
-            if (parseInt(iniobj.reset.s_key.trim()) === 1) {
-                document.getElementById("ini-dodged-all-special-thanks").checked = true;
-            } else {
-                document.getElementById("ini-dodged-all-special-thanks").checked = false;
-            }
+            document.getElementById("ini-dodged-all-special-thanks").checked = (parseInt(iniobj.reset.s_key.trim()) === 1);
         }
     } else {
         document.getElementById("ini-dodged-all-special-thanks").checked = false;
@@ -884,9 +876,9 @@ function updateSaveValuesFromForm(values) {
     } else {
         values[523] = "0";
     }
-    values[37] = document.getElementById("sav-defeatedasriel").checked;
+    values[37] = +document.getElementById("sav-defeatedasriel").checked;
     values[542] = document.getElementById("sav-plotvalue").value;
-    values[545] = document.getElementById("sav-havecell").checked;
+    values[545] = +document.getElementById("sav-havecell").checked;
     values[547] = document.getElementById("sav-location").value;
     values[35] = document.getElementById("sav-fun").value;
 }
