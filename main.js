@@ -491,7 +491,6 @@ var roomSelectOptions = [
     "All rooms"
 ];
 
-var advancedMode = false;
 // Flags initialized in flags.js
 
 var killedBool = [
@@ -934,6 +933,7 @@ function loadPresetSelect() {
 function start() {
     "use strict";
     var userPresets = localStorage.getItem("userPresets");
+    var advancedMode = localStorage.getItem("advanced");
     if (userPresets === null) {
         localStorage.setItem("userPresets", JSON.stringify({}));
     } else {
@@ -985,18 +985,23 @@ function start() {
     loadSelectFromObj("sav-weapon", weapons);
     loadSelectFromObj("sav-armor", armors);
     var advanced = document.getElementById("advanced");
-    for (var i = 0; i < flags.length; i++) {
-        var newContainer = document.createElement("span");
-        var newLabel = document.createElement("label");
-        newLabel.setAttribute("for", "sav-flag-" + i);
-        newLabel.innerHTML = flags[i];
-        newContainer.appendChild(newLabel);
-        var newField = document.createElement("input");
-        newField.setAttribute("type", "number");
-        newField.setAttribute("id", "sav-flag-" + i);
-        newField.setAttribute("value", 0);
-        newContainer.appendChild(newField);
-        advanced.appendChild(newContainer);
+    if (advancedMode) {
+        advanced.parentElement.classList.remove('hidden');
+    }
+    for (var i = 0; i < flags.length; i += 3) {
+        for (var j = 0; j < 3; j++) {
+            var newLabel = document.createElement("label");
+            newLabel.setAttribute("for", "sav-flag-" + (i + j));
+            newLabel.innerHTML = flags[i + j];
+            advanced.appendChild(newLabel);
+        }
+        for (var j = 0; j < 3; j++) {
+            var newField = document.createElement("input");
+            newField.setAttribute("type", "number");
+            newField.setAttribute("id", "sav-flag-" + (i + j));
+            newField.setAttribute("value", 0);
+            advanced.appendChild(newField);
+        }
     }
     loadPresetSelect();
     loadPreset("Ruins Start");
@@ -1225,7 +1230,13 @@ function start() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);
         advanced.parentElement.classList.remove('hidden');
+        localStorage.setItem("advanced", true);
         advancedMode = true;
+    });
+    document.getElementById("hide-advanced").addEventListener("click", function() {
+        advanced.parentElement.classList.add('hidden');
+        advancedMode = false;
+        localStorage.setItem("advanced", false);
     });
 }
 
