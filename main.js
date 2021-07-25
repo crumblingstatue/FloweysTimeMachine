@@ -1002,7 +1002,6 @@ function start() {
     loadPresetSelect();
     loadPreset("Ruins Start");
     
-    // Selecting a file
     var iniFile, saveFile;
     document.getElementById("ini-file").addEventListener("change", function(evt) {
         iniFile = evt.target.files[0];
@@ -1044,7 +1043,6 @@ function start() {
             saveLines = lines;
         });
     });
-    
     // Saving
     document.getElementById("ini-savebutton").addEventListener("click", function() {
         updateIniFromForm(ini);
@@ -1054,7 +1052,6 @@ function start() {
         updateSaveValuesFromForm(saveLines);
         saveSaveValuesToFile(saveLines);
     });
-    
     // system_information download
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
@@ -1066,7 +1063,6 @@ function start() {
         saveAs(blob, "system_information_963", true);
         flowey_laugh_once();
     });
-    
     // Weapon/armor AT/DF calculation
     var weaponSelect = document.getElementById("sav-weapon");
     var armorSelect = document.getElementById("sav-armor");
