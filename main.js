@@ -992,7 +992,7 @@ function start() {
         for (var j = 0; j < 3; j++) {
             var newLabel = document.createElement("label");
             newLabel.setAttribute("for", "sav-flag-" + (i + j));
-            newLabel.innerHTML = flags[i + j];
+            newLabel.innerHTML = "[" + (i + j) + "] " + flags[i + j];
             advanced.appendChild(newLabel);
         }
         for (var j = 0; j < 3; j++) {
