@@ -67,6 +67,31 @@ var items = [
     "<invalid>"
 ];
 
+var weapons = {
+    "3": "Stick",
+    "13": "Toy Knife",
+    "14": "Tough Glove",
+    "25": "Ballet Shoes",
+    "45": "Torn Notebook",
+    "47": "Burnt Pan",
+    "49": "Empty Gun",
+    "51": "Worn Dagger",
+    "52": "Real Knife"
+};
+
+var armors = {
+    "4": "Bandage",
+    "12": "Faded Ribbon",
+    "15": "Manly Bandana",
+    "24": "Old Tutu",
+    "44": "Cloudy Glasses",
+    "46": "Stained Apron",
+    "48": "Cowboy Hat",
+    "50": "Heart Locket",
+    "53": "The Locket",
+    "64": "temy armor"
+};
+
 var cellOpts = {
     "0": "Empty",
     "201": "Say Hello",
@@ -92,7 +117,12 @@ var weaponAts = {
     "52": 99  // Real Knife
 };
 
-var ArmorDfs = {
+var armorAts = {
+    "48": 5, // cowboy hat
+    "64": 10 // temy armor
+}
+
+var armorDfs = {
     "4": 0,   // bandage
     "12": 3,  // faded ribbon
     "15": 7,  // manly bandana
@@ -105,263 +135,372 @@ var ArmorDfs = {
     "64": 20  // temy armor
 };
 
-var rooms = {
-    "4": "Ruins - Starting point",
-    "5": "Ruins - Flowey spot",
-    "6": "Ruins - Entrance [SAVE]",
-    "7": "Ruins - Toriel stepping tile puzzle",
-    "8": "Ruins - Switch puzzle",
-    "9": "Ruins - Dummy room",
-    "10": "Ruins - Spike puzzle",
-    "11": "Ruins - Long corridor",
-    "12": "Ruins - Leaf Pile [SAVE]",
-    "13": "Ruins - Candy pillar",
-    "14": "Ruins - Mandatory fall trapdoor",
-    "15": "Ruins - First stone pushing puzzle",
-    "16": "Ruins - Trapdoor corridor puzzle",
-    "17": "Ruins - Talkback rock",
-    "18": "Ruins - Mouse Hole [SAVE]",
-    "19": "Ruins - Napstablook",
-    "20": "Ruins - Spider Bake Sale",
-    "21": "Ruins - 2 frogs",
-    "22": "Ruins - Switch hidden under trapdoor puzzle",
-    "23": "Ruins - 3 Pillars room 1",
-    "24": "Ruins - 3 Pillars room 2",
-    "25": "Ruins - 3 Pillars room 3",
-    "26": "Ruins - 3 Pillars room 4",
-    "27": "Ruins - Pillars room pit",
-    "28": "Ruins - 3-way fork",
-    "29": "Ruins - Toriel gossip frog",
-    "30": "Ruins - Toy knife room",
-    "31": "Ruins - Home [SAVE]",
-    "32": "Toriel's House: Entrance",
-    "33": "Toriel's House: Reading room",
-    "34": "Toriel's House: Corridor",
-    "35": "Toriel's House: Toriel's Room",
-    "36": "Toriel's House: Your Room",
-    "37": "Toriel's House: Kitchen",
-    "38": "Toriel's Basement 1",
-    "39": "Toriel's Basement 2",
-    "40": "Toriel's Basement 3",
-    "41": "Toriel's Basement: Toriel Boss Battle",
-    "42": "Toriel's Basement: Corridor to Flowey",
-    "43": "Toriel's Basement: Flowey",
-    "44": "Snowdin - Ruin exit",
-    "45": "Snowdin - Dark forest path",
-    "46": "Snowdin - Box Road [SAVE]",
-    "47": "Snowdin - Fishing rod",
-    "48": "Snowdin - Papyrus' Sentry Station",
-    "49": "Snowdin - Doggo",
-    "50": "Snowdin - Compass sign",
-    "51": "Snowdin - Snowman",
-    "52": "Snowdin - Electricity Maze",
-    "53": "Snowdin - Snow golf",
-    "54": "Snowdin - 2 guard dog houses",
-    "55": "Snowdin - Monster Kidz Word Search",
-    "56": "Snowdin - Spaghetti [SAVE]",
-    "57": "Snowdin - Warning: Dog Marriage",
-    "58": "Snowdin - XO puzzle 1",
-    "59": "Snowdin - XO puzzle 2",
-    "60": "Snowdin - Color tile puzzle",
-    "61": "Snowdin - Dog House [SAVE]",
-    "62": "Snowdin - Snow Papyrus & Sans",
-    "63": "Snowdin - Sliding XO puzzle",
-    "64": "Snowdin - Teleporting Sans",
-    "65": "Snowdin - Ice Cave entrance",
-    "66": "Snowdin - Snow poffs (Greater Dog)",
-    "67": "Snowdin - Gauntlet of Deadly Terror",
-    "68": "Snowdin - Town [SAVE]",
-    "69": "Snowdin Town: Ice haul wolf",
-    "70": "Snowdin Town: Boat harbor",
-    "71": "Snowdin Town: Inn lobby",
-    "73": "Snowdin Town: Grillby's",
-    "74": "Snowdin Town: Library",
-    "81": "Snowdin - Papyrus Battle",
-    "82": "Waterfall - Entrance",
-    "83": "Waterfall - Checkpoint [SAVE]",
-    "84": "Waterfall - Falling rocks",
-    "86": "Waterfall - Hallway [SAVE]",
-    "87": "Waterfall - Lily pad bridge",
-    "88": "Waterfall - Lily pad vertical bridge",
-    "90": "Waterfall - Telescope",
-    "91": "Waterfall - Boat plank",
-    "92": "Waterfall - Undyne Spear dodging 1",
-    "93": "Waterfall - Bush after spear dodging",
-    "94": "Waterfall - Crystal [SAVE]",
-    "95": "Waterfall - Sans Telescope",
-    "96": "Waterfall - Nice Cream Stand",
-    "97": "Waterfall - Split Pathway",
-    "98": "Waterfall - Ballet shoes",
-    "99": "Waterfall - Duck",
-    "100": "Waterfall - Onionsan",
-    "101": "Waterfall - Artifact hub",
-    "102": "Waterfall - Piano",
-    "103": "Waterfall - Legendary Artifact",
-    "104": "Waterfall - Rainy Statue",
-    "105": "Waterfall - Umbrellas",
-    "106": "Waterfall - Rainy Path 1",
-    "107": "Waterfall - Rainy Path 2",
-    "108": "Waterfall - Palace View",
-    "109": "Waterfall - Umbrella ledge",
-    "110": "Waterfall - Bridge [SAVE]",
-    "111": "Waterfall - Bridge spear dodge",
-    "112": "Waterfall - Bridge fall",
-    "113": "Waterfall - Trash Zone Flower bed",
-    "114": "Waterfall - Trash Zone [SAVE]",
-    "115": "Waterfall - Training Dummy revenge",
-    "116": "Waterfall - Quiet Area [SAVE]",
-    "117": "Waterfall - Undyne's house entrance",
-    "119": "Waterfall - Twin Ghost houses",
-    "124": "Waterfall - Turtle shop",
-    "125": "Waterfall - River boat",
-    "126": "Waterfall - 2 waterfalls",
-    "127": "Waterfall - Mushroom maze",
-    "128": "Waterfall - Temmie Village [SAVE]",
-    "129": "Waterfall - Lamp maze",
-    "130": "Waterfall - Behind you",
-    "131": "Waterfall - More flowers",
-    "132": "Waterfall - Cave bridge",
-    "133": "Waterfall - Cave exit",
-    "134": "Waterfall - Undyne area",
-    "135": "Waterfall - Undyne area + 1",
-    "136": "Waterfall - Hotland Welcome",
-    "137": "Hotland - Entrance",
-    "138": "Hotland - Water tank",
-    "139": "Hotland - Laboratory Entrance [SAVE]",
-    "140": "Hotland - River boat",
-    "141": "Hotland - Laboratory Hub",
-    "142": "Hotland - Laboratory Upper Floor",
-    "143": "Hotland - Laboratory Exit",
-    "144": "Hotland - Treadmills 1",
-    "145": "Hotland - Magma Chamber [SAVE]",
-    "146": "Hotland - Burnt Pan",
-    "147": "Hotland - Lasers 1",
-    "148": "Hotland - Puzzle Gate 1",
-    "149": "Hotland - Left Boz Puzzle Entrance",
-    "150": "Hotland - Left Box Puzzle",
-    "151": "Hotland - Right Box Puzzle Entrance",
-    "152": "Hotland - Right Box Puzzle",
-    "153": "Hotland - Arrow bridge",
-    "154": "Hotland - Kitchen",
-    "155": "Hotland - Core View [SAVE]",
-    "156": "Hotland - Elevator R1",
-    "157": "Hotland - Elevator R2",
-    "158": "Hotland - Hot Dog Stand",
-    "159": "Hotland - Art Club Entrance",
-    "160": "Hotland - Art Club",
-    "161": "Hotland - Stained Apron",
-    "162": "Hotland - Treadmill switch puzzle",
-    "163": "Hotland - Arrow puzzle",
-    "164": "Hotland - Bad Opinion Zone [SAVE]",
-    "165": "Hotland - Bro guards",
-    "166": "Hotland - Bombastic News report",
-    "167": "Hotland - Upper Core View",
-    "168": "Hotland - Elevator L2",
-    "169": "Hotland - Elevator L3",
-    "170": "Hotland - Spider Bake Sale",
-    "171": "Hotland - F3 Puzzle Gate",
-    "172": "Hotland - F3 South Puzzle Entrance",
-    "173": "Hotland - F3 South Puzzle",
-    "174": "Hotland - F3 North Puzzle Entrance",
-    "175": "Hotland - F3 North Puzzle",
-    "176": "Hotland - Spider Entrance [SAVE]",
-    "177": "Hotland - Spider Room",
-    "178": "Hotland - Mettaton Poster",
-    "179": "Hotland - Theater Stage",
-    "180": "Hotland - Colored Tile Maze 2",
-    "181": "Hotland - Nice Cream Stand",
-    "182": "Hotland - Hotel Entrance",
-    "183": "Hotland - Hotel Lobby [SAVE]",
-    "184": "Hotland - Hotel Restaurant",
-    "185": "Hotland - Hotel Cordidor",
-    "186": "Hotland - Hotel Alley",
-    "187": "Hotland - Elevator R3",
-    "188": "Hotland - Core Entrance",
-    "189": "Hotland - Core Elevator",
-    "190": "Hotland - Core Pit",
-    "191": "Hotland - Core North of Elavator",
-    "192": "Hotland - Core Wrong order lasers",
-    "193": "Hotland - Core Crossroads",
-    "194": "Hotland - Core Dead End",
-    "195": "Hotland - Core Power Laser Puzzle",
-    "196": "Hotland - Core Branch [SAVE]",
-    "197": "Hotland - Core Ice Deposit",
-    "198": "Hotland - Core West Puzzle Entrance",
-    "199": "Hotland - Core West Puzzle Entrance + 1",
-    "200": "Hotland - Core West Puzzle Entrance + 2",
-    "202": "Hotland - Core End - 3",
-    "201": "Hotland - South of 100G Trash Can",
-    "203": "Hotland - Core End - 4",
-    "204": "Hotland - Core Get Lost",
-    "205": "Hotland - Core West Puzzle",
-    "206": "Hotland - Core Glamburger Trash Can",
-    "207": "Hotland - Core 100G Trash Can",
-    "208": "Hotland - Core Battle Bridge",
-    "209": "Hotland - Core End - 1",
-    "210": "Hotland - Core End [SAVE]",
-    "211": "Hotland - Core Mettaton Room",
-    "212": "Hotland - Core Final Elevator Entrance",
-    "214": "Hotland - Elevator L1",
-    "215": "Hotland - Core Final Elevator",
-    "216": "Castle Elevator [SAVE]",
-    "217": "Castle - Another Elevator",
-    "218": "Castle - Dark Path",
-    "219": "New Home [SAVE]",
-    "220": "New Home - Entrance",
-    "221": "New Home - Reading Room",
-    "222": "New Home - Corridor",
-    "223": "New Home - Asgore's Room",
-    "224": "New Home - Your Room",
-    "225": "New Home - Kitchen",
-    "226": "New Home - Basement 1",
-    "227": "New Home - Basement 2",
-    "228": "New Home - Basement 3",
-    "229": "New Home - Basement 4",
-    "230": "New Home - Elevator",
-    "231": "Last Corridor [SAVE]",
-    "232": "Throne Entrance [SAVE]",
-    "233": "Throne Entrance - Stairs Down",
-    "234": "Throne Entrance - Coffins",
-    "235": "Throne Room [SAVE]",
-    "236": "The End [SAVE]",
-    "237": "Barrier",
-    "241": "Outside [Dogchecked]",
-    "242": "Laboratory Elevator",
-    "243": "True Lab - Elevator",
-    "244": "True Lab - Elevator Entrance",
-    "245": "True Lab - South Corridor",
-    "246": "True Laboratory [SAVE]",
-    "247": "True Lab - West Corridor 1",
-    "248": "True Lab - West Sinks",
-    "249": "True Lab - West red key slot",
-    "250": "True Lab - North Corridor 1",
-    "251": "True Lab - Bedroom [SAVE]",
-    "252": "True Lab - Northeast Corridor",
-    "253": "True Lab - Northeast blue key slot",
-    "254": "True Lab - North Corridor 2",
-    "255": "True Lab - Green key",
-    "256": "True Lab - Northwest skull",
-    "257": "True Lab - Yellow Key Slot + TV",
-    "258": "True Lab - Northwest refrigerators",
-    "259": "True Lab - Green Key Slot",
-    "260": "True Lab - Fans",
-    "261": "True Lab - Elevator 2",
-    "262": "True Lab - Power room corridor",
-    "263": "True Lab - Power room",
-    "265": "Snowdin - Ice Cave 1",
-    "331": "Asriel room [Dogchecked]"
-};
+var rooms = [[], [], []];
+rooms[2] = [
+    "Initializer [Dogchecked]",
+    "Introduction [Dogchecked]",
+    "Title [Dogchecked]",
+    "Menu [Dogchecked]",
+    "Ruins - Starting point",
+    "Ruins - Flowey spot",
+    "Ruins - Entrance [SAVE]",
+    "Ruins - Toriel stepping tile puzzle",
+    "Ruins - Switch puzzle",
+    "Ruins - Dummy room",
+    "Ruins - Spike puzzle",
+    "Ruins - Long corridor",
+    "Ruins - Leaf Pile [SAVE]",
+    "Ruins - Candy pillar",
+    "Ruins - Mandatory fall trapdoor",
+    "Ruins - First stone pushing puzzle",
+    "Ruins - Trapdoor corridor puzzle",
+    "Ruins - Talkback rock",
+    "Ruins - Mouse Hole [SAVE]",
+    "Ruins - Napstablook",
+    "Ruins - Spider Bake Sale",
+    "Ruins - 2 frogs",
+    "Ruins - Switch hidden under trapdoor puzzle",
+    "Ruins - 3 Pillars room 1",
+    "Ruins - 3 Pillars room 2",
+    "Ruins - 3 Pillars room 3",
+    "Ruins - 3 Pillars room 4",
+    "Ruins - Pillars room pit",
+    "Ruins - 3-way fork",
+    "Ruins - Toriel gossip frog",
+    "Ruins - Toy knife room",
+    "Ruins - Home [SAVE]",
+    "Toriel's House: Entrance",
+    "Toriel's House: Reading room",
+    "Toriel's House: Corridor",
+    "Toriel's House: Toriel's Room",
+    "Toriel's House: Your Room",
+    "Toriel's House: Kitchen",
+    "Toriel's Basement 1",
+    "Toriel's Basement 2",
+    "Toriel's Basement 3",
+    "Toriel's Basement: Toriel Boss Battle",
+    "Toriel's Basement: Corridor to Flowey",
+    "Toriel's Basement: Flowey",
+    "Snowdin - Ruin exit",
+    "Snowdin - Dark forest path",
+    "Snowdin - Box Road [SAVE]",
+    "Snowdin - Fishing rod",
+    "Snowdin - Papyrus' Sentry Station",
+    "Snowdin - Doggo",
+    "Snowdin - Compass sign",
+    "Snowdin - Snowman",
+    "Snowdin - Electricity Maze",
+    "Snowdin - Snow golf",
+    "Snowdin - 2 guard dog houses",
+    "Snowdin - Monster Kidz Word Search",
+    "Snowdin - Spaghetti [SAVE]",
+    "Snowdin - Warning: Dog Marriage",
+    "Snowdin - XO puzzle 1",
+    "Snowdin - XO puzzle 2",
+    "Snowdin - Color tile puzzle",
+    "Snowdin - Dog House [SAVE]",
+    "Snowdin - Snow Papyrus & Sans",
+    "Snowdin - Sliding XO puzzle",
+    "Snowdin - Teleporting Sans",
+    "Snowdin - Ice Cave entrance",
+    "Snowdin - Snow poffs (Greater Dog)",
+    "Snowdin - Gauntlet of Deadly Terror",
+    "Snowdin - Town [SAVE]",
+    "Snowdin Town: Ice haul wolf",
+    "Snowdin Town: Boat harbor",
+    "Snowdin Town: Inn lobby",
+    "Snowdin Town: Inn bedroom",
+    "Snowdin Town: Grillby's",
+    "Snowdin Town: Library",
+    "Snowdin Town: Papyrus's shed",
+    "Snowdin Town: Papyrus and Sans's house",
+    "Snowdin Town: Papyrus's room",
+    "Snowdin Town: Sans's room [Dogchecked]",
+    "Snowdin Town: Sans's room (dark) [Dogchecked]",
+    "Snowdin Town: Sans's basement [Dogchecked]",
+    "Snowdin - Papyrus Battle",
+    "Waterfall - Entrance",
+    "Waterfall - Checkpoint [SAVE]",
+    "Waterfall - Falling rocks",
+    "Waterfall - Tutu room",
+    "Waterfall - Hallway [SAVE]",
+    "Waterfall - Lily pad bridge",
+    "Waterfall - Lily pad vertical bridge",
+    "Waterfall - Quiche room",
+    "Waterfall - Telescope",
+    "Waterfall - Boat plank",
+    "Waterfall - Undyne Spear dodging 1",
+    "Waterfall - Bush after spear dodging",
+    "Waterfall - Crystal [SAVE]",
+    "Waterfall - Sans Telescope",
+    "Waterfall - Nice Cream Stand",
+    "Waterfall - Split Pathway",
+    "Waterfall - Ballet shoes",
+    "Waterfall - Duck",
+    "Waterfall - Onionsan",
+    "Waterfall - Artifact hub",
+    "Waterfall - Piano",
+    "Waterfall - Legendary Artifact",
+    "Waterfall - Rainy Statue",
+    "Waterfall - Umbrellas",
+    "Waterfall - Rainy Path 1",
+    "Waterfall - Rainy Path 2",
+    "Waterfall - Palace View",
+    "Waterfall - Umbrella ledge",
+    "Waterfall - Bridge [SAVE]",
+    "Waterfall - Bridge spear dodge",
+    "Waterfall - Bridge fall",
+    "Waterfall - Trash Zone Flower bed",
+    "Waterfall - Trash Zone [SAVE]",
+    "Waterfall - Training Dummy revenge",
+    "Waterfall - Quiet Area [SAVE]",
+    "Waterfall - Undyne's house entrance",
+    "Waterfall - Undyne's house interior",
+    "Waterfall - Twin Ghost houses",
+    "Waterfall - Napstablook's house interior",
+    "Waterfall - Hapstablook's house interior",
+    "Waterfall - Snail Farm",
+    "Waterfall - Pre Bird (Unused)",
+    "Waterfall - Turtle shop",
+    "Waterfall - River boat",
+    "Waterfall - 2 waterfalls",
+    "Waterfall - Mushroom maze",
+    "Waterfall - Temmie Village [SAVE]",
+    "Waterfall - Lamp maze",
+    "Waterfall - Behind you",
+    "Waterfall - More flowers",
+    "Waterfall - Cave bridge",
+    "Waterfall - Cave exit",
+    "Waterfall - Undyne area",
+    "Waterfall - Undyne area + 1",
+    "Waterfall - Hotland Welcome",
+    "Hotland - Entrance",
+    "Hotland - Water tank",
+    "Hotland - Laboratory Entrance [SAVE]",
+    "Hotland - River boat",
+    "Hotland - Laboratory Hub",
+    "Hotland - Laboratory Upper Floor",
+    "Hotland - Laboratory Exit",
+    "Hotland - Treadmills 1",
+    "Hotland - Magma Chamber [SAVE]",
+    "Hotland - Burnt Pan",
+    "Hotland - Lasers 1",
+    "Hotland - Puzzle Gate 1",
+    "Hotland - Left Boz Puzzle Entrance",
+    "Hotland - Left Box Puzzle",
+    "Hotland - Right Box Puzzle Entrance",
+    "Hotland - Right Box Puzzle",
+    "Hotland - Arrow bridge",
+    "Hotland - Kitchen",
+    "Hotland - Core View [SAVE]",
+    "Hotland - Elevator R1",
+    "Hotland - Elevator R2",
+    "Hotland - Hot Dog Stand",
+    "Hotland - Art Club Entrance",
+    "Hotland - Art Club",
+    "Hotland - Stained Apron",
+    "Hotland - Treadmill switch puzzle",
+    "Hotland - Arrow puzzle",
+    "Hotland - Bad Opinion Zone [SAVE]",
+    "Hotland - Bro guards",
+    "Hotland - Bombastic News report",
+    "Hotland - Upper Core View",
+    "Hotland - Elevator L2",
+    "Hotland - Elevator L3",
+    "Hotland - Spider Bake Sale",
+    "Hotland - F3 Puzzle Gate",
+    "Hotland - F3 South Puzzle Entrance",
+    "Hotland - F3 South Puzzle",
+    "Hotland - F3 North Puzzle Entrance",
+    "Hotland - F3 North Puzzle",
+    "Hotland - Spider Entrance [SAVE]",
+    "Hotland - Spider Room",
+    "Hotland - Mettaton Poster",
+    "Hotland - Theater Stage",
+    "Hotland - Colored Tile Maze 2",
+    "Hotland - Nice Cream Stand",
+    "Hotland - Hotel Entrance",
+    "Hotland - Hotel Lobby [SAVE]",
+    "Hotland - Hotel Restaurant",
+    "Hotland - Hotel Cordidor",
+    "Hotland - Hotel Alley",
+    "Hotland - Elevator R3",
+    "Hotland - Core Entrance",
+    "Hotland - Core Elevator",
+    "Hotland - Core Pit",
+    "Hotland - Core North of Elavator",
+    "Hotland - Core Wrong order lasers",
+    "Hotland - Core Crossroads",
+    "Hotland - Core Dead End",
+    "Hotland - Core Power Laser Puzzle",
+    "Hotland - Core Branch [SAVE]",
+    "Hotland - Core Ice Deposit",
+    "Hotland - Core West Puzzle Entrance",
+    "Hotland - Core West Puzzle Entrance + 1",
+    "Hotland - Core West Puzzle Entrance + 2",
+    "Hotland - Core East Money Trash Bin Entrance",
+    "Hotland - Core End - 3",
+    "Hotland - South of 100G Trash Can",
+    "Hotland - Core End - 4",
+    "Hotland - Core Get Lost",
+    "Hotland - Core West Puzzle",
+    "Hotland - Core Glamburger Trash Can",
+    "Hotland - Core 100G Trash Can",
+    "Hotland - Core Battle Bridge",
+    "Hotland - Core End - 1",
+    "Hotland - Core End [SAVE]",
+    "Hotland - Core Mettaton Room",
+    "Hotland - Core Final Elevator Entrance",
+    "Hotland - Elevator L1",
+    "Hotland - Core Final Elevator",
+    "Castle Elevator [SAVE]",
+    "Castle - Another Elevator",
+    "Castle - Dark Path",
+    "New Home [SAVE]",
+    "New Home - Entrance",
+    "New Home - Reading Room",
+    "New Home - Corridor",
+    "New Home - Asgore's Room",
+    "New Home - Your Room",
+    "New Home - Kitchen",
+    "New Home - Basement 1",
+    "New Home - Basement 2",
+    "New Home - Basement 3",
+    "New Home - Basement 4",
+    "New Home - Elevator",
+    "Last Corridor [SAVE]",
+    "Throne Entrance [SAVE]",
+    "Throne Entrance - Stairs Down",
+    "Throne Entrance - Coffins",
+    "Throne Room [SAVE]",
+    "The End [SAVE]",
+    "Barrier",
+    "Flowey post-battle",
+    "Neutral credits [Dogchecked]",
+    "Path to outside [Dogchecked]",
+    "Outside [Dogchecked]",
+    "Laboratory Elevator",
+    "True Lab - Elevator",
+    "True Lab - Elevator Entrance",
+    "True Lab - South Corridor",
+    "True Laboratory [SAVE]",
+    "True Lab - West Corridor 1",
+    "True Lab - West Sinks",
+    "True Lab - West red key slot",
+    "True Lab - North Corridor 1",
+    "True Lab - Bedroom [SAVE]",
+    "True Lab - Northeast Corridor",
+    "True Lab - Northeast blue key slot",
+    "True Lab - North Corridor 2",
+    "True Lab - Green key",
+    "True Lab - Northwest skull [SAVE?]",
+    "True Lab - Yellow Key Slot + TV",
+    "True Lab - Northwest refrigerators",
+    "True Lab - Green Key Slot",
+    "True Lab - Fans",
+    "True Lab - Elevator 2",
+    "True Lab - Power room corridor",
+    "True Lab - Power room",
+    "Gaster Room",
+    "Snowdin - Ice Cave 1",
+    "Snowdin - Developer Room [Dogchecked]",
+    "room2 [Dogchecked]",
+    "Waterfall - Mysteryman hallway [Dogchecked]",
+    "Waterfall - Mysteryman room [Dogchecked]",
+    "Snowdin - Sound Test Room [Dogchecked]",
+    "TESTROOM [Dogchecked]",
+    "Waterfall - Redacted [Dogchecked]",
+    "Waterfall - Cut Bridge Puzzle [Dogchecked]",
+    "room_overworld [Dogchecked]",
+    "room_overworld3 [Dogchecked]",
+    "Bullet Test [Dogchecked]",
+    "room_water16A [Dogchecked]",
+    "Pacifist credits [Dogchecked]",
+    "Pacifist credits - Highway [Dogchecked]",
+    "Pacifist credits - Beach [Dogchecked]",
+    "Pacifist credits - Mettaton performance [Dogchecked]",
+    "Pacifist credits - School entrance [Dogchecked]",
+    "Pacifist credits - Mount Ebott [Dogchecked]",
+    "Pacifist credits - Special Thanks [Dogchecked]",
+    "Pacifist credits - Bedroom [Dogchecked]",
+    "Pacifist credits - The End [Dogchecked]",
+    "Sprite Test [Dogchecked]",
+    "Settings menu [Dogchecked]",
+    "Control test room [Dogchecked]",
+    "Omega Flowey - Initializer [Dogchecked]",
+    "Omega Flowey - Fake intro [Dogchecked]",
+    "Omega Flowey - Fake menu [Dogchecked]",
+    "Omega Flowey - Fake save point [Dogchecked] [SAVE?]",
+    "Omega Flowey [Dogchecked]",
+    "Omega Flowey - Respawn mocking [Dogchecked]",
+    "room_fire4 [Dogchecked]",
+    "room_fire10_old [Dogchecked]",
+    "room_fire10A_old [Dogchecked]",
+    "Snowdin - Ice Puzzle [Dogchecked]",
+    "Ruins - Rock Candy [Dogchecked]",
+    "Snowdin - Growing snowball [Dogchecked]",
+    "Waterfall - Torch puzzle [Dogchecked]",
+    "Waterfall - Meet Undyne (Unused) [Dogchecked]",
+    "Waterfall - Rooted mushroom [Dogchecked]",
+    "room_monsteralign_test [Dogchecked]",
+    "Battle room [Dogchecked]",
+    "Flowey battle room [Dogchecked]",
+    "\"Fast\" battle room [Dogchecked]",
+    "New Home - Story battle room [Dogchecked]",
+    "Game Over [Dogchecked]",
+    "Snowdin Town - Shop [Dogchecked]",
+    "Waterfall - Gerson's shop [Dogchecked]",
+    "Hotland - Bratty and Catty [Dogchecked]",
+    "Hotland - Burgerpants [Dogchecked]",
+    "Waterfall - Tem Shop [Dogchecked]",
+    "River person transition room [Dogchecked]",
+    "Papyrus date [Dogchecked]",
+    "Alphys date [Dogchecked]",
+    "Omega Flowey - Wilting [Dogchecked]",
+    "Flowey's pacifist speech [Dogchecked]",
+    "room_empty [Dogchecked]",
+    "room_emptywhite [Dogchecked]",
+    "room_emptyblack [Dogchecked]",
+    "Genocide - The Nothingness [Dogchecked]",
+    "Snowdin - Title [Dogchecked]",
+    "Dogcheck room",
+    "Hotland - Quiz battle (Unused) [Dogchecked]",
+    "Pre-Asriel scene (Unused) [Dogchecked]",
+    "Pre-Asriel scene 2 (Unused) [Dogchecked]",
+    "Asriel appears [Dogchecked]",
+    "Asriel room [Dogchecked]",
+    "Asriel flashbacks [Dogchecked]",
+    "Asriel animation test [Dogchecked]",
+    "Asriel phase 2 animation test [Dogchecked]",
+    "Snowdin - Dog Shrine [Dogchecked]"
+];
 
-var floweyStates = {
-    "0": "None (Initial state)",
-    "1": "Light blue (Initiated fight)",
-    "2": "Orange",
-    "3": "Blue",
-    "4": "Purple",
-    "5": "Green",
-    "6": "Yellow",
-    "7": "None (Finished fight)",
-};
+for (var i = 0; i < rooms[2].length; i++) {
+    if (rooms[2][i].indexOf("[SAVE]") !== -1) {
+        rooms[0][i] = rooms[2][i];
+        rooms[1][i] = rooms[2][i];
+    } else if (rooms[2][i].indexOf("[Dogchecked]") === -1) {
+        rooms[1][i] = rooms[2][i];
+    }
+}
+// rooms[0] is SAVE points only, rooms[1] is non-Dogchecked only, rooms[2] contains all rooms.
+
+var roomSelectOptions = [
+    "SAVE points only",
+    "Accessible rooms only",
+    "All rooms"
+];
+
+var floweyStates = [
+    "None (Initial state)",
+    "Light blue (Initiated fight)",
+    "Orange",
+    "Blue",
+    "Purple",
+    "Green",
+    "Yellow",
+    "None (Finished fight)"
+];
 
 var torielStates = {
     "0": "Initial state",
@@ -508,32 +647,6 @@ function flowey_laugh_once() {
     }
 }
 
-function insert_inv_lists() {
-    "use strict";
-    function insert(node, i) {
-        var newOption = document.createElement("option");
-        newOption.setAttribute("value", i);
-        var newContent = document.createTextNode(items[i]);
-        newOption.appendChild(newContent);
-        var select = document.getElementById(node);
-        select.appendChild(newOption);
-    }
-    for (var i = 0; i < items.length; i++) {
-        for (var j = 1; j <= 8; j++) {
-            insert("sav-invslot" + j, i);
-        }
-        insert("sav-weapon", i);
-        insert("sav-armor", i);
-    }
-}
-
-function insert_cell_lists() {
-    "use strict";
-    for (var i = 1; i <= 8; i++) {
-        loadSelectFromObj("sav-cellslot" + i, cellOpts);
-    }
-}
-
 function loadSelectFromObj(selectId, obj) {
     "use strict";
     var select = document.getElementById(selectId);
@@ -584,11 +697,7 @@ function updatePersistentDataForm(iniobj) {
     document.getElementById("ini-love").value = parseInt(iniobj.General.Love.trim());
     if (iniobj.FFFFF) {
         if (iniobj.FFFFF.F) {
-            if (parseInt(iniobj.FFFFF.F.trim()) === 1) {
-                document.getElementById("ini-omega-flowey-trapped").checked = true;
-            } else {
-                document.getElementById("ini-omega-flowey-trapped").checked = false;
-            }
+            document.getElementById("ini-omega-flowey-trapped").checked = (parseInt(iniobj.FFFFF.F.trim()) === 1);
         }
         if (iniobj.FFFFF.P) {
             document.getElementById("ini-omega-flowey-soul").value = parseInt(iniobj.FFFFF.P.trim());
@@ -601,11 +710,7 @@ function updatePersistentDataForm(iniobj) {
     }
     if (iniobj.reset) {
         if (iniobj.reset.s_key) {
-            if (parseInt(iniobj.reset.s_key.trim()) === 1) {
-                document.getElementById("ini-dodged-all-special-thanks").checked = true;
-            } else {
-                document.getElementById("ini-dodged-all-special-thanks").checked = false;
-            }
+            document.getElementById("ini-dodged-all-special-thanks").checked = (parseInt(iniobj.reset.s_key.trim()) === 1);
         }
     } else {
         document.getElementById("ini-dodged-all-special-thanks").checked = false;
@@ -664,13 +769,16 @@ function updateIniFromForm(ini) {
     }
 }
 
-function updateSelection(id, values, index, list) {
+function updateSelection(id, value, list) {
     "use strict";
-    var value = parseInt(values[index].trim());
+    value = parseInt(value.trim());
+    while (document.getElementById(id).firstChild) {
+        document.getElementById(id).removeChild(document.getElementById(id).firstChild);
+    }
     if (!list[value]) {
         list[value] = "Unrecognized (" + value + ")";
-        loadSelectFromObj(id, list);
     }
+    loadSelectFromObj(id, list);
     document.getElementById(id).value = value;
 }
 
@@ -687,47 +795,43 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-weaponat").value = values[5];
     document.getElementById("sav-df").value = values[6];
     document.getElementById("sav-armordf").value = values[7];
-    for (var i = 0; i < 8; i++) {
-        updateSelection("sav-invslot" + (i + 1), values, 12 + (i * 2), items);
-        updateSelection("sav-cellslot" + (i + 1), values, 13 + (i * 2), cellOpts);
+    for (var i = 1; i <= 8; i++) {
+        updateSelection("sav-invslot" + i, values[10 + (i * 2)], items);
+        updateSelection("sav-cellslot" + i, values[11 + (i * 2)], cellOpts);
     }
-    updateSelection("sav-weapon", values, 28, items);
-    updateSelection("sav-armor", values, 29, items);
-    updateSelection("sav-trainingdummystate", values, 44, trainingDummyStates);
-    updateSelection("sav-torielstate", values, 75, torielStates);
-    updateSelection("sav-doggostate", values, 82, doggoStates);
-    updateSelection("sav-dogamydogaressastate", values, 83, dogamyDogaressaStates);
-    updateSelection("sav-greaterdogstate", values, 84, greaterDogStates);
-    updateSelection("sav-comedianstate", values, 87, comedianStates);
-    updateSelection("sav-papyrusstate", values, 97, papyrusStates);
-    updateSelection("sav-shyrenstate", values, 111, shyrenStates);
+    if (document.getElementById("allow-non-equipables").checked) {
+        updateSelection("sav-weapon", values[28], items);
+        updateSelection("sav-armor", values[29], items);
+    } else {
+        updateSelection("sav-weapon", values[28], weapons);
+        updateSelection("sav-armor", values[29], armors);
+    }
+    updateSelection("sav-trainingdummystate", values[44], trainingDummyStates);
+    updateSelection("sav-torielstate", values[75], torielStates);
+    updateSelection("sav-doggostate", values[82], doggoStates);
+    updateSelection("sav-dogamydogaressastate", values[83], dogamyDogaressaStates);
+    updateSelection("sav-greaterdogstate", values[84], greaterDogStates);
+    updateSelection("sav-comedianstate", values[87], comedianStates);
+    updateSelection("sav-papyrusstate", values[97], papyrusStates);
+    updateSelection("sav-shyrenstate", values[111], shyrenStates);
     document.getElementById("sav-unkkills").value = values[231];
     document.getElementById("sav-ruinskills").value = values[232];
     document.getElementById("sav-snowdinkills").value = values[233];
     document.getElementById("sav-waterfallkills").value = values[234];
     document.getElementById("sav-hotlandkills").value = values[235];
-    updateSelection("sav-undynestate1", values, 281, undyneStates1);
-    updateSelection("sav-maddummystate", values, 282, madDummyStates);
-    updateSelection("sav-undynestate2", values, 380, undyneStates2);
-    updateSelection("sav-muffetstate", values, 427, muffetStates);
-    updateSelection("sav-broguardsstate", values, 432, broGuardsStates);
-    updateSelection("sav-mettatonstate", values, 455, mettatonStates);
-    if (parseInt(values[523].trim()) === 12) {
-        document.getElementById("sav-exitedtruelab").checked = true;
-    } else {
-        document.getElementById("sav-exitedtruelab").checked = false;
+    updateSelection("sav-undynestate1", values[281], undyneStates1);
+    updateSelection("sav-maddummystate", values[282], madDummyStates);
+    updateSelection("sav-undynestate2", values[380], undyneStates2);
+    updateSelection("sav-muffetstate", values[427], muffetStates);
+    updateSelection("sav-broguardsstate", values[432], broGuardsStates);
+    updateSelection("sav-mettatonstate", values[455], mettatonStates);
+    document.getElementById("sav-exitedtruelab").checked = (parseInt(values[523].trim()) === 12);
+    document.getElementById("sav-defeatedasriel").checked = (parseInt(values[37].trim()) === 1);
+    updateSelection("sav-plotvalue", values[542], plotValues);
+    if (parseInt(values[545].trim()) != document.getElementById("sav-havecell").checked) {
+        document.getElementById("cellslots").classList.toggle("hidden");
     }
-    if (parseInt(values[37].trim()) === 1) {
-        document.getElementById("sav-defeatedasriel").checked = true;
-    } else {
-        document.getElementById("sav-defeatedasriel").checked = false;
-    }
-    updateSelection("sav-plotvalue", values, 542, plotValues);
-    if (parseInt(values[545].trim()) === 1) {
-        document.getElementById("sav-havecell").checked = true;
-    } else {
-        document.getElementById("sav-havecell").checked = false;
-    }
+    document.getElementById("sav-havecell").checked = (parseInt(values[545].trim()) === 1);
     document.getElementById("sav-location").value = parseInt(values[547].trim());
     document.getElementById("sav-fun").value = parseInt(values[35].trim());
 }
@@ -745,22 +849,10 @@ function updateSaveValuesFromForm(values) {
     values[9] = document.getElementById("sav-exp").value;
     values[10] = document.getElementById("sav-gold").value;
     values[11] = document.getElementById("sav-kills").value;
-    values[12] = document.getElementById("sav-invslot1").value;
-    values[13] = document.getElementById("sav-cellslot1").value;
-    values[14] = document.getElementById("sav-invslot2").value;
-    values[15] = document.getElementById("sav-cellslot2").value;
-    values[16] = document.getElementById("sav-invslot3").value;
-    values[17] = document.getElementById("sav-cellslot3").value;
-    values[18] = document.getElementById("sav-invslot4").value;
-    values[19] = document.getElementById("sav-cellslot4").value;
-    values[20] = document.getElementById("sav-invslot5").value;
-    values[21] = document.getElementById("sav-cellslot5").value;
-    values[22] = document.getElementById("sav-invslot6").value;
-    values[23] = document.getElementById("sav-cellslot6").value;
-    values[24] = document.getElementById("sav-invslot7").value;
-    values[25] = document.getElementById("sav-cellslot7").value;
-    values[26] = document.getElementById("sav-invslot8").value;
-    values[27] = document.getElementById("sav-cellslot8").value;
+    for (var i = 1; i <= 8; i++) {
+        values[10 + (i * 2)] = document.getElementById("sav-invslot" + i).value;
+        values[11 + (i * 2)] = document.getElementById("sav-cellslot" + i).value;
+    }
     values[28] = document.getElementById("sav-weapon").value;
     values[29] = document.getElementById("sav-armor").value;
     values[44] = document.getElementById("sav-trainingdummystate").value;
@@ -787,17 +879,9 @@ function updateSaveValuesFromForm(values) {
     } else {
         values[523] = "0";
     }
-    if (document.getElementById("sav-defeatedasriel").checked) {
-        values[37] = "1";
-    } else {
-        values[37] = "0";
-    }
+    values[37] = +document.getElementById("sav-defeatedasriel").checked;
     values[542] = document.getElementById("sav-plotvalue").value;
-    if (document.getElementById("sav-havecell").checked) {
-        values[545] = "1";
-    } else {
-        values[545] = "0";
-    }
+    values[545] = +document.getElementById("sav-havecell").checked;
     values[547] = document.getElementById("sav-location").value;
     values[35] = document.getElementById("sav-fun").value;
 }
@@ -862,8 +946,13 @@ function start() {
         updateSaveDataForm(saveLines);
         updatePersistentDataForm(ini);
     }
-    loadSelectFromObj("sav-location", rooms);
-    loadSelectFromObj("ini-location", rooms);
+    // Initialize form
+    loadSelectFromObj("sav-location", rooms[1]);
+    loadSelectFromObj("ini-location", rooms[1]);
+    loadSelectFromObj("allowed-locations", roomSelectOptions);
+    loadSelectFromObj("allowed-locations-2", roomSelectOptions);
+    document.getElementById("allowed-locations").value = 1;
+    document.getElementById("allowed-locations-2").value = 1;
     loadSelectFromObj("ini-omega-flowey-soul", floweyStates);
     loadSelectFromObj("sav-torielstate", torielStates);
     loadSelectFromObj("sav-comedianstate", comedianStates);
@@ -880,13 +969,18 @@ function start() {
     loadSelectFromObj("sav-broguardsstate", broGuardsStates);
     loadSelectFromObj("sav-muffetstate", muffetStates);
     loadSelectFromObj("sav-mettatonstate", mettatonStates);
-    insert_inv_lists();
-    insert_cell_lists();
+    for (var i = 1; i <= 8; i++) {
+        loadSelectFromObj("sav-invslot" + i, items);
+        loadSelectFromObj("sav-cellslot" + i, cellOpts);
+    }
+    loadSelectFromObj("sav-weapon", weapons);
+    loadSelectFromObj("sav-armor", armors);
     loadPresetSelect();
     loadPreset("Ruins Start");
+    
+    // Selecting a file
     var iniFile, saveFile;
-    var iniInput = document.getElementById("ini-file");
-    iniInput.addEventListener("change", function(evt) {
+    document.getElementById("ini-file").addEventListener("change", function(evt) {
         iniFile = evt.target.files[0];
         if (iniFile) {
             document.getElementById("ini-loadbutton").classList.remove('disabled');
@@ -894,9 +988,8 @@ function start() {
         } else {
             document.getElementById("ini-loadbutton").classList.add('disabled');
         }
-    }, false);
-    var saveInput = document.getElementById("sav-file");
-    saveInput.addEventListener("change", function (evt) {
+    });
+    document.getElementById("sav-file").addEventListener("change", function (evt) {
         saveFile = evt.target.files[0];
         if (saveFile) {
             document.getElementById("sav-loadbutton").classList.remove('disabled');
@@ -904,9 +997,10 @@ function start() {
         } else {
             document.getElementById("sav-loadbutton").classList.add('disabled');
         }
-    }, false);
-    var iniLoadButton = document.getElementById("ini-loadbutton");
-    iniLoadButton.addEventListener("click", function() {
+    });
+    
+    // Loading
+    document.getElementById("ini-loadbutton").addEventListener("click", function() {
         if (!iniFile) {
             window.alert("You need to choose a file first!");
             return;
@@ -915,9 +1009,8 @@ function start() {
             updatePersistentDataForm(iniobj);
             ini = iniobj;
         });
-    }, false);
-    var file0LoadButton = document.getElementById("sav-loadbutton");
-    file0LoadButton.addEventListener("click", function() {
+    });
+    document.getElementById("sav-loadbutton").addEventListener("click", function() {
         if (!saveFile) {
             window.alert("You need to choose a file first!");
             return;
@@ -926,45 +1019,86 @@ function start() {
             updateSaveDataForm(lines);
             saveLines = lines;
         });
-    }, false);
-    var saveIniButton = document.getElementById("ini-savebutton");
-    saveIniButton.addEventListener("click", function() {
+    });
+    
+    // Saving
+    document.getElementById("ini-savebutton").addEventListener("click", function() {
         updateIniFromForm(ini);
         saveIniToFile(ini);
-    }, false);
-    var saveXButton = document.getElementById("sav-savebutton");
-    saveXButton.addEventListener("click", function() {
+    });
+    document.getElementById("sav-savebutton").addEventListener("click", function() {
         updateSaveValuesFromForm(saveLines);
         saveSaveValuesToFile(saveLines);
-    }, false);
+    });
+    
+    // system_information download
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_962", true);
         flowey_laugh_once();
-    }, false);
+    });
     document.getElementById("savesi3").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_963", true);
         flowey_laugh_once();
-    }, false);
+    });
+    
+    // Weapon/armor AT/DF calculation
     var weaponSelect = document.getElementById("sav-weapon");
-    weaponSelect.onchange = function() {
-        var at = weaponAts[weaponSelect.value];
-        if (typeof at !== "undefined") {
-            document.getElementById("sav-weaponat").value = at;
-        }
-    };
     var armorSelect = document.getElementById("sav-armor");
-    armorSelect.onchange = function() {
-        var df = ArmorDfs[armorSelect.value];
+    weaponSelect.addEventListener("change", function() {
+        var weaponAt = weaponAts[weaponSelect.value];
+        var armorAt = armorAts[armorSelect.value] || 0; // Cowboy Hat, Temmie Armor
+        if (typeof weaponAt !== "undefined") {
+            document.getElementById("sav-weaponat").value = weaponAt + armorAt;
+        }
+        
+    });
+    armorSelect.addEventListener("change", function() {
+        var df = armorDfs[armorSelect.value];
         if (typeof df !== "undefined") {
             document.getElementById("sav-armordf").value = df;
         }
-    };
+        var weaponAt = weaponAts[weaponSelect.value];
+        var armorAt = armorAts[armorSelect.value] || 0;
+        if (typeof weaponAt !== "undefined") {
+            document.getElementById("sav-weaponat").value = weaponAt + armorAt;
+        } else {
+            document.getElementById("sav-weaponat").value = parseInt(document.getElementById("sav-weaponat").value) + armorAt;
+        }
+    });
+    
+    // Interface-altering options
+    var allowedLocations1 = document.getElementById("allowed-locations");
+    var allowedLocations2 = document.getElementById("allowed-locations-2");
+    allowedLocations1.addEventListener("change", function() {
+        allowedLocations2.value = allowedLocations1.value;
+        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
+    });
+    allowedLocations2.addEventListener("change", function() {
+        allowedLocations1.value = allowedLocations2.value;
+        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
+    });
+    document.getElementById("allow-non-equipables").addEventListener("change", function() {
+        if (document.getElementById("allow-non-equipables").checked) {
+            updateSelection("sav-weapon", weaponSelect.value, items);
+            updateSelection("sav-armor",  armorSelect.value,  items);
+        } else {
+            updateSelection("sav-weapon", weaponSelect.value, weapons);
+            updateSelection("sav-armor",  armorSelect.value,  armors);
+        }
+    });
+    document.getElementById("sav-havecell").addEventListener("change", function() {
+        document.getElementById("cellslots").classList.toggle("hidden");
+    });
+    
+    // Presets
     document.getElementById("builtinpresetload").addEventListener("click", function() {
         var name = document.getElementById("builtinpresetselect").value;
         loadPreset(name);
-    }, false);
+    });
     function saveUserPreset(name) {
         updateIniFromForm(ini);
         updateSaveValuesFromForm(saveLines);
@@ -993,7 +1127,7 @@ function start() {
             document.getElementById("userpresetdelete").classList.remove('disabled');
             document.getElementById("userpresetexport").classList.remove('disabled');
         }
-    }, false);
+    });
     document.getElementById("userpresetsave").addEventListener("click", function() {
         var name = document.getElementById("userpresetselect").value;
         if (name !== null && name !== "") {
@@ -1001,7 +1135,7 @@ function start() {
         } else {
             window.alert("You need to select a valid preset first!");
         }
-    }, false);
+    });
     document.getElementById("userpresetload").addEventListener("click", function() {
         var name = document.getElementById("userpresetselect").value;
         if (name !== null && name !== "") {
@@ -1015,7 +1149,7 @@ function start() {
         } else {
             window.alert("You need to select a valid preset first!");
         }
-    }, false);
+    });
     document.getElementById("userpresetdelete").addEventListener("click", function() {
         var selection = document.getElementById("userpresetselect");
         var name = selection.value;
@@ -1023,6 +1157,7 @@ function start() {
         for (var i = 0; i < children.length; i++) {
             if (children[i].value === name) {
                 selection.removeChild(children[i]);
+                break;
             }
         }
         var item = localStorage.getItem("userPresets");
@@ -1035,7 +1170,7 @@ function start() {
             document.getElementById("userpresetdelete").classList.add('disabled');
             document.getElementById("userpresetexport").classList.add('disabled');
         }
-    }, false);
+    });
     if (document.getElementById("userpresetselect").value !== "") {
         document.getElementById("userpresetload").classList.remove('disabled');
         document.getElementById("userpresetsave").classList.remove('disabled');
@@ -1050,11 +1185,12 @@ function start() {
         var string = "presets[\"" + name + "\"] = " + JSON.stringify(preset) + ";";
         var blob = new Blob([string], {type: "application/octet-stream"});
         saveAs(blob, name + ".js", true);
-    }, false);
+    });
+    
     document.getElementById("floweyimg").addEventListener("click", function() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);
-    }, false);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", start);

@@ -67,7 +67,7 @@
       <a href="help.html">What is this?</a>
       <div class="checkbox">
         <input id="mute" type="checkbox" />
-        <label>Mute</label>
+        <label for="mute">Mute</label>
       </div>
     </div>
 
@@ -91,10 +91,8 @@
             <button id="ini-savebutton">
               <img src="res/star.png" /><span>SAVE</span>
             </button>
-          </div>
-
-          <div class="grid-cols-3">
-            <label class="mt-1.5">Name</label>
+            
+            <label for="ini-name">Name</label>
             <input
               id="ini-name"
               class="col-span-3"
@@ -102,9 +100,9 @@
               type="text"
               autocomplete="off"
             />
-            <label>Fun</label>
-            <label>LOVE</label>
-            <label>Kills</label>
+            <label for="ini-fun">Fun</label>
+            <label for="ini-love">LOVE</label>
+            <label for="ini-kills">Kills</label>
             <input
               id="ini-fun"
               placeholder="Fun"
@@ -123,12 +121,16 @@
               type="number"
               autocomplete="off"
             />
-            <label>Location</label>
+            <label for="ini-location">Location</label>
             <select
               class="col-span-3"
               id="ini-location"
               class="w-full"
             ></select>
+          </div>
+          <div class="grid-cols-2 mt-1.5">
+            <label for="allowed-locations">Filter rooms:</label>
+            <select id="allowed-locations"></select>
           </div>
         </fieldset>
 
@@ -136,14 +138,14 @@
           <fieldset class="w-full">
             <legend>Omega Flowey & Other</legend>
             <div class="grid">
-              <label>Times you died</label>
+              <label for="ini-omega-flowey-deaths">Times you died</label>
               <input
                 id="ini-omega-flowey-deaths"
                 placeholder="Times you died"
                 type="number"
                 autocomplete="off"
               />
-              <label>Upcoming soul fight</label>
+              <label for="ini-omega-flowey-soul">Upcoming soul fight</label>
               <select
                 title="Upcoming soul fight"
                 id="ini-omega-flowey-soul"
@@ -151,13 +153,15 @@
               ></select>
               <div class="checkbox">
                 <input id="ini-omega-flowey-trapped" type="checkbox" />
-                <label title="Trapped in Flowey's World"
+                <label 
+                  title="Trapped in Flowey's World"
+                  for="ini-omega-flowey-trapped"
                   >Trapped in Flowey's World</label
                 >
               </div>
               <div class="checkbox" style="margin-top: -1px">
                 <input id="ini-dodged-all-special-thanks" type="checkbox" />
-                <label>Dodged special thanks</label>
+                <label for="ini-dodged-all-special-thanks">Dodged special thanks</label>
               </div>
             </div>
           </fieldset>
@@ -185,8 +189,8 @@
             </button>
           </div>
 
-          <div class="grid-cols-4">
-            <label class="mt-1.5">Name</label>
+          <div class="grid-cols-4 mt-1.5">
+            <label for="sav-name">Name</label>
             <input
               id="sav-name"
               class="col-span-4"
@@ -194,9 +198,9 @@
               type="text"
               autocomplete="off"
             />
-            <label>Fun</label>
-            <label>LOVE</label>
-            <label>Kills</label>
+            <label for="sav-fun">Fun</label>
+            <label for="sav-love">LOVE</label>
+            <label for="sav-kills">Kills</label>
             <label>&nbsp;</label>
             <input
               id="sav-fun"
@@ -222,11 +226,16 @@
               type="number"
               autocomplete="off"
             />
-            <label>Location</label>
+            <label for="sav-location">Location</label>
             <select
               class="col-span-4"
               id="sav-location"
               class="w-full"
+            ></select>
+            <label for="allowed-locations-2" class="col-span-2">Filter rooms:</label>
+            <select
+              class="col-span-2"
+              id="allowed-locations-2"
             ></select>
           </div>
         </fieldset>
@@ -234,14 +243,14 @@
         <fieldset>
           <legend>Stats</legend>
           <div class="grid-cols-3">
-            <label>HP</label>
-            <label>EXP</label>
-            <label>Gold</label>
+            <label for="sav-hp">HP</label>
+            <label for="sav-exp">EXP</label>
+            <label for="sav-gold">Gold</label>
             <input id="sav-hp" type="number" autocomplete="off" />
             <input id="sav-exp" type="number" autocomplete="off" />
             <input id="sav-gold" type="number" autocomplete="off" />
-            <label>ATK</label>
-            <label class="col-span-2">Weapon ATK</label>
+            <label for="sav-at">ATK</label>
+            <label class="col-span-2" for="sav-weaponat">Weapon ATK</label>
             <input id="sav-at" type="number" autocomplete="off" />
             <input
               id="sav-weaponat"
@@ -249,8 +258,8 @@
               type="number"
               autocomplete="off"
             />
-            <label>DF</label>
-            <label class="col-span-2">Armor DF</label>
+            <label for="sav-df">DF</label>
+            <label class="col-span-2" for="sav-armordf">Armor DF</label>
             <input id="sav-df" type="number" autocomplete="off" />
             <input
               id="sav-armordf"
@@ -260,30 +269,34 @@
             />
           </div>
           <div class="grid-cols-2 mt-1.5">
-            <label>Weapon</label>
-            <label>Armor</label>
+            <label for="sav-weapon">Weapon</label>
+            <label for="sav-armor">Armor</label>
             <select id="sav-weapon"></select>
             <select id="sav-armor"></select>
+          </div>
+          <div class="checkbox">
+            <input id="allow-non-equipables" type="checkbox" />
+            <label for="allow-non-equipables">Allow all items</label>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Inventory</legend>
           <div class="grid-cols-2">
-            <label>SLOT 1</label>
-            <label>SLOT 2</label>
+            <label for="sav-invslot1">SLOT 1</label>
+            <label for="sav-invslot2">SLOT 2</label>
             <select id="sav-invslot1"></select>
             <select id="sav-invslot2"></select>
-            <label>SLOT 3</label>
-            <label>SLOT 4</label>
+            <label for="sav-invslot3">SLOT 3</label>
+            <label for="sav-invslot4">SLOT 4</label>
             <select id="sav-invslot3"></select>
             <select id="sav-invslot4"></select>
-            <label>SLOT 5</label>
-            <label>SLOT 6</label>
+            <label for="sav-invslot5">SLOT 5</label>
+            <label for="sav-invslot6">SLOT 6</label>
             <select id="sav-invslot5"></select>
             <select id="sav-invslot6"></select>
-            <label>SLOT 7</label>
-            <label>SLOT 8</label>
+            <label for="sav-invslot7">SLOT 7</label>
+            <label for="sav-invslot8">SLOT 8</label>
             <select id="sav-invslot7"></select>
             <select id="sav-invslot8"></select>
           </div>
@@ -291,27 +304,27 @@
 
         <fieldset>
           <legend>Cellphone</legend>
-          <div class="grid-cols-2">
-            <label>SLOT 1</label>
-            <label>SLOT 2</label>
+          <div class="checkbox">
+            <input id="sav-havecell" type="checkbox" />
+            <label for="sav-havecell">You have a cellphone</label>
+          </div>
+          <div class="grid-cols-2 hidden" id="cellslots">
+            <label for="sav-cellslot1">SLOT 1</label>
+            <label for="sav-cellslot2">SLOT 2</label>
             <select id="sav-cellslot1"></select>
             <select id="sav-cellslot2"></select>
-            <label>SLOT 3</label>
-            <label>SLOT 4</label>
+            <label for="sav-cellslot3">SLOT 3</label>
+            <label for="sav-cellslot4">SLOT 4</label>
             <select id="sav-cellslot3"></select>
             <select id="sav-cellslot4"></select>
-            <label>SLOT 5</label>
-            <label>SLOT 6</label>
+            <label for="sav-cellslot5">SLOT 5</label>
+            <label for="sav-cellslot6">SLOT 6</label>
             <select id="sav-cellslot5"></select>
             <select id="sav-cellslot6"></select>
-            <label>SLOT 7</label>
-            <label>SLOT 8</label>
+            <label for="sav-cellslot7">SLOT 7</label>
+            <label for="sav-cellslot8">SLOT 8</label>
             <select id="sav-cellslot7"></select>
             <select id="sav-cellslot8"></select>
-            <div class="col-span-2 checkbox">
-              <input id="sav-havecell" type="checkbox" name="exitedtruelab" />
-              <label>You have a cellphone</label>
-            </div>
           </div>
         </fieldset>
 
@@ -319,9 +332,9 @@
           <fieldset>
             <legend>Ruins</legend>
             <div class="grid-cols-3">
-              <label>Kills</label>
-              <label>Dummy</label>
-              <label>Toriel</label>
+              <label for="sav-ruinskills">Kills</label>
+              <label for="sav-trainingdummystate">Dummy</label>
+              <label for="sav-torielstate">Toriel</label>
               <input
                 id="sav-ruinskills"
                 placeholder="Kills"
@@ -336,8 +349,8 @@
           <fieldset>
             <legend>Snowdin</legend>
             <div class="grid-cols-2">
-              <label>Kills</label>
-              <label>Doggo</label>
+              <label for="sav-snowdinkills">Kills</label>
+              <label for="sav-doggostate">Doggo</label>
               <input
                 id="sav-snowdinkills"
                 placeholder="Kills"
@@ -345,12 +358,12 @@
                 autocomplete="off"
               />
               <select title="Doggo state" id="sav-doggostate"></select>
-              <label>Dogamy</label>
-              <label>Greater Dog</label>
+              <label for="sav-dogamydogaressastate">Dogi</label>
+              <label for="sav-greaterdogstate">Greater Dog</label>
               <select id="sav-dogamydogaressastate"></select>
               <select id="sav-greaterdogstate"></select>
-              <label>Comedian</label>
-              <label>Papyrus</label>
+              <label for="sav-comedianstate">Comedian</label>
+              <label for="sav-papyrusstate">Papyrus</label>
               <select title="Comedian state" id="sav-comedianstate"></select>
               <select title="Papyrus state" id="sav-papyrusstate"></select>
             </div>
@@ -361,9 +374,9 @@
           <fieldset>
             <legend>Waterfall</legend>
             <div class="grid-cols-3">
-              <label>Kills</label>
-              <label>Shyren</label>
-              <label>Dummy</label>
+              <label for="sav-waterfallkills">Kills</label>
+              <label for="sav-shyrenstate">Shyren</label>
+              <label for="sav-maddummystate">Dummy</label>
               <input
                 id="sav-waterfallkills"
                 placeholder="Kills"
@@ -373,19 +386,19 @@
               <select id="sav-shyrenstate"></select>
               <select id="sav-maddummystate"></select>
             </div>
-            <div class="grid-cols-2 mt-1.5">
-              <label>Undyne 1</label>
-              <label>Undyne 2</label>
-              <select id="sav-undynestate1"></select>
+            <div class="grid-cols-3 mt-1.5">
+              <label for="sav-undynestate2">Undyne</label>
+              <label class="col-span-2" for="sav-undynestate1">Undyne the Undying</label>
               <select id="sav-undynestate2"></select>
+              <select id="sav-undynestate1" class="col-span-2"></select>
             </div>
           </fieldset>
 
           <fieldset>
             <legend>Hotland</legend>
             <div class="grid-cols-2">
-              <label>Kills</label>
-              <label>Bro Guards</label>
+              <label for="sav-hotlandkills">Kills</label>
+              <label for="sav-broguardsstate">Bro Guards</label>
               <input
                 id="sav-hotlandkills"
                 placeholder="Kills"
@@ -393,10 +406,10 @@
                 autocomplete="off"
               />
               <select title="Bro Guards state" id="sav-broguardsstate"></select>
-              <label>Muffet</label>
-              <label>Mettaton</label>
+              <label for="sav-muffetstate">Muffet</label>
+              <label for="sav-mettatonstate">Mettaton</label>
               <select title="Muffet state" id="sav-muffetstate"></select>
-              <select title="Mettaton statae" id="sav-mettatonstate"></select>
+              <select title="Mettaton state" id="sav-mettatonstate"></select>
             </div>
           </fieldset>
         </div>
@@ -409,7 +422,9 @@
               type="checkbox"
               name="exitedtruelab"
             />
-            <label title="True lab exited (can get true ending)"
+            <label
+              title="True lab exited (can get true ending)"
+              for="sav-exitedtruelab"
               >True lab exited</label
             >
           </div>
@@ -417,11 +432,11 @@
             <input id="sav-defeatedasriel" type="checkbox" />
             <label
               title="Defeated Asriel (true pacifist finished)"
-              for="defeated-asriel"
+              for="sav-defeatedasriel"
               >Defeated Asriel</label
             >
           </div>
-          <label>Plot value</label>
+          <label for="sav-plotvalue">Plot value</label>
           <select
             title="Plot value"
             id="sav-plotvalue"
@@ -472,7 +487,7 @@
                 <td>Clam girl</td>
               </tr>
               <tr>
-                <td>91-100</td>
+                <td>90-100</td>
                 <td>Goner kid</td>
               </tr>
             </table>
