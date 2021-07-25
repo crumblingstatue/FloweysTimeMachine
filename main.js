@@ -492,6 +492,29 @@ var roomSelectOptions = [
 ];
 
 // Flags initialized in flags.js
+var flagFor = { // Link flags with inputs
+    "sav-fun": 5,
+    "sav-defeatedasriel": 7,
+    "sav-trainingdummystate": 14,
+    "sav-torielstate": 45,
+    "sav-doggostate": 52,
+    "sav-dogamydogaressastate": 53,
+    "sav-greaterdogstate": 54,
+    "sav-comedianstate": 57,
+    "sav-papyrusstate": 67,
+    "sav-shyrenstate": 81,
+    "sav-ruinskills": 202,
+    "sav-snowdinkills": 203,
+    "sav-waterfallkills": 204,
+    "sav-hotlandkills": 205,
+    "sav-undynestate1": 251,
+    "sav-maddummystate": 252,
+    "sav-undynestate2": 350,
+    "sav-muffetstate": 397,
+    "sav-broguardsstate": 402,
+    "sav-mettatonstate": 435,
+};
+
 
 var killedBool = [
     "Initial state",
@@ -1238,6 +1261,19 @@ function start() {
         advancedMode = false;
         localStorage.setItem("advanced", false);
     });
+    
+    var saveElements = document.querySelectorAll("input[id^=\"sav-\"],select[id^=\"sav-\"]");
+    for (var i = 0; i < saveElements.length; i++) {
+        if (flagFor[saveElements[i].id] >= 0) {
+            saveElements[i].addEventListener("change", function() {
+                if (this.type == "checkbox") {
+                    document.getElementById("sav-flag-" + flagFor[this.id]).value = +this.checked;
+                } else {
+                    document.getElementById("sav-flag-" + flagFor[this.id]).value = this.value;
+                }
+            });
+        }
+    }
 }
 
 document.addEventListener("DOMContentLoaded", start);
