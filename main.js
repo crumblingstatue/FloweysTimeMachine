@@ -814,7 +814,7 @@ function updateSaveDataForm(values) {
     updateSelection("sav-comedianstate", values[87], comedianStates);
     updateSelection("sav-papyrusstate", values[97], papyrusStates);
     updateSelection("sav-shyrenstate", values[111], shyrenStates);
-    document.getElementById("sav-unkkills").value = values[231];
+    //document.getElementById("sav-unkkills").value = values[231];
     document.getElementById("sav-ruinskills").value = values[232];
     document.getElementById("sav-snowdinkills").value = values[233];
     document.getElementById("sav-waterfallkills").value = values[234];
@@ -871,7 +871,7 @@ function updateSaveValuesFromForm(values) {
     values[87] = document.getElementById("sav-comedianstate").value;
     values[97] = document.getElementById("sav-papyrusstate").value;
     values[111] = document.getElementById("sav-shyrenstate").value;
-    values[231] = document.getElementById("sav-unkkills").value;
+    //values[231] = document.getElementById("sav-unkkills").value;
     values[232] = document.getElementById("sav-ruinskills").value;
     values[233] = document.getElementById("sav-snowdinkills").value;
     values[234] = document.getElementById("sav-waterfallkills").value;
@@ -893,7 +893,6 @@ function updateSaveValuesFromForm(values) {
     values[545] = +document.getElementById("sav-havecell").checked;
     values[547] = document.getElementById("sav-location").value;
     values[35] = document.getElementById("sav-fun").value;
-    
 }
 
 function saveIniToFile(ini) {
@@ -1002,6 +1001,7 @@ function start() {
     loadPresetSelect();
     loadPreset("Ruins Start");
     
+    // Selecting a file
     var iniFile, saveFile;
     document.getElementById("ini-file").addEventListener("change", function(evt) {
         iniFile = evt.target.files[0];
@@ -1043,6 +1043,7 @@ function start() {
             saveLines = lines;
         });
     });
+    
     // Saving
     document.getElementById("ini-savebutton").addEventListener("click", function() {
         updateIniFromForm(ini);
@@ -1052,6 +1053,7 @@ function start() {
         updateSaveValuesFromForm(saveLines);
         saveSaveValuesToFile(saveLines);
     });
+    
     // system_information download
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
@@ -1063,6 +1065,7 @@ function start() {
         saveAs(blob, "system_information_963", true);
         flowey_laugh_once();
     });
+    
     // Weapon/armor AT/DF calculation
     var weaponSelect = document.getElementById("sav-weapon");
     var armorSelect = document.getElementById("sav-armor");

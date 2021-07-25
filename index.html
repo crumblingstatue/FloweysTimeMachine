@@ -188,13 +188,10 @@
             <button id="sav-savebutton">
               <img src="res/star.png" /><span>SAVE</span>
             </button>
-          </div>
-
-          <div class="grid-cols-4 mt-1.5">
             <label for="sav-name">Name</label>
             <input
               id="sav-name"
-              class="col-span-4"
+              class="col-span-3"
               placeholder="Name the fallen human"
               type="text"
               autocomplete="off"
@@ -202,7 +199,6 @@
             <label for="sav-fun">Fun</label>
             <label for="sav-love">LOVE</label>
             <label for="sav-kills">Kills</label>
-            <label>&nbsp;</label>
             <input
               id="sav-fun"
               placeholder="Fun"
@@ -221,23 +217,16 @@
               type="number"
               autocomplete="off"
             />
-            <input
-              id="sav-unkkills"
-              placeholder="Kills"
-              type="number"
-              autocomplete="off"
-            />
             <label for="sav-location">Location</label>
             <select
-              class="col-span-4"
+              class="col-span-3"
               id="sav-location"
               class="w-full"
             ></select>
-            <label for="allowed-locations-2" class="col-span-2">Filter rooms:</label>
-            <select
-              class="col-span-2"
-              id="allowed-locations-2"
-            ></select>
+          </div>
+          <div class="grid-cols-2 mt-1.5">
+            <label for="allowed-locations-2">Filter rooms:</label>
+            <select id="allowed-locations-2"></select>
           </div>
         </fieldset>
 
@@ -304,7 +293,8 @@
         </fieldset>
 
         <fieldset>
-          <legend>Cellphone</legend><div class="checkbox">
+          <legend>Cellphone</legend>
+          <div class="checkbox">
             <input id="sav-havecell" type="checkbox" />
             <label for="sav-havecell">You have a cellphone</label>
           </div>
