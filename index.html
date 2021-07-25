@@ -13,6 +13,7 @@
     <script src="presets/asgore-true.js"></script>
     <script src="presets/omega-flowey.js"></script>
     <script src="presets/true-pacifist.js"></script>
+    <script src="flags.js"></script>
     <script src="main.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
@@ -274,7 +275,7 @@
             <select id="sav-weapon"></select>
             <select id="sav-armor"></select>
           </div>
-          <div class="checkbox">
+          <div class="checkbox mt-1.5">
             <input id="allow-non-equipables" type="checkbox" />
             <label for="allow-non-equipables">Allow all items</label>
           </div>
@@ -303,8 +304,11 @@
         </fieldset>
 
         <fieldset>
-          <legend>Cellphone</legend>
-          <div class="grid-cols-2">
+          <legend>Cellphone</legend><div class="checkbox">
+            <input id="sav-havecell" type="checkbox" />
+            <label for="sav-havecell">You have a cellphone</label>
+          </div>
+          <div class="grid-cols-2 mt-1.5 hidden" id="cellslots">
             <label for="sav-cellslot1">SLOT 1</label>
             <label for="sav-cellslot2">SLOT 2</label>
             <select id="sav-cellslot1"></select>
@@ -322,8 +326,8 @@
             <select id="sav-cellslot7"></select>
             <select id="sav-cellslot8"></select>
             <div class="col-span-2 checkbox">
-              <input id="sav-havecell" type="checkbox" name="exitedtruelab" />
-              <label for="sav-havecell">You have a cellphone</label>
+              <input id="sav-undyne-cell" type="checkbox" />
+              <label for="sav-undyne-cell">Dated Undyne (call with Papyrus)</label>
             </div>
           </div>
         </fieldset>
@@ -491,6 +495,13 @@
                 <td>Goner kid</td>
               </tr>
             </table>
+          </div>
+        </fieldset>
+        <fieldset class="col-span-3 hidden">
+          <legend>Advanced</legend>
+          <p>PLEASE only proceed if you know what you are doing!</p>
+          <p><a href="https://pcy.ulyssis.be/undertale/flags/">More</a> <a href="https://docs.google.com/document/d/1d5dt7A_jkTBhduVEGbWGtDbLEYMXCxSLUvqIqeXtYKw/">info</a></p>
+          <div class="grid-cols-3" id="advanced">
           </div>
         </fieldset>
       </section>

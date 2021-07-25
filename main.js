@@ -491,16 +491,24 @@ var roomSelectOptions = [
     "All rooms"
 ];
 
-var floweyStates = {
-    "0": "None (Initial state)",
-    "1": "Light blue (Initiated fight)",
-    "2": "Orange",
-    "3": "Blue",
-    "4": "Purple",
-    "5": "Green",
-    "6": "Yellow",
-    "7": "None (Finished fight)",
-};
+var advancedMode = false;
+// Flags initialized in flags.js
+
+var killedBool = [
+    "Initial state",
+    "Killed"
+];
+
+var floweyStates = [
+    "None (Initial state)",
+    "Light blue (Initiated fight)",
+    "Orange",
+    "Blue",
+    "Purple",
+    "Green",
+    "Yellow",
+    "None (Finished fight)"
+];
 
 var torielStates = {
     "0": "Initial state",
@@ -536,6 +544,9 @@ var greaterDogStates = {
 };
 
 var papyrusStates = {
+    "-3": "Lost to thrice",
+    "-2": "Lost to twice",
+    "-1": "Lost to once",
     "0": "Initial state",
     "1": "Killed"
 };
@@ -545,7 +556,7 @@ var plotValues = {
     "101": "Fought Papyrus",
     "119": "Unknown",
     "164": "Hotlands genocide",
-    "199": "Unknown",
+    "199": "Pre-Last Corridor",
     "999": "Pacifist epilogue"
 };
 
@@ -562,15 +573,9 @@ var shyrenStates = {
     "2": "Continued humming [Yellow credit]"
 };
 
-var madDummyStates = { // This flag is actually for Glad Dummy, as Mad Dummy cannot be killed.
-    "0": "Initial state",
-    "1": "Killed"
-};
+var madDummyStates = killedBool; // This flag is actually for Glad Dummy, as Mad Dummy cannot be killed.
 
-var undyneStates1 = { // Undyne The Undying
-    "0": "Initial state",
-    "1": "Killed"
-};
+var undyneStates1 = killedBool; // Undyne The Undying
 
 var undyneStates2 = { // Undyne in general
     "0": "Initial state",
@@ -578,20 +583,9 @@ var undyneStates2 = { // Undyne in general
     "2": "Sick"
 };
 
-var broGuardsStates = {
-    "0": "Initial state",
-    "1": "Killed"
-};
-
-var mettatonStates = {
-    "0": "Initial state",
-    "1": "Killed"
-};
-
-var muffetStates = {
-    "0": "Initial state",
-    "1": "Killed"
-};
+var broGuardsStates = killedBool;
+var muffetStates = killedBool;
+var mettatonStates = killedBool;
 
 function parseIniFromText(text) {
     "use strict";
@@ -795,6 +789,12 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-weaponat").value = values[5];
     document.getElementById("sav-df").value = values[6];
     document.getElementById("sav-armordf").value = values[7];
+    document.getElementById("sav-undyne-cell").checked = (parseInt(values[495].trim()) === 1);
+    if (parseInt(values[495].trim()) === 1) {
+        cellOpts[210] = "Papyrus and Undyne";
+    } else {
+        cellOpts[210] = "Papyrus's Phone";
+    }
     for (var i = 1; i <= 8; i++) {
         updateSelection("sav-invslot" + i, values[10 + (i * 2)], items);
         updateSelection("sav-cellslot" + i, values[11 + (i * 2)], cellOpts);
@@ -828,14 +828,25 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-exitedtruelab").checked = (parseInt(values[523].trim()) === 12);
     document.getElementById("sav-defeatedasriel").checked = (parseInt(values[37].trim()) === 1);
     updateSelection("sav-plotvalue", values[542], plotValues);
+    if (parseInt(values[545].trim()) != document.getElementById("sav-havecell").checked) {
+        document.getElementById("cellslots").classList.toggle('hidden');
+    }
     document.getElementById("sav-havecell").checked = (parseInt(values[545].trim()) === 1);
     document.getElementById("sav-location").value = parseInt(values[547].trim());
     document.getElementById("sav-fun").value = parseInt(values[35].trim());
+    for (var i = 0; i < flags.length; i++) {
+        document.getElementById("sav-flag-" + i).value = values[30 + i];
+    }
 }
 
 // Update an array of values from the save data form.
 function updateSaveValuesFromForm(values) {
     "use strict";
+    if (advancedMode) {
+        for (var i = 0; i < flags.length; i++) {
+            values[30 + i] = document.getElementById("sav-flag-" + i).value;
+        }
+    }
     values[0] = document.getElementById("sav-name").value;
     values[1] = document.getElementById("sav-love").value;
     values[2] = document.getElementById("sav-hp").value;
@@ -871,6 +882,7 @@ function updateSaveValuesFromForm(values) {
     values[427] = document.getElementById("sav-muffetstate").value;
     values[432] = document.getElementById("sav-broguardsstate").value;
     values[455] = document.getElementById("sav-mettatonstate").value;
+    values[495] = +document.getElementById("sav-undyne-cell").checked;
     if (document.getElementById("sav-exitedtruelab").checked) {
         values[523] = "12";
     } else {
@@ -881,6 +893,7 @@ function updateSaveValuesFromForm(values) {
     values[545] = +document.getElementById("sav-havecell").checked;
     values[547] = document.getElementById("sav-location").value;
     values[35] = document.getElementById("sav-fun").value;
+    
 }
 
 function saveIniToFile(ini) {
@@ -943,6 +956,7 @@ function start() {
         updateSaveDataForm(saveLines);
         updatePersistentDataForm(ini);
     }
+    // Initialize form
     loadSelectFromObj("sav-location", rooms[1]);
     loadSelectFromObj("ini-location", rooms[1]);
     loadSelectFromObj("allowed-locations", roomSelectOptions);
@@ -971,6 +985,20 @@ function start() {
     }
     loadSelectFromObj("sav-weapon", weapons);
     loadSelectFromObj("sav-armor", armors);
+    var advanced = document.getElementById("advanced");
+    for (var i = 0; i < flags.length; i++) {
+        var newContainer = document.createElement("span");
+        var newLabel = document.createElement("label");
+        newLabel.setAttribute("for", "sav-flag-" + i);
+        newLabel.innerHTML = flags[i];
+        newContainer.appendChild(newLabel);
+        var newField = document.createElement("input");
+        newField.setAttribute("type", "number");
+        newField.setAttribute("id", "sav-flag-" + i);
+        newField.setAttribute("value", 0);
+        newContainer.appendChild(newField);
+        advanced.appendChild(newContainer);
+    }
     loadPresetSelect();
     loadPreset("Ruins Start");
     
@@ -994,6 +1022,7 @@ function start() {
         }
     });
     
+    // Loading
     document.getElementById("ini-loadbutton").addEventListener("click", function() {
         if (!iniFile) {
             window.alert("You need to choose a file first!");
@@ -1014,7 +1043,7 @@ function start() {
             saveLines = lines;
         });
     });
-    
+    // Saving
     document.getElementById("ini-savebutton").addEventListener("click", function() {
         updateIniFromForm(ini);
         saveIniToFile(ini);
@@ -1023,7 +1052,7 @@ function start() {
         updateSaveValuesFromForm(saveLines);
         saveSaveValuesToFile(saveLines);
     });
-    
+    // system_information download
     document.getElementById("savesi2").addEventListener("click", function() {
         var blob = new Blob([], {type: "application/octet-stream"});
         saveAs(blob, "system_information_962", true);
@@ -1034,20 +1063,7 @@ function start() {
         saveAs(blob, "system_information_963", true);
         flowey_laugh_once();
     });
-    
-    var allowedLocations1 = document.getElementById("allowed-locations");
-    var allowedLocations2 = document.getElementById("allowed-locations-2");
-    allowedLocations1.addEventListener("change", function() {
-        allowedLocations2.value = allowedLocations1.value;
-        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
-        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
-    });
-    allowedLocations2.addEventListener("change", function() {
-        allowedLocations1.value = allowedLocations2.value;
-        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
-        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
-    });
-    
+    // Weapon/armor AT/DF calculation
     var weaponSelect = document.getElementById("sav-weapon");
     var armorSelect = document.getElementById("sav-armor");
     weaponSelect.addEventListener("change", function() {
@@ -1071,6 +1087,20 @@ function start() {
             document.getElementById("sav-weaponat").value = parseInt(document.getElementById("sav-weaponat").value) + armorAt;
         }
     });
+    
+    // Interface-altering options
+    var allowedLocations1 = document.getElementById("allowed-locations");
+    var allowedLocations2 = document.getElementById("allowed-locations-2");
+    allowedLocations1.addEventListener("change", function() {
+        allowedLocations2.value = allowedLocations1.value;
+        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
+    });
+    allowedLocations2.addEventListener("change", function() {
+        allowedLocations1.value = allowedLocations2.value;
+        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
+    });
     document.getElementById("allow-non-equipables").addEventListener("change", function() {
         if (document.getElementById("allow-non-equipables").checked) {
             updateSelection("sav-weapon", weaponSelect.value, items);
@@ -1080,7 +1110,22 @@ function start() {
             updateSelection("sav-armor",  armorSelect.value,  armors);
         }
     });
+    document.getElementById("sav-havecell").addEventListener("change", function() {
+        document.getElementById("cellslots").classList.toggle('hidden');
+    });
+    var callUndyne = document.getElementById("sav-undyne-cell");
+    callUndyne.addEventListener("change", function() {
+        if (callUndyne.checked) {
+            cellOpts[210] = "Papyrus and Undyne";
+        } else {
+            cellOpts[210] = "Papyrus's Phone";
+        }
+        for (var i = 1; i <= 8; i++) {
+            updateSelection("sav-cellslot" + i, document.getElementById("sav-cellslot" + i).value, cellOpts);
+        }
+    });
     
+    // Presets
     document.getElementById("builtinpresetload").addEventListener("click", function() {
         var name = document.getElementById("builtinpresetselect").value;
         loadPreset(name);
@@ -1143,6 +1188,7 @@ function start() {
         for (var i = 0; i < children.length; i++) {
             if (children[i].value === name) {
                 selection.removeChild(children[i]);
+                break;
             }
         }
         var item = localStorage.getItem("userPresets");
@@ -1175,6 +1221,8 @@ function start() {
     document.getElementById("floweyimg").addEventListener("click", function() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);
+        advanced.parentElement.classList.remove('hidden');
+        advancedMode = true;
     });
 }
 
