@@ -68,6 +68,7 @@ var items = [
 ];
 
 var weapons = {
+    "0": "Empty",
     "3": "Stick",
     "13": "Toy Knife",
     "14": "Tough Glove",
@@ -80,6 +81,7 @@ var weapons = {
 };
 
 var armors = {
+    "0": "Empty",
     "4": "Bandage",
     "12": "Faded Ribbon",
     "15": "Manly Bandana",
@@ -584,6 +586,7 @@ var stateChoiceArrays = {
     "sav-weapon": weapons,
     "sav-armor": armors,
     "sav-plotvalue": {
+        "0": "New game",
         "2": "Didn't fight Papyrus",
         "101": "Fought Papyrus",
         "119": "Unknown",
@@ -799,7 +802,7 @@ function updateSelection(id, value, newChoiceArray) {
         stateChoiceArrays[id] = newChoiceArray;
     }
     
-    // Default case if incorrect ID is used
+    // Default case if incorrect ID is used (or stateChoiceArrays missing a case)
     if (!stateChoiceArrays[id]) {
         window.alert("No associated array for form input " + id + " found, defaulting to [\"Error\"].");
         stateChoiceArrays[id] = ["Error"];
@@ -807,13 +810,7 @@ function updateSelection(id, value, newChoiceArray) {
     
     // Add "Unrecognized" value if necessary
     if (!stateChoiceArrays[id][value]) {
-        if (value === 0) { // "Unrecognized (0)" should never appear
-            while (!stateChoiceArrays[id][value]) {
-                value++;
-            }
-        } else {
-            stateChoiceArrays[id][value] = "Unrecognized (" + value + ")";
-        }
+        stateChoiceArrays[id][value] = "Unrecognized (" + value + ")";
     }
     
     // Clear old options
@@ -1137,13 +1134,13 @@ function start() {
     var allowedLocations2 = document.getElementById("allowed-locations-2");
     allowedLocations1.addEventListener("change", function() {
         allowedLocations2.value = allowedLocations1.value;
-        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
-        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
+        updateSelection("ini-location", null, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", null, rooms[allowedLocations1.value]);
     });
     allowedLocations2.addEventListener("change", function() {
         allowedLocations1.value = allowedLocations2.value;
-        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
-        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
+        updateSelection("ini-location", null, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", null, rooms[allowedLocations1.value]);
     });
     document.getElementById("allow-non-equipables").addEventListener("change", function() {
         if (document.getElementById("allow-non-equipables").checked) {
