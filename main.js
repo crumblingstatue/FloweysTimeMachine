@@ -666,17 +666,6 @@ function flowey_laugh_once() {
     }
 }
 
-function loadSelectFromObj(selectId) {
-    "use strict";
-    var select = document.getElementById(selectId);
-    for (var key in stateChoiceArrays[selectId]) {
-        var newOption = document.createElement("option");
-        newOption.setAttribute("value", key);
-        var newContent = document.createTextNode(stateChoiceArrays[selectId][key]);
-        newOption.appendChild(newContent);
-        select.appendChild(newOption);
-    }
-}
 
 // Load undertale.ini data into an ini object and execute a closure on it.
 function loadIniFromFile(file, closure) {
@@ -789,18 +778,60 @@ function updateIniFromForm(ini) {
 
 function updateSelection(id, value, newChoiceArray) {
     "use strict";
-    value = parseInt(value.trim());
-    while (document.getElementById(id).firstChild) {
-        document.getElementById(id).removeChild(document.getElementById(id).firstChild);
+    var select = document.getElementById(id);
+    
+    // Sanitize value
+    if (typeof value === "string") {
+        value = parseInt(value.trim());
+    } else if (typeof value === "number") {
+        value = parseInt(value);
+    } else if (value == undefined) {
+        if (select.value == undefined) {
+            window.alert("No value found for form input " + id + ", defaulting to 0.");
+            value = 0;
+        } else {
+            value = select.value;
+        }
     }
+    
+    // Switch selected array
     if (newChoiceArray) {
         stateChoiceArrays[id] = newChoiceArray;
     }
-    if (!stateChoiceArrays[id][value]) {
-        stateChoiceArrays[id][value] = "Unrecognized (" + value + ")";
+    
+    // Default case if incorrect ID is used
+    if (!stateChoiceArrays[id]) {
+        window.alert("No associated array for form input " + id + " found, defaulting to [\"Error\"].");
+        stateChoiceArrays[id] = ["Error"];
     }
-    loadSelectFromObj(id);
-    document.getElementById(id).value = value;
+    
+    // Add "Unrecognized" value if necessary
+    if (!stateChoiceArrays[id][value]) {
+        if (value === 0) { // "Unrecognized (0)" should never appear
+            while (!stateChoiceArrays[id][value]) {
+                value++;
+            }
+        } else {
+            stateChoiceArrays[id][value] = "Unrecognized (" + value + ")";
+        }
+    }
+    
+    // Clear old options
+    while (select.firstChild) {
+        select.removeChild(select.firstChild);
+    }
+    
+    // Create options
+    for (var key in stateChoiceArrays[id]) {
+        var newOption = document.createElement("option");
+        newOption.setAttribute("value", key);
+        var newContent = document.createTextNode(stateChoiceArrays[id][key]);
+        newOption.appendChild(newContent);
+        select.appendChild(newOption);
+    }
+    
+    // Update value
+    select.value = value;
 }
 
 // Update the save data form from an array of values.
@@ -961,7 +992,7 @@ function loadPresetSelect() {
 function start() {
     "use strict";
     var userPresets = localStorage.getItem("userPresets");
-    var advancedMode = localStorage.getItem("advanced");
+    var advancedMode = (localStorage.getItem("advanced") == "true");
     if (userPresets === null) {
         localStorage.setItem("userPresets", JSON.stringify({}));
     } else {
@@ -985,10 +1016,10 @@ function start() {
     }
     // Initialize form
     for (var id in stateChoiceArrays) {
-        loadSelectFromObj(id);
+        updateSelection(id, 0);
     }
-    updateSelection("allowed-locations", "1");
-    updateSelection("allowed-locations-2", "1");
+    updateSelection("allowed-locations", 1);
+    updateSelection("allowed-locations-2", 1);
     var advanced = document.getElementById("advanced");
     if (advancedMode) {
         advanced.parentElement.classList.remove('hidden');
@@ -1116,11 +1147,11 @@ function start() {
     });
     document.getElementById("allow-non-equipables").addEventListener("change", function() {
         if (document.getElementById("allow-non-equipables").checked) {
-            updateSelection("sav-weapon", weaponSelect.value, items);
-            updateSelection("sav-armor",  armorSelect.value,  items);
+            updateSelection("sav-weapon", null, items);
+            updateSelection("sav-armor",  null, items);
         } else {
-            updateSelection("sav-weapon", weaponSelect.value, weapons);
-            updateSelection("sav-armor",  armorSelect.value,  armors);
+            updateSelection("sav-weapon", null, weapons);
+            updateSelection("sav-armor",  null, armors);
         }
     });
     document.getElementById("sav-havecell").addEventListener("change", function() {
@@ -1134,7 +1165,7 @@ function start() {
             cellOpts[210] = "Papyrus's Phone";
         }
         for (var i = 1; i <= 8; i++) {
-            updateSelection("sav-cellslot" + i, document.getElementById("sav-cellslot" + i).value);
+            updateSelection("sav-cellslot" + i);
         }
     });
     
