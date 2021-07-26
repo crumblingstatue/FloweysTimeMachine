@@ -512,102 +512,105 @@ var flagFor = { // Link flags with inputs
     "sav-undynestate2": 350,
     "sav-muffetstate": 397,
     "sav-broguardsstate": 402,
-    "sav-mettatonstate": 435,
+    "sav-mettatonstate": 425,
+    "sav-undyne-cell": 465
 };
 
+var inputForFlag = {}; // and vice versa
+for (var id in flagFor) {
+    inputForFlag["sav-flag-" + flagFor[id]] = id;
+}
 
 var killedBool = [
     "Initial state",
     "Killed"
 ];
 
-var floweyStates = [
-    "None (Initial state)",
-    "Light blue (Initiated fight)",
-    "Orange",
-    "Blue",
-    "Purple",
-    "Green",
-    "Yellow",
-    "None (Finished fight)"
+var simpleDogStates = [
+    "Initial state",
+    "Killed",
+    "Played fetch (Spared)"
 ];
 
-var torielStates = {
-    "0": "Initial state",
-    "1": "In basement",
-    "3": "Fled from",
-    "4": "Killed",
-    "5": "Spared"
+var stateChoiceArrays = {
+    "sav-trainingdummystate": [
+        "Initial state",
+        "Killed",
+        "Talked to",
+        "Tired of your shenanigans"
+    ],
+    "sav-torielstate": {
+        "0": "Initial state",
+        "1": "In basement",
+        "3": "Fled from",
+        "4": "Killed",
+        "5": "Spared"
+    },
+    "sav-doggostate": simpleDogStates,
+    "sav-dogamydogaressastate": simpleDogStates,
+    "sav-greaterdogstate": [
+        "Initial state",
+        "Killed",
+        "Played fetch (Spared)",
+        "Ignored"
+    ],
+    "sav-comedianstate": [
+        "Initial state",
+        "Laughed at joke [Yellow credit]",
+        "Killed"
+    ],
+    "sav-papyrusstate": {
+        "-3": "Lost to thrice",
+        "-2": "Lost to twice",
+        "-1": "Lost to once",
+        "0": "Initial state",
+        "1": "Killed"
+    },
+    "sav-shyrenstate": [
+        "Initial state",
+        "Killed",
+        "Continued humming [Yellow credit]"
+    ],
+    "sav-undynestate1": killedBool, // Undyne The Undying
+    "sav-maddummystate": killedBool, // *Glad Dummy
+    "sav-undynestate2": [ // Undyne in general
+        "Initial state",
+        "Killed",
+        "Sick"
+    ],
+    "sav-muffetstate": killedBool,
+    "sav-broguardsstate": killedBool,
+    "sav-mettatonstate": killedBool,
+    "sav-weapon": weapons,
+    "sav-armor": armors,
+    "sav-plotvalue": {
+        "2": "Didn't fight Papyrus",
+        "101": "Fought Papyrus",
+        "119": "Unknown",
+        "164": "Hotlands genocide",
+        "199": "Pre-Last Corridor",
+        "999": "Pacifist epilogue"
+    },
+    "sav-location": rooms[1],
+    "ini-location": rooms[1],
+    "allowed-locations": roomSelectOptions,
+    "allowed-locations-2": roomSelectOptions,
+    "ini-omega-flowey-soul": [
+        "None (Initial state)",
+        "Light blue (Initiated fight)",
+        "Orange",
+        "Blue",
+        "Purple",
+        "Green",
+        "Yellow",
+        "None (Finished fight)"
+    ]
 };
 
-var comedianStates = {
-    "0": "Initial state",
-    "1": "Laughed at joke [Yellow credit]",
-    "2": "Killed"
-};
-
-var doggoStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Played fetch (Spared)"
-};
-
-var dogamyDogaressaStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Played fetch (Spared)"
-};
-
-var greaterDogStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Played fetch (Spared)",
-    "3": "Ignored"
-};
-
-var papyrusStates = {
-    "-3": "Lost to thrice",
-    "-2": "Lost to twice",
-    "-1": "Lost to once",
-    "0": "Initial state",
-    "1": "Killed"
-};
-
-var plotValues = {
-    "2": "Didn't fight Papyrus",
-    "101": "Fought Papyrus",
-    "119": "Unknown",
-    "164": "Hotlands genocide",
-    "199": "Pre-Last Corridor",
-    "999": "Pacifist epilogue"
-};
-
-var trainingDummyStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Talked to",
-    "3": "Tired of your shenanigans"
-};
-
-var shyrenStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Continued humming [Yellow credit]"
-};
-
-var madDummyStates = killedBool; // This flag is actually for Glad Dummy, as Mad Dummy cannot be killed.
-
-var undyneStates1 = killedBool; // Undyne The Undying
-
-var undyneStates2 = { // Undyne in general
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Sick"
-};
-
-var broGuardsStates = killedBool;
-var muffetStates = killedBool;
-var mettatonStates = killedBool;
+for (var i = 1; i <= 8; i++) {
+    stateChoiceArrays["sav-invslot" + i] = items;
+    stateChoiceArrays["sav-cellslot" + i] = cellOpts;
+}
 
 function parseIniFromText(text) {
     "use strict";
@@ -663,14 +666,13 @@ function flowey_laugh_once() {
     }
 }
 
-function loadSelectFromObj(selectId, obj) {
+function loadSelectFromObj(selectId) {
     "use strict";
     var select = document.getElementById(selectId);
-
-    for (var key in obj) {
+    for (var key in stateChoiceArrays[selectId]) {
         var newOption = document.createElement("option");
         newOption.setAttribute("value", key);
-        var newContent = document.createTextNode(obj[key]);
+        var newContent = document.createTextNode(stateChoiceArrays[selectId][key]);
         newOption.appendChild(newContent);
         select.appendChild(newOption);
     }
@@ -785,16 +787,19 @@ function updateIniFromForm(ini) {
     }
 }
 
-function updateSelection(id, value, list) {
+function updateSelection(id, value, newChoiceArray) {
     "use strict";
     value = parseInt(value.trim());
     while (document.getElementById(id).firstChild) {
         document.getElementById(id).removeChild(document.getElementById(id).firstChild);
     }
-    if (!list[value]) {
-        list[value] = "Unrecognized (" + value + ")";
+    if (newChoiceArray) {
+        stateChoiceArrays[id] = newChoiceArray;
     }
-    loadSelectFromObj(id, list);
+    if (!stateChoiceArrays[id][value]) {
+        stateChoiceArrays[id][value] = "Unrecognized (" + value + ")";
+    }
+    loadSelectFromObj(id);
     document.getElementById(id).value = value;
 }
 
@@ -818,8 +823,8 @@ function updateSaveDataForm(values) {
         cellOpts[210] = "Papyrus's Phone";
     }
     for (var i = 1; i <= 8; i++) {
-        updateSelection("sav-invslot" + i, values[10 + (i * 2)], items);
-        updateSelection("sav-cellslot" + i, values[11 + (i * 2)], cellOpts);
+        updateSelection("sav-invslot" + i, values[10 + (i * 2)]);
+        updateSelection("sav-cellslot" + i, values[11 + (i * 2)]);
     }
     if (document.getElementById("allow-non-equipables").checked) {
         updateSelection("sav-weapon", values[28], items);
@@ -828,28 +833,28 @@ function updateSaveDataForm(values) {
         updateSelection("sav-weapon", values[28], weapons);
         updateSelection("sav-armor", values[29], armors);
     }
-    updateSelection("sav-trainingdummystate", values[44], trainingDummyStates);
-    updateSelection("sav-torielstate", values[75], torielStates);
-    updateSelection("sav-doggostate", values[82], doggoStates);
-    updateSelection("sav-dogamydogaressastate", values[83], dogamyDogaressaStates);
-    updateSelection("sav-greaterdogstate", values[84], greaterDogStates);
-    updateSelection("sav-comedianstate", values[87], comedianStates);
-    updateSelection("sav-papyrusstate", values[97], papyrusStates);
-    updateSelection("sav-shyrenstate", values[111], shyrenStates);
+    updateSelection("sav-trainingdummystate", values[44]);
+    updateSelection("sav-torielstate", values[75]);
+    updateSelection("sav-doggostate", values[82]);
+    updateSelection("sav-dogamydogaressastate", values[83]);
+    updateSelection("sav-greaterdogstate", values[84]);
+    updateSelection("sav-comedianstate", values[87]);
+    updateSelection("sav-papyrusstate", values[97]);
+    updateSelection("sav-shyrenstate", values[111]);
     //document.getElementById("sav-unkkills").value = values[231];
     document.getElementById("sav-ruinskills").value = values[232];
     document.getElementById("sav-snowdinkills").value = values[233];
     document.getElementById("sav-waterfallkills").value = values[234];
     document.getElementById("sav-hotlandkills").value = values[235];
-    updateSelection("sav-undynestate1", values[281], undyneStates1);
-    updateSelection("sav-maddummystate", values[282], madDummyStates);
-    updateSelection("sav-undynestate2", values[380], undyneStates2);
-    updateSelection("sav-muffetstate", values[427], muffetStates);
-    updateSelection("sav-broguardsstate", values[432], broGuardsStates);
-    updateSelection("sav-mettatonstate", values[455], mettatonStates);
+    updateSelection("sav-undynestate1", values[281]);
+    updateSelection("sav-maddummystate", values[282]);
+    updateSelection("sav-undynestate2", values[380]);
+    updateSelection("sav-muffetstate", values[427]);
+    updateSelection("sav-broguardsstate", values[432]);
+    updateSelection("sav-mettatonstate", values[455]);
     document.getElementById("sav-exitedtruelab").checked = (parseInt(values[523].trim()) === 12);
     document.getElementById("sav-defeatedasriel").checked = (parseInt(values[37].trim()) === 1);
-    updateSelection("sav-plotvalue", values[542], plotValues);
+    updateSelection("sav-plotvalue", values[542]);
     if (parseInt(values[545].trim()) != document.getElementById("sav-havecell").checked) {
         document.getElementById("cellslots").classList.toggle('hidden');
     }
@@ -979,34 +984,11 @@ function start() {
         updatePersistentDataForm(ini);
     }
     // Initialize form
-    loadSelectFromObj("sav-location", rooms[1]);
-    loadSelectFromObj("ini-location", rooms[1]);
-    loadSelectFromObj("allowed-locations", roomSelectOptions);
-    loadSelectFromObj("allowed-locations-2", roomSelectOptions);
-    document.getElementById("allowed-locations").value = 1;
-    document.getElementById("allowed-locations-2").value = 1;
-    loadSelectFromObj("ini-omega-flowey-soul", floweyStates);
-    loadSelectFromObj("sav-torielstate", torielStates);
-    loadSelectFromObj("sav-comedianstate", comedianStates);
-    loadSelectFromObj("sav-doggostate", doggoStates);
-    loadSelectFromObj("sav-dogamydogaressastate", dogamyDogaressaStates);
-    loadSelectFromObj("sav-greaterdogstate", greaterDogStates);
-    loadSelectFromObj("sav-papyrusstate", papyrusStates);
-    loadSelectFromObj("sav-plotvalue", plotValues);
-    loadSelectFromObj("sav-trainingdummystate", trainingDummyStates);
-    loadSelectFromObj("sav-shyrenstate", shyrenStates);
-    loadSelectFromObj("sav-maddummystate", madDummyStates);
-    loadSelectFromObj("sav-undynestate1", undyneStates1);
-    loadSelectFromObj("sav-undynestate2", undyneStates2);
-    loadSelectFromObj("sav-broguardsstate", broGuardsStates);
-    loadSelectFromObj("sav-muffetstate", muffetStates);
-    loadSelectFromObj("sav-mettatonstate", mettatonStates);
-    for (var i = 1; i <= 8; i++) {
-        loadSelectFromObj("sav-invslot" + i, items);
-        loadSelectFromObj("sav-cellslot" + i, cellOpts);
+    for (var id in stateChoiceArrays) {
+        loadSelectFromObj(id);
     }
-    loadSelectFromObj("sav-weapon", weapons);
-    loadSelectFromObj("sav-armor", armors);
+    updateSelection("allowed-locations", "1");
+    updateSelection("allowed-locations-2", "1");
     var advanced = document.getElementById("advanced");
     if (advancedMode) {
         advanced.parentElement.classList.remove('hidden');
@@ -1152,7 +1134,7 @@ function start() {
             cellOpts[210] = "Papyrus's Phone";
         }
         for (var i = 1; i <= 8; i++) {
-            updateSelection("sav-cellslot" + i, document.getElementById("sav-cellslot" + i).value, cellOpts);
+            updateSelection("sav-cellslot" + i, document.getElementById("sav-cellslot" + i).value);
         }
     });
     
@@ -1270,6 +1252,17 @@ function start() {
                     document.getElementById("sav-flag-" + flagFor[this.id]).value = +this.checked;
                 } else {
                     document.getElementById("sav-flag-" + flagFor[this.id]).value = this.value;
+                }
+            });
+        } else if (inputForFlag[saveElements[i].id]) {
+            saveElements[i].addEventListener("change", function() {
+                var targetElement = document.getElementById(inputForFlag[this.id]);
+                if (targetElement.type == "checkbox") {
+                    targetElement.checked = this.value;
+                } else if (targetElement.type == "number") {
+                    targetElement.value = this.value;
+                } else { // dropdown
+                    updateSelection(targetElement.id, this.value);
                 }
             });
         }
