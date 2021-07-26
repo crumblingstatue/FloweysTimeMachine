@@ -512,7 +512,7 @@ var flagFor = { // Link flags with inputs
     "sav-undynestate2": 350,
     "sav-muffetstate": 397,
     "sav-broguardsstate": 402,
-    "sav-mettatonstate": 435,
+    "sav-mettatonstate": 425,
 };
 
 
