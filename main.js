@@ -1009,10 +1009,8 @@ function updateSaveDataForm(values) {
 // Update an array of values from the save data form.
 function updateSaveValuesFromForm(values) {
     "use strict";
-    if (advancedMode) {
-        for (var i = 0; i < flags.length; i++) {
-            values[30 + i] = document.getElementById("sav-flag-" + i).value;
-        }
+    for (var i = 0; i < flags.length; i++) {
+        values[30 + i] = document.getElementById("sav-flag-" + i).value;
     }
     values[0] = document.getElementById("sav-name").value;
     values[1] = document.getElementById("sav-love").value;
