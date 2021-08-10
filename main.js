@@ -894,6 +894,7 @@ function updateIniFromForm(ini) {
 function updateSelection(id, value, newChoiceArray) {
     "use strict";
     var select = document.getElementById(id);
+    var decimals = false;
     
     // Sanitize value
     if (typeof value === "string") {
@@ -930,13 +931,31 @@ function updateSelection(id, value, newChoiceArray) {
         select.removeChild(select.firstChild);
     }
     
-    // Create options
+    // Decimal keys don't sort correctly with this type of iteration
     for (var key in stateChoiceArrays[id]) {
-        var newOption = document.createElement("option");
-        newOption.setAttribute("value", key);
-        var newContent = document.createTextNode(stateChoiceArrays[id][key]);
-        newOption.appendChild(newContent);
-        select.appendChild(newOption);
+        if (parseInt(key) !== parseFloat(key)) {
+            decimals = true;
+            break;
+        }
+    }
+    
+    // Create options
+    if (decimals) {
+        for (var key of Object.keys(stateChoiceArrays[id]).sort((a, b) => a - b);) {
+            var newOption = document.createElement("option");
+            newOption.setAttribute("value", key);
+            var newContent = document.createTextNode(stateChoiceArrays[id][key]);
+            newOption.appendChild(newContent);
+            select.appendChild(newOption);
+        }
+    } else {
+        for (var key in stateChoiceArrays[id]) {
+            var newOption = document.createElement("option");
+            newOption.setAttribute("value", key);
+            var newContent = document.createTextNode(stateChoiceArrays[id][key]);
+            newOption.appendChild(newContent);
+            select.appendChild(newOption);
+        }
     }
     
     // Update value
