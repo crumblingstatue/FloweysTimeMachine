@@ -941,7 +941,7 @@ function updateSelection(id, value, newChoiceArray) {
     
     // Create options
     if (decimals) {
-        for (var key of Object.keys(stateChoiceArrays[id]).sort((a, b) => a - b);) {
+        for (var key of Object.keys(stateChoiceArrays[id]).sort((a, b) => a - b)) {
             var newOption = document.createElement("option");
             newOption.setAttribute("value", key);
             var newContent = document.createTextNode(stateChoiceArrays[id][key]);
