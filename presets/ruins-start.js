@@ -10,6 +10,9 @@ presets["Ruins Start"] = {
         },
         "Flowey": {
             "Met1": "1"
+        },
+        "FFFFF": { // technically produces invalid save but it should work fine
+            "P": "0"
         }
     },
     lines: [
