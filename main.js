@@ -68,6 +68,7 @@ var items = [
 ];
 
 var weapons = {
+    "0": "Empty",
     "3": "Stick",
     "13": "Toy Knife",
     "14": "Tough Glove",
@@ -80,6 +81,7 @@ var weapons = {
 };
 
 var armors = {
+    "0": "Empty",
     "4": "Bandage",
     "12": "Faded Ribbon",
     "15": "Manly Bandana",
@@ -513,101 +515,217 @@ var flagFor = { // Link flags with inputs
     "sav-muffetstate": 397,
     "sav-broguardsstate": 402,
     "sav-mettatonstate": 425,
+    "sav-undyne-cell": 465
 };
 
+var inputForFlag = {}; // and vice versa
+for (var id in flagFor) {
+    inputForFlag["sav-flag-" + flagFor[id]] = id;
+}
 
 var killedBool = [
     "Initial state",
     "Killed"
 ];
 
-var floweyStates = [
-    "None (Initial state)",
-    "Light blue (Initiated fight)",
-    "Orange",
-    "Blue",
-    "Purple",
-    "Green",
-    "Yellow",
-    "None (Finished fight)"
+var simpleDogStates = [
+    "Initial state",
+    "Killed",
+    "Played fetch (Spared)"
 ];
 
-var torielStates = {
-    "0": "Initial state",
-    "1": "In basement",
-    "3": "Fled from",
-    "4": "Killed",
-    "5": "Spared"
+var stateChoiceArrays = {
+    "sav-trainingdummystate": [
+        "Initial state",
+        "Killed",
+        "Talked to",
+        "Tired of your shenanigans"
+    ],
+    "sav-torielstate": {
+        "0": "Initial state",
+        "1": "In basement",
+        "3": "Fled from",
+        "4": "Killed",
+        "5": "Spared"
+    },
+    "sav-doggostate": simpleDogStates,
+    "sav-dogamydogaressastate": simpleDogStates,
+    "sav-greaterdogstate": [
+        "Initial state",
+        "Killed",
+        "Played fetch (Spared)",
+        "Ignored"
+    ],
+    "sav-comedianstate": [
+        "Initial state",
+        "Laughed at joke [Yellow credit]",
+        "Killed"
+    ],
+    "sav-papyrusstate": {
+        "-3": "Lost to thrice",
+        "-2": "Lost to twice",
+        "-1": "Lost to once",
+        "0": "Initial state",
+        "1": "Killed"
+    },
+    "sav-shyrenstate": [
+        "Initial state",
+        "Killed",
+        "Continued humming [Yellow credit]"
+    ],
+    "sav-undynestate1": killedBool, // Undyne The Undying
+    "sav-maddummystate": killedBool, // *Glad Dummy
+    "sav-undynestate2": [ // Undyne in general
+        "Initial state",
+        "Killed",
+        "Sick"
+    ],
+    "sav-muffetstate": killedBool,
+    "sav-broguardsstate": killedBool,
+    "sav-mettatonstate": killedBool,
+    "sav-weapon": weapons,
+    "sav-armor": armors,
+    "sav-plotvalue": {
+        "0": "New game", // Unobtainable but necessary
+        // "1": "Flowey intro complete",
+        "2": "First save",
+        "3": "Stepping tile puzzle complete",
+        "4": "Toriel waiting at switch puzzle",
+        "4.5": "First switch flipped",
+        "5": "Switch puzzle complete",
+        "5.5": "Toriel waiting at dummy",
+        // "6": "Dummy defeated",
+        "7": "Toriel at spike puzzle",
+        // "7.5": "Crossing spike puzzle",
+        "8": "Spike puzzle complete",
+        // "8.5": "Unnecessary Tension",
+        "9": "Toriel left",
+        "9.2": "Received Toriel puzzle call",
+        "9.4": "Received Toriel preference call",
+        "9.6": "Received Toriel confirmation call",
+        "9.8": "Received Toriel allergies call",
+        // "10.3": "Napstablook spared",
+        // "10.35": "Battle exited",
+        // "10.4": "And some dialogue", // needs better desc.
+        "11": "Napstablook defeated",
+        "12": "Received Toriel pockets call",
+        "13": "Just one switch puzzle solved",
+        "14": "Blue switch flipped",
+        "15": "Red switch flipped",
+        "16": "Green switch flipped",
+        "17": "Met Toriel at Ruins end",
+        "18": "Toriel waiting at bedrooms",
+        "19": "Toriel reading",
+        "19.1": "Received sleep suggestion",
+        "19.2": "\"I have always wanted to be a teacher.\"",
+        // "19.3": "Receiving snail fact",
+        "19.4": "Received snail fact",
+        // "19.9": "\"I have to do something\"",
+        // "20": "Toriel standing up",
+        "21": "Toriel in basement",
+        "22": "Toriel in Basement 2",
+        "23": "Toriel in Basement 3",
+        "24": "Toriel at Ruins Exit",
+        // It goes back to 11 for a moment here, fwiw. Copy-paste.
+        "25": "Toriel defeated",
+        // "28": "Flowey judgment complete",
+        // "30": "Exited Ruins",
+        // "36": "Met Sans and Papyrus, Sans hasn't left",
+        "37": "Sans/Papyrus intro complete",
+        "40": "Papyrus rock scene complete",
+        // "41": "Doggo defeated, still in battle",
+        "42": "Doggo defeated",
+        "43": "Invisible Maze complete",
+        "47": "Crossword complete",
+        "49": "Undersnow switch complete",
+        // "50": "Dogi defeated, still in battle",
+        "51": "Dogi defeated",
+        "53": "Small XO puzzle complete",
+        "54": "Large XO puzzle started",
+        "56": "Large XO puzzle complete",
+        "57": "XO puzzles complete (Genocide)",
+        "58": "Papyrus's tile puzzle complete",
+        "63": "Icy XO puzzle complete",
+        // "60": "Greater Dog defeated, still in battle",
+        // "61": "Greater Dog spared",
+        "65": "Greater Dog defeated",
+        "67": "Gauntlet of Deadly Terror complete",
+        // "100": "Papyrus defeated, in post-battle cutscene",
+        "101": "Papyrus defeated",
+        "106": "Undyne intro complete",
+        "107": "Bridge Seed puzzles complete", // technically when you get Papyrus's call, or don't get it as the case may be, but this seems more apt.
+        "108": "Hidden door opened",
+        // "109": "", // Something about that unused torch puzzle in room_water7_older? Inaccessible anyway.
+        "110": "Undyne spear-throwing scene complete",
+        "111": "Shyren defeated",
+        "112": "Monster Kid crouching",
+        "113": "Climbed ledge",
+        "115": "Undyne bridge spears scene complete (entered dump)",
+        "116": "Mad Dummy defeated",
+        "117": "Received Napstablook's directions/Glad Dummy defeated", // verify
+        "118": "\"Behind you.\" scene complete",
+        "119": "Pre-Undyne the Undying", // Set by a trigger in room_water19. The trigger also causes the Flowey echo flower and "Shouldn't proceed yet" on Genocide.
+        "120": "Final Monster Kid scene complete",
+        "121": "Received Undyne speech",
+        "122": "Undyne defeated",
+        // "126": "Quiz show complete, phone not upgraded",
+        "127": "Quiz show complete (Neutral/Pacifist)",
+        "130": "Received Alphys hangup",
+        "131": "Received Alphys laser explanation",
+        "132": "Received Alphys shooter puzzle explanation",
+        "133": "First shooter puzzle complete", // triggers on door opening
+        "133.5": "Received Alphys unnecessary puzzle explanation",
+        // "134": "Ingredients collected",
+        "135": "Cooking show complete",
+        "137": "Received Alphys CORE explanation",
+        "139": "Received Alphys three-switches explanation",
+        "140": "Three-switches puzzle complete",
+        "143": "Received Alphys bathroom call",
+        "146": "Royal Guards defeated (Neutral/Pacifist)",
+        "160": "Mettaton intro complete (Genocide)",
+        "161": "News show complete",
+        "162": "\"With your human soul, you can pass through the barrier!\"",
+        "163": "\"Let's be friends on UnderNet!\"",
+        "164": "Second shooter puzzle complete/Royal Guards defeated (Genocide)",
+        "165": "Muffet defeated (Neutral/Pacifist)",
+        // "167": "Opera scene complete",
+        "168": "Mettaton's tile puzzle complete",
+        "176": "Spotted mercenaries",
+        "177": "Received Alphys elevator call",
+        "179": "First Madjick battle complete",
+        "180": "Received Alphys laser order call",
+        "181": "Received Alphys apology call",
+        "182": "\"Try heading to the right!\"",
+        "184": "Reactivating lasers bridge complete",
+        "185": "\"This doesn't look like my map at all\"/Muffet defeated (Genocide)",
+        // "193": "Mettaton defeated, Alphys scene incomplete",
+        "199": "Mettaton defeated",
+        "201": "True Lab complete (Pacifist)/Last Corridor complete (Neutral/Genocide)",
+        "206": "Asgore intro complete",
+        "207": "\"A visit to the dentist\"",
+        "208": "Pre-Asgore",
+        "999": "Pacifist epilogue"
+    },
+    "sav-location": rooms[1],
+    "ini-location": rooms[1],
+    "allowed-locations": roomSelectOptions,
+    "allowed-locations-2": roomSelectOptions,
+    "ini-omega-flowey-soul": [
+        "None (Initial state)",
+        "Light blue (Initiated fight)",
+        "Orange",
+        "Blue",
+        "Purple",
+        "Green",
+        "Yellow",
+        "None (Finished fight)"
+    ]
 };
 
-var comedianStates = {
-    "0": "Initial state",
-    "1": "Laughed at joke [Yellow credit]",
-    "2": "Killed"
-};
-
-var doggoStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Played fetch (Spared)"
-};
-
-var dogamyDogaressaStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Played fetch (Spared)"
-};
-
-var greaterDogStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Played fetch (Spared)",
-    "3": "Ignored"
-};
-
-var papyrusStates = {
-    "-3": "Lost to thrice",
-    "-2": "Lost to twice",
-    "-1": "Lost to once",
-    "0": "Initial state",
-    "1": "Killed"
-};
-
-var plotValues = {
-    "2": "Didn't fight Papyrus",
-    "101": "Fought Papyrus",
-    "119": "Unknown",
-    "164": "Hotlands genocide",
-    "199": "Pre-Last Corridor",
-    "999": "Pacifist epilogue"
-};
-
-var trainingDummyStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Talked to",
-    "3": "Tired of your shenanigans"
-};
-
-var shyrenStates = {
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Continued humming [Yellow credit]"
-};
-
-var madDummyStates = killedBool; // This flag is actually for Glad Dummy, as Mad Dummy cannot be killed.
-
-var undyneStates1 = killedBool; // Undyne The Undying
-
-var undyneStates2 = { // Undyne in general
-    "0": "Initial state",
-    "1": "Killed",
-    "2": "Sick"
-};
-
-var broGuardsStates = killedBool;
-var muffetStates = killedBool;
-var mettatonStates = killedBool;
+for (var i = 1; i <= 8; i++) {
+    stateChoiceArrays["sav-invslot" + i] = items;
+    stateChoiceArrays["sav-cellslot" + i] = cellOpts;
+}
 
 function parseIniFromText(text) {
     "use strict";
@@ -663,18 +781,6 @@ function flowey_laugh_once() {
     }
 }
 
-function loadSelectFromObj(selectId, obj) {
-    "use strict";
-    var select = document.getElementById(selectId);
-
-    for (var key in obj) {
-        var newOption = document.createElement("option");
-        newOption.setAttribute("value", key);
-        var newContent = document.createTextNode(obj[key]);
-        newOption.appendChild(newContent);
-        select.appendChild(newOption);
-    }
-}
 
 // Load undertale.ini data into an ini object and execute a closure on it.
 function loadIniFromFile(file, closure) {
@@ -785,17 +891,56 @@ function updateIniFromForm(ini) {
     }
 }
 
-function updateSelection(id, value, list) {
+function updateSelection(id, value, newChoiceArray) {
     "use strict";
-    value = parseInt(value.trim());
-    while (document.getElementById(id).firstChild) {
-        document.getElementById(id).removeChild(document.getElementById(id).firstChild);
+    var select = document.getElementById(id);
+    
+    // Sanitize value
+    if (typeof value === "string") {
+        value = parseInt(value.trim());
+    } else if (typeof value === "number") {
+        value = parseInt(value);
+    } else if (value == undefined) {
+        if (select.value == undefined) {
+            window.alert("No value found for form input " + id + ", defaulting to 0.");
+            value = 0;
+        } else {
+            value = select.value;
+        }
     }
-    if (!list[value]) {
-        list[value] = "Unrecognized (" + value + ")";
+    
+    // Switch selected array
+    if (newChoiceArray) {
+        stateChoiceArrays[id] = newChoiceArray;
     }
-    loadSelectFromObj(id, list);
-    document.getElementById(id).value = value;
+    
+    // Default case if incorrect ID is used (or stateChoiceArrays missing a case)
+    if (!stateChoiceArrays[id]) {
+        window.alert("No associated array for form input " + id + " found, defaulting to [\"Error\"].");
+        stateChoiceArrays[id] = ["Error"];
+    }
+    
+    // Add "Unrecognized" value if necessary
+    if (!stateChoiceArrays[id][value]) {
+        stateChoiceArrays[id][value] = "Unrecognized (" + value + ")";
+    }
+    
+    // Clear old options
+    while (select.firstChild) {
+        select.removeChild(select.firstChild);
+    }
+    
+    // Create options
+    for (var key in stateChoiceArrays[id]) {
+        var newOption = document.createElement("option");
+        newOption.setAttribute("value", key);
+        var newContent = document.createTextNode(stateChoiceArrays[id][key]);
+        newOption.appendChild(newContent);
+        select.appendChild(newOption);
+    }
+    
+    // Update value
+    select.value = value;
 }
 
 // Update the save data form from an array of values.
@@ -818,8 +963,8 @@ function updateSaveDataForm(values) {
         cellOpts[210] = "Papyrus's Phone";
     }
     for (var i = 1; i <= 8; i++) {
-        updateSelection("sav-invslot" + i, values[10 + (i * 2)], items);
-        updateSelection("sav-cellslot" + i, values[11 + (i * 2)], cellOpts);
+        updateSelection("sav-invslot" + i, values[10 + (i * 2)]);
+        updateSelection("sav-cellslot" + i, values[11 + (i * 2)]);
     }
     if (document.getElementById("allow-non-equipables").checked) {
         updateSelection("sav-weapon", values[28], items);
@@ -828,28 +973,28 @@ function updateSaveDataForm(values) {
         updateSelection("sav-weapon", values[28], weapons);
         updateSelection("sav-armor", values[29], armors);
     }
-    updateSelection("sav-trainingdummystate", values[44], trainingDummyStates);
-    updateSelection("sav-torielstate", values[75], torielStates);
-    updateSelection("sav-doggostate", values[82], doggoStates);
-    updateSelection("sav-dogamydogaressastate", values[83], dogamyDogaressaStates);
-    updateSelection("sav-greaterdogstate", values[84], greaterDogStates);
-    updateSelection("sav-comedianstate", values[87], comedianStates);
-    updateSelection("sav-papyrusstate", values[97], papyrusStates);
-    updateSelection("sav-shyrenstate", values[111], shyrenStates);
+    updateSelection("sav-trainingdummystate", values[44]);
+    updateSelection("sav-torielstate", values[75]);
+    updateSelection("sav-doggostate", values[82]);
+    updateSelection("sav-dogamydogaressastate", values[83]);
+    updateSelection("sav-greaterdogstate", values[84]);
+    updateSelection("sav-comedianstate", values[87]);
+    updateSelection("sav-papyrusstate", values[97]);
+    updateSelection("sav-shyrenstate", values[111]);
     //document.getElementById("sav-unkkills").value = values[231];
     document.getElementById("sav-ruinskills").value = values[232];
     document.getElementById("sav-snowdinkills").value = values[233];
     document.getElementById("sav-waterfallkills").value = values[234];
     document.getElementById("sav-hotlandkills").value = values[235];
-    updateSelection("sav-undynestate1", values[281], undyneStates1);
-    updateSelection("sav-maddummystate", values[282], madDummyStates);
-    updateSelection("sav-undynestate2", values[380], undyneStates2);
-    updateSelection("sav-muffetstate", values[427], muffetStates);
-    updateSelection("sav-broguardsstate", values[432], broGuardsStates);
-    updateSelection("sav-mettatonstate", values[455], mettatonStates);
+    updateSelection("sav-undynestate1", values[281]);
+    updateSelection("sav-maddummystate", values[282]);
+    updateSelection("sav-undynestate2", values[380]);
+    updateSelection("sav-muffetstate", values[427]);
+    updateSelection("sav-broguardsstate", values[432]);
+    updateSelection("sav-mettatonstate", values[455]);
     document.getElementById("sav-exitedtruelab").checked = (parseInt(values[523].trim()) === 12);
     document.getElementById("sav-defeatedasriel").checked = (parseInt(values[37].trim()) === 1);
-    updateSelection("sav-plotvalue", values[542], plotValues);
+    updateSelection("sav-plotvalue", values[542]);
     if (parseInt(values[545].trim()) != document.getElementById("sav-havecell").checked) {
         document.getElementById("cellslots").classList.toggle('hidden');
     }
@@ -977,34 +1122,11 @@ function start() {
         updatePersistentDataForm(ini);
     }
     // Initialize form
-    loadSelectFromObj("sav-location", rooms[1]);
-    loadSelectFromObj("ini-location", rooms[1]);
-    loadSelectFromObj("allowed-locations", roomSelectOptions);
-    loadSelectFromObj("allowed-locations-2", roomSelectOptions);
-    document.getElementById("allowed-locations").value = 1;
-    document.getElementById("allowed-locations-2").value = 1;
-    loadSelectFromObj("ini-omega-flowey-soul", floweyStates);
-    loadSelectFromObj("sav-torielstate", torielStates);
-    loadSelectFromObj("sav-comedianstate", comedianStates);
-    loadSelectFromObj("sav-doggostate", doggoStates);
-    loadSelectFromObj("sav-dogamydogaressastate", dogamyDogaressaStates);
-    loadSelectFromObj("sav-greaterdogstate", greaterDogStates);
-    loadSelectFromObj("sav-papyrusstate", papyrusStates);
-    loadSelectFromObj("sav-plotvalue", plotValues);
-    loadSelectFromObj("sav-trainingdummystate", trainingDummyStates);
-    loadSelectFromObj("sav-shyrenstate", shyrenStates);
-    loadSelectFromObj("sav-maddummystate", madDummyStates);
-    loadSelectFromObj("sav-undynestate1", undyneStates1);
-    loadSelectFromObj("sav-undynestate2", undyneStates2);
-    loadSelectFromObj("sav-broguardsstate", broGuardsStates);
-    loadSelectFromObj("sav-muffetstate", muffetStates);
-    loadSelectFromObj("sav-mettatonstate", mettatonStates);
-    for (var i = 1; i <= 8; i++) {
-        loadSelectFromObj("sav-invslot" + i, items);
-        loadSelectFromObj("sav-cellslot" + i, cellOpts);
+    for (var id in stateChoiceArrays) {
+        updateSelection(id, 0);
     }
-    loadSelectFromObj("sav-weapon", weapons);
-    loadSelectFromObj("sav-armor", armors);
+    updateSelection("allowed-locations", 1);
+    updateSelection("allowed-locations-2", 1);
     var advanced = document.getElementById("advanced");
     if (advancedMode) {
         advanced.parentElement.classList.remove('hidden');
@@ -1122,21 +1244,21 @@ function start() {
     var allowedLocations2 = document.getElementById("allowed-locations-2");
     allowedLocations1.addEventListener("change", function() {
         allowedLocations2.value = allowedLocations1.value;
-        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
-        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
+        updateSelection("ini-location", null, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", null, rooms[allowedLocations1.value]);
     });
     allowedLocations2.addEventListener("change", function() {
         allowedLocations1.value = allowedLocations2.value;
-        updateSelection("ini-location", document.getElementById("ini-location").value, rooms[allowedLocations1.value]);
-        updateSelection("sav-location", document.getElementById("sav-location").value, rooms[allowedLocations1.value]);
+        updateSelection("ini-location", null, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", null, rooms[allowedLocations1.value]);
     });
     document.getElementById("allow-non-equipables").addEventListener("change", function() {
         if (document.getElementById("allow-non-equipables").checked) {
-            updateSelection("sav-weapon", weaponSelect.value, items);
-            updateSelection("sav-armor",  armorSelect.value,  items);
+            updateSelection("sav-weapon", null, items);
+            updateSelection("sav-armor",  null, items);
         } else {
-            updateSelection("sav-weapon", weaponSelect.value, weapons);
-            updateSelection("sav-armor",  armorSelect.value,  armors);
+            updateSelection("sav-weapon", null, weapons);
+            updateSelection("sav-armor",  null, armors);
         }
     });
     document.getElementById("sav-havecell").addEventListener("change", function() {
@@ -1150,7 +1272,7 @@ function start() {
             cellOpts[210] = "Papyrus's Phone";
         }
         for (var i = 1; i <= 8; i++) {
-            updateSelection("sav-cellslot" + i, document.getElementById("sav-cellslot" + i).value, cellOpts);
+            updateSelection("sav-cellslot" + i);
         }
     });
     
@@ -1268,6 +1390,17 @@ function start() {
                     document.getElementById("sav-flag-" + flagFor[this.id]).value = +this.checked;
                 } else {
                     document.getElementById("sav-flag-" + flagFor[this.id]).value = this.value;
+                }
+            });
+        } else if (inputForFlag[saveElements[i].id]) {
+            saveElements[i].addEventListener("change", function() {
+                var targetElement = document.getElementById(inputForFlag[this.id]);
+                if (targetElement.type == "checkbox") {
+                    targetElement.checked = this.value;
+                } else if (targetElement.type == "number") {
+                    targetElement.value = this.value;
+                } else { // dropdown
+                    updateSelection(targetElement.id, this.value);
                 }
             });
         }
