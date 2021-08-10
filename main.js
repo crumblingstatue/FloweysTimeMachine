@@ -1122,11 +1122,6 @@ function start() {
         updatePersistentDataForm(ini);
     }
     // Initialize form
-    for (var id in stateChoiceArrays) {
-        updateSelection(id, 0);
-    }
-    updateSelection("allowed-locations", 1);
-    updateSelection("allowed-locations-2", 1);
     var advanced = document.getElementById("advanced");
     if (advancedMode) {
         advanced.parentElement.classList.remove('hidden');
