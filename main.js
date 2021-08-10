@@ -68,7 +68,7 @@ var items = [
 ];
 
 var weapons = {
-    "0": "Empty",
+    // "0": "Empty",
     "3": "Stick",
     "13": "Toy Knife",
     "14": "Tough Glove",
@@ -81,7 +81,7 @@ var weapons = {
 };
 
 var armors = {
-    "0": "Empty",
+    // "0": "Empty",
     "4": "Bandage",
     "12": "Faded Ribbon",
     "15": "Manly Bandana",
@@ -814,7 +814,7 @@ function loadSaveFromFile(file, closure) {
 function updatePersistentDataForm(iniobj) {
     "use strict";
     document.getElementById("ini-name").value = iniobj.General.Name;
-    document.getElementById("ini-location").value = parseInt(iniobj.General.Room.trim());
+    updateSelection("ini-location", iniobj.General.Room);
     document.getElementById("ini-kills").value = parseInt(iniobj.General.Kills.trim());
     document.getElementById("ini-love").value = parseInt(iniobj.General.Love.trim());
     if (iniobj.FFFFF) {
@@ -822,7 +822,7 @@ function updatePersistentDataForm(iniobj) {
             document.getElementById("ini-omega-flowey-trapped").checked = (parseInt(iniobj.FFFFF.F.trim()) === 1);
         }
         if (iniobj.FFFFF.P) {
-            document.getElementById("ini-omega-flowey-soul").value = parseInt(iniobj.FFFFF.P.trim());
+            updateSelection("ini-omega-flowey-soul", iniobj.FFFFF.P);
         }
         if (iniobj.FFFFF.D) {
             document.getElementById("ini-omega-flowey-deaths").value = parseInt(iniobj.FFFFF.D.trim());
@@ -999,7 +999,7 @@ function updateSaveDataForm(values) {
         document.getElementById("cellslots").classList.toggle('hidden');
     }
     document.getElementById("sav-havecell").checked = (parseInt(values[545].trim()) === 1);
-    document.getElementById("sav-location").value = parseInt(values[547].trim());
+    updateSelection("sav-location", values[547]);
     document.getElementById("sav-fun").value = parseInt(values[35].trim());
     for (var i = 0; i < flags.length; i++) {
         document.getElementById("sav-flag-" + i).value = values[30 + i];
@@ -1122,6 +1122,8 @@ function start() {
         updatePersistentDataForm(ini);
     }
     // Initialize form
+    updateSelection("allowed-locations", 1);
+    updateSelection("allowed-locations-2", 1);
     var advanced = document.getElementById("advanced");
     if (advancedMode) {
         advanced.parentElement.classList.remove('hidden');
