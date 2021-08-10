@@ -586,7 +586,7 @@ var stateChoiceArrays = {
     "sav-weapon": weapons,
     "sav-armor": armors,
     "sav-plotvalue": {
-        "0": "New game", // Unobtainable but necessary
+        // "0": "New game",
         // "1": "Flowey intro complete",
         "2": "First save",
         "3": "Stepping tile puzzle complete",
