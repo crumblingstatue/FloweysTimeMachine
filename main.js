@@ -1133,7 +1133,9 @@ function start() {
             var newLabel = document.createElement("label");
             newLabel.setAttribute("for", "sav-flag-" + (i + j));
             newLabel.innerHTML = "[" + (i + j) + "] " + flags[i + j][0];
-            newLabel.title = flags[i + j][1];
+            if (typeof flags[i + j][1] === "string") {
+                newLabel.title = flags[i + j][1];
+            }
             advanced.appendChild(newLabel);
         }
         for (var j = 0; j < 3; j++) {
