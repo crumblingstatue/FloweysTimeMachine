@@ -1150,11 +1150,17 @@ function start() {
                 newField.setAttribute("value", 0);
             } else if (typeof flags[i + j][2] === "string") { // Simple boolean
                 newField = document.createElement("div");
+                newField.setAttribute("class", "checkbox");
+                newField.style.marginTop = 0;
                 var newOption = document.createElement("input");
                 newOption.setAttribute("type", "checkbox");
+                newOption.addEventListener("change", function() {
+                    this.nextSibling.value = +this.checked;
+                });
                 newField.appendChild(newOption);
                 newOption = document.createElement("input");
                 newOption.setAttribute("type", "number");
+                newOption.style.width = "100%";
                 newOption.setAttribute("id", "sav-flag-" + (i + j));
                 newOption.setAttribute("value", 0);
                 newField.appendChild(newOption);
