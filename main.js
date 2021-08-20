@@ -894,7 +894,6 @@ function updateIniFromForm(ini) {
 function updateSelection(id, value, newChoiceArray) {
     "use strict";
     var select = document.getElementById(id);
-    var decimals = false;
     
     // Sanitize value
     if (typeof value === "string") {
@@ -931,31 +930,13 @@ function updateSelection(id, value, newChoiceArray) {
         select.removeChild(select.firstChild);
     }
     
-    // Decimal keys don't sort correctly with this type of iteration
-    for (var key in stateChoiceArrays[id]) {
-        if (parseInt(key) !== parseFloat(key)) {
-            decimals = true;
-            break;
-        }
-    }
-    
     // Create options
-    if (decimals) {
-        for (var key of Object.keys(stateChoiceArrays[id]).sort((a, b) => a - b)) {
-            var newOption = document.createElement("option");
-            newOption.setAttribute("value", key);
-            var newContent = document.createTextNode(stateChoiceArrays[id][key]);
-            newOption.appendChild(newContent);
-            select.appendChild(newOption);
-        }
-    } else {
-        for (var key in stateChoiceArrays[id]) {
-            var newOption = document.createElement("option");
-            newOption.setAttribute("value", key);
-            var newContent = document.createTextNode(stateChoiceArrays[id][key]);
-            newOption.appendChild(newContent);
-            select.appendChild(newOption);
-        }
+    for (var key of Object.keys(stateChoiceArrays[id]).sort((a, b) => a - b)) { // (Decimal keys don't automatically sort correctly)
+        var newOption = document.createElement("option");
+        newOption.setAttribute("value", key);
+        var newContent = document.createTextNode(stateChoiceArrays[id][key]);
+        newOption.appendChild(newContent);
+        select.appendChild(newOption);
     }
     
     // Update value
@@ -1151,14 +1132,38 @@ function start() {
         for (var j = 0; j < 3; j++) {
             var newLabel = document.createElement("label");
             newLabel.setAttribute("for", "sav-flag-" + (i + j));
-            newLabel.innerHTML = "[" + (i + j) + "] " + flags[i + j];
+            newLabel.innerHTML = "[" + (i + j) + "] " + flags[i + j][0];
             advanced.appendChild(newLabel);
         }
         for (var j = 0; j < 3; j++) {
-            var newField = document.createElement("input");
-            newField.setAttribute("type", "number");
-            newField.setAttribute("id", "sav-flag-" + (i + j));
-            newField.setAttribute("value", 0);
+            var newField;
+            if (typeof flags[i + j][2] === "object") { // Options listed
+                newField = document.createElement("select");
+                for (var key of Object.keys(flags[i + j][2]).sort((a, b) => a - b)) { // (Decimal keys don't automatically sort correctly)
+                    var newOption = document.createElement("option");
+                    newOption.setAttribute("value", key);
+                    var newContent = document.createTextNode(stateChoiceArrays[id][key]);
+                    newOption.appendChild(newContent);
+                    newField.appendChild(newOption);
+                }
+                newField.setAttribute("id", "sav-flag-" + (i + j));
+                newField.setAttribute("value", 0);
+            } else if (typeof flags[i + j][2] === "string") { // Simple boolean
+                newField = document.createElement("div");
+                var newOption = document.createElement("input");
+                newOption.setAttribute("type", "checkbox");
+                newField.appendChild(newOption);
+                newOption = document.createElement("input");
+                newOption.setAttribute("type", "number");
+                newOption.setAttribute("id", "sav-flag-" + (i + j));
+                newOption.setAttribute("value", 0);
+                newField.appendChild(newOption);
+            } else { // Numerical value
+                newField = document.createElement("input");
+                newField.setAttribute("type", "number");
+                newField.setAttribute("id", "sav-flag-" + (i + j));
+                newField.setAttribute("value", 0);
+            }
             advanced.appendChild(newField);
         }
     }
