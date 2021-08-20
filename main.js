@@ -1142,7 +1142,7 @@ function start() {
                 for (var key of Object.keys(flags[i + j][2]).sort((a, b) => a - b)) { // (Decimal keys don't automatically sort correctly)
                     var newOption = document.createElement("option");
                     newOption.setAttribute("value", key);
-                    var newContent = document.createTextNode(stateChoiceArrays[id][key]);
+                    var newContent = document.createTextNode(flags[i + j][2][key]);
                     newOption.appendChild(newContent);
                     newField.appendChild(newOption);
                 }
