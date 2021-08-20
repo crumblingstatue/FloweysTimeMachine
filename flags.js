@@ -1,4 +1,4 @@
-var basicBool = ["Initial state", "Active/true"];
+var basicBool = "checkbox";
 var simpleDogStates = [
     "Initial state",
     "Killed",
