@@ -1190,6 +1190,9 @@ function start() {
             advanced.appendChild(newField);
             if (i > 500) {
                 console.log("Element for flag " + (i + j) + " appended.");
+                if (typeof flags[i + j][2] === "object") {
+                    console.log("(Value is " + debugVars[i + j].value + ")");
+                }
             }
         }
     }
