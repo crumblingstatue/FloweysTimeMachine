@@ -1151,7 +1151,7 @@ function start() {
                     newField.appendChild(newOption);
                 }
                 newField.setAttribute("id", "sav-flag-" + (i + j));
-                newField.setAttribute("value", 0);
+                newField.value = 0;
             } else if (typeof flags[i + j][2] === "string") { // Simple boolean
                 newField = document.createElement("div");
                 newField.setAttribute("class", "checkbox");
@@ -1169,13 +1169,13 @@ function start() {
                 });
                 newOption.style.width = "100%";
                 newOption.setAttribute("id", "sav-flag-" + (i + j));
-                newOption.setAttribute("value", 0);
+                newOption.value = 0;
                 newField.appendChild(newOption);
             } else { // Numerical value
                 newField = document.createElement("input");
                 newField.setAttribute("type", "number");
                 newField.setAttribute("id", "sav-flag-" + (i + j));
-                newField.setAttribute("value", 0);
+                newField.value = 0;
             }
             advanced.appendChild(newField);
         }
