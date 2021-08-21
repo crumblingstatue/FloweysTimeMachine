@@ -981,7 +981,6 @@ function updateSaveDataForm(values) {
     updateSelection("sav-comedianstate", values[87]);
     updateSelection("sav-papyrusstate", values[97]);
     updateSelection("sav-shyrenstate", values[111]);
-    //document.getElementById("sav-unkkills").value = values[231];
     document.getElementById("sav-ruinskills").value = values[232];
     document.getElementById("sav-snowdinkills").value = values[233];
     document.getElementById("sav-waterfallkills").value = values[234];
@@ -1042,7 +1041,6 @@ function updateSaveValuesFromForm(values) {
     values[87] = document.getElementById("sav-comedianstate").value;
     values[97] = document.getElementById("sav-papyrusstate").value;
     values[111] = document.getElementById("sav-shyrenstate").value;
-    //values[231] = document.getElementById("sav-unkkills").value;
     values[232] = document.getElementById("sav-ruinskills").value;
     values[233] = document.getElementById("sav-snowdinkills").value;
     values[234] = document.getElementById("sav-waterfallkills").value;
