@@ -1127,6 +1127,7 @@ function start() {
     var advanced = document.getElementById("advanced");
     if (advancedMode) {
         advanced.classList.remove('hidden');
+        document.getElementById("hide-advanced").innerHTML = "Hide";
     }
     for (var i = 0; i < flags.length; i += 3) {
         for (var j = 0; j < 3; j++) {
