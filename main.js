@@ -1133,12 +1133,25 @@ function start() {
     }
     for (var i = 0; i < flags.length; i += 3) {
         for (var j = 0; j < 3; j++) {
+            var checkDesc = false;
             var newLabel = document.createElement("label");
             newLabel.setAttribute("for", "sav-flag-" + (i + j));
             newLabel.innerHTML = "[" + (i + j) + "] " + flags[i + j][0];
             if (typeof flags[i + j][1] === "string") {
                 newLabel.title = flags[i + j][1];
+                checkDesc = true;
             }
+            
+            // Hide unused flags, highlight debug ones.
+            if (flags[i + j][0] === "unused" || (checkDesc && (
+                flags[i + j][1].indexOf("nused") !== -1 || // "U" removed for case insensitivity
+                flags[i + j][1].indexOf("Unaccessed") !== -1
+            ))) {
+                newLabel.classList.add("gray");
+            } else if (checkDesc && flags[i + j][1].indexOf("Debug") !== -1) {
+                newLabel.classList.add("red");
+            }
+            
             advanced.appendChild(newLabel);
         }
         for (var j = 0; j < 3; j++) {
