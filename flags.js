@@ -1031,11 +1031,11 @@ var flags = [
         "11": "Received Papyrus call",
         "12": "True Lab complete"
     }],
-    ["status_undyne_letter", "Status of dropping Undyne's Letter.", [
-        "Initial state",
-        "Dropped",
-        "Received EX letter"
-    ]],
+    ["status_undyne_letter", "Status of dropping Undyne's Letter.", {
+        "0": "Initial state",
+        "1": "Dropped",
+        "3": "Received EX letter"
+    }],
     ["popato_chisps_bought", "Amount of potato chisps you have bought. (0-8)"],
     ["conversation_onionsan", "Onionsan's status.", {
         "-1": "Rejected",
