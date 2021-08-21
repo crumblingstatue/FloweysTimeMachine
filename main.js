@@ -1129,7 +1129,7 @@ function start() {
         advanced.classList.remove('hidden');
         document.getElementById("hide-advanced").innerHTML = "Hide";
     }
-    var debug = {};
+    var debugVars = {};
     for (var i = 0; i < flags.length; i += 3) {
         for (var j = 0; j < 3; j++) {
             var newLabel = document.createElement("label");
@@ -1158,7 +1158,7 @@ function start() {
                 newField.value = 0;
                 if (i > 500) {
                     debug[i + j] = newField;
-                    console.log("Select element created for flag " + (i + j) + ", value should be 0 - check debug[" + (i + j) + "]");
+                    console.log("Select element created for flag " + (i + j) + ", value should be 0 - check debugVars[" + (i + j) + "]");
                 }
             } else if (typeof flags[i + j][2] === "string") { // Simple boolean
                 newField = document.createElement("div");
