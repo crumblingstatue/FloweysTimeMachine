@@ -1197,7 +1197,9 @@ function start() {
         }
     }
     loadPresetSelect();
+    console.log("Loading preset... Value of element 512 is " + debugVars[512].value);
     loadPreset("Ruins Start");
+    console.log("Preset loaded. Value of element 512 is " + debugVars[512].value);
     
     // Selecting a file
     var iniFile, saveFile;
