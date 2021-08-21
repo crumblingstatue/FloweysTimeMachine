@@ -1165,7 +1165,7 @@ function start() {
                 newOption = document.createElement("input");
                 newOption.setAttribute("type", "number");
                 newOption.addEventListener("change", function() {
-                    this.previousSibling.value = parseFloat(this.value);
+                    this.previousSibling.checked = parseFloat(this.value);
                 });
                 newOption.style.width = "100%";
                 newOption.setAttribute("id", "sav-flag-" + (i + j));
