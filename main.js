@@ -1005,9 +1005,6 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-fun").value = parseInt(values[35].trim());
     for (var i = 0; i < 512; i++) {
         document.getElementById("sav-flag-" + i).value = values[30 + i];
-        if (i > 500) {
-            console.log("Loading flag " + i + ": " + values[30 + i]);
-        }
     }
 }
 
@@ -1148,9 +1145,6 @@ function start() {
             var newField;
             if (typeof flags[i + j][2] === "object") { // Options listed
                 newField = document.createElement("select");
-                if (i > 500) {
-                    console.log("Creating select for flag " + (i + j));
-                }
                 for (var key of Object.keys(flags[i + j][2]).sort((a, b) => a - b)) { // (Decimal keys don't automatically sort correctly)
                     var newOption = document.createElement("option");
                     newOption.setAttribute("value", key);
@@ -1162,8 +1156,6 @@ function start() {
                 newField.value = 0;
                 if (i > 500) {
                     debugVars[i + j] = newField;
-                    console.log("Select element created for flag " + (i + j) + ", value should be 0 - check debugVars[" + (i + j) + "]");
-                    console.log("(Value is " + debugVars[i + j].value + ")");
                 }
             } else if (typeof flags[i + j][2] === "string") { // Simple boolean
                 newField = document.createElement("div");
@@ -1191,18 +1183,10 @@ function start() {
                 newField.value = 0;
             }
             advanced.appendChild(newField);
-            if (i > 500) {
-                console.log("Element for flag " + (i + j) + " appended.");
-                if (typeof flags[i + j][2] === "object") {
-                    console.log("(Value is " + newField.value + ")");
-                }
-            }
         }
     }
     loadPresetSelect();
-    console.log("Loading preset... Value of element 512 is " + debugVars[512].value);
     loadPreset("Ruins Start");
-    console.log("Preset loaded. Value of element 512 is " + debugVars[512].value);
     
     // Selecting a file
     var iniFile, saveFile;
