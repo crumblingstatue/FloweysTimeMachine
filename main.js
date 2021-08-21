@@ -1160,6 +1160,7 @@ function start() {
                 if (i > 500) {
                     debugVars[i + j] = newField;
                     console.log("Select element created for flag " + (i + j) + ", value should be 0 - check debugVars[" + (i + j) + "]");
+                    console.log("(Value is " + debugVars[i + j].value + ")");
                 }
             } else if (typeof flags[i + j][2] === "string") { // Simple boolean
                 newField = document.createElement("div");
