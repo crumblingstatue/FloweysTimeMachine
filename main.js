@@ -817,30 +817,30 @@ function updatePersistentDataForm(iniobj) {
     "use strict";
     document.getElementById("ini-name").value = iniobj.General.Name;
     updateSelection("ini-location", iniobj.General.Room);
-    document.getElementById("ini-kills").value = parseInt(iniobj.General.Kills.trim());
-    document.getElementById("ini-love").value = parseInt(iniobj.General.Love.trim());
+    document.getElementById("ini-kills").value = Number(iniobj.General.Kills.trim());
+    document.getElementById("ini-love").value = Number(iniobj.General.Love.trim());
     if (iniobj.FFFFF) {
         if (iniobj.FFFFF.F) {
-            document.getElementById("ini-omega-flowey-trapped").checked = (parseInt(iniobj.FFFFF.F.trim()) === 1);
+            document.getElementById("ini-omega-flowey-trapped").checked = (Number(iniobj.FFFFF.F.trim()) === 1);
         }
         if (iniobj.FFFFF.P) {
             updateSelection("ini-omega-flowey-soul", iniobj.FFFFF.P);
         }
         if (iniobj.FFFFF.D) {
-            document.getElementById("ini-omega-flowey-deaths").value = parseInt(iniobj.FFFFF.D.trim());
+            document.getElementById("ini-omega-flowey-deaths").value = Number(iniobj.FFFFF.D.trim());
         }
     } else {
         document.getElementById("ini-omega-flowey-trapped").checked = false;
     }
     if (iniobj.reset) {
         if (iniobj.reset.s_key) {
-            document.getElementById("ini-dodged-all-special-thanks").checked = (parseInt(iniobj.reset.s_key.trim()) === 1);
+            document.getElementById("ini-dodged-all-special-thanks").checked = (Number(iniobj.reset.s_key.trim()) === 1);
         }
     } else {
         document.getElementById("ini-dodged-all-special-thanks").checked = false;
     }
     if (iniobj.General.fun) {
-        document.getElementById("ini-fun").value = parseInt(iniobj.General.fun.trim());
+        document.getElementById("ini-fun").value = Number(iniobj.General.fun.trim());
     }
 }
 
@@ -861,14 +861,14 @@ function updateIniFromForm(ini) {
             ini.FFFFF.F = "0";
         }
     }
-    var upcomingSoul = parseInt(document.getElementById("ini-omega-flowey-soul").value);
+    var upcomingSoul = Number(document.getElementById("ini-omega-flowey-soul").value);
     if (upcomingSoul) {
         if (!ini.FFFFF) {
             ini.FFFFF = {};
         }
         ini.FFFFF.P = upcomingSoul;
     }
-    var timesDied = parseInt(document.getElementById("ini-omega-flowey-deaths").value);
+    var timesDied = Number(document.getElementById("ini-omega-flowey-deaths").value);
     if (timesDied) {
         if (!ini.FFFFF) {
             ini.FFFFF = {};
@@ -887,7 +887,7 @@ function updateIniFromForm(ini) {
             ini.reset.s_key = "0";
         }
     }
-    var fun = parseInt(document.getElementById("ini-fun").value);
+    var fun = Number(document.getElementById("ini-fun").value);
     if (fun) {
         ini.General.fun = fun;
     }
@@ -899,11 +899,9 @@ function updateSelection(id, value, newChoiceArray) {
     
     // Sanitize value
     if (typeof value === "string") {
-        value = parseInt(value.trim());
-    } else if (typeof value === "number") {
-        value = parseInt(value);
-    } else if (value == undefined) {
-        if (select.value == undefined) {
+        value = Number(value.trim());
+    } else if (value === undefined) {
+        if (select.value === undefined) {
             window.alert("No value found for form input " + id + ", defaulting to 0.");
             value = 0;
         } else {
@@ -958,8 +956,8 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-weaponat").value = values[5];
     document.getElementById("sav-df").value = values[6];
     document.getElementById("sav-armordf").value = values[7];
-    document.getElementById("sav-undyne-cell").checked = (parseInt(values[495].trim()) === 1);
-    if (parseInt(values[495].trim()) === 1) {
+    document.getElementById("sav-undyne-cell").checked = (Number(values[495].trim()) === 1);
+    if (Number(values[495].trim()) === 1) {
         cellOpts[210] = "Papyrus and Undyne";
     } else {
         cellOpts[210] = "Papyrus's Phone";
@@ -994,15 +992,15 @@ function updateSaveDataForm(values) {
     updateSelection("sav-muffetstate", values[427]);
     updateSelection("sav-broguardsstate", values[432]);
     updateSelection("sav-mettatonstate", values[455]);
-    document.getElementById("sav-exitedtruelab").checked = (parseInt(values[523].trim()) === 12);
-    document.getElementById("sav-defeatedasriel").checked = (parseInt(values[37].trim()) === 1);
+    document.getElementById("sav-exitedtruelab").checked = (Number(values[523].trim()) === 12);
+    document.getElementById("sav-defeatedasriel").checked = (Number(values[37].trim()) === 1);
     updateSelection("sav-plotvalue", values[542]);
-    if (parseInt(values[545].trim()) != document.getElementById("sav-havecell").checked) {
+    if (Number(values[545].trim()) != document.getElementById("sav-havecell").checked) {
         document.getElementById("cellslots").classList.toggle('hidden');
     }
-    document.getElementById("sav-havecell").checked = (parseInt(values[545].trim()) === 1);
+    document.getElementById("sav-havecell").checked = (Number(values[545].trim()) === 1);
     updateSelection("sav-location", values[547]);
-    document.getElementById("sav-fun").value = parseInt(values[35].trim());
+    document.getElementById("sav-fun").value = Number(values[35].trim());
     for (var i = 0; i < 512; i++) {
         if (document.getElementById("sav-flag-" + i).nodeName === "SELECT") {
             updateSelection("sav-flag-" + i, values[30 + i], flags[i][2]);
@@ -1010,7 +1008,7 @@ function updateSaveDataForm(values) {
             document.getElementById("sav-flag-" + i).value = values[30 + i];
         }
         // Update checkboxes (should have no ill effects on non-checkbox-based flags)
-        document.getElementById("sav-flag-" + i).previousSibling.checked = parseFloat(document.getElementById("sav-flag-" + i).value);
+        document.getElementById("sav-flag-" + i).previousSibling.checked = Number(document.getElementById("sav-flag-" + i).value);
     }
 }
 
@@ -1055,15 +1053,15 @@ function updateSaveValuesFromForm(values) {
     values[427] = document.getElementById("sav-muffetstate").value;
     values[432] = document.getElementById("sav-broguardsstate").value;
     values[455] = document.getElementById("sav-mettatonstate").value;
-    values[495] = +document.getElementById("sav-undyne-cell").checked;
+    values[495] = Number(document.getElementById("sav-undyne-cell").checked);
     if (document.getElementById("sav-exitedtruelab").checked) {
         values[523] = "12";
     } else {
         values[523] = "0";
     }
-    values[37] = +document.getElementById("sav-defeatedasriel").checked;
+    values[37] = Number(document.getElementById("sav-defeatedasriel").checked);
     values[542] = document.getElementById("sav-plotvalue").value;
-    values[545] = +document.getElementById("sav-havecell").checked;
+    values[545] = Number(document.getElementById("sav-havecell").checked);
     values[547] = document.getElementById("sav-location").value;
     values[35] = document.getElementById("sav-fun").value;
 }
@@ -1183,13 +1181,13 @@ function start() {
                 var newOption = document.createElement("input");
                 newOption.setAttribute("type", "checkbox");
                 newOption.addEventListener("change", function() {
-                    this.nextSibling.value = +this.checked;
+                    this.nextSibling.value = Number(this.checked);
                 });
                 newField.appendChild(newOption);
                 newOption = document.createElement("input");
                 newOption.setAttribute("type", "number");
                 newOption.addEventListener("change", function() {
-                    this.previousSibling.checked = parseFloat(this.value);
+                    this.previousSibling.checked = Number(this.value);
                 });
                 newOption.style.width = "100%";
                 newOption.setAttribute("id", "sav-flag-" + (i + j));
@@ -1293,7 +1291,7 @@ function start() {
         if (typeof weaponAt !== "undefined") {
             document.getElementById("sav-weaponat").value = weaponAt + armorAt;
         } else {
-            document.getElementById("sav-weaponat").value = parseInt(document.getElementById("sav-weaponat").value) + armorAt;
+            document.getElementById("sav-weaponat").value = Number(document.getElementById("sav-weaponat").value) + armorAt;
         }
     });
     
@@ -1450,7 +1448,7 @@ function start() {
         if (flagFor[saveElements[i].id] >= 0) {
             saveElements[i].addEventListener("change", function() {
                 if (this.type == "checkbox") {
-                    document.getElementById("sav-flag-" + flagFor[this.id]).value = +this.checked;
+                    document.getElementById("sav-flag-" + flagFor[this.id]).value = Number(this.checked);
                 } else {
                     document.getElementById("sav-flag-" + flagFor[this.id]).value = this.value;
                 }
@@ -1459,7 +1457,7 @@ function start() {
             saveElements[i].addEventListener("change", function() {
                 var targetElement = document.getElementById(inputForFlag[this.id]);
                 if (targetElement.type == "checkbox") {
-                    targetElement.checked = parseFloat(this.value);
+                    targetElement.checked = Number(this.value);
                 } else if (targetElement.type == "number") {
                     targetElement.value = this.value;
                 } else { // dropdown
