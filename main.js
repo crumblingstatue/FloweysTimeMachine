@@ -1006,7 +1006,7 @@ function updateSaveDataForm(values) {
     for (var i = 0; i < flags.length; i++) {
         document.getElementById("sav-flag-" + i).value = values[30 + i];
         if (i > 500) {
-            console.log("Loading flag " + i);
+            console.log("Loading flag " + i + ": " + values[30 + i]);
         }
     }
 }
