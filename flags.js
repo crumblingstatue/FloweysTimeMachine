@@ -991,22 +991,26 @@ var flags = [
     ["truelab_unsuppress_border", "Whether the True Lab border has been unlocked. Maintains the border when backtracking to the first two initially-borderless rooms.", basicBool],
     ["inside_truelab", "Whether you are inside the True Lab. Darkens obj_mainchara appropriately.", basicBool],
     ["truelab_red_key_status", "Status of the red key.", [
-        "On ground",
+        "Initial state",
+        "In sink",
         "Collected",
         "In slot"
     ]],
     ["truelab_blue_key_status", "Status of the blue key.", [
+        "Initial state",
         "On ground",
         "Collected",
         "In slot"
     ]],
     ["truelab_green_key_status", "Status of the green key.", [
-        "On ground",
+        "Initial state",
+        "In tub",
         "Collected",
         "In slot"
     ]],
     ["truelab_yellow_key_status", "Status of the yellow key.", [
-        "On ground",
+        "Initial state",
+        "On bed",
         "Collected",
         "In slot"
     ]],
