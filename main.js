@@ -1143,6 +1143,9 @@ function start() {
             var newField;
             if (typeof flags[i + j][2] === "object") { // Options listed
                 newField = document.createElement("select");
+                if (i > 500) {
+                    console.log("Creating select for flag " + (i + j));
+                }
                 for (var key of Object.keys(flags[i + j][2]).sort((a, b) => a - b)) { // (Decimal keys don't automatically sort correctly)
                     var newOption = document.createElement("option");
                     newOption.setAttribute("value", key);
@@ -1178,6 +1181,9 @@ function start() {
                 newField.value = 0;
             }
             advanced.appendChild(newField);
+            if (i > 500) {
+                console.log("Element for flag " + (i + j) + " appended.");
+            }
         }
     }
     loadPresetSelect();
