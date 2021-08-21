@@ -1157,7 +1157,7 @@ function start() {
                 newField.setAttribute("id", "sav-flag-" + (i + j));
                 newField.value = 0;
                 if (i > 500) {
-                    debug[i + j] = newField;
+                    debugVars[i + j] = newField;
                     console.log("Select element created for flag " + (i + j) + ", value should be 0 - check debugVars[" + (i + j) + "]");
                 }
             } else if (typeof flags[i + j][2] === "string") { // Simple boolean
