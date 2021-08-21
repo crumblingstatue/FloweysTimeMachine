@@ -1,3 +1,5 @@
+var debugVars = {}; // Could be handy
+
 var items = [
     "Empty",
     "Monster Candy",
@@ -1129,7 +1131,6 @@ function start() {
         advanced.classList.remove('hidden');
         document.getElementById("hide-advanced").innerHTML = "Hide";
     }
-    var debugVars = {};
     for (var i = 0; i < flags.length; i += 3) {
         for (var j = 0; j < 3; j++) {
             var newLabel = document.createElement("label");
