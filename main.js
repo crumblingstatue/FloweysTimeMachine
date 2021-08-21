@@ -1435,7 +1435,7 @@ function start() {
             saveElements[i].addEventListener("change", function() {
                 var targetElement = document.getElementById(inputForFlag[this.id]);
                 if (targetElement.type == "checkbox") {
-                    targetElement.checked = this.value;
+                    targetElement.checked = parseFloat(this.value);
                 } else if (targetElement.type == "number") {
                     targetElement.value = this.value;
                 } else { // dropdown
