@@ -1005,6 +1005,9 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-fun").value = parseInt(values[35].trim());
     for (var i = 0; i < flags.length; i++) {
         document.getElementById("sav-flag-" + i).value = values[30 + i];
+        if (i > 500) {
+            console.log("Loading flag " + i);
+        }
     }
 }
 
