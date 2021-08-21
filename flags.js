@@ -618,7 +618,10 @@ var flags = [
     ["dimensional_box_A_8", "The item in a given slot of a given box.", items],
     ["dimensional_box_A_9", "The item in a given slot of a given box.", items],
     ["dimensional_box_A_10", "The item in a given slot of a given box.", items],
-    ["unused"],
+    ["box_A_interacted", "Whether you have interacted with Dimensional Box A. Unaccessed." {
+        "0": "Initial state",
+        "999": "Interacted" // probably not intended for this but that's the only thing it does
+    }],
     ["unused"],
     ["dimensional_box_B_1", "The item in a given slot of a given box.", items],
     ["dimensional_box_B_2", "The item in a given slot of a given box.", items],
@@ -630,7 +633,10 @@ var flags = [
     ["dimensional_box_B_8", "The item in a given slot of a given box.", items],
     ["dimensional_box_B_9", "The item in a given slot of a given box.", items],
     ["dimensional_box_B_10", "The item in a given slot of a given box.", items],
-    ["unused"],
+    ["box_B_interacted", "Whether you have interacted with Dimensional Box B. Unaccessed." {
+        "0": "Initial state",
+        "999": "Interacted"
+    }],
     ["unused"],
     ["unused"],
     ["unused"],
