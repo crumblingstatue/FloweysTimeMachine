@@ -1,3 +1,5 @@
+var debugVars = {}; // Could be handy
+
 var items = [
     "Empty",
     "Monster Candy",
@@ -68,7 +70,7 @@ var items = [
 ];
 
 var weapons = {
-    "0": "Empty",
+    // "0": "Empty",
     "3": "Stick",
     "13": "Toy Knife",
     "14": "Tough Glove",
@@ -81,7 +83,7 @@ var weapons = {
 };
 
 var armors = {
-    "0": "Empty",
+    // "0": "Empty",
     "4": "Bandage",
     "12": "Faded Ribbon",
     "15": "Manly Bandana",
@@ -586,7 +588,7 @@ var stateChoiceArrays = {
     "sav-weapon": weapons,
     "sav-armor": armors,
     "sav-plotvalue": {
-        "0": "New game", // Unobtainable but necessary
+        // "0": "New game",
         // "1": "Flowey intro complete",
         "2": "First save",
         "3": "Stepping tile puzzle complete",
@@ -814,7 +816,7 @@ function loadSaveFromFile(file, closure) {
 function updatePersistentDataForm(iniobj) {
     "use strict";
     document.getElementById("ini-name").value = iniobj.General.Name;
-    document.getElementById("ini-location").value = parseInt(iniobj.General.Room.trim());
+    updateSelection("ini-location", iniobj.General.Room);
     document.getElementById("ini-kills").value = parseInt(iniobj.General.Kills.trim());
     document.getElementById("ini-love").value = parseInt(iniobj.General.Love.trim());
     if (iniobj.FFFFF) {
@@ -822,7 +824,7 @@ function updatePersistentDataForm(iniobj) {
             document.getElementById("ini-omega-flowey-trapped").checked = (parseInt(iniobj.FFFFF.F.trim()) === 1);
         }
         if (iniobj.FFFFF.P) {
-            document.getElementById("ini-omega-flowey-soul").value = parseInt(iniobj.FFFFF.P.trim());
+            updateSelection("ini-omega-flowey-soul", iniobj.FFFFF.P);
         }
         if (iniobj.FFFFF.D) {
             document.getElementById("ini-omega-flowey-deaths").value = parseInt(iniobj.FFFFF.D.trim());
@@ -931,7 +933,7 @@ function updateSelection(id, value, newChoiceArray) {
     }
     
     // Create options
-    for (var key in stateChoiceArrays[id]) {
+    for (var key of Object.keys(stateChoiceArrays[id]).sort((a, b) => a - b)) { // (Decimal keys don't automatically sort correctly)
         var newOption = document.createElement("option");
         newOption.setAttribute("value", key);
         var newContent = document.createTextNode(stateChoiceArrays[id][key]);
@@ -999,9 +1001,9 @@ function updateSaveDataForm(values) {
         document.getElementById("cellslots").classList.toggle('hidden');
     }
     document.getElementById("sav-havecell").checked = (parseInt(values[545].trim()) === 1);
-    document.getElementById("sav-location").value = parseInt(values[547].trim());
+    updateSelection("sav-location", values[547]);
     document.getElementById("sav-fun").value = parseInt(values[35].trim());
-    for (var i = 0; i < flags.length; i++) {
+    for (var i = 0; i < 512; i++) {
         document.getElementById("sav-flag-" + i).value = values[30 + i];
     }
 }
@@ -1122,27 +1124,77 @@ function start() {
         updatePersistentDataForm(ini);
     }
     // Initialize form
-    for (var id in stateChoiceArrays) {
-        updateSelection(id, 0);
-    }
     updateSelection("allowed-locations", 1);
     updateSelection("allowed-locations-2", 1);
     var advanced = document.getElementById("advanced");
     if (advancedMode) {
-        advanced.parentElement.classList.remove('hidden');
+        advanced.classList.remove('hidden');
+        document.getElementById("hide-advanced").innerHTML = "Hide";
     }
     for (var i = 0; i < flags.length; i += 3) {
         for (var j = 0; j < 3; j++) {
+            var checkDesc = false;
             var newLabel = document.createElement("label");
             newLabel.setAttribute("for", "sav-flag-" + (i + j));
-            newLabel.innerHTML = "[" + (i + j) + "] " + flags[i + j];
+            newLabel.innerHTML = "[" + (i + j) + "] " + flags[i + j][0];
+            if (typeof flags[i + j][1] === "string") {
+                newLabel.title = flags[i + j][1];
+                checkDesc = true;
+            }
+            
+            // Hide unused flags, highlight debug ones.
+            if (flags[i + j][0] === "unused" || (checkDesc && (
+                flags[i + j][1].indexOf("nused") !== -1 || // "U" removed for case insensitivity
+                flags[i + j][1].indexOf("Unaccessed") !== -1
+            ))) {
+                newLabel.classList.add("gray");
+            } else if (checkDesc && flags[i + j][1].indexOf("Debug") !== -1) {
+                newLabel.classList.add("red");
+            }
+            
             advanced.appendChild(newLabel);
         }
         for (var j = 0; j < 3; j++) {
-            var newField = document.createElement("input");
-            newField.setAttribute("type", "number");
-            newField.setAttribute("id", "sav-flag-" + (i + j));
-            newField.setAttribute("value", 0);
+            var newField;
+            if (typeof flags[i + j][2] === "object") { // Options listed
+                newField = document.createElement("select");
+                for (var key of Object.keys(flags[i + j][2]).sort((a, b) => a - b)) { // (Decimal keys don't automatically sort correctly)
+                    var newOption = document.createElement("option");
+                    newOption.setAttribute("value", key);
+                    var newContent = document.createTextNode(flags[i + j][2][key]);
+                    newOption.appendChild(newContent);
+                    newField.appendChild(newOption);
+                }
+                newField.setAttribute("id", "sav-flag-" + (i + j));
+                newField.value = 0;
+                if (i > 500) {
+                    debugVars[i + j] = newField;
+                }
+            } else if (typeof flags[i + j][2] === "string") { // Simple boolean
+                newField = document.createElement("div");
+                newField.setAttribute("class", "checkbox");
+                newField.style.marginTop = 0;
+                var newOption = document.createElement("input");
+                newOption.setAttribute("type", "checkbox");
+                newOption.addEventListener("change", function() {
+                    this.nextSibling.value = +this.checked;
+                });
+                newField.appendChild(newOption);
+                newOption = document.createElement("input");
+                newOption.setAttribute("type", "number");
+                newOption.addEventListener("change", function() {
+                    this.previousSibling.checked = parseFloat(this.value);
+                });
+                newOption.style.width = "100%";
+                newOption.setAttribute("id", "sav-flag-" + (i + j));
+                newOption.value = 0;
+                newField.appendChild(newOption);
+            } else { // Numerical value
+                newField = document.createElement("input");
+                newField.setAttribute("type", "number");
+                newField.setAttribute("id", "sav-flag-" + (i + j));
+                newField.value = 0;
+            }
             advanced.appendChild(newField);
         }
     }
@@ -1372,14 +1424,19 @@ function start() {
     document.getElementById("floweyimg").addEventListener("click", function() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);
-        advanced.parentElement.classList.remove('hidden');
-        localStorage.setItem("advanced", true);
-        advancedMode = true;
     });
     document.getElementById("hide-advanced").addEventListener("click", function() {
-        advanced.parentElement.classList.add('hidden');
-        advancedMode = false;
-        localStorage.setItem("advanced", false);
+        if (advancedMode) {
+            advanced.classList.add('hidden');
+            advancedMode = false;
+            localStorage.setItem("advanced", false);
+            this.innerHTML = "Show";
+        } else {
+            advanced.classList.remove('hidden');
+            advancedMode = true;
+            localStorage.setItem("advanced", true);
+            this.innerHTML = "Hide";
+        }
     });
     
     var saveElements = document.querySelectorAll("input[id^=\"sav-\"],select[id^=\"sav-\"]");
@@ -1396,7 +1453,7 @@ function start() {
             saveElements[i].addEventListener("change", function() {
                 var targetElement = document.getElementById(inputForFlag[this.id]);
                 if (targetElement.type == "checkbox") {
-                    targetElement.checked = this.value;
+                    targetElement.checked = parseFloat(this.value);
                 } else if (targetElement.type == "number") {
                     targetElement.value = this.value;
                 } else { // dropdown

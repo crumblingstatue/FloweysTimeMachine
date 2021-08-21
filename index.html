@@ -487,15 +487,17 @@
             </table>
           </div>
         </fieldset>
-        <fieldset class="col-span-3 hidden">
+        <fieldset class="col-span-3">
           <legend>Advanced</legend>
-          <div class="grid-cols-3" id="advanced">
+          <fieldset class="grid-cols-3" style="top: 3px; position: sticky;">
             <div class="col-span-2">
               <p>PLEASE only proceed if you know what you are doing!</p>
-              <p><a href="https://pcy.ulyssis.be/undertale/flags/">More</a> <a href="https://docs.google.com/document/d/1d5dt7A_jkTBhduVEGbWGtDbLEYMXCxSLUvqIqeXtYKw/">info</a></p>
+              <p>Each flag has a mouseover explanation.</p>
+              <p><a href="https://pcy.ulyssis.be/undertale/flags" target="_blank">More</a> <a href="https://docs.google.com/document/d/1d5dt7A_jkTBhduVEGbWGtDbLEYMXCxSLUvqIqeXtYKw/" target="_blank">info</a></p>
             </div>
-            <button id="hide-advanced">Hide</button>
-          </div>
+            <button id="hide-advanced">Show</button>
+          </fieldset>
+          <div class="grid-cols-3 mt-1.5 hidden" id="advanced"></div>
         </fieldset>
       </section>
     </div>

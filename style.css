@@ -255,6 +255,14 @@ td:first-child {
   color: #bbbbbb;
 }
 
+.gray {
+  color: #888888;
+}
+
+.red {
+  color: #ff0000;
+}
+
 .hidden {
     display: none;
 }
