@@ -1126,7 +1126,7 @@ function start() {
     updateSelection("allowed-locations-2", 1);
     var advanced = document.getElementById("advanced");
     if (advancedMode) {
-        advanced.parentElement.classList.remove('hidden');
+        advanced.classList.remove('hidden');
     }
     for (var i = 0; i < flags.length; i += 3) {
         for (var j = 0; j < 3; j++) {
@@ -1163,6 +1163,9 @@ function start() {
                 newField.appendChild(newOption);
                 newOption = document.createElement("input");
                 newOption.setAttribute("type", "number");
+                newOption.addEventListener("change", function() {
+                    this.previousSibling.value = parseFloat(this.value);
+                });
                 newOption.style.width = "100%";
                 newOption.setAttribute("id", "sav-flag-" + (i + j));
                 newOption.setAttribute("value", 0);
@@ -1402,14 +1405,19 @@ function start() {
     document.getElementById("floweyimg").addEventListener("click", function() {
         document.getElementById("floweyimg").src = "res/flowey_wink.png";
         localStorage.setItem("laughed", false);
-        advanced.parentElement.classList.remove('hidden');
-        localStorage.setItem("advanced", true);
-        advancedMode = true;
     });
     document.getElementById("hide-advanced").addEventListener("click", function() {
-        advanced.parentElement.classList.add('hidden');
-        advancedMode = false;
-        localStorage.setItem("advanced", false);
+        if (advancedMode) {
+            advanced.classList.add('hidden');
+            advancedMode = false;
+            localStorage.setItem("advanced", false);
+            this.innerHTML = "Show";
+        } else {
+            advanced.classList.remove('hidden');
+            advancedMode = true;
+            localStorage.setItem("advanced", true);
+            this.innerHTML = "Hide";
+        }
     });
     
     var saveElements = document.querySelectorAll("input[id^=\"sav-\"],select[id^=\"sav-\"]");
