@@ -1004,7 +1004,11 @@ function updateSaveDataForm(values) {
     updateSelection("sav-location", values[547]);
     document.getElementById("sav-fun").value = parseInt(values[35].trim());
     for (var i = 0; i < 512; i++) {
-        document.getElementById("sav-flag-" + i).value = values[30 + i];
+        if (document.getElementById("sav-flag-" + i).nodeName === "SELECT") {
+            updateSelection("sav-flag-" + i, values[30 + i], flags[i][2]);
+        } else {
+            document.getElementById("sav-flag-" + i).value = values[30 + i];
+        }
         // Update checkboxes (should have no ill effects on non-checkbox-based flags)
         document.getElementById("sav-flag-" + i).previousSibling.checked = parseFloat(document.getElementById("sav-flag-" + i).value);
     }
