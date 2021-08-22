@@ -1014,6 +1014,7 @@ function updateSaveDataForm(values) {
 // Update an array of values from the save data form.
 function updateSaveValuesFromForm(values) {
     "use strict";
+    values[523] = "0"; // Initialize correctly
     for (var i = 0; i < flags.length; i++) {
         values[30 + i] = document.getElementById("sav-flag-" + i).value;
     }
@@ -1054,8 +1055,6 @@ function updateSaveValuesFromForm(values) {
     values[495] = Number(document.getElementById("sav-undyne-cell").checked);
     if (document.getElementById("sav-exitedtruelab").checked) {
         values[523] = "12";
-    } else {
-        values[523] = "0";
     }
     values[37] = Number(document.getElementById("sav-defeatedasriel").checked);
     values[542] = document.getElementById("sav-plotvalue").value;
