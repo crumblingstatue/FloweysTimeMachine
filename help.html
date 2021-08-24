@@ -44,15 +44,14 @@
     <h3>Loading</h3>
     <p>
       Once you have found where your existing save data is, you can load it into
-      Flowey's time machine to edit it. You don't have to load an existing save
+      Flowey's Time Machine to edit it. You don't have to load an existing save
       though you can select a preset instead at the top, or use the default
       preset which is set by default.
     </p>
     <h3>Editing</h3>
     <p>
-      Just edit the various fields to your liking. Some fields have a [?] next
-      to them, you can hover over that with the mouse to get some information
-      about the field.
+      Just edit the various fields to your liking. Some fields can be hovered over
+      with the mouse to get some information about the field.
     </p>
     <h3>Saving</h3>
     <p>
@@ -67,8 +66,22 @@
       <br />Just delete these files using your file manager. If you are using
       the Steam version of the game, these files might be backed up and restored
       by the game on startup. In that case, you should delete the Steam data for
-      UNDERTALE in addition to the system_ files, but I have no information on
-      how to do this.
+      UNDERTALE in addition to the system_ files. You can do this in multiple ways:
     </p>
+    <ul>
+      <li>
+        Modify the file permissions so that Steam cannot detect the file.<br />
+        If you replace the file with a folder of the same name and restrict Steam's
+        permissions to it, neither the game nor Steam will detect the file.
+      </li>
+      <li>
+        Disconnect the game from Steam.<br />
+        By renaming or deleting <code>steam_api.dll</code> in Undertale's game folder
+        (NOT the save folder; it's where the game executable runs from, usually
+        <code>C:/Program Files (x86)/Steam/steamapps/common/Undertale</code>), the
+        game will be disconnected from Steam. Deleting the system_ files will then work
+        normally, but you won't be able to launch the game through Steam.
+      </li>
+    </ul>
   </body>
 </html>
