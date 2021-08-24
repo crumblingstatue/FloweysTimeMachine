@@ -83,5 +83,59 @@
         normally, but you won't be able to launch the game through Steam.
       </li>
     </ul>
+    <h3>Advanced Mode</h3>
+    <p>
+      Flowey's Time Machine has an Advanced Mode for more detailed viewing and
+      editing of file0. The vast majority of Undertale's save file is stored as
+      a series of 512 "flags" containing extremely varied information, from your
+      preferred pie flavor to whether you remembered Heats Flamesman's name.
+    </p>
+    <p>
+      Flowey's Time Machine uses a consecutive list of these flags. Flags the game
+      never normally accesses are grayed out, and flags the game never sets are
+      highlighted in red. Every flag has a name and a mouseover description, often
+      sourced from <a href="https://pcy.ulyssis.be/undertale/flags" target="_blank"
+       >PoroCYon's data site</a
+      > and <a href="https://docs.google.com/document/d/1d5dt7A_jkTBhduVEGbWGtDbLEYMXCxSLUvqIqeXtYKw/" target="_blank"
+       >The Undermodding Document</a
+      >. Check those out for more information on most flags.
+    </p>
+    <p>
+      Flags can be edited and saved in much the same way as in the basic interface,
+      using the provided dropdowns, checkboxes, and numerical fields. (1 usually
+      represents an "active" flag, as the two are equivalent in computer terms.)
+      Many of the most important flags to various routes are more easily editable
+      from the basic interface. However, there are a few that may warrant special
+      interest:
+    </p>
+    <li>
+      <ul>
+        The Genocide Route can entirely be controlled using the basic menu, but if
+        you don't want to fill that out (nor use a preset to do it for you), flag
+        <code>26</code> is a debugging flag that can jump you to any point in the
+        route. Note, however: it will ignore further progress and lock you at
+        whatever value the flag has.
+      </ul>
+      <ul>
+        The Pacifist Route has several key points determined by flags. Flag <code>88</code>
+        tracks your progress in Papyrus's date; flag <code>389</code> tracks dating
+        Undyne; and flag <code>493</code> tracks Undyne's Letter, Alphys's date, and
+        the True Lab. Finally, flag <code>7</code> (accessible in the basic menu)
+        activates the post-Asriel epilogue.
+      </ul>
+      <ul>
+        Flags <code>300-324</code> contain the contents of your Dimensional Boxes.
+        If you want to hack in more than eight items, use these.
+      </ul>
+      <ul>
+        Flags <code>130-156</code> control a great many of the yellow credits for
+        sparing enemies in the right way. If you want an all-yellow-credits run
+        (or to analyze one), look here first.
+      </ul>
+      <ul>
+        The status of your keychain is contained in flags. Asgore's keys are
+        flags <code>452-454</code>; True Lab keys are flags <code>481-484</code>;
+        and Sans's room keys are flag <code>497</code>.
+      </ul>
   </body>
 </html>
