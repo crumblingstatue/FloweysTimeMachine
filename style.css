@@ -87,10 +87,6 @@ legend {
   pointer-events: none;
 }
 
-[type="file"] {
-  display: none;
-}
-
 button,
 select,
 input:not([type="file"]):not([type="checkbox"]),
@@ -217,6 +213,13 @@ button,
   gap: 0.325rem;
 }
 
+.grid-cols-6 {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  -moz-gap: 0.325rem;
+  gap: 0.325rem;
+}
+
 .grid-cols-7 {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -246,4 +249,16 @@ th {
 
 td:first-child {
   color: #bbbbbb;
+}
+
+.gray {
+  color: #888888;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.hidden {
+    display: none;
 }

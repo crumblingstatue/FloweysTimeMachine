@@ -13,6 +13,7 @@
     <script src="presets/asgore-true.js"></script>
     <script src="presets/omega-flowey.js"></script>
     <script src="presets/true-pacifist.js"></script>
+    <script src="flags.js"></script>
     <script src="main.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
@@ -84,7 +85,7 @@
             <label for="ini-file">
               <img src="res/heart.svg" /><span>FILE</span>
             </label>
-            <input id="ini-file" type="file" />
+            <input id="ini-file" type="file" class="hidden" />
             <button id="ini-loadbutton" class="disabled">
               <img src="res/load.png" /><span>LOAD</span>
             </button>
@@ -180,20 +181,17 @@
             <label for="sav-file">
               <img src="res/heart.svg" /><span>FILE</span>
             </label>
-            <input id="sav-file" type="file" />
+            <input id="sav-file" type="file" class="hidden" />
             <button id="sav-loadbutton" class="disabled">
               <img src="res/load.png" /><span>LOAD</span>
             </button>
             <button id="sav-savebutton">
               <img src="res/star.png" /><span>SAVE</span>
             </button>
-          </div>
-
-          <div class="grid-cols-4 mt-1.5">
             <label for="sav-name">Name</label>
             <input
               id="sav-name"
-              class="col-span-4"
+              class="col-span-3"
               placeholder="Name the fallen human"
               type="text"
               autocomplete="off"
@@ -201,7 +199,6 @@
             <label for="sav-fun">Fun</label>
             <label for="sav-love">LOVE</label>
             <label for="sav-kills">Kills</label>
-            <label>&nbsp;</label>
             <input
               id="sav-fun"
               placeholder="Fun"
@@ -220,23 +217,16 @@
               type="number"
               autocomplete="off"
             />
-            <input
-              id="sav-unkkills"
-              placeholder="Kills"
-              type="number"
-              autocomplete="off"
-            />
             <label for="sav-location">Location</label>
             <select
-              class="col-span-4"
+              class="col-span-3"
               id="sav-location"
               class="w-full"
             ></select>
-            <label for="allowed-locations-2" class="col-span-2">Filter rooms:</label>
-            <select
-              class="col-span-2"
-              id="allowed-locations-2"
-            ></select>
+          </div>
+          <div class="grid-cols-2 mt-1.5">
+            <label for="allowed-locations-2">Filter rooms:</label>
+            <select id="allowed-locations-2"></select>
           </div>
         </fieldset>
 
@@ -274,7 +264,7 @@
             <select id="sav-weapon"></select>
             <select id="sav-armor"></select>
           </div>
-          <div class="checkbox">
+          <div class="checkbox mt-1.5">
             <input id="allow-non-equipables" type="checkbox" />
             <label for="allow-non-equipables">Allow all items</label>
           </div>
@@ -304,7 +294,11 @@
 
         <fieldset>
           <legend>Cellphone</legend>
-          <div class="grid-cols-2">
+          <div class="checkbox">
+            <input id="sav-havecell" type="checkbox" />
+            <label for="sav-havecell">You have a cellphone</label>
+          </div>
+          <div class="grid-cols-2 mt-1.5 hidden" id="cellslots">
             <label for="sav-cellslot1">SLOT 1</label>
             <label for="sav-cellslot2">SLOT 2</label>
             <select id="sav-cellslot1"></select>
@@ -322,8 +316,8 @@
             <select id="sav-cellslot7"></select>
             <select id="sav-cellslot8"></select>
             <div class="col-span-2 checkbox">
-              <input id="sav-havecell" type="checkbox" name="exitedtruelab" />
-              <label for="sav-havecell">You have a cellphone</label>
+              <input id="sav-undyne-cell" type="checkbox" />
+              <label for="sav-undyne-cell">Dated Undyne (call with Papyrus)</label>
             </div>
           </div>
         </fieldset>
@@ -492,6 +486,18 @@
               </tr>
             </table>
           </div>
+        </fieldset>
+        <fieldset class="col-span-3">
+          <legend>Advanced</legend>
+          <fieldset class="grid-cols-3" style="top: 3px; position: sticky;">
+            <div class="col-span-2">
+              <p>PLEASE only proceed if you know what you are doing!</p>
+              <p>Each flag has a mouseover explanation.</p>
+              <p><a href="help.html#Advanced_Mode">More info</a></p>
+            </div>
+            <button id="hide-advanced">Show</button>
+          </fieldset>
+          <div class="grid-cols-3 mt-1.5 hidden" id="advanced"></div>
         </fieldset>
       </section>
     </div>

@@ -5,7 +5,7 @@
     <title>Flowey's Time Machine - Help</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <style>
-      p {
+      p, li {
         font-family: "Undertale";
         margin-bottom: 8px;
       }
@@ -44,15 +44,14 @@
     <h3>Loading</h3>
     <p>
       Once you have found where your existing save data is, you can load it into
-      Flowey's time machine to edit it. You don't have to load an existing save
+      Flowey's Time Machine to edit it. You don't have to load an existing save
       though you can select a preset instead at the top, or use the default
       preset which is set by default.
     </p>
     <h3>Editing</h3>
     <p>
-      Just edit the various fields to your liking. Some fields have a [?] next
-      to them, you can hover over that with the mouse to get some information
-      about the field.
+      Just edit the various fields to your liking. Some fields can be hovered over
+      with the mouse to get some information about the field.
     </p>
     <h3>Saving</h3>
     <p>
@@ -67,8 +66,77 @@
       <br />Just delete these files using your file manager. If you are using
       the Steam version of the game, these files might be backed up and restored
       by the game on startup. In that case, you should delete the Steam data for
-      UNDERTALE in addition to the system_ files, but I have no information on
-      how to do this.
+      UNDERTALE in addition to the system_ files. You can do this in multiple ways:
     </p>
+    <ul>
+      <li>
+        Modify the file permissions so that Steam cannot detect the file.<br />
+        If you replace the file with a folder of the same name and restrict Steam's
+        permissions to it, neither the game nor Steam will detect the file.
+      </li>
+      <li>
+        Disconnect the game from Steam.<br />
+        By renaming or deleting <code>steam_api.dll</code> in Undertale's game folder
+        (NOT the save folder; it's where the game executable runs from, usually
+        <code>C:/Program Files (x86)/Steam/steamapps/common/Undertale</code>), the
+        game will be disconnected from Steam. Deleting the system_ files will then work
+        normally, but you won't be able to launch the game through Steam.
+      </li>
+    </ul>
+    <h3 id="Advanced_Mode">Advanced Mode</h3>
+    <p>
+      Flowey's Time Machine has an Advanced Mode for more detailed viewing and
+      editing of file0. The vast majority of Undertale's save file is stored as
+      a series of 512 "flags" containing extremely varied information, from your
+      preferred pie flavor to whether you remembered Heats Flamesman's name.
+    </p>
+    <p>
+      Flowey's Time Machine uses a consecutive list of these flags. Flags the game
+      never normally accesses are grayed out, and flags the game never sets are
+      highlighted in red. Every flag has a name and a mouseover description, often
+      sourced from <a href="https://pcy.ulyssis.be/undertale/flags" target="_blank"
+       >PoroCYon's data site</a
+      > and <a href="https://docs.google.com/document/d/1d5dt7A_jkTBhduVEGbWGtDbLEYMXCxSLUvqIqeXtYKw/" target="_blank"
+       >The Undermodding Document</a
+      >. Check those out for more information on most flags.
+    </p>
+    <p>
+      Flags can be edited and saved in much the same way as in the basic interface,
+      using the provided dropdowns, checkboxes, and numerical fields. (1 usually
+      represents an "active" flag, as the two are equivalent in computer terms.)
+      Many of the most important flags to various routes are more easily editable
+      from the basic interface. However, there are a few that may warrant special
+      interest:
+    </p>
+    <ul>
+      <li>
+        The Genocide Route can entirely be controlled using the basic menu, but if
+        you don't want to fill that out (nor use a preset to do it for you), flag
+        <code>26</code> is a debugging flag that can jump you to any point in the
+        route. Note, however: it will ignore further progress and lock you at
+        whatever value the flag has.
+      </li>
+      <li>
+        The Pacifist Route has several key points determined by flags. Flag <code>88</code>
+        tracks your progress in Papyrus's date; flag <code>389</code> tracks dating
+        Undyne; and flag <code>493</code> tracks Undyne's Letter, Alphys's date, and
+        the True Lab. Finally, flag <code>7</code> (accessible in the basic menu)
+        activates the post-Asriel epilogue.
+      </li>
+      <li>
+        Flags <code>300-324</code> contain the contents of your Dimensional Boxes.
+        If you want to hack in more than eight items, use these.
+      </li>
+      <li>
+        Flags <code>130-156</code> control a great many of the yellow credits for
+        sparing enemies in the right way. If you want an all-yellow-credits run
+        (or to analyze one), look here first.
+      </li>
+      <li>
+        The status of your keychain is contained in flags. Asgore's keys are
+        flags <code>452-454</code>; True Lab keys are flags <code>481-484</code>;
+        and Sans's room keys are flag <code>497</code>.
+      </li>
+    </ul>
   </body>
 </html>
