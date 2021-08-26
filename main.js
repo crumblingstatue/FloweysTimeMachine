@@ -751,18 +751,22 @@ function parseIniFromText(text) {
             if (section === null) {
                 throw "Assignment outside of a section";
             }
+            
             var eq = line.indexOf("=");
             if (eq === -1) {
                 throw "Expected '='";
             }
+            
             var lquot = line.indexOf('"');
             if (lquot === -1) {
                 throw "Expected '\"'";
             }
+            
             var rquot = line.slice(lquot + 1).indexOf('"') + lquot + 1;
             if (rquot === -1) {
                 throw "Unterminated value string";
             }
+            
             var value = line.slice(lquot + 1, rquot);
             var key = line.slice(0, eq);
             ini[section][key] = value;
@@ -821,7 +825,7 @@ function updatePersistentDataForm(iniobj) {
     document.getElementById("ini-love").value = Number(iniobj.General.Love.trim());
     if (iniobj.FFFFF) {
         if (iniobj.FFFFF.F) {
-            document.getElementById("ini-omega-flowey-trapped").checked = (Number(iniobj.FFFFF.F.trim()) === 1);
+            document.getElementById("ini-omega-flowey-trapped").checked = Number(iniobj.FFFFF.F.trim());
         }
         if (iniobj.FFFFF.P) {
             updateSelection("ini-omega-flowey-soul", iniobj.FFFFF.P);
@@ -834,7 +838,7 @@ function updatePersistentDataForm(iniobj) {
     }
     if (iniobj.reset) {
         if (iniobj.reset.s_key) {
-            document.getElementById("ini-dodged-all-special-thanks").checked = (Number(iniobj.reset.s_key.trim()) === 1);
+            document.getElementById("ini-dodged-all-special-thanks").checked = Number(iniobj.reset.s_key.trim());
         }
     } else {
         document.getElementById("ini-dodged-all-special-thanks").checked = false;
@@ -873,9 +877,7 @@ function updateIniFromForm(ini) {
         if (!ini.FFFFF) {
             ini.FFFFF = {};
         }
-        if (ini.FFFFF) {
-            ini.FFFFF.D = timesDied;
-        }
+        ini.FFFFF.D = timesDied;
     }
     if (document.getElementById("ini-dodged-all-special-thanks").checked) {
         if (!ini.reset) {
