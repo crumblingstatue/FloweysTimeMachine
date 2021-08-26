@@ -851,48 +851,36 @@ function updatePersistentDataForm(iniobj) {
 // Update an ini object from the persistent data form.
 function updateIniFromForm(ini) {
     "use strict";
-    ini.General.Name = document.getElementById("ini-name").value;
-    ini.General.Room = document.getElementById("ini-location").value;
-    ini.General.Kills = document.getElementById("ini-kills").value;
-    ini.General.Love = document.getElementById("ini-love").value;
-    if (document.getElementById("ini-omega-flowey-trapped").checked) {
-        if (!ini.FFFFF) {
-            ini.FFFFF = {};
+    
+    function formItemToObj(section, key, id) {
+        var value = 0;
+        if (document.getElementById(id).type === "checkbox") {
+            value = Number(document.getElementById(id).checked);
+        } else {
+            value = Number(document.getElementById(id).value);
         }
-        ini.FFFFF.F = "1";
-    } else {
-        if (ini.FFFFF) {
-            ini.FFFFF.F = "0";
-        }
-    }
-    var upcomingSoul = Number(document.getElementById("ini-omega-flowey-soul").value);
-    if (upcomingSoul) {
-        if (!ini.FFFFF) {
-            ini.FFFFF = {};
-        }
-        ini.FFFFF.P = upcomingSoul;
-    }
-    var timesDied = Number(document.getElementById("ini-omega-flowey-deaths").value);
-    if (timesDied) {
-        if (!ini.FFFFF) {
-            ini.FFFFF = {};
-        }
-        ini.FFFFF.D = timesDied;
-    }
-    if (document.getElementById("ini-dodged-all-special-thanks").checked) {
-        if (!ini.reset) {
-            ini.reset = {};
-        }
-        ini.reset.s_key = "1";
-    } else {
-        if (ini.reset) {
-            ini.reset.s_key = "0";
+        
+        if (value) {
+            if (!ini[section]) {
+                ini[section] = {};
+            }
+            ini[section][key] = String(value);
+        } else {
+            if (ini[section]) {
+                ini[section][key] = "0";
+            }
         }
     }
-    var fun = Number(document.getElementById("ini-fun").value);
-    if (fun) {
-        ini.General.fun = fun;
-    }
+    
+    formItemToObj("General", "Name", "ini-name");
+    formItemToObj("General", "Room", "ini-location");
+    formItemToObj("General", "Kills", "ini-kills");
+    formItemToObj("General", "Love", "ini-love");
+    formItemToObj("General", "fun", "ini-fun");
+    formItemToObj("FFFFF", "F", "ini-omega-flowey-trapped");
+    formItemToObj("FFFFF", "P", "ini-omega-flowey-soul");
+    formItemToObj("FFFFF", "D", "ini-omega-flowey-deaths");
+    formItemToObj("reset", "s_key", "ini-dodged-all-special-thanks");
 }
 
 function updateSelection(id, value, newChoiceArray) {
