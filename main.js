@@ -517,8 +517,20 @@ var flagFor = { // Link flags with inputs
     "sav-muffetstate": 397,
     "sav-broguardsstate": 402,
     "sav-mettatonstate": 425,
-    "sav-undyne-cell": 465
+    "sav-asgkey1": 452,
+    "sav-asgkey2": 453,
+    "sav-undyne-cell": 465,
+    "sav-redkey": 481,
+    "sav-blukey": 482,
+    "sav-grnkey": 483,
+    "sav-ylwkey": 484,
+    "sav-sanskey": 497
 };
+
+for (var i = 1; i <= 10; i++) {
+    flagFor["sav-boxa" + i] = 299 + i;
+    flagFor["sav-boxb" + i] = 311 + i;
+}
 
 var inputForFlag = {}; // and vice versa
 for (var id in flagFor) {
@@ -530,12 +542,6 @@ var killedBool = [
     "Killed"
 ];
 
-var simpleDogStates = [
-    "Initial state",
-    "Killed",
-    "Played fetch (Spared)"
-];
-
 var stateChoiceArrays = {
     "sav-trainingdummystate": [
         "Initial state",
@@ -543,48 +549,13 @@ var stateChoiceArrays = {
         "Talked to",
         "Tired of your shenanigans"
     ],
-    "sav-torielstate": {
-        "0": "Initial state",
-        "1": "In basement",
-        "3": "Fled from",
-        "4": "Killed",
-        "5": "Spared"
-    },
-    "sav-doggostate": simpleDogStates,
-    "sav-dogamydogaressastate": simpleDogStates,
-    "sav-greaterdogstate": [
-        "Initial state",
-        "Killed",
-        "Played fetch (Spared)",
-        "Ignored"
-    ],
-    "sav-comedianstate": [
-        "Initial state",
-        "Laughed at joke [Yellow credit]",
-        "Killed"
-    ],
-    "sav-papyrusstate": {
-        "-3": "Lost to thrice",
-        "-2": "Lost to twice",
-        "-1": "Lost to once",
-        "0": "Initial state",
-        "1": "Killed"
-    },
-    "sav-shyrenstate": [
-        "Initial state",
-        "Killed",
-        "Continued humming [Yellow credit]"
-    ],
     "sav-undynestate1": killedBool, // Undyne The Undying
     "sav-maddummystate": killedBool, // *Glad Dummy
-    "sav-undynestate2": [ // Undyne in general
-        "Initial state",
-        "Killed",
-        "Sick"
-    ],
     "sav-muffetstate": killedBool,
     "sav-broguardsstate": killedBool,
     "sav-mettatonstate": killedBool,
+    "sav-asgkey1": ["Initial state", "Got key"],
+    "sav-asgkey2": ["Initial state", "Got key"],
     "sav-weapon": weapons,
     "sav-armor": armors,
     "sav-plotvalue": {
@@ -724,6 +695,12 @@ var stateChoiceArrays = {
     ]
 };
 
+for (var id in flagFor) {
+    if (!stateChoiceArrays[id]) {
+        stateChoiceArrays[id] = flags[flagFor[id]][2];
+    }
+}
+
 for (var i = 1; i <= 8; i++) {
     stateChoiceArrays["sav-invslot" + i] = items;
     stateChoiceArrays["sav-cellslot" + i] = cellOpts;
@@ -825,7 +802,12 @@ function updatePersistentDataForm(iniobj) {
     document.getElementById("ini-love").value = Number(iniobj.General.Love.trim());
     if (iniobj.FFFFF) {
         if (iniobj.FFFFF.F) {
+            if (document.getElementById("ini-omega-flowey-trapped").checked != Number(iniobj.FFFFF.F.trim())) {
+                document.getElementById("sav-savefile8").classList.toggle('hidden');
+            }
             document.getElementById("ini-omega-flowey-trapped").checked = Number(iniobj.FFFFF.F.trim());
+        } else {
+            document.getElementById("sav-savefile8").classList.add('hidden');
         }
         if (iniobj.FFFFF.P) {
             updateSelection("ini-omega-flowey-soul", iniobj.FFFFF.P);
@@ -946,16 +928,20 @@ function updateSaveDataForm(values) {
     document.getElementById("sav-weaponat").value = values[5];
     document.getElementById("sav-df").value = values[6];
     document.getElementById("sav-armordf").value = values[7];
-    document.getElementById("sav-undyne-cell").checked = (Number(values[495].trim()) === 1);
-    if (Number(values[495].trim()) === 1) {
+    
+    if (Number(values[495].trim())) {
         cellOpts[210] = "Papyrus and Undyne";
     } else {
         cellOpts[210] = "Papyrus's Phone";
+    }
+    if (Number(values[545].trim()) != document.getElementById("sav-havecell").checked) {
+        document.getElementById("cellslots").classList.toggle('hidden');
     }
     for (var i = 1; i <= 8; i++) {
         updateSelection("sav-invslot" + i, values[10 + (i * 2)]);
         updateSelection("sav-cellslot" + i, values[11 + (i * 2)]);
     }
+    
     if (document.getElementById("allow-non-equipables").checked) {
         updateSelection("sav-weapon", values[28], items);
         updateSelection("sav-armor", values[29], items);
@@ -963,41 +949,28 @@ function updateSaveDataForm(values) {
         updateSelection("sav-weapon", values[28], weapons);
         updateSelection("sav-armor", values[29], armors);
     }
-    updateSelection("sav-trainingdummystate", values[44]);
-    updateSelection("sav-torielstate", values[75]);
-    updateSelection("sav-doggostate", values[82]);
-    updateSelection("sav-dogamydogaressastate", values[83]);
-    updateSelection("sav-greaterdogstate", values[84]);
-    updateSelection("sav-comedianstate", values[87]);
-    updateSelection("sav-papyrusstate", values[97]);
-    updateSelection("sav-shyrenstate", values[111]);
-    document.getElementById("sav-ruinskills").value = values[232];
-    document.getElementById("sav-snowdinkills").value = values[233];
-    document.getElementById("sav-waterfallkills").value = values[234];
-    document.getElementById("sav-hotlandkills").value = values[235];
-    updateSelection("sav-undynestate1", values[281]);
-    updateSelection("sav-maddummystate", values[282]);
-    updateSelection("sav-undynestate2", values[380]);
-    updateSelection("sav-muffetstate", values[427]);
-    updateSelection("sav-broguardsstate", values[432]);
-    updateSelection("sav-mettatonstate", values[455]);
-    document.getElementById("sav-exitedtruelab").checked = (Number(values[523].trim()) === 12);
-    document.getElementById("sav-defeatedasriel").checked = (Number(values[37].trim()) === 1);
-    updateSelection("sav-plotvalue", values[542]);
-    if (Number(values[545].trim()) != document.getElementById("sav-havecell").checked) {
-        document.getElementById("cellslots").classList.toggle('hidden');
+    
+    for (var id in flagFor) {
+        if (document.getElementById(id).nodeName === "SELECT") {
+            updateSelection(id, values[30 + flagFor[id]]);
+        } else {
+            document.getElementById(id).value = Number(values[30 + flagFor[id]].trim());
+            document.getElementById(id).checked = Number(values[30 + flagFor[id]].trim());
+        }
     }
+    document.getElementById("sav-exitedtruelab").checked = (Number(values[523].trim()) === 12);
+    updateSelection("sav-plotvalue", values[542]);
     document.getElementById("sav-havecell").checked = (Number(values[545].trim()) === 1);
     updateSelection("sav-location", values[547]);
-    document.getElementById("sav-fun").value = Number(values[35].trim());
+    
     for (var i = 0; i < 512; i++) {
         if (document.getElementById("sav-flag-" + i).nodeName === "SELECT") {
             updateSelection("sav-flag-" + i, values[30 + i], flags[i][2]);
         } else {
             document.getElementById("sav-flag-" + i).value = values[30 + i];
+            // Update checkboxes (should have no ill effects on non-checkbox-based flags)
+            document.getElementById("sav-flag-" + i).previousSibling.checked = Number(document.getElementById("sav-flag-" + i).value);
         }
-        // Update checkboxes (should have no ill effects on non-checkbox-based flags)
-        document.getElementById("sav-flag-" + i).previousSibling.checked = Number(document.getElementById("sav-flag-" + i).value);
     }
 }
 
@@ -1021,6 +994,10 @@ function updateSaveValuesFromForm(values) {
     for (var i = 1; i <= 8; i++) {
         values[10 + (i * 2)] = document.getElementById("sav-invslot" + i).value;
         values[11 + (i * 2)] = document.getElementById("sav-cellslot" + i).value;
+    }
+    for (var i = 1; i <= 10; i++) {
+        values[299 + i] = document.getElementById("sav-boxa" + i).value;
+        values[311 + i] = document.getElementById("sav-boxb" + i).value;
     }
     values[28] = document.getElementById("sav-weapon").value;
     values[29] = document.getElementById("sav-armor").value;
@@ -1067,14 +1044,17 @@ function saveIniToFile(ini) {
     flowey_laugh_once();
 }
 
-function saveSaveValuesToFile(values) {
+function saveSaveValuesToFile(values, slot) {
     "use strict";
+    if (!slot) {
+        slot = "0";
+    }
     var string = "";
     for (var i = 0; i < values.length; i++) {
         string += values[i] + "\r\n";
     }
     var blob = new Blob([string], {type: "application/octet-stream"});
-    saveAs(blob, "file0", true);
+    saveAs(blob, "file" + slot, true);
     flowey_laugh_once();
 }
 
@@ -1244,6 +1224,10 @@ function start() {
         updateSaveValuesFromForm(saveLines);
         saveSaveValuesToFile(saveLines);
     });
+    document.getElementById("sav-savefile8").addEventListener("click", function() {
+        updateSaveValuesFromForm(saveLines);
+        saveSaveValuesToFile(saveLines, "8");
+    });
     
     // system_information download
     document.getElementById("savesi2").addEventListener("click", function() {
@@ -1307,9 +1291,8 @@ function start() {
     document.getElementById("sav-havecell").addEventListener("change", function() {
         document.getElementById("cellslots").classList.toggle('hidden');
     });
-    var callUndyne = document.getElementById("sav-undyne-cell");
-    callUndyne.addEventListener("change", function() {
-        if (callUndyne.checked) {
+    document.getElementById("sav-undyne-cell").addEventListener("change", function() {
+        if (this.checked) {
             cellOpts[210] = "Papyrus and Undyne";
         } else {
             cellOpts[210] = "Papyrus's Phone";
@@ -1317,6 +1300,9 @@ function start() {
         for (var i = 1; i <= 8; i++) {
             updateSelection("sav-cellslot" + i);
         }
+    });
+    document.getElementById("ini-omega-flowey-trapped").addEventListener("change", function() {
+        document.getElementById("sav-savefile8").classList.toggle('hidden');
     });
     
     // Presets
