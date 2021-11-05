@@ -875,7 +875,7 @@ function updateSelection(id, value, newChoiceArray) {
     // Sanitize value
     if (typeof value === "string") {
         value = Number(value.trim());
-    } else if (value === undefined) {
+    } else if (value == undefined) {
         if (select.value === undefined) {
             window.alert("No value found for form input " + id + ", defaulting to 0.");
             value = 0;
