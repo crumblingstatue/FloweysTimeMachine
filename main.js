@@ -80,9 +80,8 @@ var weapons = {
     "49": "Empty Gun",
     "51": "Worn Dagger",
     "52": "Real Knife"
-};
-
-var armors = {
+},
+    armors = {
     // "0": "Empty",
     "4": "Bandage",
     "12": "Faded Ribbon",
@@ -124,7 +123,7 @@ var weaponAts = {
 var armorAts = {
     "48": 5, // cowboy hat
     "64": 10 // temy armor
-}
+};
 
 var armorDfs = {
     "4": 0,   // bandage
@@ -537,6 +536,20 @@ for (var id in flagFor) {
     inputForFlag["sav-flag-" + flagFor[id]] = id;
 }
 
+var iniIDs = [
+    // Element ID, section, key
+    // TODO: Consider restructuring as {section: {key: id}} or [id, values] or whatever
+    ["ini-name",     "General", "Name" ],
+    ["ini-location", "General", "Room" ],
+    ["ini-kills",    "General", "Kills"],
+    ["ini-love",     "General", "Love" ],
+    ["ini-fun",      "General", "fun"  ],
+    ["ini-omega-flowey-trapped", "FFFFF", "F"],
+    ["ini-omega-flowey-soul",    "FFFFF", "P"],
+    ["ini-omega-flowey-deaths",  "FFFFF", "D"],
+    ["ini-dodged-all-special-thanks", "reset", "s_key"]
+];
+
 var killedBool = [
     "Initial state",
     "Killed"
@@ -834,35 +847,25 @@ function updatePersistentDataForm(iniobj) {
 function updateIniFromForm(ini) {
     "use strict";
     
-    function formItemToObj(section, key, id) {
+    for (var i in iniIDs) { // 0 -> element ID, 1 -> ini section, 2 -> ini key
         var value = 0;
-        if (document.getElementById(id).type === "checkbox") {
-            value = Number(document.getElementById(id).checked);
+        if (document.getElementById(iniIDs[i][0]).type === "checkbox") {
+            value = Number(document.getElementById(iniIDs[i][0]).checked);
         } else {
-            value = Number(document.getElementById(id).value);
+            value = Number(document.getElementById(iniIDs[i][0]).value);
         }
         
         if (value) {
-            if (!ini[section]) {
-                ini[section] = {};
+            if (!ini[iniIDs[i][1]]) {
+                ini[iniIDs[i][1]] = {};
             }
-            ini[section][key] = String(value);
+            ini[ iniIDs[i][1] ][ iniIDs[i][2] ] = String(value);
         } else {
-            if (ini[section]) {
-                ini[section][key] = "0";
+            if (ini[iniIDs[i][1]]) {
+                ini[ iniIDs[i][1] ][ iniIDs[i][2] ] = "0";
             }
         }
     }
-    
-    formItemToObj("General", "Name", "ini-name");
-    formItemToObj("General", "Room", "ini-location");
-    formItemToObj("General", "Kills", "ini-kills");
-    formItemToObj("General", "Love", "ini-love");
-    formItemToObj("General", "fun", "ini-fun");
-    formItemToObj("FFFFF", "F", "ini-omega-flowey-trapped");
-    formItemToObj("FFFFF", "P", "ini-omega-flowey-soul");
-    formItemToObj("FFFFF", "D", "ini-omega-flowey-deaths");
-    formItemToObj("reset", "s_key", "ini-dodged-all-special-thanks");
 }
 
 function updateSelection(id, value, newChoiceArray) {
