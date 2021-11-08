@@ -985,7 +985,7 @@ function saveSaveValuesToFile(values, slot) {
     }
     
     saveAs(
-      new Blob([string], {type: "text/plain;charset=utf-8"}),
+      new Blob([string], {type: "application/octet-stream"}),
       "file" + slot,
       true
     );
