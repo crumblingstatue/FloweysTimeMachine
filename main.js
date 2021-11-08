@@ -902,7 +902,7 @@ function updateSaveDataForm(values) {
         } else {
             document.getElementById("sav-flag-" + i).value = values[30 + i];
             // Update checkboxes (should have no ill effects on non-checkbox-based flags)
-            document.getElementById("sav-flag-" + i).previousSibling.checked = Number(document.getElementById("sav-flag-" + i).value);
+            document.getElementById("sav-flag-" + i).previousSibling.checked = Number(values[30 + i]);
         }
     }
     
@@ -942,9 +942,9 @@ function updateSaveValuesFromForm(values) {
     
     for (const id in flagFor) {
         if (document.getElementById(id).type === "checkbox") {
-            values[flagFor[id]] = document.getElementById(id).checked ? "1" : "0";
+            values[30 + flagFor[id]] = document.getElementById(id).checked ? "1" : "0";
         } else {
-            values[flagFor[id]] = document.getElementById(id).value;
+            values[30 + flagFor[id]] = document.getElementById(id).value;
         }
     }
     
