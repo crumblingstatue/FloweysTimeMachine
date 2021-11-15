@@ -1003,6 +1003,26 @@ function loadPresetSelect() {
     }
 }
 
+function loadPreset(name) {
+    console.log("Loading preset: " + name);
+    let ini       = presets[name].ini,
+        saveLines = presets[name].lines;
+    updateSaveDataForm(saveLines);
+    updatePersistentDataForm(ini);
+}
+
+function saveUserPreset(name) {
+    updateIniFromForm(ini);
+    updateSaveValuesFromForm(saveLines);
+    let obj = {
+        "ini": ini,
+        "lines": saveLines,
+    },
+        presets = JSON.parse(localStorage.getItem("userPresets"));
+    presets[name] = obj;
+    localStorage.setItem("userPresets", JSON.stringify(presets));
+}
+
 function start() {
     "use strict";
     let userPresets = localStorage.getItem("userPresets"),
@@ -1021,13 +1041,7 @@ function start() {
     if (localStorage.getItem("laughed") === "true") {
         document.getElementById("floweyimg").src = "res/flowey_evil.png";
     }
-    let ini, saveLines;
-    function loadPreset(name) {
-        ini = presets[name].ini;
-        saveLines = presets[name].lines;
-        updateSaveDataForm(saveLines);
-        updatePersistentDataForm(ini);
-    }
+    
     // Initialize form
     updateSelection("allowed-locations", 1);
     updateSelection("allowed-locations-2", 1);
@@ -1250,17 +1264,7 @@ function start() {
     document.getElementById("builtinpresetload").addEventListener("click", function() {
         loadPreset(this.value);
     });
-    function saveUserPreset(name) {
-        updateIniFromForm(ini);
-        updateSaveValuesFromForm(saveLines);
-        let obj = {
-            "ini": ini,
-            "lines": saveLines,
-        },
-            presets = JSON.parse(localStorage.getItem("userPresets"));
-        presets[name] = obj;
-        localStorage.setItem("userPresets", JSON.stringify(presets));
-    }
+    
     document.getElementById("userpresetnew").addEventListener("click", function() {
         const name = window.prompt("Enter the name for your new preset");
         if (name === null || name === "") {
