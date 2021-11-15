@@ -1003,10 +1003,12 @@ function loadPresetSelect() {
     }
 }
 
+let ini, saveLines;
+
 function loadPreset(name) {
     console.log("Loading preset: " + name);
-    let ini       = presets[name].ini,
-        saveLines = presets[name].lines;
+    ini       = presets[name].ini;
+    saveLines = presets[name].lines;
     updateSaveDataForm(saveLines);
     updatePersistentDataForm(ini);
 }
