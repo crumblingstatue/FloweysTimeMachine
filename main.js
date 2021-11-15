@@ -1262,7 +1262,7 @@ function start() {
     
     // Presets
     document.getElementById("builtinpresetload").addEventListener("click", function() {
-        loadPreset(this.value);
+        loadPreset(document.getElementById("builtinpresetselect").value);
     });
     
     document.getElementById("userpresetnew").addEventListener("click", function() {
