@@ -132,7 +132,7 @@ var flags = [
         "50": "Level 50 (Debug)"
     }],
     ["spared_specific", "Whether you spared certain bosses or minibosses, aborting the Genocide Route.", basicBool],
-    ["fast_text_skip", "Debug variable. Makes [C] skip most text very fast.", basicBool],
+    ["fast_text_skip", "Debug variable. Makes [C] skip most text at 7.5 textboxes per second.", basicBool],
     ["unused"],
     ["tutorial_froggit_met", "Whether you have fought the scripted Froggit.", basicBool],
     ["pushed_rock_1", "Whether you have pushed the middle rock.", basicBool],
