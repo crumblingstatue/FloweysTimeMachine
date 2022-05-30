@@ -1295,16 +1295,18 @@ function start() {
     // Interface-altering options
     var allowedLocations1 = document.getElementById("allowed-locations");
     var allowedLocations2 = document.getElementById("allowed-locations-2");
-    allowedLocations1.addEventListener("change", function() {
+    const updateAllowedLocations1 = () => {
         allowedLocations2.value = allowedLocations1.value;
         updateSelection("ini-location", null, rooms[allowedLocations1.value]);
         updateSelection("sav-location", null, rooms[allowedLocations1.value]);
-    });
-    allowedLocations2.addEventListener("change", function() {
+    };
+    const updateAllowedLocations2 = () => {
         allowedLocations1.value = allowedLocations2.value;
         updateSelection("ini-location", null, rooms[allowedLocations1.value]);
         updateSelection("sav-location", null, rooms[allowedLocations1.value]);
-    });
+    };
+    allowedLocations1.addEventListener("change", updateAllowedLocations1);
+    allowedLocations2.addEventListener("change", updateAllowedLocations2);
     document.getElementById("allow-non-equipables").addEventListener("change", function() {
         if (document.getElementById("allow-non-equipables").checked) {
             updateSelection("sav-weapon", null, items);
@@ -1463,6 +1465,29 @@ function start() {
             });
         }
     }
+
+    // Synchronize locations select and number inputs
+    document.getElementById("ini-location-num").addEventListener("change", () => {
+        // Force All Rooms when manually changing ID
+        document.getElementById("allowed-locations").selectedIndex = 2;
+        updateAllowedLocations1();
+        document.getElementById("ini-location").value = document.getElementById("ini-location-num").value;
+    });
+    document.getElementById("ini-location").addEventListener("change", () => {
+        document.getElementById("ini-location-num").value = document.getElementById("ini-location").value;
+    });
+    document.getElementById("sav-location-num").addEventListener("change", () => {
+        // Force All Rooms when manually changing ID
+        document.getElementById("allowed-locations-2").selectedIndex = 2;
+        updateAllowedLocations2();
+        document.getElementById("sav-location").value = document.getElementById("sav-location-num").value;
+    });
+    document.getElementById("sav-location").addEventListener("change", () => {
+        document.getElementById("sav-location-num").value = document.getElementById("sav-location").value;
+    });
+    // Sync initial values too
+    document.getElementById("sav-location-num").value = document.getElementById("sav-location").value;
+    document.getElementById("ini-location-num").value = document.getElementById("ini-location").value;
 }
 
 document.addEventListener("DOMContentLoaded", start);
