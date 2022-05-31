@@ -1297,23 +1297,23 @@ function start() {
     var allowedLocations2 = document.getElementById("allowed-locations-2");
     const updateAllowedLocations1 = () => {
         allowedLocations2.value = allowedLocations1.value;
-        updateSelection("ini-location", null, rooms[allowedLocations1.value]);
-        updateSelection("sav-location", null, rooms[allowedLocations1.value]);
+        updateSelection("ini-location", undefined, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", undefined, rooms[allowedLocations1.value]);
     };
     const updateAllowedLocations2 = () => {
         allowedLocations1.value = allowedLocations2.value;
-        updateSelection("ini-location", null, rooms[allowedLocations1.value]);
-        updateSelection("sav-location", null, rooms[allowedLocations1.value]);
+        updateSelection("ini-location", undefined, rooms[allowedLocations1.value]);
+        updateSelection("sav-location", undefined, rooms[allowedLocations1.value]);
     };
     allowedLocations1.addEventListener("change", updateAllowedLocations1);
     allowedLocations2.addEventListener("change", updateAllowedLocations2);
     document.getElementById("allow-non-equipables").addEventListener("change", function() {
         if (document.getElementById("allow-non-equipables").checked) {
-            updateSelection("sav-weapon", null, items);
-            updateSelection("sav-armor",  null, items);
+            updateSelection("sav-weapon", undefined, items);
+            updateSelection("sav-armor",  undefined, items);
         } else {
-            updateSelection("sav-weapon", null, weapons);
-            updateSelection("sav-armor",  null, armors);
+            updateSelection("sav-weapon", undefined, weapons);
+            updateSelection("sav-armor",  undefined, armors);
         }
     });
     document.getElementById("sav-havecell").addEventListener("change", function() {
